@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, ImageTitle } from './HomepageImage.styles';
+import { Link } from 'react-router-dom';
 
 interface Props {
   title: string;
@@ -8,9 +9,11 @@ interface Props {
 
 const HomepageImage: React.FC<Props> = ({ imageUrl, title }) => {
   return (
-    <Image imageUrl={imageUrl}>
-      <ImageTitle>{title}</ImageTitle>
-    </Image>
+    <Link to={title}>
+      <Image imageUrl={imageUrl}>
+        <ImageTitle>{title}</ImageTitle>
+      </Image>
+    </Link>
   );
 };
 
