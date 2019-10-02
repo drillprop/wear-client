@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from './HomepageImage.styles';
+import { Image, ImageTitle } from './HomepageImage.styles';
 
 interface Props {
   title: string;
@@ -7,7 +7,11 @@ interface Props {
 }
 
 const HomepageImage: React.FC<Props> = ({ imageUrl, title }) => {
-  return <Image imageUrl={imageUrl} />;
+  return (
+    <Image imageUrl={imageUrl}>
+      <ImageTitle>{title}</ImageTitle>
+    </Image>
+  );
 };
 
 export default HomepageImage;
