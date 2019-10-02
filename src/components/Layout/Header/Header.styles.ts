@@ -28,9 +28,17 @@ export const Ul = styled.ul`
   display: flex;
   font-size: 18px;
   justify-content: space-between;
-  margin-left: 25px;
+  margin-left: 200px;
 `;
 
 export const Li = styled.li`
   margin-right: 25px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    top: 0.125em;
+    margin-right: 10px;
+    position: relative;
+  }
 `;
