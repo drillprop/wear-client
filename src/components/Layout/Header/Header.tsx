@@ -8,14 +8,20 @@ const Header: React.FC = () => {
       <Logo to='/'>wear</Logo>
       <Navigation>
         <Ul>
-          <Li>women</Li>
-          <Li>men</Li>
+          <Link to='woman'>
+            <Li>women</Li>
+          </Link>
+          <Link to='man'>
+            <Li>men</Li>
+          </Link>
         </Ul>
         <Ul>
           <Link to='sign'>
             <Li>your account</Li>
           </Link>
-          <Li>cart</Li>
+          <Link to='checkout'>
+            <Li>cart</Li>
+          </Link>
         </Ul>
       </Navigation>
     </HeaderWrapper>
