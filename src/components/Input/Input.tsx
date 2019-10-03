@@ -10,16 +10,12 @@ interface Props {
 
 const Input: React.FC<Props> = ({ label, placeholder, icon, type }) => {
   return (
-    <>
+    <div>
       <StyledLabel htmlFor={label} icon={icon}>
         {label}
       </StyledLabel>
-      <StyledInput
-        id={label}
-        type={type}
-        placeholder={placeholder}
-      ></StyledInput>
-    </>
+      <StyledInput id={label} type={type} placeholder={placeholder} />
+    </div>
   );
 };
 
