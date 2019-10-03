@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Woman = () => {
+const Woman: React.FC = () => {
   return <div>Woman's page</div>;
 };
 

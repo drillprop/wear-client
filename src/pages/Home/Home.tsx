@@ -4,7 +4,7 @@ import woman from '../../assets/woman-in-summer-fashion.jpg';
 import man from '../../assets/man-looks-out-window.jpg';
 import { HomePageWrapper } from './Home.styles';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <HomePageWrapper>
       <HomepageImage title='woman' imageUrl={woman} />

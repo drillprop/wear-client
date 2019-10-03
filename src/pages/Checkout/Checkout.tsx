@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
   return <div>Checkout and cart page</div>;
 };
 

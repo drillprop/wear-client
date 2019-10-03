@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sign = () => {
+const Sign: React.FC = () => {
   return <div>Sign page</div>;
 };
 
