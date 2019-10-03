@@ -4,7 +4,8 @@ export const StyledButton = styled.button`
   display: block;
   background: none;
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  width: 100%;
+  font-size: 15px;
   font-weight: 700;
   border: none;
   outline: 3px solid black;

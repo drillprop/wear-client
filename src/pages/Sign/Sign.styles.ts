@@ -9,6 +9,8 @@ export const SignForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 290px;
+  margin: 0 auto;
   input {
     margin-bottom: 50px;
   }
@@ -24,7 +26,7 @@ export const SignForm = styled.form`
 export const SignTitle = styled.h1`
   margin: 0;
   font-family: 'Roboto Condensed';
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 700;
   text-align: center;
 `;
@@ -32,5 +34,6 @@ export const SignTitle = styled.h1`
 export const ForgotPassword = styled.p`
   font-size: 14px;
   text-align: right;
+  width: 100%;
   margin-top: -40px;
 `;

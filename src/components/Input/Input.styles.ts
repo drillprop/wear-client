@@ -4,7 +4,7 @@ export const StyledLabel = styled.label<{ icon?: string }>`
   position: relative;
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 14px;
   margin-bottom: 5px;
   color: #333333;
   display: block;
@@ -14,13 +14,13 @@ export const StyledLabel = styled.label<{ icon?: string }>`
     content: '';
     position: absolute;
     display: block;
-    margin-top: 30px;
+    margin-top: 24px;
     z-index: 1;
     width: 44px;
     height: 44px;
     opacity: 0.9;
     background-image: ${({ icon }) => `url(${icon})`};
-    background-size: 16px;
+    background-size: 14px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }
@@ -33,4 +33,5 @@ export const StyledInput = styled.input`
   width: 290px;
   height: 44px;
   font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 `;
