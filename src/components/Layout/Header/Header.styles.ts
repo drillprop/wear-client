@@ -2,8 +2,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const HeaderWrapper = styled.header`
-  margin: 30px 80px;
-  display: flex;
+  margin: 20px;
+  display: grid;
+  top: 0;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
 `;
 
@@ -13,30 +15,39 @@ export const Logo = styled(Link)`
   color: black;
   font-weight: 700;
   margin: 0;
-  font-size: 80px;
+  margin-left: 50px;
+  font-size: 60px;
   font-style: italic;
 `;
 
 export const Navigation = styled.nav`
   display: flex;
   align-self: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  margin-right: 50px;
+  margin-left: 50px;
+  border-radius: 5px;
 `;
 
 export const Ul = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  font-size: 18px;
+  font-size: 14px;
   justify-content: space-between;
-  margin-left: 200px;
+  :first-of-type {
+    font-weight: 700;
+  }
 `;
 
 export const Li = styled.li`
   margin-right: 25px;
-
+  text-transform: uppercase;
   svg {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     top: 0.125em;
     margin-right: 10px;
     position: relative;
