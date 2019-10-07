@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-export const SignHeroWrapper = styled.div``;
+export const SignHeroWrapper = styled.div`
+  width: 50vw;
+`;
 
 export const HeroImage = styled.div<{ image: string }>`
-  margin: 0;
   position: absolute;
   z-index: -2;
   height: 100vh;

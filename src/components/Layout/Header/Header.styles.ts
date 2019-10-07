@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 export const HeaderWrapper = styled.header`
   margin: 20px;
   display: grid;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
   top: 0;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;

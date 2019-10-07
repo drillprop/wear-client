@@ -8,18 +8,17 @@ export const SignWrapper = styled.div`
 export const SignForm = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: center;
   max-width: 290px;
   margin: 0 auto;
   input {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
   button {
     margin-top: 20px;
   }
   h1 {
-    margin-top: 40px;
-    margin-bottom: 70px;
+    margin-top: 60px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -29,11 +28,4 @@ export const SignTitle = styled.h1`
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-`;
-
-export const ForgotPassword = styled.p`
-  font-size: 14px;
-  text-align: right;
-  width: 100%;
-  margin-top: -40px;
 `;
