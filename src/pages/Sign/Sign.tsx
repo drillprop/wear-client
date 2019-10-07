@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Register from './Register/Register';
-import Login from './Login/Login';
+import Register from './sign/Register';
+import Login from './sign/Login';
 
 const Sign: React.FC = () => {
   const [isNewUser, setIsNewUser] = useState(false);
