@@ -3,6 +3,7 @@ import { Logo, HeaderWrapper, Navigation, Ul, Li } from './Header.styles';
 import { Link } from 'react-router-dom';
 import { ReactComponent as ShoppingIcon } from '../../../assets/shoping-icon.svg';
 import { ReactComponent as UserIcon } from '../../../assets/user-icon.svg';
+import HamburgerMenu from './header/HamburgerMenu';
 
 const Header: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const Header: React.FC = () => {
             </Li>
           </Link>
         </Ul>
+        <HamburgerMenu />
       </Navigation>
     </HeaderWrapper>
   );
