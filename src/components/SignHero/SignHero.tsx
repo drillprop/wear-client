@@ -11,6 +11,7 @@ const SignHero: React.FC<Props> = ({ image, children }) => {
   return (
     <SignHeroWrapper>
       <HeroImage image={image} />
+      {children}
     </SignHeroWrapper>
   );
 };
