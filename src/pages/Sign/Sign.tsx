@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Register from './Register/Register';
 import Login from './Login/Login';
 
 const Sign: React.FC = () => {
-  return (
-    <>
-      <Login />
-      {/* <Register /> */}
-    </>
+  const [isNewUser, setIsNewUser] = useState(false);
+  return isNewUser ? (
+    <Register setIsNewUser={setIsNewUser} />
+  ) : (
+    <Login setIsNewUser={setIsNewUser} />
   );
 };
 

@@ -1,16 +1,34 @@
-import React from 'react';
-import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
-import Input from '../../../components/Input/Input';
-import Button from '../../../components/Button/Button';
+import React, { useState } from 'react';
 import mail from '../../../assets/mail-icon.svg';
 import user from '../../../assets/user-icon.svg';
 import blonde from '../../../assets/woman-playing-with-blonde-hair.jpg';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Input/Input';
 import SignHero from '../../../components/SignHero/SignHero';
+import {
+  HaveAccountButton,
+  SignForm,
+  SignTitle,
+  SignWrapper
+} from '../Sign.styles';
 
-const Register = () => {
+interface Props {
+  setIsNewUser: any;
+}
+
+const Register: React.FC<Props> = ({ setIsNewUser }) => {
+  const [isHovered, hover] = useState(false);
   return (
     <SignWrapper>
-      <SignHero image={blonde} />
+      <SignHero image={blonde}>
+        <HaveAccountButton
+          onClick={() => setIsNewUser(false)}
+          onMouseEnter={() => hover(!isHovered)}
+          onMouseLeave={() => hover(!isHovered)}
+        >
+          {!isHovered ? 'LOGIN' : 'ALREADY HAVE ACCOUNT?'}
+        </HaveAccountButton>
+      </SignHero>
       <SignForm>
         <SignTitle>CREATE NEW ACCOUNT</SignTitle>
         <Input

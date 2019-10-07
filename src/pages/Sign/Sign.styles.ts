@@ -24,8 +24,31 @@ export const SignForm = styled.form`
 
 export const SignTitle = styled.h1`
   margin: 0;
-  font-family: 'Roboto Condensed';
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 30px;
   font-weight: 700;
   text-align: center;
+`;
+
+export const HaveAccountButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 25px;
+  background-color: white;
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  transition: transform 100ms;
+  transform: translate(-50%, -50%);
+  :hover {
+    background-color: black;
+    color: white;
+    transform: translate(-50%, -50%) scale(1.2);
+    transition: transform 200ms;
+  }
 `;
