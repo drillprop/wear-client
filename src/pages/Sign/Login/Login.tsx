@@ -38,15 +38,14 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
         <Button type='submit'>login</Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
-      <SignHero image={woman}>
-        <HaveAccountButton
-          onClick={() => setIsNewUser(true)}
-          onMouseEnter={() => hover(!isHovered)}
-          onMouseLeave={() => hover(!isHovered)}
-        >
-          {!isHovered ? 'DONT HAVE ACCOUNT?' : 'CREATE NEW ONE'}
-        </HaveAccountButton>
-      </SignHero>
+      <HaveAccountButton
+        onClick={() => setIsNewUser(true)}
+        onMouseEnter={() => hover(true)}
+        onMouseLeave={() => hover(false)}
+      >
+        {!isHovered ? 'DONT HAVE ACCOUNT?' : 'CREATE NEW ONE'}
+      </HaveAccountButton>
+      <SignHero image={woman} />
     </SignWrapper>
   );
 };

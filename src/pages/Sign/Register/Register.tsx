@@ -20,15 +20,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
   const [isHovered, hover] = useState(false);
   return (
     <SignWrapper>
-      <SignHero image={blonde}>
-        <HaveAccountButton
-          onClick={() => setIsNewUser(false)}
-          onMouseEnter={() => hover(!isHovered)}
-          onMouseLeave={() => hover(!isHovered)}
-        >
-          {!isHovered ? 'LOGIN' : 'ALREADY HAVE ACCOUNT?'}
-        </HaveAccountButton>
-      </SignHero>
+      <SignHero image={blonde} />
       <SignForm>
         <SignTitle>CREATE NEW ACCOUNT</SignTitle>
         <Input
@@ -51,6 +43,13 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
         />
         <Button type='submit'>register</Button>
       </SignForm>
+      <HaveAccountButton
+        onClick={() => setIsNewUser(false)}
+        onMouseEnter={() => hover(true)}
+        onMouseLeave={() => hover(false)}
+      >
+        {!isHovered ? 'ALREADY HAVE ACCOUNT?' : 'LOGIN'}
+      </HaveAccountButton>
     </SignWrapper>
   );
 };

@@ -30,7 +30,7 @@ export const StyledInput = styled.input`
   margin: 0;
   padding-left: 40px;
   border: 2px solid #4d4d4d;
-  width: 290px;
+  width: 100%;
   height: 44px;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;

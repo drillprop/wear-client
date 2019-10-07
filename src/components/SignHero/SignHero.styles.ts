@@ -22,4 +22,7 @@ export const HeroImage = styled.div<{ image: string }>`
     background-size: cover;
     opacity: 0.5;
   }
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
