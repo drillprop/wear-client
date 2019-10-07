@@ -6,12 +6,19 @@ export const SignHeroWrapper = styled.div`
 
 export const HeroImage = styled.div<{ image: string }>`
   position: absolute;
-  z-index: -2;
+  z-index: 1;
   height: 100vh;
   top: 0;
   width: 50vw;
-  background: ${({ image }) => `url(${image})`};
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8;
+  background-color: black;
+  ::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background-image: ${({ image }) => `url(${image})`};
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.6;
+  }
 `;
