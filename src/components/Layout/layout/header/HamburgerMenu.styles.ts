@@ -36,12 +36,13 @@ export const HamburgerMenuButton = styled.div`
 export const HamburgerMenuSwitch = styled.input`
   cursor: pointer;
   position: absolute;
+  top: -10px;
   margin: 0;
   opacity: 0;
   padding: 0;
-  width: 28px;
+  width: 29px;
+  height: 29px;
   z-index: 2;
-  height: 28px;
   background: none;
   :checked + div {
     transform: rotate(45deg);
