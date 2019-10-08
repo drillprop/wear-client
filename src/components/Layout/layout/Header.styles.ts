@@ -6,10 +6,9 @@ export const HeaderWrapper = styled.header`
   display: grid;
   position: fixed;
   z-index: 2;
-  width: 100%;
+  width: calc(100% - 40px);
   top: 0;
   grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
 `;
 
 export const Logo = styled(Link)`
@@ -29,9 +28,11 @@ export const Navigation = styled.nav`
   justify-content: space-between;
   background-color: white;
   padding: 20px;
-  margin-right: 50px;
   margin-left: 50px;
   border-radius: 5px;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const Ul = styled.ul`

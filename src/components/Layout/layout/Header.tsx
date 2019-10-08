@@ -31,8 +31,8 @@ const Header: React.FC = () => {
             </Li>
           </Link>
         </Ul>
-        <HamburgerMenu />
       </Navigation>
+      <HamburgerMenu />
     </HeaderWrapper>
   );
 };

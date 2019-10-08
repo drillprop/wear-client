@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
-export const HamburgerMenuWrapper = styled.div``;
+export const HamburgerMenuWrapper = styled.div`
+  position: absolute;
+  right: 70px;
+  display: none;
+  align-self: center;
+  justify-self: end;
+  @media (max-width: 900px) {
+    display: block;
+  }
+`;
 
 export const HamburgerMenuButton = styled.div`
   z-index: 1;
