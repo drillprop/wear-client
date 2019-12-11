@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ImageTitle } from './HomepageImage.styles';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface Props {
   title: string;
@@ -9,7 +9,7 @@ interface Props {
 
 const HomepageImage: React.FC<Props> = ({ imageUrl, title }) => {
   return (
-    <Link to={title}>
+    <Link href={title}>
       <Image imageUrl={imageUrl}>
         <ImageTitle>{title}</ImageTitle>
       </Image>
