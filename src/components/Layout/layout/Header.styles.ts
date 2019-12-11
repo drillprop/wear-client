@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const HeaderWrapper = styled.header`
   margin: 20px;
@@ -11,7 +10,7 @@ export const HeaderWrapper = styled.header`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-export const Logo = styled(Link)`
+export const Logo = styled.div`
   font-family: 'Roboto Condensed', sans-serif;
   text-decoration: none;
   color: black;
@@ -49,7 +48,7 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   margin-right: 25px;
   text-transform: uppercase;
-  svg {
+  img {
     width: 15px;
     height: 15px;
     top: 0.125em;

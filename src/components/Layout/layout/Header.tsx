@@ -1,35 +1,35 @@
 import React from 'react';
 import { Logo, HeaderWrapper, Navigation, Ul, Li } from './Header.styles';
-import { Link } from 'react-router-dom';
-import { ReactComponent as ShoppingIcon } from '../../../assets/shoping-icon.svg';
-import { ReactComponent as UserIcon } from '../../../assets/user-icon.svg';
 import HamburgerMenu from './header/HamburgerMenu';
+import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 
 const Header: React.FC = () => {
   return (
     <HeaderWrapper>
-      <Logo to='/'>wear</Logo>
+      <LinkAnchor href='/'>
+        <Logo>wear</Logo>
+      </LinkAnchor>
       <Navigation>
         <Ul>
-          <Link to='woman'>
+          <LinkAnchor href='/woman'>
             <Li>women</Li>
-          </Link>
-          <Link to='man'>
+          </LinkAnchor>
+          <LinkAnchor href='/man'>
             <Li>men</Li>
-          </Link>
+          </LinkAnchor>
         </Ul>
         <Ul>
-          <Link to='sign'>
+          <LinkAnchor href='/sign'>
             <Li>
-              <UserIcon />
+              <img src='/user-icon.svg' />
               your account
             </Li>
-          </Link>
-          <Link to='checkout'>
+          </LinkAnchor>
+          <LinkAnchor href='/checkout'>
             <Li>
-              <ShoppingIcon /> cart
+              <img src='/shoping-icon.svg' /> cart
             </Li>
-          </Link>
+          </LinkAnchor>
         </Ul>
       </Navigation>
       <HamburgerMenu />
