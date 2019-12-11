@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import { NextPage } from 'next';
+import React from 'react';
 import Sign from '../components/Sign/Sign';
 
-const SignPage: FC = () => {
+const SignPage: NextPage = () => {
   return <Sign />;
 };
 

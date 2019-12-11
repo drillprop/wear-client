@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Man from '../components/Man/Man';
+import { NextPage } from 'next';
 
-const ManPage: FC = () => {
+const ManPage: NextPage = () => {
   return <Man />;
 };
 
