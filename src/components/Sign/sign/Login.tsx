@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import mail from '../../../assets/mail-icon.svg';
-import padlock from '../../../assets/padlock-icon.svg';
-import woman from '/young-woman-on-ferris-wheel.jpg';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import SignHero from '../../../components/SignHero/SignHero';
-import {
-  HaveAccountButton,
-  SignForm,
-  SignTitle,
-  SignWrapper
-} from '../Sign.styles';
+import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
+import HeroButton from '../../HeroButton/HeroButton';
 import { ForgotPassword } from './Login.styles';
 
 interface Props {
@@ -38,13 +31,9 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
         <Button type='submit'>login</Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
-      <HaveAccountButton
-        onClick={() => setIsNewUser(true)}
-        onMouseEnter={() => hover(true)}
-        onMouseLeave={() => hover(false)}
-      >
-        {!isHovered ? 'DONT HAVE ACCOUNT?' : 'CREATE NEW ONE'}
-      </HaveAccountButton>
+      <HeroButton onClick={() => setIsNewUser(true)} hoverText='CREATE NEW ONE'>
+        DON'T HAVE ACCOUNT?
+      </HeroButton>
       <SignHero image='/young-woman-on-ferris-wheel.jpg' />
     </SignWrapper>
   );

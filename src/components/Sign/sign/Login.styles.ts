@@ -4,5 +4,6 @@ export const ForgotPassword = styled.p`
   font-size: 14px;
   text-align: right;
   width: 100%;
+  margin: 0;
   margin-top: 20px;
 `;
