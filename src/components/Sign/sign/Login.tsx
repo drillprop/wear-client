@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import mail from '../../../assets/mail-icon.svg';
-import user from '../../../assets/user-icon.svg';
-import blonde from '../../../assets/woman-playing-with-blonde-hair.jpg';
+import padlock from '../../../assets/padlock-icon.svg';
+import woman from '/young-woman-on-ferris-wheel.jpg';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import SignHero from '../../../components/SignHero/SignHero';
@@ -11,47 +11,43 @@ import {
   SignTitle,
   SignWrapper
 } from '../Sign.styles';
+import { ForgotPassword } from './Login.styles';
 
 interface Props {
-  setIsNewUser: any;
+  setIsNewUser: Function;
 }
 
-const Register: React.FC<Props> = ({ setIsNewUser }) => {
+const Login: React.FC<Props> = ({ setIsNewUser }) => {
   const [isHovered, hover] = useState(false);
   return (
     <SignWrapper>
-      <SignHero image={blonde} />
       <SignForm>
-        <SignTitle>CREATE NEW ACCOUNT</SignTitle>
+        <SignTitle>WELCOME BACK</SignTitle>
         <Input
-          type='text'
-          icon={user}
-          label='username'
-          placeholder='John Doe'
-        />
-        <Input
-          type='email'
-          icon={mail}
-          label='email'
           placeholder='user@example.com'
+          label='email'
+          icon='/mail-icon.svg'
+          type='email'
         />
         <Input
-          type='password'
-          icon={mail}
+          placeholder='*********'
           label='password'
-          placeholder='*******'
+          icon='/padlock-icon.svg'
+          type='password'
         />
-        <Button type='submit'>register</Button>
+        <Button type='submit'>login</Button>
+        <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
       <HaveAccountButton
-        onClick={() => setIsNewUser(false)}
+        onClick={() => setIsNewUser(true)}
         onMouseEnter={() => hover(true)}
         onMouseLeave={() => hover(false)}
       >
-        {!isHovered ? 'ALREADY HAVE ACCOUNT?' : 'LOGIN'}
+        {!isHovered ? 'DONT HAVE ACCOUNT?' : 'CREATE NEW ONE'}
       </HaveAccountButton>
+      <SignHero image='/young-woman-on-ferris-wheel.jpg' />
     </SignWrapper>
   );
 };
 
-export default Register;
+export default Login;
