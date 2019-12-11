@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface HamburgerMenuButtonProps {
+  menuActive: boolean;
+}
+
 export const HamburgerMenuWrapper = styled.div`
   position: absolute;
   right: 70px;
@@ -11,19 +15,19 @@ export const HamburgerMenuWrapper = styled.div`
   }
 `;
 
-export const HamburgerMenuButton = styled.div`
+export const HamburgerMenuButton = styled.div<HamburgerMenuButtonProps>`
   z-index: 1;
   position: absolute;
   width: 28px;
   height: 5px;
-  background-color: black;
+  background-color: ${({ menuActive }) => (menuActive ? 'white' : 'black')};
   ::after,
   ::before {
     content: '';
     position: absolute;
     width: 28px;
     height: 5px;
-    background-color: black;
+    background-color: ${({ menuActive }) => (menuActive ? 'white' : 'black')};
   }
   ::before {
     top: -10px;
