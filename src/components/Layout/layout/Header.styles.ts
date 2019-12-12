@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.header`
-  margin: 20px;
+  background-color: white;
+  border-bottom: 1px;
   display: grid;
   position: fixed;
   z-index: 2;
-  width: calc(100% - 40px);
+  width: 100%;
   top: 0;
   grid-template-columns: repeat(2, 1fr);
 `;
 
 export const Logo = styled.div`
   font-family: 'Roboto Condensed', sans-serif;
+  line-height: 1.5;
   text-decoration: none;
   color: black;
   font-weight: 700;
@@ -25,10 +27,8 @@ export const Navigation = styled.nav`
   display: flex;
   align-self: center;
   justify-content: space-between;
-  background-color: white;
   padding: 20px;
   margin-left: 50px;
-  border-radius: 5px;
   @media (max-width: 900px) {
     display: none;
   }
