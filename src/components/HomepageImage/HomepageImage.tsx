@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, ImageTitle } from './HomepageImage.styles';
+import { Image, ImageTitle, ImageWrapper } from './HomepageImage.styles';
 import Link from 'next/link';
 
 interface Props {
@@ -10,9 +10,10 @@ interface Props {
 const HomepageImage: React.FC<Props> = ({ imageUrl, title }) => {
   return (
     <Link href={title}>
-      <Image imageUrl={imageUrl}>
+      <ImageWrapper>
         <ImageTitle>{title}</ImageTitle>
-      </Image>
+        <Image imageUrl={imageUrl}></Image>
+      </ImageWrapper>
     </Link>
   );
 };
