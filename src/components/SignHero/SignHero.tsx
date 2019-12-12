@@ -7,11 +7,10 @@ interface Props {
   text?: string;
 }
 
-const SignHero: React.FC<Props> = ({ image, children }) => {
+const SignHero: React.FC<Props> = ({ image }) => {
   return (
     <SignHeroWrapper>
       <HeroImage image={image} />
-      {children}
     </SignHeroWrapper>
   );
 };

@@ -1,23 +1,25 @@
 import styled from 'styled-components';
 
 export const SignHeroWrapper = styled.div`
+  margin-top: 90px;
   width: 50vw;
   display: flex;
 `;
 
 export const HeroImage = styled.div<{ image: string }>`
-  position: absolute;
-  height: 100vh;
+  position: fixed;
+  height: calc(100% - 90px);
   z-index: -1;
   top: 0;
-  width: 50vw;
+  width: 50%;
+  margin-top: 90px;
   background-color: black;
   ::after {
+    position: fixed;
     content: '';
-    position: absolute;
-    width: 100%;
+    width: 50%;
     background-image: ${({ image }) => `url(${image})`};
-    height: 100vh;
+    height: 100%;
     background-position: center;
     background-size: cover;
     opacity: 0.5;
