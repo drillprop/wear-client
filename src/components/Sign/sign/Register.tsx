@@ -33,7 +33,9 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
           label='password'
           placeholder='*******'
         />
-        <Button type='submit'>register</Button>
+        <Button width='250px' type='submit'>
+          register
+        </Button>
       </SignForm>
       <HeroButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
         ALREADY HAVE ACCOUNT?

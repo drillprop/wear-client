@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import SignHero from '../../../components/SignHero/SignHero';
@@ -11,7 +11,6 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
-  const [isHovered, hover] = useState(false);
   return (
     <SignWrapper>
       <SignForm>
@@ -28,7 +27,9 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
           icon='/padlock-icon.svg'
           type='password'
         />
-        <Button type='submit'>login</Button>
+        <Button width='250px' type='submit'>
+          login
+        </Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
       <HeroButton onClick={() => setIsNewUser(true)} hoverText='CREATE NEW ONE'>

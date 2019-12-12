@@ -11,9 +11,11 @@ export const SignWrapper = styled.div`
 export const SignForm = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 290px;
+  width: 100%;
+  align-items: center;
   margin: 0 auto;
   input {
+    display: block;
     margin-bottom: 0;
     width: 290px;
   }
