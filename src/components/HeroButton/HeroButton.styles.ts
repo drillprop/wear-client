@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 export const StyledHeroButton = styled.button`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   cursor: pointer;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   background-color: white;
   border: none;
   border-radius: 100%;
   outline: none;
-  width: 7em;
-  height: 7em;
+  width: 150px;
+  height: 150px;
   transform: translate(-50%, -50%);
-  transition: transform 100ms, background-color 100ms;
+  transition: transform 100ms, background-color 200ms;
   :hover {
     background-color: black;
     color: white;
