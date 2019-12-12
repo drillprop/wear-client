@@ -11,8 +11,8 @@ export const StyledHeroButton = styled.button`
   border: none;
   border-radius: 100%;
   outline: none;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   transform: translate(-50%, -50%);
   transition: transform 100ms, background-color 200ms;
   :hover {
