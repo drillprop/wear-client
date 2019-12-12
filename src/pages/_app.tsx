@@ -9,7 +9,7 @@ class MyApp extends App {
     return (
       <Layout>
         <Globalstyle />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </Layout>
     );
   }
