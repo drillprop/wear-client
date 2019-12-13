@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
-import SignHero from '../../../components/SignHero/SignHero';
+import SignImage from '../../SignImage/SignImage';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import HeroButton from '../../HeroButton/HeroButton';
 
@@ -12,7 +12,7 @@ interface Props {
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
   return (
     <SignWrapper>
-      <SignHero image='/woman-playing-with-blonde-hair.jpg' />
+      <SignImage image='/woman-playing-with-blonde-hair.jpg' />
       <SignForm>
         <SignTitle>CREATE NEW ACCOUNT</SignTitle>
         <Input

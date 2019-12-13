@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
-import SignHero from '../../../components/SignHero/SignHero';
+import SignImage from '../../SignImage/SignImage';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import HeroButton from '../../HeroButton/HeroButton';
 import { ForgotPassword } from './Login.styles';
@@ -35,7 +35,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
       <HeroButton onClick={() => setIsNewUser(true)} hoverText='CREATE NEW ONE'>
         DON'T HAVE ACCOUNT?
       </HeroButton>
-      <SignHero image='/young-woman-on-ferris-wheel.jpg' />
+      <SignImage image='/young-woman-on-ferris-wheel.jpg' />
     </SignWrapper>
   );
 };
