@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { roboto, montserrat } from '../../utils/fonts';
 
 export const StyledLabel = styled.label<{ icon?: string }>`
   position: relative;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: ${roboto};
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 5px;
@@ -32,6 +33,6 @@ export const StyledInput = styled.input`
   border: 2px solid #4d4d4d;
   width: 100%;
   height: 44px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: ${montserrat};
   font-size: 14px;
 `;

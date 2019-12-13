@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import { roboto } from '../../utils/fonts';
 
 export const StyledHeroButton = styled.button`
   position: fixed;
+  padding: 0;
   top: 50%;
   left: 50%;
   cursor: pointer;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: ${roboto};
   font-size: 20px;
   background-color: white;
   border: none;

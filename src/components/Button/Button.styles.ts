@@ -11,7 +11,6 @@ export const StyledButton = styled.button<Props>`
   outline: 3px solid ${({ mainColor = 'black' }) => mainColor};
   ${props => props.width && `width: ${props.width}`};
   border: none;
-  font-family: 'Montserrat', sans-serif;
   font-size: 15px;
   font-weight: 700;
   padding: 10px 40px;

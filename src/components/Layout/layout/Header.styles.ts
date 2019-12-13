@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { roboto, montserrat } from '../../../utils/fonts';
 
 export const HeaderWrapper = styled.header`
   background-color: white;
@@ -12,7 +13,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const Logo = styled.div`
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: ${roboto};
   line-height: 1.5;
   text-decoration: none;
   color: black;
@@ -35,12 +36,14 @@ export const Navigation = styled.nav`
 `;
 
 export const Ul = styled.ul`
+  font-family: ${montserrat};
   padding: 0;
   margin: 0;
+  letter-spacing: 2px;
   display: flex;
   font-size: 14px;
   justify-content: space-between;
-  :first-of-type {
+  :first-child {
     font-weight: 700;
   }
 `;
