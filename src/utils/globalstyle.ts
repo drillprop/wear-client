@@ -13,6 +13,15 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  /* To make footer stick in the bottom  */
+  html, body {
+    height: 100%;
+  }
+  
+  #__next {
+    height: 100%;
+  }
+  
   *, *:before, *:after {
     box-sizing: inherit;
   }
