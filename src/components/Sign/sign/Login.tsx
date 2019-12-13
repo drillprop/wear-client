@@ -3,7 +3,7 @@ import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import SignImage from '../../SignImage/SignImage';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
-import HeroButton from '../../HeroButton/HeroButton';
+import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { ForgotPassword } from './Login.styles';
 
 interface Props {
@@ -32,9 +32,12 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
         </Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
-      <HeroButton onClick={() => setIsNewUser(true)} hoverText='CREATE NEW ONE'>
+      <SwitchSignButton
+        onClick={() => setIsNewUser(true)}
+        hoverText='CREATE NEW ONE'
+      >
         DON'T HAVE ACCOUNT?
-      </HeroButton>
+      </SwitchSignButton>
       <SignImage image='/young-woman-on-ferris-wheel.jpg' />
     </SignWrapper>
   );

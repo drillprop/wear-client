@@ -3,7 +3,7 @@ import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import SignImage from '../../SignImage/SignImage';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
-import HeroButton from '../../HeroButton/HeroButton';
+import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 
 interface Props {
   setIsNewUser: any;
@@ -37,9 +37,9 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
           register
         </Button>
       </SignForm>
-      <HeroButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
+      <SwitchSignButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
         ALREADY HAVE ACCOUNT?
-      </HeroButton>
+      </SwitchSignButton>
     </SignWrapper>
   );
 };

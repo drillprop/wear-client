@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { StyledHeroButton } from './HeroButton.styles';
+import { StyledSwitchSignButton } from './SwitchSignButton.styles';
 import { useWindowSize } from '../../hooks/useWindowResize';
 
 interface Props {
@@ -7,19 +7,19 @@ interface Props {
   onClick?: () => void;
 }
 
-const HeroButton: FC<Props> = ({ children, hoverText, onClick }) => {
+const SwitchSignButton: FC<Props> = ({ children, hoverText, onClick }) => {
   const [isHovered, hover] = useState(false);
   const [width] = useWindowSize();
   const text = isHovered ? hoverText || children : children;
   return (
-    <StyledHeroButton
+    <StyledSwitchSignButton
       onMouseEnter={() => hover(true)}
       onMouseLeave={() => hover(false)}
       onClick={onClick}
     >
       {width > 900 ? text : children}
-    </StyledHeroButton>
+    </StyledSwitchSignButton>
   );
 };
 
-export default HeroButton;
+export default SwitchSignButton;

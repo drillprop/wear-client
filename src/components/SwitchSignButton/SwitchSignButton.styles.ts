@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { roboto } from '../../utils/fonts';
 
-export const StyledHeroButton = styled.button`
+export const StyledSwitchSignButton = styled.button`
   position: fixed;
   padding: 0;
   top: 50%;
