@@ -1,0 +1,11 @@
+export const fontLevel1: string = '12px';
+export const fontLevel2: string = '14px';
+export const fontLevel3: string = '16px';
+export const fontLevel4: string = '18px';
+export const fontLevel5: string = '20px';
+export const fontLevel6: string = '24px';
+export const fontLevel7: string = '30px';
+export const fontLevel8: string = '36px';
+export const fontLevel9: string = '48px';
+export const fontLevel10: string = '60px';
+export const fontLevel11: string = '72px';
