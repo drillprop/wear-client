@@ -29,7 +29,6 @@ export const Navigation = styled.nav`
   align-self: center;
   justify-content: space-between;
   padding: 20px;
-  margin-left: 50px;
   @media (max-width: 900px) {
     display: none;
   }
@@ -41,7 +40,7 @@ export const Ul = styled.ul`
   margin: 0;
   letter-spacing: 2px;
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
   justify-content: space-between;
   :first-child {
     font-weight: 700;
@@ -52,8 +51,8 @@ export const Li = styled.li`
   margin-right: 25px;
   text-transform: uppercase;
   img {
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     top: 0.125em;
     margin-right: 10px;
     position: relative;
