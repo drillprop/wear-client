@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { roboto, montserrat } from '../../../utils/fonts';
+import { fontLevel10, fontLevel1 } from '../../../utils/fontSizes';
 
 export const HeaderWrapper = styled.header`
   background-color: white;
@@ -20,7 +21,7 @@ export const Logo = styled.div`
   font-weight: 700;
   margin: 0;
   margin-left: 50px;
-  font-size: 60px;
+  font-size: ${fontLevel10};
   font-style: italic;
 `;
 
@@ -40,7 +41,7 @@ export const Ul = styled.ul`
   margin: 0;
   letter-spacing: 2px;
   display: flex;
-  font-size: 12px;
+  font-size: ${fontLevel1};
   justify-content: space-between;
   :first-child {
     font-weight: 700;

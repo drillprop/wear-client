@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../utils/fonts';
+import { fontLevel4 } from '../../utils/fontSizes';
 
 export const StyledSwitchSignButton = styled.button`
   position: fixed;
@@ -8,7 +9,7 @@ export const StyledSwitchSignButton = styled.button`
   left: 50%;
   cursor: pointer;
   font-family: ${roboto};
-  font-size: 20px;
+  font-size: ${fontLevel4};
   background-color: white;
   border: none;
   border-radius: 100%;
@@ -24,7 +25,6 @@ export const StyledSwitchSignButton = styled.button`
     transition: transform 200ms, background-color 200ms;
   }
   @media (max-width: 900px) {
-    font-size: 18px;
     position: static;
     width: 100%;
     margin: 0 auto;

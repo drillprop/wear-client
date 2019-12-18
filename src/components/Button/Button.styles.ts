@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { fontLevel3 } from '../../utils/fontSizes';
 
 interface Props {
   mainColor?: string;
@@ -11,7 +12,7 @@ export const StyledButton = styled.button<Props>`
   outline: 3px solid ${({ mainColor = 'black' }) => mainColor};
   ${props => props.width && `width: ${props.width}`};
   border: none;
-  font-size: 15px;
+  font-size: ${fontLevel3};
   font-weight: 700;
   padding: 10px 40px;
   :hover {

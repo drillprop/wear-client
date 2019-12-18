@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../utils/fonts';
+import { fontLevel6 } from '../../utils/fontSizes';
 
 export const ImageWrapper = styled.div`
   position: relative;
@@ -12,7 +13,7 @@ export const ImageTitle = styled.h1`
   letter-spacing: 4px;
   text-transform: uppercase;
   position: absolute;
-  font-size: 30px;
+  font-size: ${fontLevel6};
   font-family: ${roboto};
   padding: 12px;
   width: 100%;

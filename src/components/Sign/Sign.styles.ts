@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../utils/fonts';
+import { fontLevel7 } from '../../utils/fontSizes';
 
 export const SignWrapper = styled.div`
   display: grid;
@@ -42,7 +43,7 @@ export const SignForm = styled.form`
 export const SignTitle = styled.h1`
   margin: 0;
   font-family: ${roboto};
-  font-size: 30px;
+  font-size: ${fontLevel7};
   font-weight: 700;
   text-align: center;
 `;

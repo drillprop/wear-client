@@ -32,10 +32,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
         </Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
-      <SwitchSignButton
-        onClick={() => setIsNewUser(true)}
-        hoverText='CREATE NEW ONE'
-      >
+      <SwitchSignButton onClick={() => setIsNewUser(true)} hoverText='REGISTER'>
         DON'T HAVE ACCOUNT?
       </SwitchSignButton>
       <SignImage image='/young-woman-on-ferris-wheel.jpg' />
