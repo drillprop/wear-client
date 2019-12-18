@@ -9,30 +9,29 @@ export default createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
   }
 
-  * {
+
+  /* To make footer stick in the bottom  */
+  
+  html, body {
+    height: 100%;
     box-sizing: border-box;
   }
 
-  /* To make footer stick in the bottom  */
-  html, body {
-    height: 100%;
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
   
   #__next {
     height: 100%;
   }
   
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
 
-  h1, h2, h3, h4, h5, h6, p, span {
-    line-height: 1;
-  }
+
 
   li {
     list-style-type: none;
   }
+
   a {
     color: inherit;
     text-decoration: inherit;
