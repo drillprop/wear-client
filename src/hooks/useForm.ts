@@ -7,11 +7,6 @@ export default (initialState: any) => {
     setForm({ ...values, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    clearForm(values);
-  };
-
   const clearForm = (state: any) => {
     const reset = Object.keys(state).reduce((acc: any, key) => {
       acc[key] = '';
@@ -20,5 +15,5 @@ export default (initialState: any) => {
     setForm(reset);
   };
 
-  return [values, handleInput, handleSubmit];
+  return [values, handleInput, clearForm];
 };
