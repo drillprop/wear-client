@@ -6,19 +6,26 @@ import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import { ForgotPassword } from './Login.styles';
+import { useLoginMutation } from '../../../generated/types';
 
 interface Props {
   setIsNewUser: Function;
 }
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
-  const [values, handleInput, handleSubmit] = useForm({
+  const [values, handleInput, clearForm] = useForm({
     email: '',
     password: ''
   });
 
-  const handleLogin = (e: FormEvent<HTMLFormElement>) => {
-    handleSubmit(e);
+  const [login, payload] = useLoginMutation();
+
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await login({
+      variables: values
+    });
+    clearForm(values);
   };
   return (
     <SignWrapper>
