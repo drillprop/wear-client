@@ -6,15 +6,34 @@ interface Props {
   placeholder: string;
   type: string;
   icon?: string;
+  onChange?: () => void;
+  value?: string;
+  required?: boolean;
 }
 
-const Input: React.FC<Props> = ({ label, placeholder, icon, type }) => {
+const Input: React.FC<Props> = ({
+  label,
+  placeholder,
+  icon,
+  type,
+  value = '',
+  onChange = () => null,
+  required
+}) => {
   return (
     <div>
       <StyledLabel htmlFor={label} icon={icon}>
         {label}
       </StyledLabel>
-      <StyledInput id={label} type={type} placeholder={placeholder} />
+      <StyledInput
+        value={value}
+        onChange={onChange}
+        name={label}
+        id={label}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+      />
     </div>
   );
 };
