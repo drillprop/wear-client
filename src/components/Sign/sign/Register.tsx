@@ -5,34 +5,31 @@ import useForm from '../../../hooks/useForm';
 import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
+import { useRegisterMutation } from '../../../generated/types';
 
 interface Props {
   setIsNewUser: any;
 }
 
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
-  const [values, handleInput, handleSubmit] = useForm({
+  const [values, handleInput, clearForm] = useForm({
     email: '',
-    userName: '',
     password: ''
   });
-  const handleRegister = (e: FormEvent<HTMLFormElement>) => {
-    handleSubmit(e);
+
+  const [registerMutation, payload] = useRegisterMutation();
+
+  const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await registerMutation({ variables: values });
+    clearForm(values);
   };
+
   return (
     <SignWrapper>
       <SignImage image='/woman-playing-with-blonde-hair.jpg' />
       <SignForm onSubmit={handleRegister}>
         <SignTitle>CREATE NEW ACCOUNT</SignTitle>
-        <Input
-          onChange={handleInput}
-          type='text'
-          icon='/user-icon.svg'
-          label='userName'
-          placeholder='John Doe'
-          value={values.userName}
-          required
-        />
         <Input
           onChange={handleInput}
           type='email'
