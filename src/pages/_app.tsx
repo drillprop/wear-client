@@ -7,7 +7,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import fetch from 'node-fetch';
 
 const client = new ApolloClient({
-  fetch: fetch as any
+  fetch: fetch as any,
+  uri: process.env.BACKEND_URL
 });
 
 class MyApp extends App {
