@@ -3,9 +3,11 @@ import { roboto, montserrat } from '../../../utils/fonts';
 import { fontLevel10, fontLevel1 } from '../../../utils/fontSizes';
 
 export const HeaderWrapper = styled.header`
+  padding: 0 50px;
   background-color: white;
   border-bottom: 1px;
   display: grid;
+  grid-gap: 60px;
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -20,7 +22,6 @@ export const Logo = styled.div`
   color: black;
   font-weight: 700;
   margin: 0;
-  margin-left: 50px;
   font-size: ${fontLevel10};
   font-style: italic;
 `;
@@ -29,7 +30,6 @@ export const Navigation = styled.nav`
   display: flex;
   align-self: center;
   justify-content: space-between;
-  padding: 20px;
   @media (max-width: 900px) {
     display: none;
   }
@@ -39,7 +39,8 @@ export const Ul = styled.ul`
   font-family: ${montserrat};
   padding: 0;
   margin: 0;
-  letter-spacing: 2px;
+  font-weight: 500;
+  letter-spacing: 1px;
   display: flex;
   font-size: ${fontLevel1};
   justify-content: space-between;
