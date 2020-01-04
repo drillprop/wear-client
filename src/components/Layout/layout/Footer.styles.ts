@@ -4,18 +4,20 @@ import { fontLevel1, fontLevel2 } from '../../../utils/fontSizes';
 
 export const FooterWrapper = styled.footer`
   margin-top: 90px;
-  padding: 40px 0;
+  padding: 40px;
   display: grid;
   background-color: rgba(0, 0, 0, 0.1);
-  grid-gap: 30px;
+  grid-gap: 50px;
   grid-template-rows: 1fr auto;
 `;
 
 export const FooterTop = styled.div`
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 70px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
   padding: 0 50px;
+  text-align: center;
 `;
 
 export const FooterBottom = styled.div`
@@ -28,18 +30,23 @@ export const FooterBottom = styled.div`
 
 export const FooterLongColumn = styled.div`
   label {
+    text-align: left;
     margin-top: 25px;
+  }
+  input {
+    text-align: left;
   }
 `;
 
 export const IconGroup = styled.div`
   margin: 25px auto 0;
+  max-width: 250px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  grid-gap: 10px;
   justify-items: center;
   img {
-    width: 35px;
+    width: 40px;
   }
 `;
 
