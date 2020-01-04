@@ -5,7 +5,6 @@ import { fontLevel7 } from '../../utils/fontSizes';
 export const SignWrapper = styled.div`
   position: absolute;
   width: 100vw;
-  left: 0;
   display: grid;
   height: calc(100vh - 90px);
   grid-template-columns: repeat(2, 1fr);

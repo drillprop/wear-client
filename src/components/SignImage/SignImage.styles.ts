@@ -4,7 +4,6 @@ export const HeroImage = styled.div<{ image: string }>`
   position: relative;
   height: 100%;
   z-index: -1;
-  top: 0;
   width: 100%;
   background-color: black;
   ::after {
