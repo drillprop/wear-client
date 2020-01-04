@@ -5,7 +5,7 @@ import { fontLevel4 } from '../../utils/fontSizes';
 export const StyledSwitchSignButton = styled.button`
   position: fixed;
   padding: 0;
-  top: 50%;
+  top: calc(50% + 45px);
   left: 50%;
   cursor: pointer;
   font-family: ${roboto};

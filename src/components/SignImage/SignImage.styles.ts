@@ -1,20 +1,18 @@
 import styled from 'styled-components';
 
 export const HeroImage = styled.div<{ image: string }>`
-  position: fixed;
-  height: calc(100% - 140px);
+  position: relative;
+  height: 100%;
   z-index: -1;
   top: 0;
-  width: calc(50vw - 50px);
-  margin-top: 90px;
-  margin-bottom: 50px;
+  width: 100%;
   background-color: black;
   ::after {
-    position: fixed;
+    position: absolute;
     content: '';
-    width: calc(50vw - 50px);
+    width: 100%;
     background-image: ${({ image }) => `url(${image})`};
-    height: calc(100% - 140px);
+    height: 100%;
     background-position: center;
     background-size: cover;
     opacity: 0.5;
