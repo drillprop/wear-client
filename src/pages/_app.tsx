@@ -8,7 +8,8 @@ import fetch from 'node-fetch';
 
 const client = new ApolloClient({
   fetch: fetch as any,
-  uri: process.env.BACKEND_URL
+  uri: process.env.BACKEND_URL,
+  credentials: 'include'
 });
 
 class MyApp extends App {
