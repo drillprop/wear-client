@@ -29,7 +29,7 @@
     "start": "next start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "graphql-codegen --config codegen.yml"
+    "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "eslintConfig": {
     "extends": "react-app"
