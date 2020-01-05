@@ -6,7 +6,6 @@ export const REGISTER = gql`
       token
       id
       email
-      password
       firstName
       lastName
     }
@@ -19,9 +18,16 @@ export const LOGIN = gql`
       token
       id
       email
-      password
       firstName
       lastName
+    }
+  }
+`;
+
+export const SIGNOUT = gql`
+  mutation Signout {
+    signout {
+      message
     }
   }
 `;
