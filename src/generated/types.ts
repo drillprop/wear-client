@@ -9,59 +9,257 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any,
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
+  DateTime: any,
+};
+
+export type ContactDetailsInput = {
+  firstName?: Maybe<Scalars['String']>,
+  lastName?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+  phoneNumber?: Maybe<Scalars['Int']>,
+};
+
+export type CreateItemInput = {
+  name: Scalars['String'],
+  price: Scalars['Float'],
+  imageUrl: Scalars['String'],
+  category: Scalars['String'],
 };
 
 
-export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
-}
-
-export type Mutation = {
-   __typename?: 'Mutation',
-  register: User,
-  login: User,
-  signout?: Maybe<SuccessMessage>,
+export type EditItemInput = {
+  id: Scalars['String'],
+  name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  imageUrl?: Maybe<Scalars['String']>,
+  category?: Maybe<Scalars['String']>,
 };
 
-
-export type MutationRegisterArgs = {
-  input: SignInput
+export type Item = {
+   __typename?: 'Item',
+  id: Scalars['ID'],
+  name: Scalars['String'],
+  price: Scalars['Float'],
+  imageUrl: Scalars['String'],
+  category: Scalars['String'],
+  createdBy: User,
+  createdAt: Scalars['DateTime'],
+  updatedAt?: Maybe<Scalars['DateTime']>,
 };
 
-
-export type MutationLoginArgs = {
-  input: SignInput
-};
-
-export type Query = {
-   __typename?: 'Query',
-  users?: Maybe<Array<Maybe<User>>>,
-  me?: Maybe<User>,
-};
-
-export type SignInput = {
+export type LoginInput = {
   email: Scalars['String'],
   password: Scalars['String'],
 };
 
-export type SuccessMessage = {
-   __typename?: 'SuccessMessage',
-  message?: Maybe<Scalars['String']>,
+export type Mutation = {
+   __typename?: 'Mutation',
+  createItem: Item,
+  deleteItem: SuccessMessage,
+  updateItem: Item,
+  createOrder: Order,
+  deleteOrder: SuccessMessage,
+  manageOrder: SuccessMessage,
+  changePassword: SuccessMessage,
+  changeUserRole: SuccessMessage,
+  deleteAccount: SuccessMessage,
+  login: User,
+  register: User,
+  requestResetPassword: SuccessMessage,
+  resetPassword: User,
+  signout: SuccessMessage,
+  updateContactDetails: User,
 };
 
 
+export type MutationCreateItemArgs = {
+  input: CreateItemInput
+};
+
+
+export type MutationDeleteItemArgs = {
+  id: Scalars['String']
+};
+
+
+export type MutationUpdateItemArgs = {
+  input: EditItemInput
+};
+
+
+export type MutationCreateOrderArgs = {
+  input: Array<Scalars['ID']>
+};
+
+
+export type MutationDeleteOrderArgs = {
+  id: Scalars['ID']
+};
+
+
+export type MutationManageOrderArgs = {
+  status: OrderStatus,
+  id: Scalars['ID']
+};
+
+
+export type MutationChangePasswordArgs = {
+  password: Scalars['String'],
+  newPassword: Scalars['String']
+};
+
+
+export type MutationChangeUserRoleArgs = {
+  role: UserRole,
+  email: Scalars['String']
+};
+
+
+export type MutationDeleteAccountArgs = {
+  password: Scalars['String']
+};
+
+
+export type MutationLoginArgs = {
+  input: LoginInput
+};
+
+
+export type MutationRegisterArgs = {
+  input: RegisterInput
+};
+
+
+export type MutationRequestResetPasswordArgs = {
+  email: Scalars['String']
+};
+
+
+export type MutationResetPasswordArgs = {
+  resetToken: Scalars['String'],
+  password: Scalars['String']
+};
+
+
+export type MutationUpdateContactDetailsArgs = {
+  input: ContactDetailsInput
+};
+
+export type Order = {
+   __typename?: 'Order',
+  id: Scalars['ID'],
+  createdAt: Scalars['DateTime'],
+  updatedAt?: Maybe<Scalars['DateTime']>,
+  status: OrderStatus,
+  orderedBy: User,
+  orderedItems: Array<Item>,
+};
+
+export enum OrderStatus {
+  Pending = 'PENDING',
+  Paid = 'PAID',
+  Sent = 'SENT',
+  Completed = 'COMPLETED'
+}
+
+export type Query = {
+   __typename?: 'Query',
+  items: Array<Maybe<Item>>,
+  orders: Array<Maybe<Order>>,
+  me?: Maybe<User>,
+  users: Array<Maybe<User>>,
+};
+
+
+export type QueryItemsArgs = {
+  input?: Maybe<SearchItemInput>
+};
+
+
+export type QueryOrdersArgs = {
+  input?: Maybe<SearchOrdersInput>
+};
+
+
+export type QueryUsersArgs = {
+  input?: Maybe<SearchUserInput>
+};
+
+export type RegisterInput = {
+  email: Scalars['String'],
+  password: Scalars['String'],
+};
+
+export type SearchInput = {
+  whereId?: Maybe<Scalars['ID']>,
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  orderBy?: Maybe<Scalars['String']>,
+  desc?: Maybe<Scalars['Boolean']>,
+};
+
+export type SearchItemInput = {
+  whereId?: Maybe<Scalars['ID']>,
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  orderBy?: Maybe<Scalars['String']>,
+  desc?: Maybe<Scalars['Boolean']>,
+  priceFrom?: Maybe<Scalars['Float']>,
+  priceTo?: Maybe<Scalars['Float']>,
+  whereName?: Maybe<Scalars['String']>,
+  whereCategory?: Maybe<Scalars['String']>,
+};
+
+export type SearchOrdersInput = {
+  whereId?: Maybe<Scalars['ID']>,
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  orderBy?: Maybe<Scalars['String']>,
+  desc?: Maybe<Scalars['Boolean']>,
+  whereStatus?: Maybe<OrderStatus>,
+};
+
+export type SearchUserInput = {
+  whereId?: Maybe<Scalars['ID']>,
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  orderBy?: Maybe<Scalars['String']>,
+  desc?: Maybe<Scalars['Boolean']>,
+  whereRole?: Maybe<UserRole>,
+  whereEmail?: Maybe<Scalars['String']>,
+  whereFirstName?: Maybe<Scalars['String']>,
+  whereLastName?: Maybe<Scalars['String']>,
+};
+
+export type SuccessMessage = {
+   __typename?: 'SuccessMessage',
+  message: Scalars['String'],
+};
+
 export type User = {
    __typename?: 'User',
-  token: Scalars['String'],
   id: Scalars['ID'],
   email: Scalars['String'],
   password: Scalars['String'],
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+  phoneNumber?: Maybe<Scalars['Int']>,
+  role: UserRole,
+  createdAt: Scalars['DateTime'],
+  updatedAt?: Maybe<Scalars['DateTime']>,
+  resetToken?: Maybe<Scalars['String']>,
+  resetTokenExpiry?: Maybe<Scalars['DateTime']>,
+  createdItems: Array<Maybe<Item>>,
+  createdOrders: Array<Maybe<Order>>,
 };
+
+export enum UserRole {
+  Admin = 'ADMIN',
+  Employee = 'EMPLOYEE',
+  Customer = 'CUSTOMER'
+}
 
 export type RegisterMutationVariables = {
   email: Scalars['String'],
@@ -73,7 +271,7 @@ export type RegisterMutation = (
   { __typename?: 'Mutation' }
   & { register: (
     { __typename?: 'User' }
-    & Pick<User, 'token' | 'id' | 'email' | 'firstName' | 'lastName'>
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
   ) }
 );
 
@@ -87,7 +285,7 @@ export type LoginMutation = (
   { __typename?: 'Mutation' }
   & { login: (
     { __typename?: 'User' }
-    & Pick<User, 'token' | 'id' | 'email' | 'firstName' | 'lastName'>
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
   ) }
 );
 
@@ -96,10 +294,10 @@ export type SignoutMutationVariables = {};
 
 export type SignoutMutation = (
   { __typename?: 'Mutation' }
-  & { signout: Maybe<(
+  & { signout: (
     { __typename?: 'SuccessMessage' }
     & Pick<SuccessMessage, 'message'>
-  )> }
+  ) }
 );
 
 export type MeQueryVariables = {};
@@ -109,7 +307,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'token' | 'id' | 'email' | 'firstName' | 'lastName'>
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
   )> }
 );
 
@@ -117,7 +315,6 @@ export type MeQuery = (
 export const RegisterDocument = gql`
     mutation Register($email: String!, $password: String!) {
   register(input: {email: $email, password: $password}) {
-    token
     id
     email
     firstName
@@ -154,7 +351,6 @@ export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<Regi
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(input: {email: $email, password: $password}) {
-    token
     id
     email
     firstName
@@ -222,7 +418,6 @@ export type SignoutMutationOptions = ApolloReactCommon.BaseMutationOptions<Signo
 export const MeDocument = gql`
     query Me {
   me {
-    token
     id
     email
     firstName
