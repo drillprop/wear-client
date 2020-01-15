@@ -2,8 +2,10 @@ import React from 'react';
 import { Logo, HeaderWrapper, Navigation, Ul, Li } from './Header.styles';
 import HamburgerMenu from './header/HamburgerMenu';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
+import { useMeQuery } from '../../../generated/types';
 
 const Header: React.FC = () => {
+  const { data } = useMeQuery();
   return (
     <HeaderWrapper>
       <LinkAnchor href='/'>
@@ -22,7 +24,7 @@ const Header: React.FC = () => {
           <LinkAnchor href='/sign'>
             <Li>
               <img src='/user-icon.svg' />
-              your account
+              {data?.me ? data.me.email : 'your account'}
             </Li>
           </LinkAnchor>
           <LinkAnchor href='/checkout'>
