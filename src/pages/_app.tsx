@@ -1,22 +1,20 @@
-import React from 'react';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 import App from 'next/app';
+import React from 'react';
 import Layout from '../components/Layout/Layout';
 import Globalstyle from '../utils/globalstyle';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
-import fetch from 'node-fetch';
+import withApollo from '../utils/withApollo';
 
-const client = new ApolloClient({
-  fetch: fetch as any,
-  uri: process.env.BACKEND_URL,
-  credentials: 'include'
-});
+interface Props {
+  apollo: ApolloClient<any>;
+}
 
-class MyApp extends App {
+class MyApp extends App<Props> {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, apollo } = this.props;
     return (
-      <ApolloProvider client={client}>
+      <ApolloProvider client={apollo}>
         <Layout>
           <Globalstyle />
           <Component {...pageProps} />
@@ -26,4 +24,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withApollo(MyApp);
