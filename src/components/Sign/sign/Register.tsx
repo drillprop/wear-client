@@ -1,11 +1,12 @@
 import React, { FormEvent } from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
+import { useRegisterMutation } from '../../../generated/types';
+import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
 import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
-import { useRegisterMutation } from '../../../generated/types';
 
 interface Props {
   setIsNewUser: any;
@@ -17,7 +18,9 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
     password: ''
   });
 
-  const [registerMutation, payload] = useRegisterMutation();
+  const [registerMutation] = useRegisterMutation({
+    refetchQueries: [{ query: ME }]
+  });
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
