@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { roboto, montserrat } from '../../../utils/fonts';
-import { fontLevel10, fontLevel1 } from '../../../utils/fontSizes';
+import {
+  fontLevel10,
+  fontLevel1,
+  fontLevel2,
+  fontLevel3
+} from '../../../utils/fontSizes';
 
 export const HeaderWrapper = styled.header`
   padding: 0 50px;
@@ -35,13 +40,13 @@ export const Navigation = styled.nav`
 `;
 
 export const Ul = styled.ul`
-  font-family: ${montserrat};
+  font-family: ${roboto};
   padding: 0;
   margin: 0;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 2px;
   display: flex;
-  font-size: ${fontLevel1};
+  font-size: ${fontLevel2};
   justify-content: space-between;
   :first-child {
     font-weight: 700;
@@ -49,7 +54,7 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  margin-right: 25px;
+  margin-left: 22px;
   text-transform: uppercase;
   img {
     width: 12px;
