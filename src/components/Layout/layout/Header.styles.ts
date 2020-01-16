@@ -7,12 +7,11 @@ export const HeaderWrapper = styled.header`
   background-color: white;
   border-bottom: 1px;
   display: grid;
-  grid-gap: 60px;
   position: fixed;
   z-index: 2;
   width: 100%;
   top: 0;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 2fr;
 `;
 
 export const Logo = styled.div`

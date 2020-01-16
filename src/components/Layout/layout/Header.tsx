@@ -24,7 +24,7 @@ const Header: React.FC = () => {
           <LinkAnchor href='/sign'>
             <Li>
               <img src='/user-icon.svg' />
-              {data?.me ? data.me.email : 'your account'}
+              {data?.me ? data.me.email : 'login'}
             </Li>
           </LinkAnchor>
           <LinkAnchor href='/checkout'>
