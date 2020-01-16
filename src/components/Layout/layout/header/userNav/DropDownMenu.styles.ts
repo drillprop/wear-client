@@ -12,6 +12,9 @@ export const DropDownList = styled.ul`
   margin: 0;
   padding: 0;
   padding-bottom: 24px;
+  :last-child {
+    cursor: pointer;
+  }
 `;
 
 export const DropDownItem = styled.li`
