@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import useForm from '../../../hooks/useForm';
@@ -7,6 +7,8 @@ import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import { ForgotPassword } from './Login.styles';
 import { useLoginMutation } from '../../../generated/types';
+import { ME } from '../../../graphql/queries';
+import { useRouter } from 'next/router';
 
 interface Props {
   setIsNewUser: Function;
@@ -18,7 +20,17 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
     password: ''
   });
 
-  const [login, payload] = useLoginMutation();
+  const router = useRouter();
+
+  const [login, { data }] = useLoginMutation({
+    refetchQueries: [{ query: ME }]
+  });
+
+  useEffect(() => {
+    if (data?.login.id) {
+      router.push('/');
+    }
+  }, [data]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
