@@ -8,11 +8,7 @@ interface Props {
 }
 
 const SignImage: React.FC<Props> = ({ image }) => {
-  return (
-    <div>
-      <HeroImage image={image} />
-    </div>
-  );
+  return <HeroImage image={image} />;
 };
 
 export default SignImage;

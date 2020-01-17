@@ -5,15 +5,15 @@ export const HeroImage = styled.div<{ image: string }>`
   height: 100%;
   z-index: -1;
   width: 100%;
-  background-color: black;
+  background-image: ${({ image }) => `url(${image})`};
+  background-position: center;
+  background-size: cover;
   ::after {
     position: absolute;
     content: '';
+    background-color: black;
     width: 100%;
-    background-image: ${({ image }) => `url(${image})`};
     height: 100%;
-    background-position: center;
-    background-size: cover;
     opacity: 0.5;
   }
   @media (max-width: 900px) {
