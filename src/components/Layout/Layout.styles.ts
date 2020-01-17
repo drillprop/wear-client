@@ -6,6 +6,6 @@ export const PageWrapper = styled.div`
   min-height: 100%;
 `;
 export const Main = styled.main`
-  margin: 90px 0;
+  margin: 100px 40px 0;
   flex: 1 0 auto;
 `;
