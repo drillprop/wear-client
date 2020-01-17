@@ -9,6 +9,7 @@ interface Props {
   onChange?: () => void;
   value?: string;
   required?: boolean;
+  name?: string;
 }
 
 const Input: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const Input: React.FC<Props> = ({
   type,
   value = '',
   onChange = () => null,
+  name,
   required
 }) => {
   return (
@@ -28,7 +30,7 @@ const Input: React.FC<Props> = ({
       <StyledInput
         value={value}
         onChange={onChange}
-        name={label}
+        name={name ? name : label}
         id={label}
         type={type}
         placeholder={placeholder}
