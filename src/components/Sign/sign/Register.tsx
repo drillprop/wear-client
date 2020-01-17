@@ -15,7 +15,8 @@ interface Props {
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
   const [values, handleInput, clearForm] = useForm({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   });
 
   const [registerMutation] = useRegisterMutation({
@@ -24,41 +25,57 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await registerMutation({ variables: values });
-    clearForm(values);
+    if (values.password === values.confirmPassword) {
+      await registerMutation({ variables: values });
+      clearForm(values);
+    } else {
+      console.log('password dont match');
+    }
   };
 
   return (
-    <SignWrapper>
-      <SignImage image='/woman-playing-with-blonde-hair.jpg' />
-      <SignForm onSubmit={handleRegister}>
-        <SignTitle>CREATE NEW ACCOUNT</SignTitle>
-        <Input
-          onChange={handleInput}
-          type='email'
-          icon='/mail-icon.svg'
-          label='email'
-          placeholder='user@example.com'
-          value={values.email}
-          required
-        />
-        <Input
-          onChange={handleInput}
-          type='password'
-          icon='/padlock-icon.svg'
-          label='password'
-          placeholder='*******'
-          value={values.password}
-          required
-        />
-        <Button width='250px' type='submit'>
-          register
-        </Button>
-      </SignForm>
-      <SwitchSignButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
-        ALREADY HAVE ACCOUNT?
-      </SwitchSignButton>
-    </SignWrapper>
+    <>
+      <SignWrapper>
+        <SignForm onSubmit={handleRegister}>
+          <SignTitle>CREATE NEW ACCOUNT</SignTitle>
+          <Input
+            onChange={handleInput}
+            type='email'
+            icon='/mail-icon.svg'
+            label='email'
+            placeholder='user@example.com'
+            value={values.email}
+            required
+          />
+          <Input
+            onChange={handleInput}
+            type='password'
+            icon='/padlock-icon.svg'
+            label='password'
+            placeholder='*******'
+            value={values.password}
+            required
+          />
+          <Input
+            onChange={handleInput}
+            type='password'
+            icon='/padlock-icon.svg'
+            name='confirmPassword'
+            label='confirm password'
+            placeholder='*******'
+            value={values.confirmPassword}
+            required
+          />
+          <Button width='250px' type='submit'>
+            register
+          </Button>
+        </SignForm>
+        <SwitchSignButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
+          ALREADY HAVE ACCOUNT?
+        </SwitchSignButton>
+        <SignImage image='/woman-playing-with-blonde-hair.jpg' />
+      </SignWrapper>
+    </>
   );
 };
 
