@@ -18,16 +18,23 @@ const redirect = (context: ApolloAppContext, target: string) => {
 export const withAuth = (Component: NextPage, path: string) => {
   return class AuthComponent extends React.Component {
     static async getInitialProps(ctx: ApolloAppContext) {
-      const { data } = await ctx.apolloClient.query<MeQuery>({ query: ME });
-      if (data.me) {
-        redirect(ctx, path);
+      try {
+        const { data } = await ctx.apolloClient.query<MeQuery>({ query: ME });
+        if (data.me) {
+          redirect(ctx, path);
+          return {
+            me: data.me
+          };
+        }
         return {
-          me: data.me
+          me: null
+        };
+      } catch (error) {
+        console.error(error);
+        return {
+          me: null
         };
       }
-      return {
-        me: null
-      };
     }
     render() {
       return <Component {...this.props} />;
