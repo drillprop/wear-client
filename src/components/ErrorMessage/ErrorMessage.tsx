@@ -1,16 +1,16 @@
+import { ApolloError } from 'apollo-boost';
 import React, { useEffect, useState } from 'react';
+import getValidationExceptions from '../../utils/getValidationExceptions';
 
-const ErrorMessage: React.FC<{ error?: string }> = ({ error }) => {
+const ErrorMessage: React.FC<{ error?: string | ApolloError }> = ({
+  error
+}) => {
   const [errorMessage, setError] = useState('');
 
   useEffect(() => {
     if (error) {
-      if (error.includes('GraphQL error:')) {
-        const message = error.split('GraphQL error:')[1];
-        setError(message);
-      } else {
-        setError(error);
-      }
+      const formatedError = getValidationExceptions(error);
+      setError(`Error: ${formatedError}`);
     }
   }, [error]);
 

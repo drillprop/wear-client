@@ -23,18 +23,23 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
     password: ''
   });
 
+  useEffect(() => {
+    if (error) {
+      clearForm(values);
+    }
+  }, [error]);
+
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await login({
-      variables: values
-    });
+    await login({ variables: values });
     clearForm(values);
   };
+
   return (
     <SignWrapper>
       <SignForm onSubmit={handleLogin}>
         <SignTitle>WELCOME BACK</SignTitle>
-        <ErrorMessage error={error?.message}></ErrorMessage>
+        <ErrorMessage error={error}></ErrorMessage>
         <Input
           placeholder='user@example.com'
           label='email'

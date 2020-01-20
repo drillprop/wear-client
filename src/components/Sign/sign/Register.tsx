@@ -8,6 +8,7 @@ import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import { ApolloError } from 'apollo-boost';
 
 interface Props {
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,20 +19,27 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
     refetchQueries: [{ query: ME }]
   });
 
-  const [passwordError, setPasswrodError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [values, handleInput, clearForm] = useForm({
     email: '',
     password: '',
     confirmPassword: ''
   });
 
+  useEffect(() => {
+    if (error) {
+      clearForm(values);
+    }
+  }, [error]);
+
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (values.password === values.confirmPassword) {
+    const { password, confirmPassword } = values;
+    if (password !== confirmPassword) {
+      setPasswordError(`Password don't match`);
+    } else {
       await registerMutation({ variables: values });
       clearForm(values);
-    } else {
-      setPasswrodError(`Password don't match`);
     }
   };
 
@@ -40,7 +48,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
       <SignWrapper>
         <SignForm onSubmit={handleRegister}>
           <SignTitle>CREATE NEW ACCOUNT</SignTitle>
-          <ErrorMessage error={error?.message || passwordError} />
+          <ErrorMessage error={error || passwordError} />
           <Input
             onChange={handleInput}
             type='email'
