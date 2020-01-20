@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import { useRegisterMutation } from '../../../generated/types';
@@ -7,20 +7,22 @@ import useForm from '../../../hooks/useForm';
 import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
 interface Props {
-  setIsNewUser: any;
+  setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
+  const [registerMutation, { error }] = useRegisterMutation({
+    refetchQueries: [{ query: ME }]
+  });
+
+  const [passwordError, setPasswrodError] = useState('');
   const [values, handleInput, clearForm] = useForm({
     email: '',
     password: '',
     confirmPassword: ''
-  });
-
-  const [registerMutation] = useRegisterMutation({
-    refetchQueries: [{ query: ME }]
   });
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
@@ -29,7 +31,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
       await registerMutation({ variables: values });
       clearForm(values);
     } else {
-      console.log('password dont match');
+      setPasswrodError(`Password don't match`);
     }
   };
 
@@ -38,6 +40,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
       <SignWrapper>
         <SignForm onSubmit={handleRegister}>
           <SignTitle>CREATE NEW ACCOUNT</SignTitle>
+          <ErrorMessage error={error?.message || passwordError} />
           <Input
             onChange={handleInput}
             type='email'

@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import { useLoginMutation } from '../../../generated/types';
@@ -8,19 +8,19 @@ import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import { ForgotPassword } from './Login.styles';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
 interface Props {
-  setIsNewUser: Function;
+  setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
+  const [login, { error }] = useLoginMutation({
+    refetchQueries: [{ query: ME }]
+  });
   const [values, handleInput, clearForm] = useForm({
     email: '',
     password: ''
-  });
-
-  const [login] = useLoginMutation({
-    refetchQueries: [{ query: ME }]
   });
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
@@ -34,6 +34,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
     <SignWrapper>
       <SignForm onSubmit={handleLogin}>
         <SignTitle>WELCOME BACK</SignTitle>
+        <ErrorMessage error={error?.message}></ErrorMessage>
         <Input
           placeholder='user@example.com'
           label='email'
