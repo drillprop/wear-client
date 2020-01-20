@@ -18,13 +18,8 @@ export const SignForm = styled.form`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  input {
-    display: block;
-    margin-bottom: 0;
-    width: 290px;
-  }
+  width: 290px;
   label {
-    display: block;
     margin-top: 25px;
   }
   button {
@@ -37,9 +32,6 @@ export const SignForm = styled.form`
   }
   @media (max-width: 900px) {
     width: 230px;
-    input {
-      width: 230px;
-    }
   }
 `;
 

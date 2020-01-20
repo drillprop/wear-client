@@ -23,7 +23,7 @@ const Input: React.FC<Props> = ({
   required
 }) => {
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       <StyledLabel htmlFor={label} icon={icon}>
         {label}
       </StyledLabel>
