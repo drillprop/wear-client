@@ -1,8 +1,12 @@
 import React from 'react';
-import { ProfileMainWrapper } from './ProfileMain.styles';
+import { ProfileMainWrapper, ProfileMainTitle } from './ProfileMain.styles';
 
 const ProfileMain = () => {
-  return <ProfileMainWrapper>Main</ProfileMainWrapper>;
+  return (
+    <ProfileMainWrapper>
+      <ProfileMainTitle>Your Profile</ProfileMainTitle>
+    </ProfileMainWrapper>
+  );
 };
 
 export default ProfileMain;
