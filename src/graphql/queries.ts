@@ -5,7 +5,6 @@ export const ME = gql`
     me {
       id
       email
-      password
       firstName
       lastName
       address
