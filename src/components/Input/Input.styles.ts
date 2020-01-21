@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import { roboto, montserrat } from '../../utils/fonts';
 import { fontLevel2 } from '../../utils/fontSizes';
 
-export const StyledLabel = styled.label<{ icon?: string }>`
+export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontLevel2};
   margin-bottom: 5px;
+  margin-top: ${props => props.marginTop};
   color: #333333;
   display: block;
   cursor: pointer;

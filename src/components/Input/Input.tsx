@@ -10,6 +10,7 @@ interface Props {
   value?: string;
   required?: boolean;
   name?: string;
+  marginTop?: string;
 }
 
 const Input: React.FC<Props> = ({
@@ -20,11 +21,12 @@ const Input: React.FC<Props> = ({
   value = '',
   onChange = () => null,
   name,
-  required
+  required,
+  marginTop = '25px'
 }) => {
   return (
     <div style={{ width: '100%' }}>
-      <StyledLabel htmlFor={label} icon={icon}>
+      <StyledLabel htmlFor={label} icon={icon} marginTop={marginTop}>
         {label}
       </StyledLabel>
       <StyledInput
