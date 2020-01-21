@@ -1,22 +1,18 @@
 import styled from 'styled-components';
-import { roboto, montserrat } from '../../../utils/fonts';
-import {
-  fontLevel10,
-  fontLevel1,
-  fontLevel2,
-  fontLevel3
-} from '../../../utils/fontSizes';
+import { roboto } from '../../../utils/fonts';
+import { fontLevel10, fontLevel2 } from '../../../utils/fontSizes';
 
 export const HeaderWrapper = styled.header`
   padding: 0 50px;
   background-color: white;
   border-bottom: 1px;
-  display: grid;
   position: fixed;
   z-index: 2;
   width: 100%;
   top: 0;
-  grid-template-columns: 1fr 2fr;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-gap: 50px;
 `;
 
 export const Logo = styled.div`
