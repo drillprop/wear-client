@@ -6,6 +6,7 @@ interface Props {
   onClick?: () => void;
   mainColor?: string;
   width?: string;
+  marginTop?: string;
 }
 
 const Button: React.FC<Props> = ({
@@ -13,7 +14,8 @@ const Button: React.FC<Props> = ({
   type,
   onClick,
   mainColor,
-  width
+  width,
+  marginTop = '50px'
 }) => {
   return (
     <StyledButton
@@ -21,6 +23,7 @@ const Button: React.FC<Props> = ({
       onClick={onClick}
       type={type}
       mainColor={mainColor}
+      marginTop={marginTop}
     >
       {children}
     </StyledButton>
