@@ -18,7 +18,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
   const [login, { error }] = useLoginMutation({
     refetchQueries: [{ query: ME }]
   });
-  const [values, handleInput, clearForm] = useForm({
+  const { values, handleInput, clearForm } = useForm({
     email: '',
     password: ''
   });

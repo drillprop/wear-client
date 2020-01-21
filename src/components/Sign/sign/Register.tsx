@@ -20,7 +20,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
   });
 
   const [passwordError, setPasswordError] = useState('');
-  const [values, handleInput, clearForm] = useForm({
+  const { values, handleInput, clearForm } = useForm({
     email: '',
     password: '',
     confirmPassword: ''

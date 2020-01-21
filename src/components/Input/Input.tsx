@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { StyledInput, StyledLabel } from './Input.styles';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   placeholder: string;
   type: string;
   icon?: string;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   required?: boolean;
   name?: string;

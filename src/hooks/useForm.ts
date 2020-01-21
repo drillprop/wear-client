@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 
 export default (initialState: any) => {
   const [values, setForm] = useState(initialState);
@@ -15,5 +15,5 @@ export default (initialState: any) => {
     setForm(reset);
   };
 
-  return [values, handleInput, clearForm];
+  return { values, handleInput, clearForm, setForm };
 };
