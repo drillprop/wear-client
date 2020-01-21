@@ -4,7 +4,6 @@ import { fontLevel2 } from '../../utils/fontSizes';
 
 interface Props {
   mainColor?: string;
-  width?: string;
   marginTop: string;
 }
 
@@ -15,7 +14,6 @@ export const StyledButton = styled.button<Props>`
   background: none;
   color: ${({ mainColor = 'black' }) => mainColor};
   border: 3px solid ${({ mainColor = 'black' }) => mainColor};
-  ${props => props.width && `width: ${props.width}`};
   ${props => props.marginTop && `margin-top: ${props.marginTop}`};
   font-size: ${fontLevel2};
   font-weight: 700;

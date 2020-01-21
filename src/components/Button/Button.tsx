@@ -14,12 +14,10 @@ const Button: React.FC<Props> = ({
   type,
   onClick,
   mainColor,
-  width,
   marginTop = '50px'
 }) => {
   return (
     <StyledButton
-      width={width}
       onClick={onClick}
       type={type}
       mainColor={mainColor}
