@@ -307,7 +307,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName'>
+    & Pick<User, 'id' | 'email' | 'password' | 'firstName' | 'lastName' | 'address' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry'>
   )> }
 );
 
@@ -420,8 +420,16 @@ export const MeDocument = gql`
   me {
     id
     email
+    password
     firstName
     lastName
+    address
+    phoneNumber
+    role
+    createdAt
+    updatedAt
+    resetToken
+    resetTokenExpiry
   }
 }
     `;
