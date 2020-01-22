@@ -12,7 +12,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   display: grid;
   grid-template-columns: 280px 1fr;
-  grid-gap: 50px;
+  grid-gap: 90px;
 `;
 
 export const Logo = styled.div`
@@ -50,8 +50,11 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  margin-left: 22px;
+  margin-left: 0px;
   text-transform: uppercase;
+  :last-child {
+    margin-left: 22px;
+  }
   img {
     width: 12px;
     height: 12px;
