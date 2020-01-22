@@ -16,11 +16,11 @@ const UserNav = () => {
         </LinkAnchor>
         {data?.me ? <DropDownMenu /> : null}
       </LiWithDropdown>
-      <LinkAnchor href='/checkout'>
-        <Li>
+      <Li>
+        <LinkAnchor href='/checkout'>
           <img src='/shoping-icon.svg' /> cart
-        </Li>
-      </LinkAnchor>
+        </LinkAnchor>
+      </Li>
     </Ul>
   );
 };

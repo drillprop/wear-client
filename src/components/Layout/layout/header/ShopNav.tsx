@@ -5,12 +5,12 @@ import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 const ShopNav = () => {
   return (
     <Ul>
-      <LinkAnchor href='/woman'>
-        <Li>women</Li>
-      </LinkAnchor>
-      <LinkAnchor href='/man'>
-        <Li>men</Li>
-      </LinkAnchor>
+      <Li>
+        <LinkAnchor href='/woman'>women</LinkAnchor>
+      </Li>
+      <Li>
+        <LinkAnchor href='/man'>men</LinkAnchor>
+      </Li>
     </Ul>
   );
 };
