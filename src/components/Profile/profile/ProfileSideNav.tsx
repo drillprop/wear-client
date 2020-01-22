@@ -1,18 +1,18 @@
 import React from 'react';
-import {
-  ProfileNav,
-  ProfileNavTitle,
-  ProfileCard,
-  ProfileNavList,
-  ProfileNavItem,
-  ProfileCardPar
-} from './ProfileSideNav.styles';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
+import { ProfileMainTitle } from './ProfileMain.styles';
+import {
+  ProfileCard,
+  ProfileCardPar,
+  ProfileNav,
+  ProfileNavItem,
+  ProfileNavList
+} from './ProfileSideNav.styles';
 
 const ProfileSideNav = () => {
   return (
     <ProfileNav>
-      <ProfileNavTitle>Email@Email.com</ProfileNavTitle>
+      <ProfileMainTitle>Your Profile</ProfileMainTitle>
       <ProfileCard>
         <ProfileCardPar>Total Orders: 0</ProfileCardPar>
         <ProfileCardPar>Member since 20/12/2019</ProfileCardPar>

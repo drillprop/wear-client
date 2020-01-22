@@ -2,18 +2,7 @@ import styled from 'styled-components';
 import { montserrat, roboto } from '../../../utils/fonts';
 import { fontLevel2, fontLevel6 } from '../../../utils/fontSizes';
 
-export const ProfileNav = styled.nav`
-  margin-top: 110px;
-`;
-export const ProfileNavTitle = styled.h1`
-  margin: 0;
-  font-family: ${roboto};
-  font-weight: 500;
-  text-decoration: underline;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: ${fontLevel6};
-`;
+export const ProfileNav = styled.nav``;
 export const ProfileCard = styled.div`
   margin-top: 26px;
   background-color: #f5f5f5;

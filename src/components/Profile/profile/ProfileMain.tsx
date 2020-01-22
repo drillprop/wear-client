@@ -1,13 +1,12 @@
 import React from 'react';
-import { ProfileMainWrapper, ProfileMainTitle } from './ProfileMain.styles';
-import PersonalInfoForm from './profilemain/PersonalInfoForm';
+import { ProfileMainWrapper } from './ProfileMain.styles';
 import ChangePasswordForm from './profilemain/ChangePasswordForm';
 import DeleteAccountForm from './profilemain/DeleteAccountForm';
+import PersonalInfoForm from './profilemain/PersonalInfoForm';
 
 const ProfileMain = () => {
   return (
     <ProfileMainWrapper>
-      <ProfileMainTitle>Your Profile</ProfileMainTitle>
       <PersonalInfoForm />
       <ChangePasswordForm />
       <DeleteAccountForm />

@@ -8,7 +8,7 @@ const PersonalInfoForm: React.FC = () => {
   const { values, handleInput } = useForm({
     firstName: '',
     lastName: '',
-    phoneNumber: ''
+    phoneNumber: null
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
