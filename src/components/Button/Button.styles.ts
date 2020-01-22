@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { montserrat } from '../../utils/fonts';
-import { fontLevel2 } from '../../utils/fontSizes';
+import { montserrat } from '../../styles/fonts';
+import { fontLevel2 } from '../../styles/fontSizes';
 
 interface Props {
   mainColor?: string;

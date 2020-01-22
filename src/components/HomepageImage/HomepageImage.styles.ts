@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../utils/fonts';
-import { fontLevel6 } from '../../utils/fontSizes';
+import { roboto } from '../../styles/fonts';
+import { fontLevel6 } from '../../styles/fontSizes';
 
 export const ImageWrapper = styled.div`
   position: relative;

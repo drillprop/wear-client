@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../utils/fonts';
-import { fontLevel7 } from '../../utils/fontSizes';
+import { roboto } from '../../styles/fonts';
+import { fontLevel7 } from '../../styles/fontSizes';
 
 export const SignWrapper = styled.div`
   position: absolute;

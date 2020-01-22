@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../utils/fonts';
-import { fontLevel4 } from '../../utils/fontSizes';
+import { roboto } from '../../styles/fonts';
+import { fontLevel4 } from '../../styles/fontSizes';
 
 export const StyledSwitchSignButton = styled.button`
   position: fixed;

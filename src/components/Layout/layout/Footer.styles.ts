@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../../utils/fonts';
-import { fontLevel1, fontLevel2 } from '../../../utils/fontSizes';
+import { roboto } from '../../../styles/fonts';
+import { fontLevel1, fontLevel2 } from '../../../styles/fontSizes';
 
 export const FooterWrapper = styled.footer`
   margin-top: 90px;

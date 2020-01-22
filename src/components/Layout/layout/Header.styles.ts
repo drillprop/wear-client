@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../../utils/fonts';
-import { fontLevel10, fontLevel2 } from '../../../utils/fontSizes';
+import { roboto } from '../../../styles/fonts';
+import { fontLevel10, fontLevel2 } from '../../../styles/fontSizes';
 
 export const HeaderWrapper = styled.header`
   padding: 0 50px;

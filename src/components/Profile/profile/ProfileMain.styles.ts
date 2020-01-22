@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { roboto } from '../../../utils/fonts';
+import { roboto } from '../../../styles/fonts';
 
 export const ProfileMainWrapper = styled.div`
   form:first-of-type {

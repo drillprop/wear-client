@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto, montserrat } from '../../utils/fonts';
-import { fontLevel2 } from '../../utils/fontSizes';
+import { roboto, montserrat } from '../../styles/fonts';
+import { fontLevel2 } from '../../styles/fontSizes';
 
 export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
   position: relative;

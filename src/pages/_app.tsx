@@ -3,7 +3,7 @@ import ApolloClient from 'apollo-boost';
 import App from 'next/app';
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-import Globalstyle from '../utils/globalstyle';
+import Globalstyle from '../styles/globalstyle';
 import withApollo from '../utils/withApollo';
 import Head from 'next/head';
 import Router from 'next/router';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontLevel2 } from '../../../utils/fontSizes';
+import { fontLevel2 } from '../../../styles/fontSizes';
 
 export const ForgotPassword = styled.p`
   font-size: ${fontLevel2};
