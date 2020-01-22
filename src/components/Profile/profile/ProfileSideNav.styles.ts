@@ -3,6 +3,15 @@ import { montserrat, roboto } from '../../../utils/fonts';
 import { fontLevel2, fontLevel6 } from '../../../utils/fontSizes';
 
 export const ProfileNav = styled.nav``;
+
+export const ProfileMainTitle = styled.h1`
+  font-size: ${fontLevel6};
+  margin: 0;
+  margin-top: 18px;
+  font-family: ${roboto};
+  text-transform: uppercase;
+  letter-spacing: 2px;
+`;
 export const ProfileCard = styled.div`
   margin-top: 26px;
   background-color: #f5f5f5;

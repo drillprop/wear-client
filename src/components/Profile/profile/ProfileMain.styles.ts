@@ -1,20 +1,10 @@
 import styled from 'styled-components';
 import { roboto } from '../../../utils/fonts';
-import { fontLevel7 } from '../../../utils/fontSizes';
 
 export const ProfileMainWrapper = styled.div`
   form:first-of-type {
     margin-top: 0;
   }
-`;
-
-export const ProfileMainTitle = styled.h1`
-  font-size: ${fontLevel7};
-  margin: 0;
-  margin-top: 18px;
-  font-family: ${roboto};
-  text-transform: uppercase;
-  letter-spacing: 2px;
 `;
 
 export const StyledForm = styled.form`
