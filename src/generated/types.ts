@@ -69,7 +69,7 @@ export type Mutation = {
   requestResetPassword: SuccessMessage,
   resetPassword: User,
   signout: SuccessMessage,
-  updateContactDetails: User,
+  updateContactDetails: SuccessMessage,
 };
 
 
@@ -300,6 +300,22 @@ export type SignoutMutation = (
   ) }
 );
 
+export type UpdateContactDetailsMutationVariables = {
+  firstName?: Maybe<Scalars['String']>,
+  lastName?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
+  phoneNumber?: Maybe<Scalars['Int']>
+};
+
+
+export type UpdateContactDetailsMutation = (
+  { __typename?: 'Mutation' }
+  & { updateContactDetails: (
+    { __typename?: 'SuccessMessage' }
+    & Pick<SuccessMessage, 'message'>
+  ) }
+);
+
 export type MeQueryVariables = {};
 
 
@@ -415,6 +431,41 @@ export function useSignoutMutation(baseOptions?: ApolloReactHooks.MutationHookOp
 export type SignoutMutationHookResult = ReturnType<typeof useSignoutMutation>;
 export type SignoutMutationResult = ApolloReactCommon.MutationResult<SignoutMutation>;
 export type SignoutMutationOptions = ApolloReactCommon.BaseMutationOptions<SignoutMutation, SignoutMutationVariables>;
+export const UpdateContactDetailsDocument = gql`
+    mutation UpdateContactDetails($firstName: String, $lastName: String, $address: String, $phoneNumber: Int) {
+  updateContactDetails(input: {firstName: $firstName, lastName: $lastName, address: $address, phoneNumber: $phoneNumber}) {
+    message
+  }
+}
+    `;
+export type UpdateContactDetailsMutationFn = ApolloReactCommon.MutationFunction<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>;
+
+/**
+ * __useUpdateContactDetailsMutation__
+ *
+ * To run a mutation, you first call `useUpdateContactDetailsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateContactDetailsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateContactDetailsMutation, { data, loading, error }] = useUpdateContactDetailsMutation({
+ *   variables: {
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
+ *      address: // value for 'address'
+ *      phoneNumber: // value for 'phoneNumber'
+ *   },
+ * });
+ */
+export function useUpdateContactDetailsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>(UpdateContactDetailsDocument, baseOptions);
+      }
+export type UpdateContactDetailsMutationHookResult = ReturnType<typeof useUpdateContactDetailsMutation>;
+export type UpdateContactDetailsMutationResult = ApolloReactCommon.MutationResult<UpdateContactDetailsMutation>;
+export type UpdateContactDetailsMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {

@@ -29,3 +29,23 @@ export const SIGNOUT = gql`
     }
   }
 `;
+
+export const UPDATE_CONTACT_DETAILS = gql`
+  mutation UpdateContactDetails(
+    $firstName: String
+    $lastName: String
+    $address: String
+    $phoneNumber: Int
+  ) {
+    updateContactDetails(
+      input: {
+        firstName: $firstName
+        lastName: $lastName
+        address: $address
+        phoneNumber: $phoneNumber
+      }
+    ) {
+      message
+    }
+  }
+`;
