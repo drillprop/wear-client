@@ -5,12 +5,14 @@ import getValidationExceptions from '../../utils/getValidationExceptions';
 const ErrorMessage: React.FC<{ error?: string | ApolloError }> = ({
   error
 }) => {
-  const [errorMessage, setError] = useState('');
+  const [errorMessage, setError] = useState(error);
 
   useEffect(() => {
     if (error) {
       const formatedError = getValidationExceptions(error);
       setError(`Error: ${formatedError}`);
+    } else {
+      setError('');
     }
   }, [error]);
 
