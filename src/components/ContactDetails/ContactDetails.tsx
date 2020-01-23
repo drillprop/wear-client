@@ -2,9 +2,9 @@ import React from 'react';
 import { useMeQuery } from '../../generated/types';
 import { AccountMain, AccountSiteWrapper } from '../../styles/sharedStyles';
 import AccountSideNav from '../AccountSideNav/AccountSideNav';
-import PersonalInfoForm from './contact/PersonalInfoForm';
+import PersonalInfoForm from './contactDetails/PersonalInfoForm';
 
-const Profile: React.FC = () => {
+const ContactDetails: React.FC = () => {
   const { data } = useMeQuery();
   return (
     <AccountSiteWrapper>
@@ -16,4 +16,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default ContactDetails;
