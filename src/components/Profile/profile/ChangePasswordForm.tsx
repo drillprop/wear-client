@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useChangePasswordMutation } from '../../../generated/types';
 import useForm from '../../../hooks/useForm';
 import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
 
 const ChangePasswordForm: React.FC = () => {
-  const { values, handleInput } = useForm({
+  const [changePassword, { data, error }] = useChangePasswordMutation();
+
+  const { values, handleInput, clearForm } = useForm({
     oldPassword: '',
     newPassword: '',
     confirmPassword: ''
   });
 
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { oldPassword, newPassword, confirmPassword } = values;
+    await changePassword({
+      variables: {
+        password: oldPassword,
+        newPassword,
+        confirmPassword
+      }
+    }).catch(err => err && clearForm(values));
+    clearForm(values);
+  };
+
   return (
-    <AccountForm>
+    <AccountForm onSubmit={handleChangePassword}>
       <AccountFormTitle>Change Password</AccountFormTitle>
+      <ErrorMessage error={error} />
+      {data?.changePassword.message}
       <Input
         value={values.oldPassword}
         onChange={handleInput}
