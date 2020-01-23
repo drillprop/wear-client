@@ -1,14 +1,22 @@
 import React from 'react';
-import { ProfileWrapper } from './Profile.styles';
-import ProfileMain from './profile/ProfileMain';
-import ProfileSideNav from './profile/ProfileSideNav';
+import { useMeQuery } from '../../generated/types';
+import { AccountMain, AccountSiteWrapper } from '../../styles/sharedStyles';
+import AccountSideNav from '../AccountSideNav/AccountSideNav';
+import ChangePasswordForm from './profile/ChangePasswordForm';
+import DeleteAccountForm from './profile/DeleteAccountForm';
+import PersonalInfoForm from './profile/PersonalInfoForm';
 
 const Profile: React.FC = () => {
+  const { data } = useMeQuery();
   return (
-    <ProfileWrapper>
-      <ProfileSideNav />
-      <ProfileMain />
-    </ProfileWrapper>
+    <AccountSiteWrapper>
+      <AccountSideNav email={data?.me?.email} />
+      <AccountMain>
+        <PersonalInfoForm />
+        <ChangePasswordForm />
+        <DeleteAccountForm />
+      </AccountMain>
+    </AccountSiteWrapper>
   );
 };
 
