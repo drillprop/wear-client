@@ -1,8 +1,9 @@
 import React from 'react';
 import { NextPage } from 'next';
+import ContactDetails from '../components/ContactDetails/ContactDetails';
 
 const ContactPage: NextPage = () => {
-  return <div></div>;
+  return <ContactDetails />;
 };
 
 export default ContactPage;

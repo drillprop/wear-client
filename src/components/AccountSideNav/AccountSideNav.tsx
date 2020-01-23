@@ -26,7 +26,7 @@ const AccountSideNav: React.FC<Props> = ({ email }) => {
           <LinkAnchor href='/profile'>profile</LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
-          <LinkAnchor href='/profile'>contact details</LinkAnchor>
+          <LinkAnchor href='/contact'>contact details</LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
           <LinkAnchor href='/orders'>orders</LinkAnchor>
