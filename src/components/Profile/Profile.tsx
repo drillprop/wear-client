@@ -4,6 +4,7 @@ import { AccountMain, AccountSiteWrapper } from '../../styles/sharedStyles';
 import AccountSideNav from '../AccountSideNav/AccountSideNav';
 import ChangePasswordForm from './profile/ChangePasswordForm';
 import DeleteAccountForm from './profile/DeleteAccountForm';
+import NewsletterForm from './profile/NewsletterForm';
 
 const Profile: React.FC = () => {
   const { data } = useMeQuery();
@@ -12,6 +13,7 @@ const Profile: React.FC = () => {
       <AccountSideNav email={data?.me?.email} />
       <AccountMain>
         <ChangePasswordForm />
+        <NewsletterForm />
         <DeleteAccountForm />
       </AccountMain>
     </AccountSiteWrapper>
