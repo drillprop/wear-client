@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { montserrat, roboto } from '../../../utils/fonts';
-import { fontLevel2, fontLevel6 } from '../../../utils/fontSizes';
+import { montserrat, roboto } from '../../styles/fonts';
+import { fontLevel2, fontLevel6 } from '../../styles/fontSizes';
 
-export const ProfileNav = styled.nav``;
+export const UserNav = styled.nav``;
 
-export const ProfileMainTitle = styled.h1`
+export const UserMainTitle = styled.h1`
   font-size: ${fontLevel6};
   margin: 0;
   margin-top: 18px;
@@ -12,12 +12,12 @@ export const ProfileMainTitle = styled.h1`
   text-transform: uppercase;
   letter-spacing: 2px;
 `;
-export const ProfileCard = styled.div`
+export const UserCard = styled.div`
   margin-top: 26px;
   background-color: #f5f5f5;
   padding: 30px;
 `;
-export const ProfileCardPar = styled.p`
+export const UserCardPar = styled.p`
   font-family: ${montserrat};
   font-size: ${fontLevel2};
   margin: 0;
@@ -25,11 +25,11 @@ export const ProfileCardPar = styled.p`
     margin-top: 12px;
   }
 `;
-export const ProfileNavList = styled.ul`
+export const UserNavList = styled.ul`
   margin-top: 60px;
   padding: 0;
 `;
-export const ProfileNavItem = styled.li`
+export const UserNavItem = styled.li`
   font-family: ${roboto};
   margin-top: 12px;
   text-transform: uppercase;
