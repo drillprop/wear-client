@@ -252,6 +252,7 @@ export type User = {
   updatedAt?: Maybe<Scalars['DateTime']>,
   resetToken?: Maybe<Scalars['String']>,
   resetTokenExpiry?: Maybe<Scalars['DateTime']>,
+  newsletter?: Maybe<Scalars['Boolean']>,
   createdItems: Array<Maybe<Item>>,
   createdOrders: Array<Maybe<Order>>,
 };
@@ -339,7 +340,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'address' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry'>
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'address' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry' | 'newsletter'>
   )> }
 );
 
@@ -530,6 +531,7 @@ export const MeDocument = gql`
     updatedAt
     resetToken
     resetTokenExpiry
+    newsletter
   }
 }
     `;

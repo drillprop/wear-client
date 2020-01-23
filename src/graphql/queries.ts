@@ -14,6 +14,7 @@ export const ME = gql`
       updatedAt
       resetToken
       resetTokenExpiry
+      newsletter
     }
   }
 `;
