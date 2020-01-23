@@ -18,9 +18,6 @@ export const AccountForm = styled.form`
   button {
     width: 350px;
   }
-  input {
-    width: 350px;
-  }
 `;
 
 export const AccountFormTitle = styled.h2`

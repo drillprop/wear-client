@@ -24,6 +24,7 @@ const DeleteAccountForm = () => {
         icon='/user-icon.svg'
         value={values.firstName}
         marginTop='50px'
+        width='350px'
       />
       <Button type='submit'>delete</Button>
     </AccountForm>

@@ -26,6 +26,7 @@ const PersonalInfoForm: React.FC = () => {
         icon='/user-icon.svg'
         value={values.firstName}
         marginTop='50px'
+        width='350px'
       />
       <Input
         label='last name'
@@ -35,6 +36,7 @@ const PersonalInfoForm: React.FC = () => {
         type='text'
         value={values.lastName}
         icon='/user-icon.svg'
+        width='350px'
       />
       <Input
         label='phone number'
@@ -44,6 +46,7 @@ const PersonalInfoForm: React.FC = () => {
         value={values.phoneNumber}
         onChange={handleInput}
         icon='/user-icon.svg'
+        width='350px'
       />
       <Button type='submit'>save</Button>
     </AccountForm>

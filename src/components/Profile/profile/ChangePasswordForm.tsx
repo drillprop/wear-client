@@ -23,6 +23,7 @@ const ChangePasswordForm: React.FC = () => {
         type='password'
         icon='/padlock-icon.svg'
         marginTop='50px'
+        width='350px'
       />
       <Input
         value={values.newPassword}
@@ -32,6 +33,7 @@ const ChangePasswordForm: React.FC = () => {
         name='newPassword'
         type='password'
         icon='/padlock-icon.svg'
+        width='350px'
       />
       <Input
         value={values.confirmPassword}
@@ -41,6 +43,7 @@ const ChangePasswordForm: React.FC = () => {
         name='confirmPassword'
         type='password'
         icon='/padlock-icon.svg'
+        width='350px'
       />
       <Button type='submit' width='100%'>
         change password
