@@ -51,8 +51,16 @@ export const UPDATE_CONTACT_DETAILS = gql`
 `;
 
 export const CHANGE_PASSWORD = gql`
-  mutation ChangePassword($password: String!, $newPassword: String!) {
-    changePassword(password: $password, newPassword: $newPassword) {
+  mutation ChangePassword(
+    $password: String!
+    $newPassword: String!
+    $confirmPassword: String!
+  ) {
+    changePassword(
+      password: $password
+      newPassword: $newPassword
+      confirmPassword: $confirmPassword
+    ) {
       message
     }
   }

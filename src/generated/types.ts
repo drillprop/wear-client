@@ -106,7 +106,8 @@ export type MutationManageOrderArgs = {
 
 export type MutationChangePasswordArgs = {
   password: Scalars['String'],
-  newPassword: Scalars['String']
+  newPassword: Scalars['String'],
+  confirmPassword: Scalars['String']
 };
 
 
@@ -318,7 +319,8 @@ export type UpdateContactDetailsMutation = (
 
 export type ChangePasswordMutationVariables = {
   password: Scalars['String'],
-  newPassword: Scalars['String']
+  newPassword: Scalars['String'],
+  confirmPassword: Scalars['String']
 };
 
 
@@ -481,8 +483,8 @@ export type UpdateContactDetailsMutationHookResult = ReturnType<typeof useUpdate
 export type UpdateContactDetailsMutationResult = ApolloReactCommon.MutationResult<UpdateContactDetailsMutation>;
 export type UpdateContactDetailsMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>;
 export const ChangePasswordDocument = gql`
-    mutation ChangePassword($password: String!, $newPassword: String!) {
-  changePassword(password: $password, newPassword: $newPassword) {
+    mutation ChangePassword($password: String!, $newPassword: String!, $confirmPassword: String!) {
+  changePassword(password: $password, newPassword: $newPassword, confirmPassword: $confirmPassword) {
     message
   }
 }
@@ -504,6 +506,7 @@ export type ChangePasswordMutationFn = ApolloReactCommon.MutationFunction<Change
  *   variables: {
  *      password: // value for 'password'
  *      newPassword: // value for 'newPassword'
+ *      confirmPassword: // value for 'confirmPassword'
  *   },
  * });
  */
