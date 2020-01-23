@@ -1,22 +1,22 @@
 import React, { FormEvent } from 'react';
-import useForm from '../../../../hooks/useForm';
-import Button from '../../../Button/Button';
-import Input from '../../../Input/Input';
-import { StyledForm, StyledFormTitle } from '../ProfileMain.styles';
+import useForm from '../../../hooks/useForm';
+import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 
 const PersonalInfoForm: React.FC = () => {
   const { values, handleInput } = useForm({
     firstName: '',
     lastName: '',
-    phoneNumber: null
+    phoneNumber: ''
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledFormTitle>Personal Info</StyledFormTitle>
+    <AccountForm onSubmit={handleSubmit}>
+      <AccountFormTitle>Personal Info</AccountFormTitle>
       <Input
         label='first name'
         placeholder='John'
@@ -46,7 +46,7 @@ const PersonalInfoForm: React.FC = () => {
         icon='/user-icon.svg'
       />
       <Button type='submit'>save</Button>
-    </StyledForm>
+    </AccountForm>
   );
 };
 

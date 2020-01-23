@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '../../../Button/Button';
-import Input from '../../../Input/Input';
-import { StyledForm, StyledFormTitle } from '../ProfileMain.styles';
-import useForm from '../../../../hooks/useForm';
+import useForm from '../../../hooks/useForm';
+import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 
 const ChangePasswordForm: React.FC = () => {
   const { values, handleInput } = useForm({
@@ -12,8 +12,8 @@ const ChangePasswordForm: React.FC = () => {
   });
 
   return (
-    <StyledForm>
-      <StyledFormTitle>Change Password</StyledFormTitle>
+    <AccountForm>
+      <AccountFormTitle>Change Password</AccountFormTitle>
       <Input
         value={values.oldPassword}
         onChange={handleInput}
@@ -45,7 +45,7 @@ const ChangePasswordForm: React.FC = () => {
       <Button type='submit' width='100%'>
         change password
       </Button>
-    </StyledForm>
+    </AccountForm>
   );
 };
 

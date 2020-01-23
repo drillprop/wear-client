@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
-import useForm from '../../../../hooks/useForm';
-import { StyledForm, StyledFormTitle } from '../ProfileMain.styles';
-import Input from '../../../Input/Input';
-import Button from '../../../Button/Button';
+import useForm from '../../../hooks/useForm';
+import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 
 const DeleteAccountForm = () => {
   const { values, handleInput } = useForm({
@@ -13,8 +13,8 @@ const DeleteAccountForm = () => {
     e.preventDefault();
   };
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <StyledFormTitle>Delete Account</StyledFormTitle>
+    <AccountForm onSubmit={handleSubmit}>
+      <AccountFormTitle>Delete Account</AccountFormTitle>
       <Input
         label='confirm with password'
         placeholder='******'
@@ -26,7 +26,7 @@ const DeleteAccountForm = () => {
         marginTop='50px'
       />
       <Button type='submit'>delete</Button>
-    </StyledForm>
+    </AccountForm>
   );
 };
 
