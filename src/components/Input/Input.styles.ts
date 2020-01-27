@@ -17,7 +17,7 @@ export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
     content: '';
     position: absolute;
     display: block;
-    margin-top: 24px;
+    margin-top: 22px;
     z-index: 1;
     width: 44px;
     height: 44px;
