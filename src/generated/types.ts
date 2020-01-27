@@ -69,6 +69,7 @@ export type Mutation = {
   requestResetPassword: SuccessMessage,
   resetPassword: User,
   signout: SuccessMessage,
+  subscribeToNewsletter: SuccessMessage,
   updateContactDetails: SuccessMessage,
 };
 
@@ -140,6 +141,11 @@ export type MutationRequestResetPasswordArgs = {
 export type MutationResetPasswordArgs = {
   resetToken: Scalars['String'],
   password: Scalars['String']
+};
+
+
+export type MutationSubscribeToNewsletterArgs = {
+  newsletter: Scalars['Boolean']
 };
 
 
