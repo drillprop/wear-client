@@ -7,7 +7,6 @@ export const ME = gql`
       email
       firstName
       lastName
-      address
       phoneNumber
       role
       createdAt
@@ -15,6 +14,13 @@ export const ME = gql`
       resetToken
       resetTokenExpiry
       newsletter
+      address {
+        addresLine1
+        addresLine2
+        zipCode
+        city
+        country
+      }
     }
   }
 `;

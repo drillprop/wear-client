@@ -13,6 +13,16 @@ export type Scalars = {
   DateTime: any,
 };
 
+export type Address = {
+   __typename?: 'Address',
+  id: Scalars['ID'],
+  addresLine1?: Maybe<Scalars['String']>,
+  addresLine2?: Maybe<Scalars['String']>,
+  zipCode?: Maybe<Scalars['String']>,
+  city?: Maybe<Scalars['String']>,
+  country?: Maybe<Scalars['String']>,
+};
+
 export type CreateItemInput = {
   name: Scalars['String'],
   price: Scalars['Float'],
@@ -48,6 +58,7 @@ export type LoginInput = {
 
 export type Mutation = {
    __typename?: 'Mutation',
+  updateAddress: SuccessMessage,
   createItem: Item,
   deleteItem: SuccessMessage,
   updateItem: Item,
@@ -64,6 +75,11 @@ export type Mutation = {
   signout: SuccessMessage,
   subscribeToNewsletter: SuccessMessage,
   updatePersonalInfo: SuccessMessage,
+};
+
+
+export type MutationUpdateAddressArgs = {
+  input: UpdateAddressInput
 };
 
 
@@ -243,6 +259,14 @@ export type SuccessMessage = {
   message: Scalars['String'],
 };
 
+export type UpdateAddressInput = {
+  addresLine1?: Maybe<Scalars['String']>,
+  addresLine2?: Maybe<Scalars['String']>,
+  zipCode?: Maybe<Scalars['String']>,
+  city?: Maybe<Scalars['String']>,
+  country?: Maybe<Scalars['String']>,
+};
+
 export type User = {
    __typename?: 'User',
   id: Scalars['ID'],
@@ -250,7 +274,6 @@ export type User = {
   password: Scalars['String'],
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>,
   phoneNumber?: Maybe<Scalars['String']>,
   role: UserRole,
   createdAt: Scalars['DateTime'],
@@ -260,6 +283,7 @@ export type User = {
   newsletter?: Maybe<Scalars['Boolean']>,
   createdItems: Array<Maybe<Item>>,
   createdOrders: Array<Maybe<Order>>,
+  address?: Maybe<Address>,
 };
 
 export enum UserRole {
@@ -370,7 +394,11 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'address' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry' | 'newsletter'>
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry' | 'newsletter'>
+    & { address: Maybe<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addresLine1' | 'addresLine2' | 'zipCode' | 'city' | 'country'>
+    )> }
   )> }
 );
 
@@ -617,7 +645,6 @@ export const MeDocument = gql`
     email
     firstName
     lastName
-    address
     phoneNumber
     role
     createdAt
@@ -625,6 +652,13 @@ export const MeDocument = gql`
     resetToken
     resetTokenExpiry
     newsletter
+    address {
+      addresLine1
+      addresLine2
+      zipCode
+      city
+      country
+    }
   }
 }
     `;
