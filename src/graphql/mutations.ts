@@ -30,18 +30,16 @@ export const SIGNOUT = gql`
   }
 `;
 
-export const UPDATE_CONTACT_DETAILS = gql`
-  mutation UpdateContactDetails(
+export const UPDATE_PERSONAL_INFO = gql`
+  mutation UpdatePersonalInfo(
     $firstName: String
     $lastName: String
-    $address: String
-    $phoneNumber: Int
+    $phoneNumber: String
   ) {
-    updateContactDetails(
+    updatePersonalInfo(
       input: {
         firstName: $firstName
         lastName: $lastName
-        address: $address
         phoneNumber: $phoneNumber
       }
     ) {

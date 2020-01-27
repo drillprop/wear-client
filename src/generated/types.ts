@@ -13,13 +13,6 @@ export type Scalars = {
   DateTime: any,
 };
 
-export type ContactDetailsInput = {
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['Int']>,
-};
-
 export type CreateItemInput = {
   name: Scalars['String'],
   price: Scalars['Float'],
@@ -70,7 +63,7 @@ export type Mutation = {
   resetPassword: User,
   signout: SuccessMessage,
   subscribeToNewsletter: SuccessMessage,
-  updateContactDetails: SuccessMessage,
+  updatePersonalInfo: SuccessMessage,
 };
 
 
@@ -149,8 +142,8 @@ export type MutationSubscribeToNewsletterArgs = {
 };
 
 
-export type MutationUpdateContactDetailsArgs = {
-  input: ContactDetailsInput
+export type MutationUpdatePersonalInfoArgs = {
+  input: PersonalInfoInput
 };
 
 export type Order = {
@@ -169,6 +162,12 @@ export enum OrderStatus {
   Sent = 'SENT',
   Completed = 'COMPLETED'
 }
+
+export type PersonalInfoInput = {
+  firstName?: Maybe<Scalars['String']>,
+  lastName?: Maybe<Scalars['String']>,
+  phoneNumber?: Maybe<Scalars['String']>,
+};
 
 export type Query = {
    __typename?: 'Query',
@@ -252,7 +251,7 @@ export type User = {
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
   address?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['Int']>,
+  phoneNumber?: Maybe<Scalars['String']>,
   role: UserRole,
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
@@ -308,17 +307,16 @@ export type SignoutMutation = (
   ) }
 );
 
-export type UpdateContactDetailsMutationVariables = {
+export type UpdatePersonalInfoMutationVariables = {
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
-  address?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['Int']>
+  phoneNumber?: Maybe<Scalars['String']>
 };
 
 
-export type UpdateContactDetailsMutation = (
+export type UpdatePersonalInfoMutation = (
   { __typename?: 'Mutation' }
-  & { updateContactDetails: (
+  & { updatePersonalInfo: (
     { __typename?: 'SuccessMessage' }
     & Pick<SuccessMessage, 'message'>
   ) }
@@ -480,41 +478,40 @@ export function useSignoutMutation(baseOptions?: ApolloReactHooks.MutationHookOp
 export type SignoutMutationHookResult = ReturnType<typeof useSignoutMutation>;
 export type SignoutMutationResult = ApolloReactCommon.MutationResult<SignoutMutation>;
 export type SignoutMutationOptions = ApolloReactCommon.BaseMutationOptions<SignoutMutation, SignoutMutationVariables>;
-export const UpdateContactDetailsDocument = gql`
-    mutation UpdateContactDetails($firstName: String, $lastName: String, $address: String, $phoneNumber: Int) {
-  updateContactDetails(input: {firstName: $firstName, lastName: $lastName, address: $address, phoneNumber: $phoneNumber}) {
+export const UpdatePersonalInfoDocument = gql`
+    mutation UpdatePersonalInfo($firstName: String, $lastName: String, $phoneNumber: String) {
+  updatePersonalInfo(input: {firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber}) {
     message
   }
 }
     `;
-export type UpdateContactDetailsMutationFn = ApolloReactCommon.MutationFunction<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>;
+export type UpdatePersonalInfoMutationFn = ApolloReactCommon.MutationFunction<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>;
 
 /**
- * __useUpdateContactDetailsMutation__
+ * __useUpdatePersonalInfoMutation__
  *
- * To run a mutation, you first call `useUpdateContactDetailsMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateContactDetailsMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdatePersonalInfoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePersonalInfoMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateContactDetailsMutation, { data, loading, error }] = useUpdateContactDetailsMutation({
+ * const [updatePersonalInfoMutation, { data, loading, error }] = useUpdatePersonalInfoMutation({
  *   variables: {
  *      firstName: // value for 'firstName'
  *      lastName: // value for 'lastName'
- *      address: // value for 'address'
  *      phoneNumber: // value for 'phoneNumber'
  *   },
  * });
  */
-export function useUpdateContactDetailsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>) {
-        return ApolloReactHooks.useMutation<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>(UpdateContactDetailsDocument, baseOptions);
+export function useUpdatePersonalInfoMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>(UpdatePersonalInfoDocument, baseOptions);
       }
-export type UpdateContactDetailsMutationHookResult = ReturnType<typeof useUpdateContactDetailsMutation>;
-export type UpdateContactDetailsMutationResult = ApolloReactCommon.MutationResult<UpdateContactDetailsMutation>;
-export type UpdateContactDetailsMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateContactDetailsMutation, UpdateContactDetailsMutationVariables>;
+export type UpdatePersonalInfoMutationHookResult = ReturnType<typeof useUpdatePersonalInfoMutation>;
+export type UpdatePersonalInfoMutationResult = ApolloReactCommon.MutationResult<UpdatePersonalInfoMutation>;
+export type UpdatePersonalInfoMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>;
 export const ChangePasswordDocument = gql`
     mutation ChangePassword($password: String!, $newPassword: String!, $confirmPassword: String!) {
   changePassword(password: $password, newPassword: $newPassword, confirmPassword: $confirmPassword) {
