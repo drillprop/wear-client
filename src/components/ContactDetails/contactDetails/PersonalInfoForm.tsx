@@ -80,7 +80,7 @@ const PersonalInfoForm: React.FC = () => {
         name='phoneNumber'
         value={values.phoneNumber}
         onChange={handleInput}
-        icon='/user-icon.svg'
+        icon='/phone-icon.svg'
         width='350px'
       />
       <Button type='submit'>save</Button>
