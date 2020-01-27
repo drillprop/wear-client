@@ -15,8 +15,8 @@ export const ME = gql`
       resetTokenExpiry
       newsletter
       address {
-        addresLine1
-        addresLine2
+        addressLine1
+        addressLine2
         zipCode
         city
         country

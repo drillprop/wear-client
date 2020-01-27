@@ -16,8 +16,8 @@ export type Scalars = {
 export type Address = {
    __typename?: 'Address',
   id: Scalars['ID'],
-  addresLine1?: Maybe<Scalars['String']>,
-  addresLine2?: Maybe<Scalars['String']>,
+  addressLine1?: Maybe<Scalars['String']>,
+  addressLine2?: Maybe<Scalars['String']>,
   zipCode?: Maybe<Scalars['String']>,
   city?: Maybe<Scalars['String']>,
   country?: Maybe<Scalars['String']>,
@@ -260,8 +260,8 @@ export type SuccessMessage = {
 };
 
 export type UpdateAddressInput = {
-  addresLine1?: Maybe<Scalars['String']>,
-  addresLine2?: Maybe<Scalars['String']>,
+  addressLine1?: Maybe<Scalars['String']>,
+  addressLine2?: Maybe<Scalars['String']>,
   zipCode?: Maybe<Scalars['String']>,
   city?: Maybe<Scalars['String']>,
   country?: Maybe<Scalars['String']>,
@@ -387,6 +387,23 @@ export type DeleteAccountMutation = (
   ) }
 );
 
+export type UpdateAddressMutationVariables = {
+  addressLine1?: Maybe<Scalars['String']>,
+  addressLine2?: Maybe<Scalars['String']>,
+  zipCode?: Maybe<Scalars['String']>,
+  city?: Maybe<Scalars['String']>,
+  country?: Maybe<Scalars['String']>
+};
+
+
+export type UpdateAddressMutation = (
+  { __typename?: 'Mutation' }
+  & { updateAddress: (
+    { __typename?: 'SuccessMessage' }
+    & Pick<SuccessMessage, 'message'>
+  ) }
+);
+
 export type MeQueryVariables = {};
 
 
@@ -397,7 +414,7 @@ export type MeQuery = (
     & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry' | 'newsletter'>
     & { address: Maybe<(
       { __typename?: 'Address' }
-      & Pick<Address, 'addresLine1' | 'addresLine2' | 'zipCode' | 'city' | 'country'>
+      & Pick<Address, 'addressLine1' | 'addressLine2' | 'zipCode' | 'city' | 'country'>
     )> }
   )> }
 );
@@ -638,6 +655,42 @@ export function useDeleteAccountMutation(baseOptions?: ApolloReactHooks.Mutation
 export type DeleteAccountMutationHookResult = ReturnType<typeof useDeleteAccountMutation>;
 export type DeleteAccountMutationResult = ApolloReactCommon.MutationResult<DeleteAccountMutation>;
 export type DeleteAccountMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteAccountMutation, DeleteAccountMutationVariables>;
+export const UpdateAddressDocument = gql`
+    mutation UpdateAddress($addressLine1: String, $addressLine2: String, $zipCode: String, $city: String, $country: String) {
+  updateAddress(input: {addressLine1: $addressLine1, addressLine2: $addressLine2, zipCode: $zipCode, city: $city, country: $country}) {
+    message
+  }
+}
+    `;
+export type UpdateAddressMutationFn = ApolloReactCommon.MutationFunction<UpdateAddressMutation, UpdateAddressMutationVariables>;
+
+/**
+ * __useUpdateAddressMutation__
+ *
+ * To run a mutation, you first call `useUpdateAddressMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAddressMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAddressMutation, { data, loading, error }] = useUpdateAddressMutation({
+ *   variables: {
+ *      addressLine1: // value for 'addressLine1'
+ *      addressLine2: // value for 'addressLine2'
+ *      zipCode: // value for 'zipCode'
+ *      city: // value for 'city'
+ *      country: // value for 'country'
+ *   },
+ * });
+ */
+export function useUpdateAddressMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateAddressMutation, UpdateAddressMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateAddressMutation, UpdateAddressMutationVariables>(UpdateAddressDocument, baseOptions);
+      }
+export type UpdateAddressMutationHookResult = ReturnType<typeof useUpdateAddressMutation>;
+export type UpdateAddressMutationResult = ApolloReactCommon.MutationResult<UpdateAddressMutation>;
+export type UpdateAddressMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateAddressMutation, UpdateAddressMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
@@ -653,8 +706,8 @@ export const MeDocument = gql`
     resetTokenExpiry
     newsletter
     address {
-      addresLine1
-      addresLine2
+      addressLine1
+      addressLine2
       zipCode
       city
       country
