@@ -73,3 +73,11 @@ export const SUBSCRIBE_TO_NEWSLETTER = gql`
     }
   }
 `;
+
+export const DELETE_ACCOUNT = gql`
+  mutation DeleteAccount($password: String!) {
+    deleteAccount(password: $password) {
+      message
+    }
+  }
+`;
