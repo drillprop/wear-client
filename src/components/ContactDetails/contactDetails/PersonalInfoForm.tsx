@@ -1,22 +1,57 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useEffect } from 'react';
+import {
+  useMeQuery,
+  useUpdatePersonalInfoMutation
+} from '../../../generated/types';
+import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
 import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
 
 const PersonalInfoForm: React.FC = () => {
-  const { values, handleInput } = useForm({
+  const { values, handleInput, setForm } = useForm({
     firstName: '',
     lastName: '',
     phoneNumber: ''
   });
 
+  const { data, error } = useMeQuery();
+  const [updatePersonalInfo, { data: success }] = useUpdatePersonalInfoMutation(
+    {
+      refetchQueries: [
+        {
+          query: ME
+        }
+      ]
+    }
+  );
+
+  useEffect(() => {
+    if (data?.me) {
+      const { firstName, lastName, phoneNumber } = data.me;
+      setForm({
+        firstName: firstName || '',
+        lastName: lastName || '',
+        phoneNumber: phoneNumber || ''
+      });
+    }
+  }, [data]);
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    await updatePersonalInfo({
+      variables: {
+        ...values
+      }
+    });
   };
   return (
     <AccountForm onSubmit={handleSubmit}>
       <AccountFormTitle>Personal Info</AccountFormTitle>
+      <ErrorMessage error={error} />
+      {success?.updatePersonalInfo.message}
       <Input
         label='first name'
         placeholder='John'
