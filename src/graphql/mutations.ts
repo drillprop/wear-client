@@ -65,3 +65,11 @@ export const CHANGE_PASSWORD = gql`
     }
   }
 `;
+
+export const SUBSCRIBE_TO_NEWSLETTER = gql`
+  mutation SubscribeToNewsletter($newsletter: Boolean!) {
+    subscribeToNewsletter(newsletter: $newsletter) {
+      message
+    }
+  }
+`;

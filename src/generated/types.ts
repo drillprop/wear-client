@@ -339,6 +339,19 @@ export type ChangePasswordMutation = (
   ) }
 );
 
+export type SubscribeToNewsletterMutationVariables = {
+  newsletter: Scalars['Boolean']
+};
+
+
+export type SubscribeToNewsletterMutation = (
+  { __typename?: 'Mutation' }
+  & { subscribeToNewsletter: (
+    { __typename?: 'SuccessMessage' }
+    & Pick<SuccessMessage, 'message'>
+  ) }
+);
+
 export type MeQueryVariables = {};
 
 
@@ -523,6 +536,38 @@ export function useChangePasswordMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswordMutation>;
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
+export const SubscribeToNewsletterDocument = gql`
+    mutation SubscribeToNewsletter($newsletter: Boolean!) {
+  subscribeToNewsletter(newsletter: $newsletter) {
+    message
+  }
+}
+    `;
+export type SubscribeToNewsletterMutationFn = ApolloReactCommon.MutationFunction<SubscribeToNewsletterMutation, SubscribeToNewsletterMutationVariables>;
+
+/**
+ * __useSubscribeToNewsletterMutation__
+ *
+ * To run a mutation, you first call `useSubscribeToNewsletterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSubscribeToNewsletterMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [subscribeToNewsletterMutation, { data, loading, error }] = useSubscribeToNewsletterMutation({
+ *   variables: {
+ *      newsletter: // value for 'newsletter'
+ *   },
+ * });
+ */
+export function useSubscribeToNewsletterMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<SubscribeToNewsletterMutation, SubscribeToNewsletterMutationVariables>) {
+        return ApolloReactHooks.useMutation<SubscribeToNewsletterMutation, SubscribeToNewsletterMutationVariables>(SubscribeToNewsletterDocument, baseOptions);
+      }
+export type SubscribeToNewsletterMutationHookResult = ReturnType<typeof useSubscribeToNewsletterMutation>;
+export type SubscribeToNewsletterMutationResult = ApolloReactCommon.MutationResult<SubscribeToNewsletterMutation>;
+export type SubscribeToNewsletterMutationOptions = ApolloReactCommon.BaseMutationOptions<SubscribeToNewsletterMutation, SubscribeToNewsletterMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
