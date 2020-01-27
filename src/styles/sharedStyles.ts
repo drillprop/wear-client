@@ -39,4 +39,7 @@ export const AccountFormTitle = styled.h2`
   }
 `;
 
-export const AccountParagraph = styled.p``;
+export const AccountParagraph = styled.p`
+  color: #878787;
+  font-size: ${fontLevel1};
+`;
