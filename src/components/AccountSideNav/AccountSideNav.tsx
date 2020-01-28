@@ -1,13 +1,11 @@
 import React from 'react';
-import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import {
-  AccountCard,
-  AccountCardPar,
-  AccountMainTitle,
-  AccountNav,
-  AccountNavItem,
-  AccountNavList
-} from './AccountSideNav.styles';
+  SideNavItem,
+  SideNavList,
+  SideNavMainTitle
+} from '../../styles/sharedStyles';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
+import { AccountCard, AccountCardPar } from './AccountSideNav.styles';
 
 interface Props {
   email?: string;
@@ -15,30 +13,30 @@ interface Props {
 
 const AccountSideNav: React.FC<Props> = ({ email }) => {
   return (
-    <AccountNav>
-      <AccountMainTitle>{email}</AccountMainTitle>
+    <nav>
+      <SideNavMainTitle>{email}</SideNavMainTitle>
       <AccountCard>
         <AccountCardPar>Total Orders: 0</AccountCardPar>
         <AccountCardPar>Member since 20/12/2019</AccountCardPar>
       </AccountCard>
-      <AccountNavList>
-        <AccountNavItem>
+      <SideNavList>
+        <SideNavItem>
           <LinkAnchor highlight href='/account/profile'>
             profile
           </LinkAnchor>
-        </AccountNavItem>
-        <AccountNavItem>
+        </SideNavItem>
+        <SideNavItem>
           <LinkAnchor highlight href='/account/contact'>
             contact details
           </LinkAnchor>
-        </AccountNavItem>
-        <AccountNavItem>
+        </SideNavItem>
+        <SideNavItem>
           <LinkAnchor highlight href='/account/orders'>
             orders
           </LinkAnchor>
-        </AccountNavItem>
-      </AccountNavList>
-    </AccountNav>
+        </SideNavItem>
+      </SideNavList>
+    </nav>
   );
 };
 
