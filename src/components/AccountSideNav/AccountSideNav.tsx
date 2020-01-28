@@ -23,17 +23,17 @@ const AccountSideNav: React.FC<Props> = ({ email }) => {
       </AccountCard>
       <AccountNavList>
         <AccountNavItem>
-          <LinkAnchor highlight href='/profile'>
+          <LinkAnchor highlight href='/account/profile'>
             profile
           </LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
-          <LinkAnchor highlight href='/contact'>
+          <LinkAnchor highlight href='/account/contact'>
             contact details
           </LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
-          <LinkAnchor highlight href='/orders'>
+          <LinkAnchor highlight href='/account/orders'>
             orders
           </LinkAnchor>
         </AccountNavItem>

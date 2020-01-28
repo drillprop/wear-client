@@ -16,10 +16,10 @@ const DropDownMenu = () => {
     <DropDownWrapper>
       <DropDownList>
         <DropDownItem>
-          <LinkAnchor href='/profile'> my profile</LinkAnchor>
+          <LinkAnchor href='/account/profile'> my profile</LinkAnchor>
         </DropDownItem>
         <DropDownItem>
-          <LinkAnchor href='/orders'>my orders </LinkAnchor>
+          <LinkAnchor href='/account/orders'>my orders </LinkAnchor>
         </DropDownItem>
         <DropDownItem>
           <LinkAnchor href='/checkout'>my cart </LinkAnchor>
