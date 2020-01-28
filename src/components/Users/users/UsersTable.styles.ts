@@ -19,14 +19,9 @@ export const StyledTable = styled.table`
       padding: 30px 20px;
     }
   }
-  tbody {
-    font-size: ${fontLevel1};
-    font-family: ${montserrat};
-    tr:nth-child(even) {
-      background-color: #ededed;
-    }
-    td {
-      padding: 20px 20px;
-    }
-  }
+`;
+
+export const TableBody = styled.tbody`
+  font-size: ${fontLevel1};
+  font-family: ${montserrat};
 `;

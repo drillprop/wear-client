@@ -1,6 +1,7 @@
 import React from 'react';
 import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
-import { StyledTable } from './UsersTable.styles';
+import { StyledTable, TableBody } from './UsersTable.styles';
+import UserRow from './usersTable/UserRow';
 
 const UsersTable = () => {
   return (
@@ -16,29 +17,9 @@ const UsersTable = () => {
             <th>orders</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>some id</td>
-            <td>some email</td>
-            <td>some full name</td>
-            <td>some role</td>
-            <td>some orders</td>
-          </tr>
-          <tr>
-            <td>some id</td>
-            <td>some email</td>
-            <td>some full name</td>
-            <td>some role</td>
-            <td>some orders</td>
-          </tr>
-          <tr>
-            <td>some id</td>
-            <td>some email</td>
-            <td>some full name</td>
-            <td>some role</td>
-            <td>some orders</td>
-          </tr>
-        </tbody>
+        <TableBody>
+          <UserRow email='email@email.com' role='ADMIN' id='SOME ID' />
+        </TableBody>
       </StyledTable>
     </SiteForm>
   );
