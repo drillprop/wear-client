@@ -107,7 +107,9 @@ const AddressForm = () => {
         icon='/globe-icon.svg'
         width='350px'
       />
-      <Button type='submit'>save</Button>
+      <Button width='350px' type='submit'>
+        save
+      </Button>
     </AccountForm>
   );
 };

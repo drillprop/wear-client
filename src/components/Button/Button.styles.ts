@@ -5,6 +5,7 @@ import { fontLevel2 } from '../../styles/fontSizes';
 interface Props {
   mainColor?: string;
   marginTop: string;
+  width: string;
 }
 
 export const StyledButton = styled.button<Props>`
@@ -12,6 +13,7 @@ export const StyledButton = styled.button<Props>`
   cursor: pointer;
   font-family: ${montserrat};
   background: none;
+  width: ${props => props.width};
   color: ${({ mainColor = 'black' }) => mainColor};
   border: 3px solid ${({ mainColor = 'black' }) => mainColor};
   ${props => props.marginTop && `margin-top: ${props.marginTop}`};

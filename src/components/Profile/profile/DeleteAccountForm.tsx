@@ -41,7 +41,9 @@ const DeleteAccountForm = () => {
         marginTop='50px'
         width='350px'
       />
-      <Button type='submit'>delete</Button>
+      <Button width='350px' type='submit'>
+        delete
+      </Button>
     </AccountForm>
   );
 };

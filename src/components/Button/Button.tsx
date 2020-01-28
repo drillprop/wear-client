@@ -14,7 +14,8 @@ const Button: React.FC<Props> = ({
   type,
   onClick,
   mainColor,
-  marginTop = '50px'
+  marginTop = '50px',
+  width = '100%'
 }) => {
   return (
     <StyledButton
@@ -22,6 +23,7 @@ const Button: React.FC<Props> = ({
       type={type}
       mainColor={mainColor}
       marginTop={marginTop}
+      width={width}
     >
       {children}
     </StyledButton>
