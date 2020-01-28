@@ -1,10 +1,19 @@
 import React, { FC } from 'react';
 import Link, { LinkProps } from 'next/link';
+import { StyledAnchor } from './LinkAnchor.styles';
+import { useRouter } from 'next/router';
 
-const LinkAnchor: FC<LinkProps> = ({ href, children }) => {
+interface Props {
+  highlight?: boolean;
+}
+
+const LinkAnchor: FC<LinkProps & Props> = ({ href, children, highlight }) => {
+  const { pathname } = useRouter();
   return (
     <Link href={href}>
-      <a>{children}</a>
+      <StyledAnchor active={highlight && pathname === href}>
+        {children}
+      </StyledAnchor>
     </Link>
   );
 };

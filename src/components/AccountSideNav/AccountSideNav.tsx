@@ -3,10 +3,10 @@ import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import {
   AccountCard,
   AccountCardPar,
+  AccountMainTitle,
   AccountNav,
   AccountNavItem,
-  AccountNavList,
-  AccountMainTitle
+  AccountNavList
 } from './AccountSideNav.styles';
 
 interface Props {
@@ -23,13 +23,19 @@ const AccountSideNav: React.FC<Props> = ({ email }) => {
       </AccountCard>
       <AccountNavList>
         <AccountNavItem>
-          <LinkAnchor href='/profile'>profile</LinkAnchor>
+          <LinkAnchor highlight href='/profile'>
+            profile
+          </LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
-          <LinkAnchor href='/contact'>contact details</LinkAnchor>
+          <LinkAnchor highlight href='/contact'>
+            contact details
+          </LinkAnchor>
         </AccountNavItem>
         <AccountNavItem>
-          <LinkAnchor href='/orders'>orders</LinkAnchor>
+          <LinkAnchor highlight href='/orders'>
+            orders
+          </LinkAnchor>
         </AccountNavItem>
       </AccountNavList>
     </AccountNav>
