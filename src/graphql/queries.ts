@@ -39,6 +39,7 @@ export const USERS = gql`
   ) {
     users(
       input: {
+        whereId: $whereId
         take: $take
         skip: $skip
         orderBy: $orderBy

@@ -767,7 +767,7 @@ export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
 export const UsersDocument = gql`
     query Users($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $whereRole: UserRole, $whereEmail: String, $whereFirstName: String, $whereLastName: String) {
-  users(input: {take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
+  users(input: {take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereId: $whereId, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
     id
     email
     firstName
