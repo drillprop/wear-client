@@ -5,7 +5,7 @@ import {
 } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
-import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
@@ -48,8 +48,8 @@ const PersonalInfoForm: React.FC = () => {
     });
   };
   return (
-    <AccountForm onSubmit={handleSubmit}>
-      <AccountFormTitle>Personal Info</AccountFormTitle>
+    <SiteForm onSubmit={handleSubmit}>
+      <SiteFormTitle>Personal Info</SiteFormTitle>
       <ErrorMessage error={error} />
       {success?.updatePersonalInfo.message}
       <Input
@@ -86,7 +86,7 @@ const PersonalInfoForm: React.FC = () => {
       <Button width='350px' type='submit'>
         save
       </Button>
-    </AccountForm>
+    </SiteForm>
   );
 };
 

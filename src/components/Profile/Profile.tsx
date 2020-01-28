@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMeQuery } from '../../generated/types';
-import { AccountMain, AccountSiteWrapper } from '../../styles/sharedStyles';
+import { SiteWrapper } from '../../styles/sharedStyles';
 import AccountSideNav from '../AccountSideNav/AccountSideNav';
 import ChangePasswordForm from './profile/ChangePasswordForm';
 import DeleteAccountForm from './profile/DeleteAccountForm';
@@ -9,14 +9,14 @@ import NewsletterForm from './profile/NewsletterForm';
 const Profile: React.FC = () => {
   const { data } = useMeQuery();
   return (
-    <AccountSiteWrapper>
+    <SiteWrapper>
       <AccountSideNav email={data?.me?.email} />
-      <AccountMain>
+      <div>
         <ChangePasswordForm />
         <NewsletterForm />
         <DeleteAccountForm />
-      </AccountMain>
-    </AccountSiteWrapper>
+      </div>
+    </SiteWrapper>
   );
 };
 

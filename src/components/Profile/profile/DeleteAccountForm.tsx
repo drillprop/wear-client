@@ -2,12 +2,12 @@ import React, { FormEvent } from 'react';
 import { useDeleteAccountMutation } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
-import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
 
-const DeleteAccountForm = () => {
+const DeleteAccountForm: React.FC = () => {
   const { values, handleInput, clearForm } = useForm({
     confirmWithPassword: ''
   });
@@ -27,8 +27,8 @@ const DeleteAccountForm = () => {
     clearForm(values);
   };
   return (
-    <AccountForm onSubmit={handleSubmit}>
-      <AccountFormTitle>Delete Account</AccountFormTitle>
+    <SiteForm onSubmit={handleSubmit}>
+      <SiteFormTitle>Delete Account</SiteFormTitle>
       <ErrorMessage error={error} />
       <Input
         label='confirm with password'
@@ -44,7 +44,7 @@ const DeleteAccountForm = () => {
       <Button width='350px' type='submit'>
         delete
       </Button>
-    </AccountForm>
+    </SiteForm>
   );
 };
 

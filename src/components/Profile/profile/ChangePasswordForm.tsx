@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useChangePasswordMutation } from '../../../generated/types';
 import useForm from '../../../hooks/useForm';
-import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
@@ -29,8 +29,8 @@ const ChangePasswordForm: React.FC = () => {
   };
 
   return (
-    <AccountForm onSubmit={handleChangePassword}>
-      <AccountFormTitle>Change Password</AccountFormTitle>
+    <SiteForm onSubmit={handleChangePassword}>
+      <SiteFormTitle>Change Password</SiteFormTitle>
       <ErrorMessage error={error} />
       {data?.changePassword.message}
       <Input
@@ -64,10 +64,10 @@ const ChangePasswordForm: React.FC = () => {
         icon='/padlock-icon.svg'
         width='350px'
       />
-      <Button type='submit' width='100%'>
+      <Button type='submit' width='350px'>
         change password
       </Button>
-    </AccountForm>
+    </SiteForm>
   );
 };
 

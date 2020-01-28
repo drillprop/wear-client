@@ -2,26 +2,20 @@ import styled from 'styled-components';
 import { roboto } from './fonts';
 import { fontLevel1, fontLevel6 } from './fontSizes';
 
-export const AccountSiteWrapper = styled.div`
+export const SiteWrapper = styled.div`
   display: grid;
   grid-gap: 90px;
   grid-template-columns: 280px 1fr;
 `;
 
-export const AccountMain = styled.div`
-  form:first-of-type {
+export const SiteForm = styled.form`
+  &:first-of-type {
     margin-top: 0;
   }
-`;
-
-export const AccountForm = styled.form`
   margin-top: 75px;
-  button {
-    width: 350px;
-  }
 `;
 
-export const AccountFormTitle = styled.h2`
+export const SiteFormTitle = styled.h2`
   margin: 0;
   margin-top: 18px;
   position: relative;
@@ -40,7 +34,7 @@ export const AccountFormTitle = styled.h2`
   }
 `;
 
-export const AccountParagraph = styled.p`
+export const SiteParagraph = styled.p`
   color: #878787;
   font-size: ${fontLevel1};
 `;

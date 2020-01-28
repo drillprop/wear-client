@@ -1,5 +1,5 @@
 import React, { useEffect, FormEvent } from 'react';
-import { AccountForm, AccountFormTitle } from '../../../styles/sharedStyles';
+import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 import useForm from '../../../hooks/useForm';
@@ -7,7 +7,7 @@ import { useMeQuery, useUpdateAddressMutation } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
-const AddressForm = () => {
+const AddressForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
     addressLine1: '',
     addressLine2: '',
@@ -55,8 +55,8 @@ const AddressForm = () => {
   };
 
   return (
-    <AccountForm onSubmit={handleSubmit}>
-      <AccountFormTitle>Address</AccountFormTitle>
+    <SiteForm onSubmit={handleSubmit}>
+      <SiteFormTitle>Address</SiteFormTitle>
       {success?.updateAddress.message}
       <ErrorMessage error={error} />
       <Input
@@ -110,7 +110,7 @@ const AddressForm = () => {
       <Button width='350px' type='submit'>
         save
       </Button>
-    </AccountForm>
+    </SiteForm>
   );
 };
 
