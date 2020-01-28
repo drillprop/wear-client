@@ -12,9 +12,9 @@ const NewsLetter = () => {
     <FooterLongColumn>
       <FooterHeadings>Stay connected</FooterHeadings>
       <IconGroup>
-        <img src='./facebook-icon.svg' alt='' />
-        <img src='./instagram-icon.svg' alt='' />
-        <img src='./pinterest-icon.svg' alt='' />
+        <img src='/facebook-icon.svg' alt='facebook icon' />
+        <img src='/instagram-icon.svg' alt='instagram icon' />
+        <img src='/pinterest-icon.svg' alt='pinterest icon' />
       </IconGroup>
       <FooterText>
         Do you want to receive the special offers? Sign up and get 15% off
@@ -23,7 +23,7 @@ const NewsLetter = () => {
         label='subscribe to newsletter'
         placeholder='email'
         type='email'
-        icon='./mail-icon.svg'
+        icon='/mail-icon.svg'
       />
     </FooterLongColumn>
   );
