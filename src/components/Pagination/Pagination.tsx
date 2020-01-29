@@ -9,28 +9,26 @@ interface Props {
   total?: number;
   take: number;
   skip: number;
+  changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Pagination: React.FC<Props> = ({ total, take, skip }) => {
-  const tot = total || 0;
-  const totalPages = Math.ceil(tot / take);
+const Pagination: React.FC<Props> = ({ total = 0, take, skip, changePage }) => {
+  const totalPages = Math.ceil(total / take);
   const pageNumber = skip / take + 1 || 1;
 
-  const changePage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { textContent } = e.currentTarget;
-    if (textContent === '>') {
-      // increase
-    } else {
-      //decrease
-    }
-  };
   return (
     <PageNumbersWrapper>
-      <NextPrevPage onClick={changePage}>&lt;</NextPrevPage>
+      <NextPrevPage onClick={e => (pageNumber < skip ? changePage(e) : null)}>
+        &lt;
+      </NextPrevPage>
       <PageNumber>
         {pageNumber} of {totalPages}
       </PageNumber>
-      <NextPrevPage onClick={changePage}>&gt;</NextPrevPage>
+      <NextPrevPage
+        onClick={e => (pageNumber < totalPages ? changePage(e) : null)}
+      >
+        &gt;
+      </NextPrevPage>
     </PageNumbersWrapper>
   );
 };

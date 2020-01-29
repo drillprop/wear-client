@@ -1,17 +1,16 @@
+import { ApolloError } from 'apollo-boost';
 import React from 'react';
-import { useUsersQuery } from '../../../generated/types';
+import { UsersQueryResult } from '../../../generated/types';
 import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import { StyledTable, TableBody } from './UsersTable.styles';
 import UserRow from './usersTable/UserRow';
 
-const UsersTable = () => {
-  const { data, error } = useUsersQuery({
-    variables: {
-      take: 5,
-      skip: 0
-    }
-  });
+interface Props {
+  data?: UsersQueryResult['data'];
+  error?: ApolloError;
+}
 
+const UsersTable: React.FC<Props> = ({ data }) => {
   return (
     <SiteForm>
       <SiteFormTitle>List of Users</SiteFormTitle>
