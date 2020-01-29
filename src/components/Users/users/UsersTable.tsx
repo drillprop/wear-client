@@ -1,9 +1,14 @@
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
 import { UsersQueryResult } from '../../../generated/types';
-import { StyledTable, TableBody } from './UsersTable.styles';
-import UserRow from './usersTable/UserRow';
 import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import UserRow from './usersTable/UserRow';
+import {
+  Table,
+  TableBody,
+  TableHead,
+  TableHeadCell
+} from '../../../styles/table.styles';
 
 interface Props {
   data?: UsersQueryResult['data'];
@@ -14,16 +19,16 @@ const UsersTable: React.FC<Props> = ({ data }) => {
   return (
     <SiteForm>
       <SiteFormTitle>List of Users</SiteFormTitle>
-      <StyledTable>
-        <thead>
+      <Table>
+        <TableHead>
           <tr>
-            <th>id</th>
-            <th>email</th>
-            <th>full name</th>
-            <th>role</th>
-            <th>orders</th>
+            <TableHeadCell>id</TableHeadCell>
+            <TableHeadCell>email</TableHeadCell>
+            <TableHeadCell>full name</TableHeadCell>
+            <TableHeadCell>role</TableHeadCell>
+            <TableHeadCell>orders</TableHeadCell>
           </tr>
-        </thead>
+        </TableHead>
         <TableBody>
           {data?.users.map(user => {
             if (user) {
@@ -39,7 +44,7 @@ const UsersTable: React.FC<Props> = ({ data }) => {
             }
           })}
         </TableBody>
-      </StyledTable>
+      </Table>
     </SiteForm>
   );
 };

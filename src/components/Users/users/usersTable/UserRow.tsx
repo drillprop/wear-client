@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableData, TableBodyRow } from './UserRow.styles';
+import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 
 interface Props {
   id: string;
