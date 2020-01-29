@@ -1,9 +1,9 @@
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
 import { UsersQueryResult } from '../../../generated/types';
-import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import { StyledTable, TableBody } from './UsersTable.styles';
 import UserRow from './usersTable/UserRow';
+import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 
 interface Props {
   data?: UsersQueryResult['data'];

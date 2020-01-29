@@ -2,10 +2,10 @@ import React, { FormEvent } from 'react';
 import { useDeleteAccountMutation } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
-import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
+import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 
 const DeleteAccountForm: React.FC = () => {
   const { values, handleInput, clearForm } = useForm({

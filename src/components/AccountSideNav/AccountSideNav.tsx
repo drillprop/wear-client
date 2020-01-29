@@ -1,11 +1,11 @@
 import React from 'react';
-import {
-  SideNavItem,
-  SideNavList,
-  SideNavMainTitle
-} from '../../styles/sharedStyles';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import { AccountCard, AccountCardPar } from './AccountSideNav.styles';
+import {
+  SideNavMainTitle,
+  SideNavList,
+  SideNavItem
+} from '../../styles/sideNav.styles';
 
 interface Props {
   email?: string;

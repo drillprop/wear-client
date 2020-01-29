@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useChangePasswordMutation } from '../../../generated/types';
 import useForm from '../../../hooks/useForm';
-import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
+import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 
 const ChangePasswordForm: React.FC = () => {
   const [changePassword, { data, error }] = useChangePasswordMutation();

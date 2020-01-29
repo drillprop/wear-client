@@ -1,10 +1,10 @@
 import React from 'react';
 import { useMeQuery } from '../../generated/types';
-import { SiteWrapper } from '../../styles/sharedStyles';
 import AccountSideNav from '../AccountSideNav/AccountSideNav';
 import ChangePasswordForm from './profile/ChangePasswordForm';
 import DeleteAccountForm from './profile/DeleteAccountForm';
 import NewsletterForm from './profile/NewsletterForm';
+import { SiteWrapper } from '../../styles/site.styles';
 
 const Profile: React.FC = () => {
   const { data } = useMeQuery();

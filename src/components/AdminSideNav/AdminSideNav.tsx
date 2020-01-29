@@ -3,7 +3,7 @@ import {
   SideNavItem,
   SideNavList,
   SideNavMainTitle
-} from '../../styles/sharedStyles';
+} from '../../styles/sideNav.styles';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
 const AdminSideNav: React.FC = () => {

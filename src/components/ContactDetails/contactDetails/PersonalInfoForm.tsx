@@ -5,10 +5,10 @@ import {
 } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
-import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
+import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 
 const PersonalInfoForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({

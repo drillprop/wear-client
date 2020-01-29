@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useUsersCountQuery, useUsersQuery } from '../../generated/types';
-import { SiteWrapper } from '../../styles/sharedStyles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
 import UsersTable from './users/UsersTable';
+import { SiteWrapper } from '../../styles/site.styles';
 
 const Users = () => {
   const [pages, setPages] = useState({

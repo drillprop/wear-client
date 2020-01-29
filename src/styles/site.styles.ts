@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from './fonts';
-import { fontLevel1, fontLevel6 } from './fontSizes';
+import { fontLevel1 } from './fontSizes';
 
 export const SiteWrapper = styled.div`
   display: grid;
@@ -37,25 +37,4 @@ export const SiteFormTitle = styled.h2`
 export const SiteParagraph = styled.p`
   color: #878787;
   font-size: ${fontLevel1};
-`;
-
-export const SideNavMainTitle = styled.h1`
-  font-size: ${fontLevel6};
-  margin: 0;
-  margin-top: 18px;
-  font-family: ${roboto};
-  text-transform: uppercase;
-  letter-spacing: 2px;
-`;
-
-export const SideNavList = styled.ul`
-  margin-top: 60px;
-  padding: 0;
-`;
-
-export const SideNavItem = styled.li`
-  font-family: ${roboto};
-  margin-top: 12px;
-  text-transform: uppercase;
-  font-size: ${fontLevel6};
 `;

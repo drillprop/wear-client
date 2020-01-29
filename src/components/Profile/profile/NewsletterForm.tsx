@@ -4,13 +4,13 @@ import {
   useSubscribeToNewsletterMutation
 } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
+import Checkbox from '../../Checkbox/Checkbox';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import {
   SiteForm,
   SiteFormTitle,
   SiteParagraph
-} from '../../../styles/sharedStyles';
-import Checkbox from '../../Checkbox/Checkbox';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+} from '../../../styles/site.styles';
 
 const NewsletterForm: React.FC = () => {
   const { data, error } = useMeQuery();

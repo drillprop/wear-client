@@ -1,11 +1,11 @@
 import React, { useEffect, FormEvent } from 'react';
-import { SiteForm, SiteFormTitle } from '../../../styles/sharedStyles';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 import useForm from '../../../hooks/useForm';
 import { useMeQuery, useUpdateAddressMutation } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
+import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 
 const AddressForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
