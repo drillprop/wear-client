@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
-import { UsersQueryResult } from '../../../generated/types';
+import { UsersQueryResult, UsersQuery } from '../../../generated/types';
 import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 import UserRow from './usersTable/UserRow';
 import {
@@ -11,11 +11,11 @@ import {
 } from '../../../styles/table.styles';
 
 interface Props {
-  data?: UsersQueryResult['data'];
+  users?: UsersQuery['users'];
   error?: ApolloError;
 }
 
-const UsersTable: React.FC<Props> = ({ data }) => {
+const UsersTable: React.FC<Props> = ({ users }) => {
   return (
     <SiteForm>
       <SiteFormTitle>List of Users</SiteFormTitle>
@@ -30,19 +30,20 @@ const UsersTable: React.FC<Props> = ({ data }) => {
           </tr>
         </TableHead>
         <TableBody>
-          {data?.users.map(user => {
-            if (user) {
-              return (
-                <UserRow
-                  key={user.id}
-                  email={user.email}
-                  role={user.role}
-                  id={user.id}
-                  fullName={`${user.firstName || ''} ${user.lastName || ''}`}
-                />
-              );
-            }
-          })}
+          {users &&
+            users.map(user => {
+              if (user) {
+                return (
+                  <UserRow
+                    key={user.id}
+                    email={user.email}
+                    role={user.role}
+                    id={user.id}
+                    fullName={`${user.firstName || ''} ${user.lastName || ''}`}
+                  />
+                );
+              }
+            })}
         </TableBody>
       </Table>
     </SiteForm>

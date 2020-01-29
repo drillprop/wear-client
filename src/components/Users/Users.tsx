@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useUsersCountQuery, useUsersQuery } from '../../generated/types';
+import useChangePage from '../../hooks/useChangePage';
+import { SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
 import UsersTable from './users/UsersTable';
-import { SiteWrapper } from '../../styles/site.styles';
-import useChangePage from '../../hooks/useChangePage';
 
 const Users = () => {
-  const { pages, changePage } = useChangePage(5, 0);
+  const {
+    pages: { skip, take },
+    changePage
+  } = useChangePage(5, 0);
 
   const { data: usersData, error: usersError } = useUsersQuery({
     variables: {
-      take: pages.take,
-      skip: pages.skip,
+      take,
+      skip,
       orderBy: 'User.createdAt'
     }
   });
@@ -23,11 +26,11 @@ const Users = () => {
     <SiteWrapper>
       <AdminSideNav />
       <div>
-        <UsersTable data={usersData} />
+        <UsersTable users={usersData?.users} />
         <Pagination
           changePage={changePage}
-          take={pages.take}
-          skip={pages.skip}
+          take={take}
+          skip={skip}
           total={countData?.usersCount}
         />
       </div>
