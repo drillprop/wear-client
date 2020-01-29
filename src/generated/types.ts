@@ -191,6 +191,7 @@ export type Query = {
   orders: Array<Maybe<Order>>,
   me?: Maybe<User>,
   users: Array<Maybe<User>>,
+  usersCount: Scalars['Int'],
 };
 
 
@@ -284,6 +285,7 @@ export type User = {
   createdItems: Array<Maybe<Item>>,
   createdOrders: Array<Maybe<Order>>,
   address?: Maybe<Address>,
+  totalCount?: Maybe<Scalars['Int']>,
 };
 
 export enum UserRole {
@@ -442,6 +444,14 @@ export type UsersQuery = (
       & Pick<Order, 'id'>
     )>> }
   )>> }
+);
+
+export type UsersCountQueryVariables = {};
+
+
+export type UsersCountQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'usersCount'>
 );
 
 
@@ -767,7 +777,7 @@ export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
 export const UsersDocument = gql`
     query Users($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $whereRole: UserRole, $whereEmail: String, $whereFirstName: String, $whereLastName: String) {
-  users(input: {take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereId: $whereId, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
+  users(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
     id
     email
     firstName
@@ -814,3 +824,33 @@ export function useUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOp
 export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = ApolloReactCommon.QueryResult<UsersQuery, UsersQueryVariables>;
+export const UsersCountDocument = gql`
+    query UsersCount {
+  usersCount
+}
+    `;
+
+/**
+ * __useUsersCountQuery__
+ *
+ * To run a query within a React component, call `useUsersCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersCountQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsersCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<UsersCountQuery, UsersCountQueryVariables>) {
+        return ApolloReactHooks.useQuery<UsersCountQuery, UsersCountQueryVariables>(UsersCountDocument, baseOptions);
+      }
+export function useUsersCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<UsersCountQuery, UsersCountQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<UsersCountQuery, UsersCountQueryVariables>(UsersCountDocument, baseOptions);
+        }
+export type UsersCountQueryHookResult = ReturnType<typeof useUsersCountQuery>;
+export type UsersCountLazyQueryHookResult = ReturnType<typeof useUsersCountLazyQuery>;
+export type UsersCountQueryResult = ApolloReactCommon.QueryResult<UsersCountQuery, UsersCountQueryVariables>;

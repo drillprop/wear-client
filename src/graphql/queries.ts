@@ -62,3 +62,9 @@ export const USERS = gql`
     }
   }
 `;
+
+export const USERS_COUNT = gql`
+  query UsersCount {
+    usersCount
+  }
+`;
