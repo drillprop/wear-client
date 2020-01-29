@@ -23,11 +23,22 @@ export type Address = {
   country?: Maybe<Scalars['String']>,
 };
 
+export enum Category {
+  Trouser = 'TROUSER',
+  Dress = 'DRESS',
+  Blouse = 'BLOUSE',
+  Tshirt = 'TSHIRT',
+  Shirt = 'SHIRT',
+  Jacket = 'JACKET',
+  Blazer = 'BLAZER'
+}
+
 export type CreateItemInput = {
   name: Scalars['String'],
   price: Scalars['Float'],
   imageUrl: Scalars['String'],
-  category: Scalars['String'],
+  category: Category,
+  gender: Gender,
 };
 
 
@@ -36,8 +47,13 @@ export type EditItemInput = {
   name?: Maybe<Scalars['String']>,
   price?: Maybe<Scalars['Float']>,
   imageUrl?: Maybe<Scalars['String']>,
-  category?: Maybe<Scalars['String']>,
+  category?: Maybe<Category>,
 };
+
+export enum Gender {
+  Male = 'MALE',
+  Female = 'FEMALE'
+}
 
 export type Item = {
    __typename?: 'Item',
@@ -45,10 +61,12 @@ export type Item = {
   name: Scalars['String'],
   price: Scalars['Float'],
   imageUrl: Scalars['String'],
-  category: Scalars['String'],
+  category: Category,
+  gender: Gender,
   createdBy: User,
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
+  totalCount: Scalars['Int'],
 };
 
 export type LoginInput = {
@@ -168,6 +186,7 @@ export type Order = {
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
   status: OrderStatus,
+  totalCount: Scalars['Int'],
   orderedBy: User,
   orderedItems: Array<Item>,
 };
@@ -188,7 +207,9 @@ export type PersonalInfoInput = {
 export type Query = {
    __typename?: 'Query',
   items: Array<Maybe<Item>>,
+  itemsCount: Scalars['Int'],
   orders: Array<Maybe<Order>>,
+  ordersCount: Scalars['Int'],
   me?: Maybe<User>,
   users: Array<Maybe<User>>,
   usersCount: Scalars['Int'],
@@ -231,7 +252,8 @@ export type SearchItemInput = {
   priceFrom?: Maybe<Scalars['Float']>,
   priceTo?: Maybe<Scalars['Float']>,
   whereName?: Maybe<Scalars['String']>,
-  whereCategory?: Maybe<Scalars['String']>,
+  whereCategory?: Maybe<Category>,
+  whereGender?: Maybe<Gender>,
 };
 
 export type SearchOrdersInput = {
@@ -452,6 +474,36 @@ export type UsersCountQueryVariables = {};
 export type UsersCountQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'usersCount'>
+);
+
+export type ItemsQueryVariables = {
+  whereId?: Maybe<Scalars['ID']>,
+  take?: Maybe<Scalars['Int']>,
+  skip?: Maybe<Scalars['Int']>,
+  orderBy?: Maybe<Scalars['String']>,
+  desc?: Maybe<Scalars['Boolean']>,
+  priceFrom?: Maybe<Scalars['Float']>,
+  priceTo?: Maybe<Scalars['Float']>,
+  whereName?: Maybe<Scalars['String']>,
+  whereCategory?: Maybe<Category>,
+  whereGender?: Maybe<Gender>
+};
+
+
+export type ItemsQuery = (
+  { __typename?: 'Query' }
+  & { items: Array<Maybe<(
+    { __typename?: 'Item' }
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+  )>> }
+);
+
+export type ItemsCountQueryVariables = {};
+
+
+export type ItemsCountQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'itemsCount'>
 );
 
 
@@ -854,3 +906,82 @@ export function useUsersCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type UsersCountQueryHookResult = ReturnType<typeof useUsersCountQuery>;
 export type UsersCountLazyQueryHookResult = ReturnType<typeof useUsersCountLazyQuery>;
 export type UsersCountQueryResult = ApolloReactCommon.QueryResult<UsersCountQuery, UsersCountQueryVariables>;
+export const ItemsDocument = gql`
+    query Items($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $whereName: String, $whereCategory: Category, $whereGender: Gender) {
+  items(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, whereName: $whereName, whereCategory: $whereCategory, whereGender: $whereGender}) {
+    id
+    name
+    price
+    imageUrl
+    category
+    gender
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useItemsQuery__
+ *
+ * To run a query within a React component, call `useItemsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useItemsQuery({
+ *   variables: {
+ *      whereId: // value for 'whereId'
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *      orderBy: // value for 'orderBy'
+ *      desc: // value for 'desc'
+ *      priceFrom: // value for 'priceFrom'
+ *      priceTo: // value for 'priceTo'
+ *      whereName: // value for 'whereName'
+ *      whereCategory: // value for 'whereCategory'
+ *      whereGender: // value for 'whereGender'
+ *   },
+ * });
+ */
+export function useItemsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+        return ApolloReactHooks.useQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, baseOptions);
+      }
+export function useItemsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, baseOptions);
+        }
+export type ItemsQueryHookResult = ReturnType<typeof useItemsQuery>;
+export type ItemsLazyQueryHookResult = ReturnType<typeof useItemsLazyQuery>;
+export type ItemsQueryResult = ApolloReactCommon.QueryResult<ItemsQuery, ItemsQueryVariables>;
+export const ItemsCountDocument = gql`
+    query ItemsCount {
+  itemsCount
+}
+    `;
+
+/**
+ * __useItemsCountQuery__
+ *
+ * To run a query within a React component, call `useItemsCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useItemsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useItemsCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useItemsCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ItemsCountQuery, ItemsCountQueryVariables>) {
+        return ApolloReactHooks.useQuery<ItemsCountQuery, ItemsCountQueryVariables>(ItemsCountDocument, baseOptions);
+      }
+export function useItemsCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ItemsCountQuery, ItemsCountQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ItemsCountQuery, ItemsCountQueryVariables>(ItemsCountDocument, baseOptions);
+        }
+export type ItemsCountQueryHookResult = ReturnType<typeof useItemsCountQuery>;
+export type ItemsCountLazyQueryHookResult = ReturnType<typeof useItemsCountLazyQuery>;
+export type ItemsCountQueryResult = ApolloReactCommon.QueryResult<ItemsCountQuery, ItemsCountQueryVariables>;

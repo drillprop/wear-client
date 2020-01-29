@@ -68,3 +68,48 @@ export const USERS_COUNT = gql`
     usersCount
   }
 `;
+
+export const ITEMS = gql`
+  query Items(
+    $whereId: ID
+    $take: Int
+    $skip: Int
+    $orderBy: String
+    $desc: Boolean
+    $priceFrom: Float
+    $priceTo: Float
+    $whereName: String
+    $whereCategory: Category
+    $whereGender: Gender
+  ) {
+    items(
+      input: {
+        whereId: $whereId
+        take: $take
+        skip: $skip
+        orderBy: $orderBy
+        desc: $desc
+        priceFrom: $priceFrom
+        priceTo: $priceTo
+        whereName: $whereName
+        whereCategory: $whereCategory
+        whereGender: $whereGender
+      }
+    ) {
+      id
+      name
+      price
+      imageUrl
+      category
+      gender
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const ITEMS_COUNT = gql`
+  query ItemsCount {
+    itemsCount
+  }
+`;
