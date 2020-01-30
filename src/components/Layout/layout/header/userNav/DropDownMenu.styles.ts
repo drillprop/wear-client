@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { white } from '../../../../../styles/colors';
 
 export const DropDownWrapper = styled.div`
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: ${white};
   padding-right: 22px;
   min-width: 110%;
 `;

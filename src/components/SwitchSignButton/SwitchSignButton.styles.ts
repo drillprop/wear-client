@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { roboto } from '../../styles/fonts';
 import { fontLevel4 } from '../../styles/fontSizes';
+import { black, white } from '../../styles/colors';
 
 export const StyledSwitchSignButton = styled.button`
   position: fixed;
@@ -10,7 +11,7 @@ export const StyledSwitchSignButton = styled.button`
   cursor: pointer;
   font-family: ${roboto};
   font-size: ${fontLevel4};
-  background-color: white;
+  background-color: ${white};
   border: none;
   border-radius: 100%;
   outline: none;
@@ -19,8 +20,8 @@ export const StyledSwitchSignButton = styled.button`
   transform: translate(-50%, -50%);
   transition: transform 100ms, background-color 200ms;
   :hover {
-    background-color: black;
-    color: white;
+    background-color: ${black};
+    color: ${white};
     transform: translate(-50%, -50%) scale(1.1);
     transition: transform 200ms, background-color 200ms;
   }

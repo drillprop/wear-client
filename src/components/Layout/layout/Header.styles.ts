@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { roboto } from '../../../styles/fonts';
 import { fontLevel10, fontLevel2 } from '../../../styles/fontSizes';
+import { black, white } from '../../../styles/colors';
 
 export const HeaderWrapper = styled.header`
   padding: 0 50px;
-  background-color: white;
+  background-color: ${white};
   border-bottom: 1px;
   position: fixed;
   z-index: 2;
@@ -19,7 +20,7 @@ export const Logo = styled.div`
   font-family: ${roboto};
   line-height: 1.5;
   text-decoration: none;
-  color: black;
+  color: ${black};
   font-weight: 700;
   margin: 0;
   font-size: ${fontLevel10};

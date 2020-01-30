@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { fontLevel1 } from './fontSizes';
 import { roboto, montserrat } from './fonts';
+import { black } from './colors';
 
 export const Table = styled.table`
   width: 100%;
   margin-top: 50px;
-  border: 1px solid black;
+  border: 1px solid ${black};
   border-spacing: 0px;
 `;
 
@@ -14,8 +15,8 @@ export const TableHead = styled.thead`
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
-  border: 1px solid black;
-  background-color: black;
+  border: 1px solid ${black};
+  background-color: ${black};
   color: #878787;
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { black, white } from '../../../../styles/colors';
 
 interface HamburgerMenuButtonProps {
   menuActive: boolean;
@@ -20,14 +21,14 @@ export const HamburgerMenuButton = styled.div<HamburgerMenuButtonProps>`
   position: absolute;
   width: 28px;
   height: 5px;
-  background-color: ${({ menuActive }) => (menuActive ? 'white' : 'black')};
+  background-color: ${({ menuActive }) => (menuActive ? white : black)};
   ::after,
   ::before {
     content: '';
     position: absolute;
     width: 28px;
     height: 5px;
-    background-color: ${({ menuActive }) => (menuActive ? 'white' : 'black')};
+    background-color: ${({ menuActive }) => (menuActive ? white : black)};
   }
   ::before {
     top: -10px;

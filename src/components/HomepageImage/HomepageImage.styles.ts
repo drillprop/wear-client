@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { roboto } from '../../styles/fonts';
 import { fontLevel6 } from '../../styles/fontSizes';
+import { black, white } from '../../styles/colors';
 
 export const ImageWrapper = styled.div`
   position: relative;
@@ -17,13 +18,13 @@ export const ImageTitle = styled.h1`
   font-family: ${roboto};
   padding: 12px;
   width: 100%;
-  background-color: white;
+  background-color: ${white};
   text-align: center;
   z-index: 1;
   top: 70%;
   left: 50%;
   transform: translateX(-50%);
-  color: black;
+  color: ${black};
   opacity: 1;
   :hover + div {
     cursor: pointer;
@@ -39,7 +40,7 @@ export const Image = styled.div<{ imageUrl: string }>`
   height: 600px;
 
   margin: 0 auto;
-  background-color: black;
+  background-color: ${black};
   position: relative;
   overflow: hidden;
   &:hover {

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
+import { white } from '../../styles/colors';
 
 export const CheckboxWrapper = styled.div<{ marginTop?: string }>`
   display: flex;
@@ -63,7 +64,7 @@ export const CustomCheckbox = styled.span`
     position: absolute;
     width: 15px;
     height: 3px;
-    background-color: white;
+    background-color: ${white};
     transition: opacity 400ms;
   }
   ::before {
@@ -76,7 +77,7 @@ export const CustomCheckbox = styled.span`
     width: 7px;
     transform: rotate(45deg);
     height: 3px;
-    background-color: white;
+    background-color: ${white};
     transition: opacity 400ms;
   }
 `;

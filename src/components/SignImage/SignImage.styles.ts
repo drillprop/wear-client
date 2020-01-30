@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { black } from '../../styles/colors';
 
 export const HeroImage = styled.div<{ image: string }>`
   position: relative;
@@ -11,7 +12,7 @@ export const HeroImage = styled.div<{ image: string }>`
   ::after {
     position: absolute;
     content: '';
-    background-color: black;
+    background-color: ${black};
     width: 100%;
     height: 100%;
     opacity: 0.5;

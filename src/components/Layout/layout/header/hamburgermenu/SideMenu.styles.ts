@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { black, white } from '../../../../../styles/colors';
 
 interface SideMenuProps {
   rotate?: number;
@@ -7,7 +8,7 @@ interface SideMenuProps {
 
 export const Menu = styled.div`
   position: absolute;
-  background-color: black;
+  background-color: ${black};
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -33,5 +34,5 @@ export const SideMenuLi = styled.div<SideMenuProps>`
     `rotate(${rotate}deg) translateX(${translateX}px)`};
   margin: 0;
   margin-left: 10px;
-  color: white;
+  color: ${white};
 `;
