@@ -29,9 +29,12 @@ const Select: React.FC<Props> = ({ options }) => {
       <StyledSelect
         tabIndex={0}
         onClick={() => setVisible(visible => !visible)}
-        onBlur={() => setVisible(false)}
+        onBlur={() => {
+          setVisible(false);
+          visible && setOption('');
+        }}
       >
-        <SelectedOption role='option' aria-selected>
+        <SelectedOption role='option' aria-selected active={visible}>
           {selectedOption || <PlaceHolder>Select</PlaceHolder>}
         </SelectedOption>
         {visible && (
