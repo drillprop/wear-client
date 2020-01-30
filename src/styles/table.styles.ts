@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+import { black, gray6, gray7 } from './colors';
+import { montserrat, roboto } from './fonts';
 import { fontLevel1 } from './fontSizes';
-import { roboto, montserrat } from './fonts';
-import { black } from './colors';
 
 export const Table = styled.table`
   width: 100%;
   margin-top: 50px;
-  border: 1px solid ${black};
+  border: 1px solid ${gray6};
   border-spacing: 0px;
 `;
 
@@ -15,9 +15,8 @@ export const TableHead = styled.thead`
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
-  border: 1px solid ${black};
   background-color: ${black};
-  color: #878787;
+  color: ${gray6};
 `;
 
 export const TableHeadCell = styled.th`
@@ -31,7 +30,7 @@ export const TableBody = styled.tbody`
 
 export const TableBodyRow = styled.tr`
   &:nth-child(even) {
-    background-color: #ededed;
+    background-color: ${gray7};
   }
 `;
 
