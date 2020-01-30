@@ -15,9 +15,9 @@ const arrowDown = css`
   border-top: 10px solid ${gray1};
 `;
 
-export const SelectWrapper = styled.div`
-  margin-top: 25px;
-  width: 350px;
+export const SelectWrapper = styled.div<{ marginTop: string; width: string }>`
+  margin-top: ${props => props.marginTop};
+  width: ${props => props.width};
 `;
 
 export const SelectLabel = styled.div`

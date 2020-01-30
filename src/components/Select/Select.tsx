@@ -11,9 +11,15 @@ import {
 
 interface Props {
   options?: string[];
+  marginTop?: string;
+  width?: string;
 }
 
-const Select: React.FC<Props> = ({ options }) => {
+const Select: React.FC<Props> = ({
+  options,
+  marginTop = '25px',
+  width = '100%'
+}) => {
   const [selectedOption, setOption] = useState('');
   const [visible, setVisible] = useState(false);
 
@@ -22,7 +28,7 @@ const Select: React.FC<Props> = ({ options }) => {
     setOption(textContent || '');
   };
   return (
-    <SelectWrapper>
+    <SelectWrapper marginTop={marginTop} width={width}>
       <SelectLabel role='label' id='select-label'>
         Label
       </SelectLabel>
