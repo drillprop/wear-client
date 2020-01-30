@@ -3,9 +3,7 @@ import { montserrat } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
 
 export const AccountCard = styled.div`
-  margin-top: 26px;
-  background-color: #f5f5f5;
-  padding: 30px;
+  margin-top: 50px;
 `;
 export const AccountCardPar = styled.p`
   font-family: ${montserrat};
