@@ -1,14 +1,14 @@
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
-import { UsersQueryResult, UsersQuery } from '../../../generated/types';
+import { UsersQuery } from '../../../generated/types';
 import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
-import UserRow from './usersTable/UserRow';
 import {
   Table,
   TableBody,
   TableHead,
   TableHeadCell
 } from '../../../styles/table.styles';
+import UserRow from './usersTable/UserRow';
 
 interface Props {
   users?: UsersQuery['users'];
@@ -31,9 +31,9 @@ const UsersTable: React.FC<Props> = ({ users }) => {
         </TableHead>
         <TableBody>
           {users &&
-            users.map(user => {
-              if (user) {
-                return (
+            users.map(
+              user =>
+                user && (
                   <UserRow
                     key={user.id}
                     email={user.email}
@@ -41,9 +41,8 @@ const UsersTable: React.FC<Props> = ({ users }) => {
                     id={user.id}
                     fullName={`${user.firstName || ''} ${user.lastName || ''}`}
                   />
-                );
-              }
-            })}
+                )
+            )}
         </TableBody>
       </Table>
     </SiteForm>
