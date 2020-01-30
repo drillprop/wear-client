@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
-import { white } from '../../styles/colors';
+import { white, black } from '../../styles/colors';
 
 export const CheckboxWrapper = styled.div<{ marginTop?: string }>`
   display: flex;
@@ -15,7 +15,7 @@ export const CheckboxLabel = styled.label`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontLevel2};
-  color: #333333;
+  color: ${black};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -46,13 +46,13 @@ export const StyledCheckbox = styled.input`
     opacity: 1;
   }
   :checked ~ span {
-    background-color: #4d4d4d;
+    background-color: ${black};
   }
 `;
 
 export const CustomCheckbox = styled.span`
   ${sharedCSS}
-  border: 2px solid #4d4d4d;
+  border: 2px solid ${black};
   transition: background-color 200ms;
   ::after {
     opacity: 0;

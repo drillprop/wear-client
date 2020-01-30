@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { roboto, montserrat } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
+import { black } from '../../styles/colors';
 
 export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
   position: relative;
@@ -9,7 +10,7 @@ export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
   font-size: ${fontLevel2};
   margin-bottom: 5px;
   margin-top: ${props => props.marginTop};
-  color: #333333;
+  color: ${black};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -32,7 +33,7 @@ export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
 export const StyledInput = styled.input`
   margin: 0;
   padding-left: 40px;
-  border: 2px solid #4d4d4d;
+  border: 2px solid ${black};
   width: 100%;
   height: 44px;
   font-family: ${montserrat};
