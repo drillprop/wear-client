@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { gray1, gray6, gray7, white } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
+
+const arrowUp = css`
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 10px solid ${gray1};
+`;
+
+const arrowDown = css`
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid ${gray1};
+`;
 
 export const SelectWrapper = styled.div`
   margin-top: 25px;
@@ -21,15 +33,19 @@ export const SelectLabel = styled.div`
 `;
 
 export const StyledSelect = styled.div`
+  text-transform: uppercase;
   position: relative;
   cursor: pointer;
   width: 100%;
   margin: 0;
+  :focus {
+    outline: 0;
+  }
 `;
 
-export const SelectedOption = styled.div`
+export const SelectedOption = styled.div<{ active: boolean }>`
+  position: relative;
   padding-left: 20px;
-  margin: 0;
   border: 2px solid ${gray1};
   width: 100%;
   height: 44px;
@@ -37,6 +53,14 @@ export const SelectedOption = styled.div`
   align-items: center;
   font-family: ${montserrat};
   font-size: ${fontLevel2};
+  ::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    width: 0;
+    height: 0;
+    ${props => (props.active ? arrowUp : arrowDown)};
+  }
 `;
 
 export const PlaceHolder = styled.span`
