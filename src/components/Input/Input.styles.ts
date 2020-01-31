@@ -3,13 +3,17 @@ import { gray1 } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
 
-export const StyledLabel = styled.label<{ icon?: string; marginTop: string }>`
+export const InputWrapper = styled.div<{ marginTop: string; width: string }>`
+  margin-top: ${props => props.marginTop};
+  width: ${props => props.width};
+`;
+
+export const StyledLabel = styled.label<{ icon?: string }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontLevel2};
   margin-bottom: 5px;
-  margin-top: ${props => props.marginTop};
   color: ${gray1};
   display: block;
   cursor: pointer;

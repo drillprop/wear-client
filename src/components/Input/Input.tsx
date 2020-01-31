@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { StyledInput, StyledLabel } from './Input.styles';
+import { StyledInput, StyledLabel, InputWrapper } from './Input.styles';
 
 interface Props {
   label: string;
@@ -27,8 +27,8 @@ const Input: React.FC<Props> = ({
   width = '100%'
 }) => {
   return (
-    <div style={{ width }}>
-      <StyledLabel htmlFor={label} icon={icon} marginTop={marginTop}>
+    <InputWrapper width={width} marginTop={marginTop}>
+      <StyledLabel htmlFor={label} icon={icon}>
         {label}
       </StyledLabel>
       <StyledInput
@@ -40,7 +40,7 @@ const Input: React.FC<Props> = ({
         placeholder={placeholder}
         required={required}
       />
-    </div>
+    </InputWrapper>
   );
 };
 
