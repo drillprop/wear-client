@@ -25,6 +25,7 @@ class MyApp extends App<Props> {
     return (
       <>
         <Head>
+          <title>wear</title>
           <link rel='stylesheet' type='text/css' href='/nprogress.css' />
         </Head>
         <ApolloProvider client={apollo}>
