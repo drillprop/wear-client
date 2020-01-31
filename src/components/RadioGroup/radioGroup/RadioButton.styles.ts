@@ -30,9 +30,13 @@ export const RadioLabel = styled.label`
 export const StyledRadioInput = styled.input`
   cursor: pointer;
   ${sharedCSS}
-  appearance: none;
+  z-index: 2;
+  opacity: 0;
   padding: 0;
   margin: 0;
+  :focus ~ span {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
   :checked ~ span::after,
   :checked ~ span::before {
     opacity: 1;

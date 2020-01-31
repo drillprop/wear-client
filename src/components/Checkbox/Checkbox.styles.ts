@@ -41,6 +41,9 @@ export const StyledCheckbox = styled.input`
   ${sharedCSS}
   opacity: 0;
   z-index: 2;
+  :focus ~ span {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
   :checked ~ span::after,
   :checked ~ span::before {
     opacity: 1;
