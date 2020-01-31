@@ -11,14 +11,14 @@ const UserNav = () => {
     <Ul>
       <LiWithDropdown>
         <LinkAnchor href='/sign'>
-          <img src='/user-icon.svg' />
+          <img src='/user-icon.svg' alt='profile icon' />
           {data?.me ? data.me.email : 'login'}
         </LinkAnchor>
         {data?.me ? <DropDownMenu /> : null}
       </LiWithDropdown>
       <Li>
         <LinkAnchor href='/checkout'>
-          <img src='/shoping-icon.svg' /> cart
+          <img src='/shoping-icon.svg' alt='shopping cart icon' /> cart
         </LinkAnchor>
       </Li>
     </Ul>
