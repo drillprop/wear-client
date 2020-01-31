@@ -59,7 +59,7 @@ export const SelectWrapper = styled.div<{ marginTop: string; width: string }>`
   width: ${props => props.width};
 `;
 
-export const SelectLabel = styled.div`
+export const SelectLabel = styled.div<{ icon?: string }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
@@ -69,6 +69,20 @@ export const SelectLabel = styled.div`
   display: block;
   cursor: pointer;
   text-transform: uppercase;
+  ::before {
+    content: '';
+    position: absolute;
+    display: block;
+    margin-top: 22px;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    opacity: 0.9;
+    background-image: ${({ icon }) => `url(${icon})`};
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
 `;
 
 export const StyledSelect = styled.div`
@@ -84,7 +98,7 @@ export const StyledSelect = styled.div`
 
 export const SelectedOption = styled.div<{ active: boolean }>`
   position: relative;
-  padding-left: 20px;
+  padding-left: 40px;
   border: 2px solid ${gray1};
   width: 100%;
   height: 44px;
@@ -96,6 +110,7 @@ export const SelectedOption = styled.div<{ active: boolean }>`
 `;
 
 export const PlaceHolder = styled.span`
+  text-transform: none;
   color: rgb(117, 117, 117);
 `;
 
