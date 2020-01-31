@@ -4,15 +4,54 @@ import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
 
 const arrowUp = css`
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 10px solid ${gray1};
+  ::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid ${gray1};
+  }
+  ::before {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    right: 20px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid ${white};
+  }
 `;
 
 const arrowDown = css`
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-top: 10px solid ${gray1};
+  ::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid ${gray1};
+  }
+  ::before {
+    content: '';
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid ${white};
+  }
 `;
 
 export const SelectWrapper = styled.div<{ marginTop: string; width: string }>`
@@ -53,14 +92,7 @@ export const SelectedOption = styled.div<{ active: boolean }>`
   align-items: center;
   font-family: ${montserrat};
   font-size: ${fontLevel2};
-  ::after {
-    content: '';
-    position: absolute;
-    right: 20px;
-    width: 0;
-    height: 0;
-    ${props => (props.active ? arrowUp : arrowDown)};
-  }
+  ${props => (props.active ? arrowUp : arrowDown)};
 `;
 
 export const PlaceHolder = styled.span`
