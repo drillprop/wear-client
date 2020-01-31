@@ -13,12 +13,18 @@ interface Props {
   options?: string[];
   marginTop?: string;
   width?: string;
+  label: string;
+  icon?: string;
+  placeHolder?: string;
 }
 
 const Select: React.FC<Props> = ({
   options,
   marginTop = '25px',
-  width = '100%'
+  width = '100%',
+  label,
+  placeHolder,
+  icon
 }) => {
   const [selectedOption, setOption] = useState('');
   const [visible, setVisible] = useState(false);
@@ -27,21 +33,29 @@ const Select: React.FC<Props> = ({
     const { textContent } = e.currentTarget;
     setOption(textContent || '');
   };
+
+  const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    setVisible(false);
+    visible && setOption('');
+  };
+
   return (
     <SelectWrapper marginTop={marginTop} width={width}>
-      <SelectLabel role='label' id='select-label'>
-        Label
+      <SelectLabel
+        role='label'
+        id='select-label'
+        icon={icon || '/category-icon.svg'}
+        onClick={() => setVisible(visible => !visible)}
+      >
+        {label}
       </SelectLabel>
       <StyledSelect
         tabIndex={0}
         onClick={() => setVisible(visible => !visible)}
-        onBlur={() => {
-          setVisible(false);
-          visible && setOption('');
-        }}
+        onBlur={handleOnBlur}
       >
         <SelectedOption role='option' aria-selected active={visible}>
-          {selectedOption || <PlaceHolder>Select</PlaceHolder>}
+          {selectedOption || <PlaceHolder>{placeHolder}</PlaceHolder>}
         </SelectedOption>
         {visible && (
           <StyledOptions>
