@@ -15,7 +15,6 @@ export const RadioGroupFieldSet = styled.fieldset<FieldSetProps>`
   margin-top: ${props => props.marginTop};
   width: ${props => props.width};
   border: 2px solid ${gray1};
-  height: 66px;
 `;
 
 export const RadioGroupLegend = styled.legend`
@@ -26,7 +25,6 @@ export const RadioGroupLegend = styled.legend`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontLevel2};
-  margin-bottom: 5px;
   color: ${gray1};
   text-transform: uppercase;
 `;
