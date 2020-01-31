@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { gray1, gray6, gray7, white } from '../../styles/colors';
+import { gray1, gray6, gray8, white } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
 
@@ -132,7 +132,7 @@ export const StyledOption = styled.div`
   font-family: ${montserrat};
   font-size: ${fontLevel2};
   &:nth-of-type(even) {
-    background-color: ${gray7};
+    background-color: ${gray8};
   }
   :hover {
     background-color: ${gray6};

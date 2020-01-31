@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, gray6, gray7 } from './colors';
+import { black, gray6, gray8 } from './colors';
 import { montserrat, roboto } from './fonts';
 import { fontLevel1 } from './fontSizes';
 
@@ -30,7 +30,7 @@ export const TableBody = styled.tbody`
 
 export const TableBodyRow = styled.tr`
   &:nth-child(even) {
-    background-color: ${gray7};
+    background-color: ${gray8};
   }
 `;
 
