@@ -5,6 +5,7 @@ import { SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
 import ItemsTable from './items/ItemsTable';
+import CreateItemForm from './items/CreateItemForm';
 
 const Items: React.FC = () => {
   const {
@@ -25,6 +26,7 @@ const Items: React.FC = () => {
     <SiteWrapper>
       <AdminSideNav />
       <div>
+        <CreateItemForm />
         <ItemsTable items={itemsData?.items} />
         <Pagination
           changePage={changePage}
