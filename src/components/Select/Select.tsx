@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
   PlaceHolder,
-  SelectedOption,
+  CustomSelectedOption,
   SelectLabel,
   SelectWrapper,
-  StyledOption,
-  StyledOptions,
-  StyledSelect
+  CustomOption,
+  CustomOptionsWrapper,
+  CustomSelect
 } from './Select.styles';
 
 interface Props {
@@ -49,29 +49,24 @@ const Select: React.FC<Props> = ({
       >
         {label}
       </SelectLabel>
-      <StyledSelect
+      <CustomSelect
         tabIndex={0}
         onClick={() => setVisible(visible => !visible)}
         onBlur={handleOnBlur}
       >
-        <SelectedOption role='option' aria-selected active={visible}>
+        <CustomSelectedOption role='option' aria-selected active={visible}>
           {selectedOption || <PlaceHolder>{placeHolder}</PlaceHolder>}
-        </SelectedOption>
+        </CustomSelectedOption>
         {visible && (
-          <StyledOptions>
+          <CustomOptionsWrapper>
             {options?.map(option => (
-              <StyledOption
-                key={option}
-                id='list-2'
-                role='option'
-                onClick={handleSelect}
-              >
+              <CustomOption key={option} role='option' onClick={handleSelect}>
                 {option}
-              </StyledOption>
+              </CustomOption>
             ))}
-          </StyledOptions>
+          </CustomOptionsWrapper>
         )}
-      </StyledSelect>
+      </CustomSelect>
     </SelectWrapper>
   );
 };

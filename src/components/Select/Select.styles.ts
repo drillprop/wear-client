@@ -59,7 +59,7 @@ export const SelectWrapper = styled.div<{ marginTop: string; width: string }>`
   width: ${props => props.width};
 `;
 
-export const SelectLabel = styled.div<{ icon?: string }>`
+export const SelectLabel = styled.label<{ icon?: string }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
@@ -85,7 +85,7 @@ export const SelectLabel = styled.div<{ icon?: string }>`
   }
 `;
 
-export const StyledSelect = styled.div`
+export const CustomSelect = styled.div`
   text-transform: uppercase;
   position: relative;
   cursor: pointer;
@@ -96,7 +96,7 @@ export const StyledSelect = styled.div`
   }
 `;
 
-export const SelectedOption = styled.div<{ active: boolean }>`
+export const CustomSelectedOption = styled.div<{ active: boolean }>`
   position: relative;
   padding-left: 40px;
   border: 2px solid ${gray1};
@@ -114,7 +114,7 @@ export const PlaceHolder = styled.span`
   color: rgb(117, 117, 117);
 `;
 
-export const StyledOptions = styled.div`
+export const CustomOptionsWrapper = styled.div`
   background-color: ${white};
   position: absolute;
   z-index: 5;
@@ -122,7 +122,7 @@ export const StyledOptions = styled.div`
   border: 1px solid ${gray6};
 `;
 
-export const StyledOption = styled.div`
+export const CustomOption = styled.div`
   padding-left: 20px;
   height: 44px;
   z-index: 5;
