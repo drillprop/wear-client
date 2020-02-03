@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
-  PlaceHolder,
-  CustomSelectedOption,
-  SelectLabel,
-  SelectWrapper,
   CustomOption,
   CustomOptionsWrapper,
-  CustomSelect
+  CustomSelect,
+  CustomSelectedOption,
+  PlaceHolder,
+  SelectLabel,
+  SelectWrapper
 } from './Select.styles';
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
   label: string;
   icon?: string;
   placeHolder?: string;
+  onChange: (val?: string) => void;
 }
 
 const Select: React.FC<Props> = ({
@@ -24,7 +25,8 @@ const Select: React.FC<Props> = ({
   width = '100%',
   label,
   placeHolder,
-  icon
+  icon,
+  onChange
 }) => {
   const [selectedOption, setOption] = useState('');
   const [visible, setVisible] = useState(false);
@@ -32,18 +34,19 @@ const Select: React.FC<Props> = ({
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { textContent } = e.currentTarget;
     setOption(textContent || '');
+    onChange(textContent || '');
   };
 
   const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     setVisible(false);
     visible && setOption('');
+    visible && onChange('');
   };
 
   return (
     <SelectWrapper marginTop={marginTop} width={width}>
       <SelectLabel
         role='label'
-        id='select-label'
         icon={icon || '/category-icon.svg'}
         onClick={() => setVisible(visible => !visible)}
       >
