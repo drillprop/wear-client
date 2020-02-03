@@ -9,6 +9,7 @@ interface Props {
   width?: string;
   legend: string;
   placeHolder?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const RadioGroup: React.FC<Props> = ({
@@ -16,13 +17,14 @@ const RadioGroup: React.FC<Props> = ({
   marginTop = '25px',
   width = '100%',
   legend,
-  name
+  name,
+  onChange
 }) => {
   return (
     <RadioGroupFieldSet marginTop={marginTop} width={width}>
       <RadioGroupLegend>{legend}</RadioGroupLegend>
       {buttons.map(button => (
-        <RadioButton id={button} name={name}></RadioButton>
+        <RadioButton key={button} id={button} name={name} onChange={onChange} />
       ))}
     </RadioGroupFieldSet>
   );
