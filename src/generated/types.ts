@@ -39,6 +39,7 @@ export type CreateItemInput = {
   imageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
+  description?: Maybe<Scalars['String']>,
 };
 
 
@@ -63,6 +64,7 @@ export type Item = {
   imageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
+  description?: Maybe<Scalars['String']>,
   createdBy: User,
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
@@ -428,6 +430,24 @@ export type UpdateAddressMutation = (
   ) }
 );
 
+export type CreateItemMutationVariables = {
+  name: Scalars['String'],
+  price: Scalars['Float'],
+  imageUrl: Scalars['String'],
+  category: Category,
+  gender: Gender,
+  description?: Maybe<Scalars['String']>
+};
+
+
+export type CreateItemMutation = (
+  { __typename?: 'Mutation' }
+  & { createItem: (
+    { __typename?: 'Item' }
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
+  ) }
+);
+
 export type MeQueryVariables = {};
 
 
@@ -778,6 +798,49 @@ export function useUpdateAddressMutation(baseOptions?: ApolloReactHooks.Mutation
 export type UpdateAddressMutationHookResult = ReturnType<typeof useUpdateAddressMutation>;
 export type UpdateAddressMutationResult = ApolloReactCommon.MutationResult<UpdateAddressMutation>;
 export type UpdateAddressMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateAddressMutation, UpdateAddressMutationVariables>;
+export const CreateItemDocument = gql`
+    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String) {
+  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description}) {
+    id
+    name
+    price
+    imageUrl
+    category
+    gender
+    createdAt
+  }
+}
+    `;
+export type CreateItemMutationFn = ApolloReactCommon.MutationFunction<CreateItemMutation, CreateItemMutationVariables>;
+
+/**
+ * __useCreateItemMutation__
+ *
+ * To run a mutation, you first call `useCreateItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createItemMutation, { data, loading, error }] = useCreateItemMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      price: // value for 'price'
+ *      imageUrl: // value for 'imageUrl'
+ *      category: // value for 'category'
+ *      gender: // value for 'gender'
+ *      description: // value for 'description'
+ *   },
+ * });
+ */
+export function useCreateItemMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateItemMutation, CreateItemMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateItemMutation, CreateItemMutationVariables>(CreateItemDocument, baseOptions);
+      }
+export type CreateItemMutationHookResult = ReturnType<typeof useCreateItemMutation>;
+export type CreateItemMutationResult = ApolloReactCommon.MutationResult<CreateItemMutation>;
+export type CreateItemMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateItemMutation, CreateItemMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
