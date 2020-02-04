@@ -1,4 +1,5 @@
-import React, { ChangeEvent } from 'react';
+import React, { useState } from 'react';
+import uploadImageToCloudinary from '../../../../utils/uploadImageToCloudinary';
 import {
   FileInputLabel,
   ImageBox,
@@ -8,20 +9,34 @@ import {
 } from './UploadImage.styles';
 
 interface Props {
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (arg: any) => void;
+  imageUrl?: string;
 }
 
-const UploadImage: React.FC<Props> = ({ onChange }) => {
+const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
+  const [filename, setFilename] = useState('');
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileName = e.target.value.split('\\').pop();
+    fileName && setFilename(fileName);
+
+    const image = await uploadImageToCloudinary(e);
+    onChange(image.secure_url);
+  };
+
   return (
     <UploadImageWrapper>
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
-      <ImageBox>
-        <FileInputLabel htmlFor='file-input'>send a file</FileInputLabel>
+      <ImageBox imageUrl={imageUrl}>
+        <FileInputLabel htmlFor='file-input'>
+          {filename ? filename : 'send a file'}
+        </FileInputLabel>
         <StyledFileInput
+          name='imageUrl'
           type='file'
           id='file-input'
           required
-          onChange={onChange}
+          onChange={handleUpload}
         />
       </ImageBox>
     </UploadImageWrapper>

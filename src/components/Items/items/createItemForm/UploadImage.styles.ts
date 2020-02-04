@@ -21,7 +21,7 @@ export const TopLabel = styled.label`
   text-transform: uppercase;
 `;
 
-export const ImageBox = styled.div`
+export const ImageBox = styled.div<{ imageUrl?: string }>`
   width: 350px;
   height: 100%;
   display: flex;
@@ -29,6 +29,9 @@ export const ImageBox = styled.div`
   align-items: center;
   border: 1px solid ${gray6};
   background-color: ${gray7};
+  background-position: center;
+  background-size: cover;
+  ${props => props.imageUrl && `background-image: url(${props.imageUrl});`};
 `;
 
 export const FileInputLabel = styled.label`
