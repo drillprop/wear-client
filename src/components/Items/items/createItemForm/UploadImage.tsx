@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uploadImageToCloudinary from '../../../../utils/uploadImageToCloudinary';
 import {
   FileInputLabel,
@@ -23,6 +23,10 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
     const image = await uploadImageToCloudinary(e);
     onChange(image.secure_url);
   };
+
+  useEffect(() => {
+    if (!imageUrl) setFilename('');
+  }, [imageUrl]);
 
   return (
     <UploadImageWrapper>
