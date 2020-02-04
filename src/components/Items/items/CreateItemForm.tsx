@@ -45,7 +45,7 @@ const CreateItemForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(values.imageUrl);
+
     createItem({
       variables: { ...values, price: parseFloat(values.price) }
     }).then(() => clearForm(values));
@@ -87,6 +87,7 @@ const CreateItemForm = () => {
             label='category'
             placeHolder='select'
             onChange={category => setForm({ ...values, category })}
+            value={values.category}
           />
           <RadioGroup
             legend='Gender'
@@ -94,6 +95,7 @@ const CreateItemForm = () => {
             name='gender'
             buttons={Object.values(Gender)}
             onChange={handleInput}
+            value={values.gender}
           />
           <TextArea
             label='description'

@@ -17,6 +17,7 @@ interface Props {
   icon?: string;
   placeHolder?: string;
   onChange: (val?: string) => void;
+  value?: string;
 }
 
 const Select: React.FC<Props> = ({
@@ -25,21 +26,19 @@ const Select: React.FC<Props> = ({
   width = '100%',
   label,
   placeHolder,
+  value = '',
   icon,
   onChange
 }) => {
-  const [selectedOption, setOption] = useState('');
   const [visible, setVisible] = useState(false);
 
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { textContent } = e.currentTarget;
-    setOption(textContent || '');
     onChange(textContent || '');
   };
 
   const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
     setVisible(false);
-    visible && setOption('');
     visible && onChange('');
   };
 
@@ -58,7 +57,7 @@ const Select: React.FC<Props> = ({
         onBlur={handleOnBlur}
       >
         <CustomSelectedOption role='option' aria-selected active={visible}>
-          {selectedOption || <PlaceHolder>{placeHolder}</PlaceHolder>}
+          {value || <PlaceHolder>{placeHolder}</PlaceHolder>}
         </CustomSelectedOption>
         {visible && (
           <CustomOptionsWrapper>

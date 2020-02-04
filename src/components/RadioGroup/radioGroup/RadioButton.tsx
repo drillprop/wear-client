@@ -10,9 +10,10 @@ interface Props {
   id: string;
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
-const RadioButton: React.FC<Props> = ({ id, name, onChange }) => {
+const RadioButton: React.FC<Props> = ({ id, name, onChange, value }) => {
   return (
     <RadioButtonWrapper>
       <StyledRadioInput
@@ -20,6 +21,7 @@ const RadioButton: React.FC<Props> = ({ id, name, onChange }) => {
         name={name}
         id={id}
         onChange={onChange}
+        checked={!!value}
         value={id}
       />
       <CustomRadioButton />
