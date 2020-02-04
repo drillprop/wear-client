@@ -1,16 +1,23 @@
-import { Category, Gender } from '../../../generated/types';
+import { FormEvent } from 'react';
+import {
+  Category,
+  Gender,
+  useCreateItemMutation
+} from '../../../generated/types';
 import useForm from '../../../hooks/useForm';
 import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
 import Button from '../../Button/Button';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
 import RadioGroup from '../../RadioGroup/RadioGroup';
 import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
 import { CreateItemWrapper } from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
+import { ITEMS, ITEMS_COUNT } from '../../../graphql/queries';
 
 const CreateItemForm = () => {
-  const { values, handleInput, setForm } = useForm({
+  const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
     price: 0,
     category: '',
@@ -19,11 +26,40 @@ const CreateItemForm = () => {
     imageUrl: ''
   });
 
+  const [createItem, { data, error }] = useCreateItemMutation({
+    refetchQueries: [
+      {
+        query: ITEMS,
+        variables: {
+          take: 5,
+          desc: true,
+          skip: 0,
+          orderBy: 'Item.createdAt'
+        }
+      },
+      {
+        query: ITEMS_COUNT
+      }
+    ]
+  });
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(values.imageUrl);
+    createItem({
+      variables: { ...values, price: parseFloat(values.price) }
+    }).then(() => clearForm(values));
+  };
   return (
-    <SiteForm>
+    <SiteForm onSubmit={handleSubmit}>
       <SiteFormTitle>Create an item</SiteFormTitle>
+      <ErrorMessage error={error} />
+      {data?.createItem.id && 'Succesfully create item'}
       <CreateItemWrapper>
-        <UploadImage />
+        <UploadImage
+          onChange={imageUrl => setForm({ ...values, imageUrl })}
+          imageUrl={values.imageUrl}
+        />
         <div>
           <Input
             type='text'
@@ -46,7 +82,7 @@ const CreateItemForm = () => {
             width='350px'
           />
           <Select
-            options={Object.keys(Category)}
+            options={Object.values(Category)}
             width='350px'
             label='category'
             placeHolder='select'
@@ -56,7 +92,7 @@ const CreateItemForm = () => {
             legend='Gender'
             width='350px'
             name='gender'
-            buttons={Object.keys(Gender)}
+            buttons={Object.values(Gender)}
             onChange={handleInput}
           />
           <TextArea
