@@ -4,8 +4,8 @@ import useChangePage from '../../hooks/useChangePage';
 import { SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
-import ItemsTable from './items/ItemsTable';
 import CreateItemForm from './items/CreateItemForm';
+import ItemsTable from './items/ItemsTable';
 
 const Items: React.FC = () => {
   const {
@@ -17,6 +17,8 @@ const Items: React.FC = () => {
 
   const { data: itemsData, error: itemsError } = useItemsQuery({
     variables: {
+      orderBy: 'Item.createdAt',
+      desc: true,
       skip,
       take
     }
