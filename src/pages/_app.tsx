@@ -8,6 +8,7 @@ import withApollo from '../utils/withApollo';
 import Head from 'next/head';
 import Router from 'next/router';
 import nProgress from 'nprogress';
+import { AppContextType } from 'next/dist/next-server/lib/utils';
 
 if (typeof window !== 'undefined') {
   Router.events.on('routeChangeStart', () => nProgress.start());
@@ -20,6 +21,15 @@ interface Props {
 }
 
 class MyApp extends App<Props> {
+  static async getInitialProps({ Component, ctx }: AppContextType) {
+    let pageProps: any = {};
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+    pageProps.query = ctx.query;
+    return { pageProps };
+  }
+
   render() {
     const { Component, pageProps, apollo } = this.props;
     return (
