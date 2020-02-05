@@ -36,7 +36,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
   return (
     <UploadImageWrapper>
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
-      <ImageBox imageUrl={imageUrl as string}>
+      <ImageBox imageUrl={imageUrl}>
         {filename && <DiscardImageButton />}
         <FileInputLabel htmlFor='file-input' highlight={!!filename}>
           {filename ? filename : 'send a file'}

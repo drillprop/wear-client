@@ -4,8 +4,10 @@ import {
   Gender,
   useCreateItemMutation
 } from '../../../generated/types';
+import { ITEMS, ITEMS_COUNT } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
 import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
@@ -14,9 +16,8 @@ import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
 import { CreateItemWrapper } from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
-import { ITEMS, ITEMS_COUNT } from '../../../graphql/queries';
 
-const CreateItemForm = () => {
+const CreateItemForm: React.FC = () => {
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
     price: 0,
@@ -43,11 +44,15 @@ const CreateItemForm = () => {
     ]
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const { secure_url: imageUrl } = await uploadImageToCloudinary(
+      values.imageUrl
+    );
+
     createItem({
-      variables: { ...values, price: parseFloat(values.price) }
+      variables: { ...values, price: parseFloat(values.price), imageUrl }
     }).then(() => clearForm(values));
   };
   return (
