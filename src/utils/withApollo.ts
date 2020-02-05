@@ -2,7 +2,7 @@ import withApollo from 'next-with-apollo';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 
 export default withApollo(
-  ({ ctx, headers, initialState }) =>
+  ({ headers, initialState }) =>
     new ApolloClient({
       uri: process.env.BACKEND_URL,
       credentials: 'include',
@@ -15,5 +15,8 @@ export default withApollo(
         });
       },
       cache: new InMemoryCache().restore(initialState || {})
-    })
+    }),
+  {
+    getDataFromTree: 'ssr'
+  }
 );
