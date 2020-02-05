@@ -1,16 +1,16 @@
-export default async (e: React.ChangeEvent<HTMLInputElement>) => {
+export default async (base64: string) => {
   try {
-    const files = e.target.files;
+    const file = new File([base64], 'name');
     const form = new FormData();
-    if (files) form.append('file', files[0]);
+    form.append('file', file);
 
     form.append('upload_preset', process.env.CLOUDINARY_PRESET as string);
     const response = await fetch(process.env.CLOUDINARY_UPLOAD_URL as string, {
       method: 'POST',
       body: form
     });
-    const file = await response.json();
-    return file;
+    const json = await response.json();
+    return json;
   } catch (error) {
     console.error(error);
   }
