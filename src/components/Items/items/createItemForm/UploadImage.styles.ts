@@ -22,6 +22,7 @@ export const TopLabel = styled.label`
 `;
 
 export const ImageBox = styled.div<{ imageUrl?: string }>`
+  position: relative;
   width: 350px;
   height: 100%;
   display: flex;
@@ -34,7 +35,7 @@ export const ImageBox = styled.div<{ imageUrl?: string }>`
   ${props => props.imageUrl && `background-image: url(${props.imageUrl});`};
 `;
 
-export const FileInputLabel = styled.label`
+export const FileInputLabel = styled.label<{ highlight?: boolean }>`
   height: 44px;
   width: 250px;
   background-color: ${white};
@@ -42,12 +43,13 @@ export const FileInputLabel = styled.label`
   font-family: ${montserrat};
   font-weight: 500;
   font-size: ${fontLevel2};
-  color: #757575;
+  color: ${props => (props.highlight ? gray1 : '#757575')};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 `;
+
 export const StyledFileInput = styled.input`
   position: absolute;
   margin: 0;
@@ -56,4 +58,34 @@ export const StyledFileInput = styled.input`
   cursor: pointer;
   z-index: 3;
   opacity: 0;
+`;
+
+export const DiscardImageButton = styled.div`
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  top: 20px;
+  right: 20px;
+  border: 1px solid ${gray6};
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  background-color: ${white};
+  ::before,
+  ::after {
+    position: absolute;
+    content: '';
+    width: 13px;
+    height: 1px;
+    background-color: ${gray1};
+  }
+  ::before {
+    transform: rotate(45deg);
+  }
+  ::after {
+    transform: rotate(-45deg);
+  }
 `;
