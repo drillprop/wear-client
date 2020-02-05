@@ -4,7 +4,7 @@ import useForm from '../../../hooks/useForm';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 
 const ChangePasswordForm: React.FC = () => {
   const [changePassword, { data, error }] = useChangePasswordMutation();
@@ -30,7 +30,7 @@ const ChangePasswordForm: React.FC = () => {
 
   return (
     <SiteForm onSubmit={handleChangePassword}>
-      <SiteFormTitle>Change Password</SiteFormTitle>
+      <SiteSubtitle>Change Password</SiteSubtitle>
       <ErrorMessage error={error} />
       {data?.changePassword.message}
       <Input

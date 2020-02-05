@@ -6,7 +6,7 @@ import {
 } from '../../../generated/types';
 import { ITEMS, ITEMS_COUNT } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
@@ -57,7 +57,7 @@ const CreateItemForm: React.FC = () => {
   };
   return (
     <SiteForm onSubmit={handleSubmit}>
-      <SiteFormTitle>Create an item</SiteFormTitle>
+      <SiteSubtitle>Create an item</SiteSubtitle>
       <ErrorMessage error={error} />
       {data?.createItem.id && 'Succesfully create item'}
       <CreateItemWrapper>

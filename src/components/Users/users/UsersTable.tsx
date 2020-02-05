@@ -1,7 +1,7 @@
 import { ApolloError } from 'apollo-boost';
 import React from 'react';
 import { UsersQuery } from '../../../generated/types';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
   TableBody,
@@ -18,7 +18,7 @@ interface Props {
 const UsersTable: React.FC<Props> = ({ users }) => {
   return (
     <SiteForm>
-      <SiteFormTitle>List of Users</SiteFormTitle>
+      <SiteSubtitle>List of Users</SiteSubtitle>
       <Table>
         <TableHead>
           <tr>

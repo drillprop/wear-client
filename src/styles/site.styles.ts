@@ -16,7 +16,7 @@ export const SiteForm = styled.form`
   margin-top: 75px;
 `;
 
-export const SiteFormTitle = styled.h2`
+export const SiteSubtitle = styled.h2`
   margin: 0;
   margin-top: 18px;
   position: relative;

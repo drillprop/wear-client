@@ -8,7 +8,7 @@ import useForm from '../../../hooks/useForm';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 
 const PersonalInfoForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
@@ -49,7 +49,7 @@ const PersonalInfoForm: React.FC = () => {
   };
   return (
     <SiteForm onSubmit={handleSubmit}>
-      <SiteFormTitle>Personal Info</SiteFormTitle>
+      <SiteSubtitle>Personal Info</SiteSubtitle>
       <ErrorMessage error={error} />
       {success?.updatePersonalInfo.message}
       <Input

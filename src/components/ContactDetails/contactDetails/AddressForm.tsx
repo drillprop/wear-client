@@ -5,7 +5,7 @@ import useForm from '../../../hooks/useForm';
 import { useMeQuery, useUpdateAddressMutation } from '../../../generated/types';
 import { ME } from '../../../graphql/queries';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 
 const AddressForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
@@ -56,7 +56,7 @@ const AddressForm: React.FC = () => {
 
   return (
     <SiteForm onSubmit={handleSubmit}>
-      <SiteFormTitle>Address</SiteFormTitle>
+      <SiteSubtitle>Address</SiteSubtitle>
       {success?.updateAddress.message}
       <ErrorMessage error={error} />
       <Input

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiteForm, SiteFormTitle } from '../../../styles/site.styles';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
   TableBody,
@@ -16,7 +16,7 @@ interface Props {
 const ItemsTable: React.FC<Props> = ({ items }) => {
   return (
     <SiteForm>
-      <SiteFormTitle>List of Items</SiteFormTitle>
+      <SiteSubtitle>List of Items</SiteSubtitle>
       <Table>
         <TableHead>
           <tr>

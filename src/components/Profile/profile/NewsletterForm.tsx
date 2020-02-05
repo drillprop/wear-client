@@ -8,7 +8,7 @@ import Checkbox from '../../Checkbox/Checkbox';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import {
   SiteForm,
-  SiteFormTitle,
+  SiteSubtitle,
   SiteParagraph
 } from '../../../styles/site.styles';
 
@@ -27,7 +27,7 @@ const NewsletterForm: React.FC = () => {
   };
   return (
     <SiteForm>
-      <SiteFormTitle>Newsletter</SiteFormTitle>
+      <SiteSubtitle>Newsletter</SiteSubtitle>
       <SiteParagraph>
         Subscribe for email newsletter to get updates on new arrivals and offers
       </SiteParagraph>
