@@ -20,7 +20,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
     if (!imageUrl) setFilename('');
   }, [imageUrl]);
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileName = e.target.value.split('\\').pop();
     fileName && setFilename(fileName);
     const reader = new FileReader();
@@ -33,11 +33,12 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <UploadImageWrapper>
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
       <ImageBox imageUrl={imageUrl}>
-        {filename && <DiscardImageButton />}
+        {filename && <DiscardImageButton onClick={() => onChange('')} />}
         <FileInputLabel htmlFor='file-input' highlight={!!filename}>
           {filename ? filename : 'send a file'}
         </FileInputLabel>
