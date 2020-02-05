@@ -113,3 +113,18 @@ export const ITEMS_COUNT = gql`
     itemsCount
   }
 `;
+
+export const SINGLE_ITEM = gql`
+  query SingleItem($id: ID!) {
+    item(id: $id) {
+      id
+      name
+      price
+      imageUrl
+      category
+      gender
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -208,6 +208,7 @@ export type PersonalInfoInput = {
 
 export type Query = {
    __typename?: 'Query',
+  item?: Maybe<Item>,
   items: Array<Maybe<Item>>,
   itemsCount: Scalars['Int'],
   orders: Array<Maybe<Order>>,
@@ -215,6 +216,11 @@ export type Query = {
   me?: Maybe<User>,
   users: Array<Maybe<User>>,
   usersCount: Scalars['Int'],
+};
+
+
+export type QueryItemArgs = {
+  id?: Maybe<Scalars['ID']>
 };
 
 
@@ -524,6 +530,19 @@ export type ItemsCountQueryVariables = {};
 export type ItemsCountQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'itemsCount'>
+);
+
+export type SingleItemQueryVariables = {
+  id: Scalars['ID']
+};
+
+
+export type SingleItemQuery = (
+  { __typename?: 'Query' }
+  & { item: Maybe<(
+    { __typename?: 'Item' }
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+  )> }
 );
 
 
@@ -1048,3 +1067,43 @@ export function useItemsCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type ItemsCountQueryHookResult = ReturnType<typeof useItemsCountQuery>;
 export type ItemsCountLazyQueryHookResult = ReturnType<typeof useItemsCountLazyQuery>;
 export type ItemsCountQueryResult = ApolloReactCommon.QueryResult<ItemsCountQuery, ItemsCountQueryVariables>;
+export const SingleItemDocument = gql`
+    query SingleItem($id: ID!) {
+  item(id: $id) {
+    id
+    name
+    price
+    imageUrl
+    category
+    gender
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useSingleItemQuery__
+ *
+ * To run a query within a React component, call `useSingleItemQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleItemQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleItemQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSingleItemQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
+        return ApolloReactHooks.useQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
+      }
+export function useSingleItemLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
+        }
+export type SingleItemQueryHookResult = ReturnType<typeof useSingleItemQuery>;
+export type SingleItemLazyQueryHookResult = ReturnType<typeof useSingleItemLazyQuery>;
+export type SingleItemQueryResult = ApolloReactCommon.QueryResult<SingleItemQuery, SingleItemQueryVariables>;
