@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import React from 'react';
+import { Category, Gender } from '../../../../generated/types';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
-import { Gender, Category } from '../../../../generated/types';
 
 interface Props {
   id: string;
@@ -20,14 +21,23 @@ const ItemRow: React.FC<Props> = ({
   gender
 }) => {
   return (
-    <TableBodyRow>
-      <TableData>{id}</TableData>
-      <TableData>{name}</TableData>
-      <TableData>{price}</TableData>
-      <TableData>{imageUrl}</TableData>
-      <TableData>{category}</TableData>
-      <TableData>{gender}</TableData>
-    </TableBodyRow>
+    <Link
+      href={{
+        pathname: '/item',
+        query: {
+          id
+        }
+      }}
+    >
+      <TableBodyRow>
+        <TableData>{id}</TableData>
+        <TableData>{name}</TableData>
+        <TableData>{price}</TableData>
+        <TableData>{imageUrl}</TableData>
+        <TableData>{category}</TableData>
+        <TableData>{gender}</TableData>
+      </TableBodyRow>
+    </Link>
   );
 };
 
