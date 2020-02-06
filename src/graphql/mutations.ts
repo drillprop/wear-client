@@ -107,6 +107,7 @@ export const CREATE_ITEM = gql`
     $name: String!
     $price: Float!
     $imageUrl: String!
+    $largeImageUrl: String!
     $category: Category!
     $gender: Gender!
     $description: String
@@ -116,6 +117,7 @@ export const CREATE_ITEM = gql`
         name: $name
         price: $price
         imageUrl: $imageUrl
+        largeImageUrl: $largeImageUrl
         category: $category
         gender: $gender
         description: $description
@@ -125,6 +127,7 @@ export const CREATE_ITEM = gql`
       name
       price
       imageUrl
+      largeImageUrl
       category
       gender
       createdAt
