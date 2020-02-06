@@ -111,7 +111,7 @@ export type MutationCreateItemArgs = {
 
 
 export type MutationDeleteItemArgs = {
-  id: Scalars['String']
+  id: Scalars['ID']
 };
 
 
@@ -460,6 +460,19 @@ export type CreateItemMutation = (
   & { createItem: (
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'largeImageUrl' | 'category' | 'gender' | 'createdAt'>
+  ) }
+);
+
+export type DeleteItemMutationVariables = {
+  id: Scalars['ID']
+};
+
+
+export type DeleteItemMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteItem: (
+    { __typename?: 'SuccessMessage' }
+    & Pick<SuccessMessage, 'message'>
   ) }
 );
 
@@ -891,6 +904,38 @@ export function useCreateItemMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type CreateItemMutationHookResult = ReturnType<typeof useCreateItemMutation>;
 export type CreateItemMutationResult = ApolloReactCommon.MutationResult<CreateItemMutation>;
 export type CreateItemMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateItemMutation, CreateItemMutationVariables>;
+export const DeleteItemDocument = gql`
+    mutation DeleteItem($id: ID!) {
+  deleteItem(id: $id) {
+    message
+  }
+}
+    `;
+export type DeleteItemMutationFn = ApolloReactCommon.MutationFunction<DeleteItemMutation, DeleteItemMutationVariables>;
+
+/**
+ * __useDeleteItemMutation__
+ *
+ * To run a mutation, you first call `useDeleteItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteItemMutation, { data, loading, error }] = useDeleteItemMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteItemMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeleteItemMutation, DeleteItemMutationVariables>) {
+        return ApolloReactHooks.useMutation<DeleteItemMutation, DeleteItemMutationVariables>(DeleteItemDocument, baseOptions);
+      }
+export type DeleteItemMutationHookResult = ReturnType<typeof useDeleteItemMutation>;
+export type DeleteItemMutationResult = ApolloReactCommon.MutationResult<DeleteItemMutation>;
+export type DeleteItemMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteItemMutation, DeleteItemMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
