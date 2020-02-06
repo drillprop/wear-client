@@ -28,7 +28,7 @@ const RadioGroup: React.FC<Props> = ({
       {buttons.map(button => (
         <RadioButton
           key={button}
-          id={button}
+          button={button}
           name={name}
           onChange={onChange}
           value={value}

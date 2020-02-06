@@ -7,25 +7,25 @@ import {
 } from './RadioButton.styles';
 
 interface Props {
-  id: string;
+  button: string;
   name: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string;
 }
 
-const RadioButton: React.FC<Props> = ({ id, name, onChange, value }) => {
+const RadioButton: React.FC<Props> = ({ button, name, onChange, value }) => {
   return (
     <RadioButtonWrapper>
       <StyledRadioInput
         type='radio'
         name={name}
-        id={id}
+        id={button}
+        checked={value === button}
         onChange={onChange}
-        checked={!!value}
-        value={id}
+        value={button}
       />
       <CustomRadioButton />
-      <RadioLabel htmlFor={id}>{id}</RadioLabel>
+      <RadioLabel htmlFor={button}>{button}</RadioLabel>
     </RadioButtonWrapper>
   );
 };
