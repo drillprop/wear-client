@@ -8,7 +8,11 @@ import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
 import { useSignoutMutation } from '../../../../../generated/types';
 import { ME } from '../../../../../graphql/queries';
 
-const DropDownMenu = () => {
+interface Props {
+  admin?: boolean;
+}
+
+const DropDownMenu: React.FC<Props> = ({ admin }) => {
   const [signOut] = useSignoutMutation({
     refetchQueries: [{ query: ME }]
   });
@@ -24,6 +28,11 @@ const DropDownMenu = () => {
         <DropDownItem>
           <LinkAnchor href='/checkout'>my cart </LinkAnchor>
         </DropDownItem>
+        {admin && (
+          <DropDownItem admin>
+            <LinkAnchor href='/admin/users'>admin panel</LinkAnchor>
+          </DropDownItem>
+        )}
         <DropDownItem onClick={() => signOut()}>logout</DropDownItem>
       </DropDownList>
     </DropDownWrapper>

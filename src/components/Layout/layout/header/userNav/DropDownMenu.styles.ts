@@ -1,24 +1,23 @@
 import styled from 'styled-components';
-import { white } from '../../../../../styles/colors';
+import { gray7, white } from '../../../../../styles/colors';
 
 export const DropDownWrapper = styled.div`
   display: none;
   position: absolute;
   background-color: ${white};
-  padding-right: 22px;
   min-width: 110%;
 `;
 
 export const DropDownList = styled.ul`
   margin: 0;
   padding: 0;
-  padding-bottom: 24px;
+  margin-top: 22px;
   :last-child {
     cursor: pointer;
   }
 `;
 
-export const DropDownItem = styled.li`
-  margin-top: 24px;
-  margin-left: 22px;
+export const DropDownItem = styled.li<{ admin?: boolean }>`
+  padding: 20px 0 22px 22px;
+  ${props => props.admin && `background-color: ${gray7}`};
 `;
