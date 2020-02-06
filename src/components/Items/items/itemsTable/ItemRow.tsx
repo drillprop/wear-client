@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
-import { Category, Gender } from '../../../../generated/types';
+import {
+  Category,
+  Gender,
+  useDeleteItemMutation
+} from '../../../../generated/types';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 
 interface Props {
@@ -12,30 +16,29 @@ interface Props {
   gender: Gender;
 }
 
-const ItemRow: React.FC<Props> = ({
-  id,
-  name,
-  price,
-  imageUrl,
-  category,
-  gender
-}) => {
+const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
+  const [deleteItem] = useDeleteItemMutation({
+    variables: { id }
+  });
   return (
-    <Link
-      href={{
-        pathname: '/admin/item',
-        query: {
-          id
-        }
-      }}
-    >
-      <TableBodyRow>
-        <TableData>{name}</TableData>
-        <TableData>{price}</TableData>
-        <TableData>{category}</TableData>
-        <TableData>{gender}</TableData>
-      </TableBodyRow>
-    </Link>
+    <TableBodyRow>
+      <Link
+        href={{
+          pathname: '/admin/item',
+          query: {
+            id
+          }
+        }}
+      >
+        <>
+          <TableData>{name}</TableData>
+          <TableData>{price}</TableData>
+          <TableData>{category}</TableData>
+          <TableData>{gender}</TableData>
+        </>
+      </Link>
+      <TableData onClick={() => deleteItem()}>delete item</TableData>
+    </TableBodyRow>
   );
 };
 

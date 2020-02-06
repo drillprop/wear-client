@@ -1,4 +1,5 @@
 import React from 'react';
+import { ItemsQuery } from '../../../generated/types';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
@@ -6,7 +7,6 @@ import {
   TableHead,
   TableHeadCell
 } from '../../../styles/table.styles';
-import { ItemsQuery } from '../../../generated/types';
 import ItemRow from './itemsTable/ItemRow';
 
 interface Props {
@@ -24,6 +24,7 @@ const ItemsTable: React.FC<Props> = ({ items }) => {
             <TableHeadCell>price</TableHeadCell>
             <TableHeadCell>category</TableHeadCell>
             <TableHeadCell>gender</TableHeadCell>
+            <TableHeadCell>delete item</TableHeadCell>
           </tr>
         </TableHead>
         <TableBody>
