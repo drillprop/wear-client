@@ -216,6 +216,7 @@ export type Query = {
   orders: Array<Maybe<Order>>,
   ordersCount: Scalars['Int'],
   me?: Maybe<User>,
+  user?: Maybe<User>,
   users: Array<Maybe<User>>,
   usersCount: Scalars['Int'],
 };
@@ -233,6 +234,11 @@ export type QueryItemsArgs = {
 
 export type QueryOrdersArgs = {
   input?: Maybe<SearchOrdersInput>
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['ID']
 };
 
 
@@ -545,6 +551,26 @@ export type SingleItemQuery = (
   & { item: Maybe<(
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'largeImageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+  )> }
+);
+
+export type SingleUserQueryVariables = {
+  id: Scalars['ID']
+};
+
+
+export type SingleUserQuery = (
+  { __typename?: 'Query' }
+  & { user: Maybe<(
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'newsletter'>
+    & { address: Maybe<(
+      { __typename?: 'Address' }
+      & Pick<Address, 'addressLine1' | 'addressLine2' | 'zipCode' | 'city' | 'country'>
+    )>, createdOrders: Array<Maybe<(
+      { __typename?: 'Order' }
+      & Pick<Order, 'id'>
+    )>> }
   )> }
 );
 
@@ -1114,3 +1140,54 @@ export function useSingleItemLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type SingleItemQueryHookResult = ReturnType<typeof useSingleItemQuery>;
 export type SingleItemLazyQueryHookResult = ReturnType<typeof useSingleItemLazyQuery>;
 export type SingleItemQueryResult = ApolloReactCommon.QueryResult<SingleItemQuery, SingleItemQueryVariables>;
+export const SingleUserDocument = gql`
+    query SingleUser($id: ID!) {
+  user(id: $id) {
+    id
+    email
+    firstName
+    lastName
+    phoneNumber
+    role
+    createdAt
+    updatedAt
+    newsletter
+    address {
+      addressLine1
+      addressLine2
+      zipCode
+      city
+      country
+    }
+    createdOrders {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useSingleUserQuery__
+ *
+ * To run a query within a React component, call `useSingleUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleUserQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSingleUserQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SingleUserQuery, SingleUserQueryVariables>) {
+        return ApolloReactHooks.useQuery<SingleUserQuery, SingleUserQueryVariables>(SingleUserDocument, baseOptions);
+      }
+export function useSingleUserLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleUserQuery, SingleUserQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SingleUserQuery, SingleUserQueryVariables>(SingleUserDocument, baseOptions);
+        }
+export type SingleUserQueryHookResult = ReturnType<typeof useSingleUserQuery>;
+export type SingleUserLazyQueryHookResult = ReturnType<typeof useSingleUserLazyQuery>;
+export type SingleUserQueryResult = ApolloReactCommon.QueryResult<SingleUserQuery, SingleUserQueryVariables>;
