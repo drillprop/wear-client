@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   DiscardImageButton,
   FileInputLabel,
@@ -15,12 +15,14 @@ interface Props {
 
 const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
   const [filename, setFilename] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!imageUrl) setFilename('');
   }, [imageUrl]);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.dir(e.target);
     const fileName = e.target.value.split('\\').pop();
     fileName && setFilename(fileName);
     const reader = new FileReader();
@@ -34,15 +36,21 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
     }
   };
 
+  const discardImage = () => {
+    onChange('');
+    if (inputRef.current) inputRef.current.value = '';
+  };
+
   return (
     <UploadImageWrapper>
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
       <ImageBox imageUrl={imageUrl}>
-        {filename && <DiscardImageButton onClick={() => onChange('')} />}
+        {filename && <DiscardImageButton onClick={discardImage} />}
         <FileInputLabel htmlFor='file-input' highlight={!!filename}>
           {filename ? filename : 'send a file'}
         </FileInputLabel>
         <StyledFileInput
+          ref={inputRef}
           name='imageUrl'
           accept='image/*'
           type='file'
