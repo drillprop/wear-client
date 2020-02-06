@@ -18,11 +18,13 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (!imageUrl) setFilename('');
+    if (!imageUrl) {
+      setFilename('');
+      if (inputRef.current) inputRef.current.value = '';
+    }
   }, [imageUrl]);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.dir(e.target);
     const fileName = e.target.value.split('\\').pop();
     fileName && setFilename(fileName);
     const reader = new FileReader();
