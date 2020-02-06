@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, gray6, gray8, gray7 } from './colors';
+import { gray1, gray6, gray7, gray8 } from './colors';
 import { montserrat, roboto } from './fonts';
 import { fontLevel1 } from './fontSizes';
 
@@ -15,7 +15,7 @@ export const TableHead = styled.thead`
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
-  background-color: ${black};
+  background-color: ${gray1};
   color: ${gray6};
 `;
 
