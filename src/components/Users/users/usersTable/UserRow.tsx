@@ -1,5 +1,6 @@
 import React from 'react';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
+import Link from 'next/link';
 
 interface Props {
   id: string;
@@ -11,13 +12,22 @@ interface Props {
 
 const UserRow: React.FC<Props> = ({ id, email, fullName, role, orders }) => {
   return (
-    <TableBodyRow>
-      <TableData>{id}</TableData>
-      <TableData>{email}</TableData>
-      <TableData>{fullName} </TableData>
-      <TableData>{role}</TableData>
-      <TableData>{orders}</TableData>
-    </TableBodyRow>
+    <Link
+      href={{
+        pathname: '/admin/user',
+        query: {
+          id
+        }
+      }}
+    >
+      <TableBodyRow>
+        <TableData>{id}</TableData>
+        <TableData>{email}</TableData>
+        <TableData>{fullName} </TableData>
+        <TableData>{role}</TableData>
+        <TableData>{orders}</TableData>
+      </TableBodyRow>
+    </Link>
   );
 };
 
