@@ -21,7 +21,6 @@ const UserRow: React.FC<Props> = ({ id, email, fullName, role, orders }) => {
       }}
     >
       <TableBodyRow>
-        <TableData>{id}</TableData>
         <TableData>{email}</TableData>
         <TableData>{fullName} </TableData>
         <TableData>{role}</TableData>

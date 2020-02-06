@@ -22,7 +22,6 @@ const UsersTable: React.FC<Props> = ({ users }) => {
       <Table>
         <TableHead>
           <tr>
-            <TableHeadCell>id</TableHeadCell>
             <TableHeadCell>email</TableHeadCell>
             <TableHeadCell>full name</TableHeadCell>
             <TableHeadCell>role</TableHeadCell>

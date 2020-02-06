@@ -30,10 +30,8 @@ const ItemRow: React.FC<Props> = ({
       }}
     >
       <TableBodyRow>
-        <TableData>{id}</TableData>
         <TableData>{name}</TableData>
         <TableData>{price}</TableData>
-        <TableData>{imageUrl}</TableData>
         <TableData>{category}</TableData>
         <TableData>{gender}</TableData>
       </TableBodyRow>

@@ -20,10 +20,8 @@ const ItemsTable: React.FC<Props> = ({ items }) => {
       <Table>
         <TableHead>
           <tr>
-            <TableHeadCell>id</TableHeadCell>
             <TableHeadCell>name</TableHeadCell>
             <TableHeadCell>price</TableHeadCell>
-            <TableHeadCell>imageUrl</TableHeadCell>
             <TableHeadCell>category</TableHeadCell>
             <TableHeadCell>gender</TableHeadCell>
           </tr>
