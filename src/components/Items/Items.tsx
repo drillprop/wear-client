@@ -8,10 +8,7 @@ import CreateItemForm from './items/CreateItemForm';
 import ItemsTable from './items/ItemsTable';
 
 const Items: React.FC = () => {
-  const {
-    changePage,
-    pages: { skip, take }
-  } = useChangePage(5, 0);
+  const { changePage, skip, take } = useChangePage(5, 0);
 
   const { data: countData, error: countError } = useItemsCountQuery();
 

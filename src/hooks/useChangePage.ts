@@ -19,7 +19,7 @@ const useChangePage = (take: number, skip: number) => {
         skip: pages.skip - pages.take
       });
   };
-  return { pages, changePage };
+  return { skip: pages.skip, take: pages.take, changePage };
 };
 
 export default useChangePage;

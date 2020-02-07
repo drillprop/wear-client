@@ -7,10 +7,7 @@ import Pagination from '../Pagination/Pagination';
 import UsersTable from './users/UsersTable';
 
 const Users = () => {
-  const {
-    pages: { skip, take },
-    changePage
-  } = useChangePage(5, 0);
+  const { skip, take, changePage } = useChangePage(5, 0);
 
   const { data: usersData, error: usersError } = useUsersQuery({
     variables: {
