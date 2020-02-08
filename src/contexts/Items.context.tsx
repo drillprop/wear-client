@@ -1,27 +1,31 @@
 import React, { createContext } from 'react';
-import { useItemsCountQuery } from '../generated/types';
 import useChangePage from '../hooks/useChangePage';
 
 export const ItemsContext = createContext({
-  skip: 0,
-  take: 0,
+  itemsQueryVariables: {
+    orderBy: 'Item.createdAt',
+    desc: true,
+    skip: 0,
+    take: 0
+  },
   changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-  changeTake: (take: number) => {},
-  total: 0
+  changeTake: (take: number) => {}
 });
 
 const ItemsProvider: React.FC = ({ children }) => {
   const { take, skip, changePage, changeTake } = useChangePage(5, 0);
-  const { data: countData, error: countError } = useItemsCountQuery();
 
   return (
     <ItemsContext.Provider
       value={{
-        skip,
-        take,
+        itemsQueryVariables: {
+          skip,
+          take,
+          orderBy: 'Item.createdAt',
+          desc: true
+        },
         changePage,
-        changeTake,
-        total: countData?.itemsCount || 0
+        changeTake
       }}
     >
       {children}
