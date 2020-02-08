@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ItemsContext } from '../../../../contexts/Items.context';
 import {
   Category,
   Gender,
   useDeleteItemMutation
 } from '../../../../generated/types';
+import { ITEMS, ITEMS_COUNT } from '../../../../graphql/queries';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 
 interface Props {
@@ -17,28 +19,44 @@ interface Props {
 }
 
 const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
+  const { itemsQueryVariables } = useContext(ItemsContext);
   const [deleteItem] = useDeleteItemMutation({
-    variables: { id }
+    variables: { id },
+    refetchQueries: [
+      {
+        query: ITEMS,
+        variables: itemsQueryVariables
+      },
+      {
+        query: ITEMS_COUNT
+      }
+    ]
   });
+
   return (
-    <TableBodyRow>
-      <Link
-        href={{
-          pathname: '/admin/item',
-          query: {
-            id
-          }
-        }}
-      >
-        <>
-          <TableData>{name}</TableData>
-          <TableData>{price}</TableData>
-          <TableData>{category}</TableData>
-          <TableData>{gender}</TableData>
-        </>
-      </Link>
-      <TableData onClick={() => deleteItem()}>delete item</TableData>
-    </TableBodyRow>
+    <Link
+      href={{
+        pathname: '/admin/item',
+        query: {
+          id
+        }
+      }}
+    >
+      <TableBodyRow>
+        <TableData>{name}</TableData>
+        <TableData>{price}</TableData>
+        <TableData>{category}</TableData>
+        <TableData>{gender}</TableData>
+        <TableData
+          onClick={e => {
+            e.stopPropagation();
+            deleteItem();
+          }}
+        >
+          delete item
+        </TableData>
+      </TableBodyRow>
+    </Link>
   );
 };
 
