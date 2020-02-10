@@ -120,7 +120,7 @@ export const CustomOptionsWrapper = styled.div`
   border-top: none;
 `;
 
-export const CustomOption = styled.div`
+export const CustomOption = styled.div<{ highlight: boolean }>`
   padding-left: 20px;
   height: 44px;
   z-index: 5;
@@ -131,8 +131,10 @@ export const CustomOption = styled.div`
   font-size: ${fontLevel2};
   &:nth-of-type(even) {
     background-color: ${gray8};
+    ${props => props.highlight && `background-color: ${gray6};`};
   }
   :hover {
     background-color: ${gray6};
   }
+  ${props => props.highlight && `background-color: ${gray6};`};
 `;

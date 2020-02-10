@@ -41,6 +41,7 @@ const Select: React.FC<Props> = ({
   const handleOnBlur = () => {
     setVisible(false);
     visible && onChange('');
+    setOptIndex(-1);
   };
 
   const handleKeyEvents = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -84,7 +85,12 @@ const Select: React.FC<Props> = ({
         {visible && (
           <CustomOptionsWrapper>
             {options?.map(option => (
-              <CustomOption key={option} role='option' onClick={handleSelect}>
+              <CustomOption
+                key={option}
+                role='option'
+                onClick={handleSelect}
+                highlight={option === value}
+              >
                 {option}
               </CustomOption>
             ))}
