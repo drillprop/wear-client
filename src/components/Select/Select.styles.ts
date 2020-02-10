@@ -91,21 +91,18 @@ export const CustomSelect = styled.div`
   cursor: pointer;
   width: 100%;
   margin: 0;
-  :focus {
-    outline: 0;
-  }
+  border: 2px solid ${gray1};
 `;
 
 export const CustomSelectedOption = styled.div<{ active: boolean }>`
   position: relative;
-  padding-left: 40px;
-  border: 2px solid ${gray1};
-  width: 100%;
   height: 44px;
   display: flex;
   align-items: center;
   font-family: ${montserrat};
   font-size: ${fontLevel2};
+  padding-left: 40px;
+  width: 100%;
   ${props => (props.active ? arrowUp : arrowDown)};
 `;
 
@@ -120,6 +117,7 @@ export const CustomOptionsWrapper = styled.div`
   z-index: 5;
   width: 100%;
   border: 1px solid ${gray6};
+  border-top: none;
 `;
 
 export const CustomOption = styled.div`
