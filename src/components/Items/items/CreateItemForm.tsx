@@ -49,14 +49,12 @@ const CreateItemForm: React.FC = () => {
 
     const file = await uploadImageToCloudinary(values.imageUrl);
     const imageUrl = file.secure_url;
-    const largeImageUrl = file.eager[0].secure_url;
 
     createItem({
       variables: {
         ...values,
         price: parseFloat(values.price),
-        imageUrl,
-        largeImageUrl
+        imageUrl
       }
     }).then(() => clearForm(values));
   };

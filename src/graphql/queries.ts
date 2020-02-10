@@ -100,7 +100,6 @@ export const ITEMS = gql`
       name
       price
       imageUrl
-      largeImageUrl
       category
       gender
       createdAt
@@ -122,7 +121,6 @@ export const SINGLE_ITEM = gql`
       name
       price
       imageUrl
-      largeImageUrl
       category
       gender
       createdAt

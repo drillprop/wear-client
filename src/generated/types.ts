@@ -37,7 +37,6 @@ export type CreateItemInput = {
   name: Scalars['String'],
   price: Scalars['Float'],
   imageUrl: Scalars['String'],
-  largeImageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
@@ -63,7 +62,6 @@ export type Item = {
   name: Scalars['String'],
   price: Scalars['Float'],
   imageUrl: Scalars['String'],
-  largeImageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
@@ -448,7 +446,6 @@ export type CreateItemMutationVariables = {
   name: Scalars['String'],
   price: Scalars['Float'],
   imageUrl: Scalars['String'],
-  largeImageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>
@@ -459,7 +456,7 @@ export type CreateItemMutation = (
   { __typename?: 'Mutation' }
   & { createItem: (
     { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'largeImageUrl' | 'category' | 'gender' | 'createdAt'>
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
   ) }
 );
 
@@ -542,7 +539,7 @@ export type ItemsQuery = (
   { __typename?: 'Query' }
   & { items: Array<Maybe<(
     { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'largeImageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
   )>> }
 );
 
@@ -563,7 +560,7 @@ export type SingleItemQuery = (
   { __typename?: 'Query' }
   & { item: Maybe<(
     { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'largeImageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
   )> }
 );
 
@@ -860,13 +857,12 @@ export type UpdateAddressMutationHookResult = ReturnType<typeof useUpdateAddress
 export type UpdateAddressMutationResult = ApolloReactCommon.MutationResult<UpdateAddressMutation>;
 export type UpdateAddressMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateAddressMutation, UpdateAddressMutationVariables>;
 export const CreateItemDocument = gql`
-    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $largeImageUrl: String!, $category: Category!, $gender: Gender!, $description: String) {
-  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, largeImageUrl: $largeImageUrl, category: $category, gender: $gender, description: $description}) {
+    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String) {
+  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description}) {
     id
     name
     price
     imageUrl
-    largeImageUrl
     category
     gender
     createdAt
@@ -891,7 +887,6 @@ export type CreateItemMutationFn = ApolloReactCommon.MutationFunction<CreateItem
  *      name: // value for 'name'
  *      price: // value for 'price'
  *      imageUrl: // value for 'imageUrl'
- *      largeImageUrl: // value for 'largeImageUrl'
  *      category: // value for 'category'
  *      gender: // value for 'gender'
  *      description: // value for 'description'
@@ -1071,7 +1066,6 @@ export const ItemsDocument = gql`
     name
     price
     imageUrl
-    largeImageUrl
     category
     gender
     createdAt
@@ -1151,7 +1145,6 @@ export const SingleItemDocument = gql`
     name
     price
     imageUrl
-    largeImageUrl
     category
     gender
     createdAt
