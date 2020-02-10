@@ -31,15 +31,36 @@ const Select: React.FC<Props> = ({
   onChange
 }) => {
   const [visible, setVisible] = useState(false);
+  const [optIndex, setOptIndex] = useState(-1);
 
   const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { textContent } = e.currentTarget;
     onChange(textContent || '');
   };
 
-  const handleOnBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+  const handleOnBlur = () => {
     setVisible(false);
     visible && onChange('');
+  };
+
+  const handleKeyEvents = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      setVisible(visible => !visible);
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (options?.length && optIndex < options.length - 1) {
+        onChange(options[optIndex + 1]);
+        setOptIndex(index => index + 1);
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (options?.length && optIndex > 0) {
+        onChange(options[optIndex - 1]);
+        setOptIndex(index => index - 1);
+      }
+    }
   };
 
   return (
@@ -54,6 +75,7 @@ const Select: React.FC<Props> = ({
       <CustomSelect
         tabIndex={0}
         onClick={() => setVisible(visible => !visible)}
+        onKeyDown={handleKeyEvents}
         onBlur={handleOnBlur}
       >
         <CustomSelectedOption role='option' aria-selected active={visible}>
