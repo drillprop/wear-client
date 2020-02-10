@@ -3,6 +3,11 @@ import { gray1, gray6, gray7, white } from '../../../../styles/colors';
 import { montserrat, roboto } from '../../../../styles/fonts';
 import { fontLevel2 } from '../../../../styles/fontSizes';
 
+interface FileInputLabelProps {
+  highlight?: boolean;
+  outline: boolean;
+}
+
 export const UploadImageWrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
@@ -35,7 +40,7 @@ export const ImageBox = styled.div<{ imageUrl?: string }>`
   ${props => props.imageUrl && `background-image: url(${props.imageUrl});`};
 `;
 
-export const FileInputLabel = styled.label<{ highlight?: boolean }>`
+export const FileInputLabel = styled.label<FileInputLabelProps>`
   height: 44px;
   width: 250px;
   background-color: ${white};
@@ -48,6 +53,7 @@ export const FileInputLabel = styled.label<{ highlight?: boolean }>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  ${props => props.outline && 'outline: -webkit-focus-ring-color auto 1px'};
 `;
 
 export const StyledFileInput = styled.input`

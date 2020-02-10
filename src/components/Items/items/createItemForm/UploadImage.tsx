@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   DiscardImageButton,
   FileInputLabel,
@@ -14,6 +14,7 @@ interface Props {
 }
 
 const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
+  const [outline, setOutline] = useState(false);
   const [filename, setFilename] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,7 +49,11 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
       <ImageBox imageUrl={imageUrl}>
         {filename && <DiscardImageButton onClick={discardImage} />}
-        <FileInputLabel htmlFor='file-input' highlight={!!filename}>
+        <FileInputLabel
+          htmlFor='file-input'
+          highlight={!!filename}
+          outline={outline}
+        >
           {filename ? filename : 'send a file'}
         </FileInputLabel>
         <StyledFileInput
@@ -59,6 +64,8 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
           id='file-input'
           required
           onChange={handleUpload}
+          onFocus={() => setOutline(true)}
+          onBlur={() => setOutline(false)}
         />
       </ImageBox>
     </UploadImageWrapper>
