@@ -15,8 +15,8 @@ interface Props {
   label: string;
   icon?: string;
   placeHolder?: string;
-  onChange: (val?: string) => void;
-  value?: string | number;
+  onChange: (val?: string | null) => void;
+  value?: string | number | null;
   small?: boolean;
 }
 
@@ -41,7 +41,7 @@ const Select: React.FC<Props> = ({
 
   const handleOnBlur = () => {
     setVisible(false);
-    visible && onChange('');
+    visible && onChange(null);
     setOptIndex(-1);
   };
 
