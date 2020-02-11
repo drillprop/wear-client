@@ -27,21 +27,8 @@ const AddressForm: React.FC = () => {
 
   useEffect(() => {
     if (data?.me?.address) {
-      const {
-        addressLine1,
-        addressLine2,
-        zipCode,
-        city,
-        country
-      } = data.me.address;
-
-      setForm({
-        addressLine1: addressLine1 || '',
-        addressLine2: addressLine2 || '',
-        zipCode: zipCode || '',
-        city: city || '',
-        country: country || ''
-      });
+      const { __typename, ...rest } = data.me.address;
+      setForm({ ...rest });
     }
   }, [data]);
 
@@ -60,6 +47,7 @@ const AddressForm: React.FC = () => {
       {success?.updateAddress.message}
       <ErrorMessage error={error} />
       <Input
+        marginTop='50px'
         value={values.addressLine1}
         onChange={handleInput}
         type='text'
