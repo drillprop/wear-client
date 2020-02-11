@@ -19,13 +19,13 @@ interface Props {
 }
 
 const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
-  const { itemsQueryVariables } = useContext(ItemsContext);
+  const { variables } = useContext(ItemsContext);
   const [deleteItem] = useDeleteItemMutation({
     variables: { id },
     refetchQueries: [
       {
         query: ITEMS,
-        variables: itemsQueryVariables
+        variables
       },
       {
         query: ITEMS_COUNT
