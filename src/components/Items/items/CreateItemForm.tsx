@@ -76,7 +76,7 @@ const CreateItemForm: React.FC = () => {
             value={values.name}
             label='name'
             name='name'
-            icon='/home-icon.svg'
+            icon='/info-icon.svg'
             width='350px'
           />
           <Input
@@ -86,7 +86,7 @@ const CreateItemForm: React.FC = () => {
             value={values.price}
             label='price'
             name='price'
-            icon='/home-icon.svg'
+            icon='/wallet-icon.svg'
             width='350px'
           />
           <Select
