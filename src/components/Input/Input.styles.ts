@@ -1,20 +1,20 @@
 import styled from 'styled-components';
-import { gray1 } from '../../styles/colors';
+import { gray1, gray4, gray6 } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import { fontLevel1, fontLevel2 } from '../../styles/fontSizes';
 
 export const InputWrapper = styled.div<{ marginTop: string; width: string }>`
   margin-top: ${props => props.marginTop};
   width: ${props => props.width};
 `;
 
-export const StyledLabel = styled.label<{ icon?: string }>`
+export const StyledLabel = styled.label<{ icon?: string; small?: boolean }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  color: ${props => (props.small ? gray4 : gray1)};
   margin-bottom: 5px;
-  color: ${gray1};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -26,7 +26,7 @@ export const StyledLabel = styled.label<{ icon?: string }>`
     z-index: 1;
     width: 44px;
     height: 44px;
-    opacity: 0.9;
+    opacity: ${props => (props.small ? 0.6 : 0.9)};
     background-image: ${({ icon }) => `url(${icon})`};
     background-size: 14px;
     background-repeat: no-repeat;
@@ -34,12 +34,13 @@ export const StyledLabel = styled.label<{ icon?: string }>`
   }
 `;
 
-export const StyledInput = styled.input`
-  margin: 0;
-  padding-left: 40px;
-  border: 2px solid ${gray1};
+export const StyledInput = styled.input<{ small?: boolean }>`
   width: 100%;
   height: 44px;
+  margin: 0;
+  padding-left: 40px;
+  border: ${props =>
+    props.small ? `1px solid ${gray6}` : `2px solid ${gray1}`};
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
   font-family: ${montserrat};
-  font-size: ${fontLevel2};
 `;

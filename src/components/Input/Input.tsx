@@ -12,6 +12,7 @@ interface Props {
   name?: string;
   marginTop?: string;
   width?: string;
+  small?: boolean;
 }
 
 const Input: React.FC<Props> = ({
@@ -24,11 +25,12 @@ const Input: React.FC<Props> = ({
   name,
   required,
   marginTop = '25px',
-  width = '100%'
+  width = '100%',
+  small
 }) => {
   return (
     <InputWrapper width={width} marginTop={marginTop}>
-      <StyledLabel htmlFor={label} icon={icon}>
+      <StyledLabel htmlFor={label} icon={icon} small={small}>
         {label}
       </StyledLabel>
       <StyledInput
@@ -39,6 +41,7 @@ const Input: React.FC<Props> = ({
         type={type}
         placeholder={placeholder}
         required={required}
+        small={small}
       />
     </InputWrapper>
   );
