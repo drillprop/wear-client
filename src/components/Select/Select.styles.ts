@@ -86,6 +86,7 @@ export const SelectLabel = styled.label<{ icon?: string }>`
 `;
 
 export const CustomSelect = styled.div`
+  height: 44px;
   text-transform: uppercase;
   position: relative;
   cursor: pointer;
@@ -96,7 +97,7 @@ export const CustomSelect = styled.div`
 
 export const CustomSelectedOption = styled.div<{ active: boolean }>`
   position: relative;
-  height: 44px;
+  height: 100%;
   display: flex;
   align-items: center;
   font-family: ${montserrat};
