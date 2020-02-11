@@ -8,6 +8,7 @@ import {
   TableHeadCell
 } from '../../../styles/table.styles';
 import ItemRow from './itemsTable/ItemRow';
+import ItemsFilters from './itemsTable/ItemsFilters';
 
 interface Props {
   items?: ItemsQuery['items'];
@@ -17,6 +18,7 @@ const ItemsTable: React.FC<Props> = ({ items }) => {
   return (
     <SiteForm>
       <SiteSubtitle>List of Items</SiteSubtitle>
+      <ItemsFilters />
       <Table>
         <TableHead>
           <tr>
