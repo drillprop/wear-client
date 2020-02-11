@@ -9,14 +9,14 @@ import {
 } from './Select.styles';
 
 interface Props {
-  options?: string[];
+  options?: any[];
   marginTop?: string;
   width?: string;
   label: string;
   icon?: string;
   placeHolder?: string;
   onChange: (val?: string) => void;
-  value?: string;
+  value?: string | number;
   small?: boolean;
 }
 
