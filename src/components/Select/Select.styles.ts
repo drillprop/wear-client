@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import { gray1, gray6, gray8, white } from '../../styles/colors';
+import { gray1, gray3, gray4, gray6, gray8, white } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import { fontLevel1, fontLevel2 } from '../../styles/fontSizes';
 
-const arrowUp = css`
+const arrowUp = (small?: boolean) => css`
   ::after {
     content: '';
     position: absolute;
@@ -11,46 +11,22 @@ const arrowUp = css`
     top: 15px;
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid ${gray1};
-  }
-  ::before {
-    content: '';
-    position: absolute;
-    z-index: 3;
-    right: 20px;
-    top: 20px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid ${white};
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid ${small ? gray3 : gray1};
   }
 `;
 
-const arrowDown = css`
+const arrowDown = (small?: boolean) => css`
   ::after {
     content: '';
     position: absolute;
     right: 20px;
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid ${gray1};
-  }
-  ::before {
-    content: '';
-    position: absolute;
-    z-index: 3;
-    top: 10px;
-    right: 20px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid ${white};
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid ${small ? gray3 : gray1};
   }
 `;
 
@@ -59,13 +35,13 @@ export const SelectWrapper = styled.div<{ marginTop: string; width: string }>`
   width: ${props => props.width};
 `;
 
-export const SelectLabel = styled.label<{ icon?: string }>`
+export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
   margin-bottom: 5px;
-  color: ${gray1};
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  color: ${props => (props.small ? gray4 : gray1)};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -77,7 +53,7 @@ export const SelectLabel = styled.label<{ icon?: string }>`
     z-index: 1;
     width: 44px;
     height: 44px;
-    opacity: 0.9;
+    opacity: ${props => (props.small ? 0.6 : 0.9)};
     background-image: ${({ icon }) => `url(${icon})`};
     background-size: 14px;
     background-repeat: no-repeat;
@@ -85,26 +61,31 @@ export const SelectLabel = styled.label<{ icon?: string }>`
   }
 `;
 
-export const CustomSelect = styled.div`
+export const CustomSelect = styled.div<{ small?: boolean }>`
   height: 44px;
   text-transform: uppercase;
   position: relative;
   cursor: pointer;
   width: 100%;
   margin: 0;
-  border: 2px solid ${gray1};
+  box-shadow: ${props =>
+    props.small ? `inset 0 0 0 1px ${gray6};` : `inset 0 0 0 2px ${gray1}`};
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
 `;
 
-export const CustomSelectedOption = styled.div<{ active: boolean }>`
+export const CustomSelectedOption = styled.div<{
+  active: boolean;
+  small?: boolean;
+}>`
   position: relative;
   height: 100%;
   display: flex;
   align-items: center;
   font-family: ${montserrat};
-  font-size: ${fontLevel2};
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
   padding-left: 40px;
   width: 100%;
-  ${props => (props.active ? arrowUp : arrowDown)};
+  ${props => (props.active ? arrowUp(props.small) : arrowDown(props.small))};
 `;
 
 export const PlaceHolder = styled.span`
@@ -112,30 +93,29 @@ export const PlaceHolder = styled.span`
   color: rgb(117, 117, 117);
 `;
 
-export const CustomOptionsWrapper = styled.div`
-  background-color: ${white};
-  position: absolute;
-  z-index: 5;
-  width: 100%;
-  border: 1px solid ${gray6};
+export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
+  border-left: 1px solid ${gray6};
+  border-right: 1px solid ${gray6};
   border-top: none;
-`;
-
-export const CustomOption = styled.div<{ highlight: boolean }>`
+  background-color: ${white};
+  position: relative;
   padding-left: 20px;
   height: 44px;
   z-index: 5;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: calc(100%);
   font-family: ${montserrat};
-  font-size: ${fontLevel2};
-  &:nth-of-type(even) {
+  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  &:nth-of-type(odd) {
     background-color: ${gray8};
     ${props => props.highlight && `background-color: ${gray6};`};
   }
   :hover {
     background-color: ${gray6};
+  }
+  :last-of-type {
+    border-bottom: 1px solid ${gray6};
   }
   ${props => props.highlight && `background-color: ${gray6};`};
 `;

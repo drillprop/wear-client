@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   CustomOption,
-  CustomOptionsWrapper,
   CustomSelect,
   CustomSelectedOption,
   PlaceHolder,
@@ -18,6 +17,7 @@ interface Props {
   placeHolder?: string;
   onChange: (val?: string) => void;
   value?: string;
+  small?: boolean;
 }
 
 const Select: React.FC<Props> = ({
@@ -28,7 +28,8 @@ const Select: React.FC<Props> = ({
   placeHolder,
   value = '',
   icon,
-  onChange
+  onChange,
+  small
 }) => {
   const [visible, setVisible] = useState(false);
   const [optIndex, setOptIndex] = useState(-1);
@@ -70,6 +71,7 @@ const Select: React.FC<Props> = ({
         role='label'
         icon={icon || '/category-icon.svg'}
         onClick={() => setVisible(visible => !visible)}
+        small={small}
       >
         {label}
       </SelectLabel>
@@ -78,14 +80,21 @@ const Select: React.FC<Props> = ({
         onClick={() => setVisible(visible => !visible)}
         onKeyDown={handleKeyEvents}
         onBlur={handleOnBlur}
+        small={small}
       >
-        <CustomSelectedOption role='option' aria-selected active={visible}>
+        <CustomSelectedOption
+          role='option'
+          aria-selected
+          active={visible}
+          small={small}
+        >
           {value || <PlaceHolder>{placeHolder}</PlaceHolder>}
         </CustomSelectedOption>
         {visible && (
-          <CustomOptionsWrapper>
+          <>
             {options?.map(option => (
               <CustomOption
+                small={small}
                 key={option}
                 role='option'
                 onClick={handleSelect}
@@ -94,7 +103,7 @@ const Select: React.FC<Props> = ({
                 {option}
               </CustomOption>
             ))}
-          </CustomOptionsWrapper>
+          </>
         )}
       </CustomSelect>
     </SelectWrapper>
