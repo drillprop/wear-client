@@ -1,5 +1,5 @@
-import React from 'react';
-import { ItemsQuery } from '../../../generated/types';
+import React, { useContext } from 'react';
+import { ItemsContext } from '../../../contexts/Items.context';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
@@ -10,11 +10,8 @@ import {
 import ItemRow from './itemsTable/ItemRow';
 import ItemsFilters from './itemsTable/ItemsFilters';
 
-interface Props {
-  items?: ItemsQuery['items'];
-}
-
-const ItemsTable: React.FC<Props> = ({ items }) => {
+const ItemsTable: React.FC = () => {
+  const { items } = useContext(ItemsContext);
   return (
     <SiteForm>
       <SiteSubtitle>List of Items</SiteSubtitle>
