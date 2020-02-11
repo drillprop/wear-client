@@ -1,4 +1,5 @@
-import { FormEvent } from 'react';
+import { FormEvent, useContext } from 'react';
+import { ItemsContext } from '../../../contexts/Items.context';
 import {
   Category,
   Gender,
@@ -27,16 +28,12 @@ const CreateItemForm: React.FC = () => {
     imageUrl: ''
   });
 
+  const { variables } = useContext(ItemsContext);
   const [createItem, { data, error }] = useCreateItemMutation({
     refetchQueries: [
       {
         query: ITEMS,
-        variables: {
-          take: 5,
-          desc: true,
-          skip: 0,
-          orderBy: 'Item.createdAt'
-        }
+        variables
       },
       {
         query: ITEMS_COUNT
