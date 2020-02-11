@@ -10,14 +10,14 @@ interface Context {
   variables: ItemsQueryVariables;
   changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   changeTake: (take: number) => void;
-  items?: ItemsQuery['items'];
+  items: ItemsQuery['items'];
   setVariables: (variables: any | ItemsQueryVariables) => void;
 }
 
 export const ItemsContext = createContext<Context>({
   variables: {},
-  changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {},
-  changeTake: (take: number) => {},
+  changePage: () => {},
+  changeTake: () => {},
   items: [],
   setVariables: () => {}
 });
@@ -31,7 +31,8 @@ const ItemsProvider: React.FC = ({ children }) => {
       ...variables,
       take,
       skip
-    }
+    },
+    fetchPolicy: 'cache-and-network'
   });
 
   return (
@@ -44,7 +45,7 @@ const ItemsProvider: React.FC = ({ children }) => {
         },
         changePage,
         changeTake,
-        items: data?.items,
+        items: data?.items || [],
         setVariables
       }}
     >
