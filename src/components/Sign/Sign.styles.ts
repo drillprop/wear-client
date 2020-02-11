@@ -19,17 +19,6 @@ export const SignForm = styled.form`
   align-items: center;
   margin: 0 auto;
   width: 290px;
-  label {
-    margin-top: 25px;
-  }
-  button {
-    margin-top: 50px;
-    width: 100%;
-  }
-  h1 {
-    margin-top: 60px;
-    margin-bottom: 30px;
-  }
   @media (max-width: 900px) {
     width: 230px;
   }
@@ -37,6 +26,7 @@ export const SignForm = styled.form`
 
 export const SignTitle = styled.h1`
   margin: 0;
+  margin-top: 60px;
   font-family: ${roboto};
   font-size: ${fontLevel7};
   font-weight: 700;

@@ -50,6 +50,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
           <SignTitle>CREATE NEW ACCOUNT</SignTitle>
           <ErrorMessage error={error || passwordError} />
           <Input
+            marginTop='50px'
             onChange={handleInput}
             type='email'
             icon='/mail-icon.svg'
@@ -77,9 +78,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
             value={values.confirmPassword}
             required
           />
-          <Button width='250px' type='submit'>
-            register
-          </Button>
+          <Button type='submit'>register</Button>
         </SignForm>
         <SwitchSignButton onClick={() => setIsNewUser(false)} hoverText='LOGIN'>
           ALREADY HAVE ACCOUNT?

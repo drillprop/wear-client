@@ -41,6 +41,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
         <SignTitle>WELCOME BACK</SignTitle>
         <ErrorMessage error={error}></ErrorMessage>
         <Input
+          marginTop='50px'
           placeholder='user@example.com'
           label='email'
           icon='/mail-icon.svg'
@@ -58,9 +59,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
           value={values.password}
           required
         />
-        <Button width='250px' type='submit'>
-          login
-        </Button>
+        <Button type='submit'>login</Button>
         <ForgotPassword>Forgot your password?</ForgotPassword>
       </SignForm>
       <SwitchSignButton onClick={() => setIsNewUser(true)} hoverText='REGISTER'>
