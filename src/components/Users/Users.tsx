@@ -7,7 +7,9 @@ import Pagination from '../Pagination/Pagination';
 import UsersTable from './users/UsersTable';
 
 const Users = () => {
-  const { skip, take, changePage } = useChangePage(5, 0);
+  const { data: countData, error: countError } = useUsersCountQuery();
+
+  const { skip, take, changePage } = useChangePage(5, 0, countData?.usersCount);
 
   const { data: usersData, error: usersError } = useUsersQuery({
     variables: {
@@ -16,8 +18,6 @@ const Users = () => {
       orderBy: 'User.createdAt'
     }
   });
-
-  const { data: countData, error: countError } = useUsersCountQuery();
 
   return (
     <SiteWrapper>

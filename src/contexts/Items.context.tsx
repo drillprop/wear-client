@@ -2,7 +2,8 @@ import React, { createContext, useState } from 'react';
 import {
   ItemsQuery,
   ItemsQueryVariables,
-  useItemsQuery
+  useItemsQuery,
+  useItemsCountQuery
 } from '../generated/types';
 import useChangePage from '../hooks/useChangePage';
 
@@ -23,7 +24,12 @@ export const ItemsContext = createContext<Context>({
 });
 
 const ItemsProvider: React.FC = ({ children }) => {
-  const { take, skip, changePage, changeTake } = useChangePage(5, 0);
+  const { data: countData, error: countError } = useItemsCountQuery();
+  const { take, skip, changePage, changeTake } = useChangePage(
+    5,
+    0,
+    countData?.itemsCount
+  );
   const [variables, setVariables] = useState({});
 
   const { data } = useItemsQuery({

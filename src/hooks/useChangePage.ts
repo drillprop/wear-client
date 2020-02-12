@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const useChangePage = (take: number, skip: number) => {
+const useChangePage = (take: number, skip: number, total: number = 0) => {
   const [pages, setPages] = useState({
     take,
     skip
@@ -8,16 +8,17 @@ const useChangePage = (take: number, skip: number) => {
 
   const changePage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { textContent } = e.currentTarget;
-    if (textContent === '>')
+    if (textContent === '>') {
       setPages({
         ...pages,
         skip: pages.skip + pages.take
       });
-    else
+    } else {
       setPages({
         ...pages,
         skip: pages.skip - pages.take
       });
+    }
   };
 
   const changeTake = (take: number) => {
@@ -26,7 +27,13 @@ const useChangePage = (take: number, skip: number) => {
       take
     });
   };
-  return { skip: pages.skip, take: pages.take, changePage, changeTake };
+
+  return {
+    skip: pages.take >= total ? Math.max(0, 15 - pages.take) : pages.skip,
+    take: pages.take,
+    changePage,
+    changeTake
+  };
 };
 
 export default useChangePage;
