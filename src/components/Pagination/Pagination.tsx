@@ -1,8 +1,8 @@
 import React from 'react';
 import {
+  NextPrevPage,
   PageNumber,
-  PageNumbersWrapper,
-  NextPrevPage
+  PageNumbersWrapper
 } from './Pagination.styles';
 
 interface Props {
@@ -13,22 +13,16 @@ interface Props {
 }
 
 const Pagination: React.FC<Props> = ({ total = 0, take, skip, changePage }) => {
-  const totalPages = Math.ceil(total / take);
   const pageNumber = Math.ceil(skip / take + 1 || 1);
+  const totalPages = Math.ceil(total / take);
 
   return (
     <PageNumbersWrapper>
-      <NextPrevPage onClick={e => (pageNumber < skip ? changePage(e) : null)}>
-        &lt;
-      </NextPrevPage>
+      <NextPrevPage onClick={changePage}>&lt;</NextPrevPage>
       <PageNumber>
         {pageNumber} of {totalPages}
       </PageNumber>
-      <NextPrevPage
-        onClick={e => (pageNumber < totalPages ? changePage(e) : null)}
-      >
-        &gt;
-      </NextPrevPage>
+      <NextPrevPage onClick={changePage}>&gt;</NextPrevPage>
     </PageNumbersWrapper>
   );
 };

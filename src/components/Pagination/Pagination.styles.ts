@@ -21,6 +21,7 @@ export const PageNumber = styled.div`
 `;
 
 export const NextPrevPage = styled.div`
+  user-select: none;
   cursor: pointer;
   font-family: ${roboto};
   font-weight: bold;
