@@ -4,26 +4,27 @@ import {
   ItemsQueryVariables,
   useItemsQuery
 } from '../generated/types';
-import useChangePage from '../hooks/useChangePage';
 
 interface Context {
   variables: ItemsQueryVariables;
   setVariables: (variables: any | ItemsQueryVariables) => void;
   changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   items: ItemsQuery['items']['select'];
+  count: number;
 }
 
 export const ItemsContext = createContext<Context>({
   variables: {},
   setVariables: () => {},
   changePage: () => {},
-  items: []
+  items: [],
+  count: 0
 });
 
 const ItemsProvider: React.FC = ({ children }) => {
-  const [variables, setVariables] = useState({});
+  const [variables, setVariables] = useState({ take: 5, skip: 0 });
   const { data } = useItemsQuery({ variables });
-  const { changePage } = useChangePage(5, 0, data?.items.count || 0);
+  const changePage = () => {};
 
   return (
     <ItemsContext.Provider
@@ -31,7 +32,8 @@ const ItemsProvider: React.FC = ({ children }) => {
         variables,
         setVariables,
         changePage,
-        items: data?.items.select || []
+        items: data?.items.select || [],
+        count: data?.items.count || 0
       }}
     >
       {children}
