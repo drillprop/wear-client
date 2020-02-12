@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import React from 'react';
-import SingleItem from '../../components/SingleItem/SingleItem';
+import SingleItem from '../components/SingleItem/SingleItem';
 
 interface Props {
   query: {

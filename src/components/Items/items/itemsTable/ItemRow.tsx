@@ -36,7 +36,7 @@ const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
   return (
     <Link
       href={{
-        pathname: '/admin/item',
+        pathname: '/item',
         query: {
           id
         }
