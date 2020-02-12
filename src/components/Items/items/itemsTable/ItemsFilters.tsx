@@ -6,7 +6,7 @@ import Select from '../../../Select/Select';
 import { ItemsFiltersWrapper } from './ItemsFilters.styles';
 
 const ItemsFilters = () => {
-  const { changeTake, variables, setVariables } = useContext(ItemsContext);
+  const { variables, setVariables } = useContext(ItemsContext);
   return (
     <ItemsFiltersWrapper>
       <Input
@@ -44,9 +44,11 @@ const ItemsFilters = () => {
       />
       <Select
         label='items per page'
-        onChange={take => take && changeTake(parseInt(take))}
+        onChange={take =>
+          take && setVariables({ ...variables, take: parseInt(take) })
+        }
         placeHolder='5'
-        value={variables.take || 5}
+        value={variables.take}
         options={[5, 10, 15, 20, 25]}
         small
       />
