@@ -8,9 +8,7 @@ import CreateItemForm from './items/CreateItemForm';
 import ItemsTable from './items/ItemsTable';
 
 const Items: React.FC = () => {
-  const { changePage, variables } = useContext(ItemsContext);
-
-  const { data: countData, error: countError } = useItemsCountQuery();
+  const { changePage, variables, count } = useContext(ItemsContext);
 
   return (
     <SiteWrapper>
@@ -22,7 +20,7 @@ const Items: React.FC = () => {
           changePage={changePage}
           take={variables.take || 5}
           skip={variables.skip || 0}
-          total={countData?.itemsCount}
+          total={count}
         />
       </div>
     </SiteWrapper>
