@@ -71,6 +71,12 @@ export type Item = {
   totalCount: Scalars['Int'],
 };
 
+export type ItemsAndCount = {
+   __typename?: 'ItemsAndCount',
+  select: Array<Maybe<Item>>,
+  count?: Maybe<Scalars['Int']>,
+};
+
 export type LoginInput = {
   email: Scalars['String'],
   password: Scalars['String'],
@@ -209,7 +215,7 @@ export type PersonalInfoInput = {
 export type Query = {
    __typename?: 'Query',
   item?: Maybe<Item>,
-  items: Array<Maybe<Item>>,
+  items: ItemsAndCount,
   itemsCount: Scalars['Int'],
   orders: Array<Maybe<Order>>,
   ordersCount: Scalars['Int'],
@@ -537,10 +543,14 @@ export type ItemsQueryVariables = {
 
 export type ItemsQuery = (
   { __typename?: 'Query' }
-  & { items: Array<Maybe<(
-    { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-  )>> }
+  & { items: (
+    { __typename?: 'ItemsAndCount' }
+    & Pick<ItemsAndCount, 'count'>
+    & { select: Array<Maybe<(
+      { __typename?: 'Item' }
+      & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+    )>> }
+  ) }
 );
 
 export type ItemsCountQueryVariables = {};
@@ -1062,14 +1072,17 @@ export type UsersCountQueryResult = ApolloReactCommon.QueryResult<UsersCountQuer
 export const ItemsDocument = gql`
     query Items($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $whereName: String, $whereCategory: Category, $whereGender: Gender) {
   items(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, whereName: $whereName, whereCategory: $whereCategory, whereGender: $whereGender}) {
-    id
-    name
-    price
-    imageUrl
-    category
-    gender
-    createdAt
-    updatedAt
+    count
+    select {
+      id
+      name
+      price
+      imageUrl
+      category
+      gender
+      createdAt
+      updatedAt
+    }
   }
 }
     `;

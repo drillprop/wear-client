@@ -96,14 +96,17 @@ export const ITEMS = gql`
         whereGender: $whereGender
       }
     ) {
-      id
-      name
-      price
-      imageUrl
-      category
-      gender
-      createdAt
-      updatedAt
+      count
+      select {
+        id
+        name
+        price
+        imageUrl
+        category
+        gender
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
