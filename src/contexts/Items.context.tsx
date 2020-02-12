@@ -2,57 +2,36 @@ import React, { createContext, useState } from 'react';
 import {
   ItemsQuery,
   ItemsQueryVariables,
-  useItemsQuery,
-  useItemsCountQuery
+  useItemsQuery
 } from '../generated/types';
 import useChangePage from '../hooks/useChangePage';
 
 interface Context {
   variables: ItemsQueryVariables;
-  changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  changeTake: (take: number) => void;
-  items: ItemsQuery['items'];
   setVariables: (variables: any | ItemsQueryVariables) => void;
+  changePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  items: ItemsQuery['items']['select'];
 }
 
 export const ItemsContext = createContext<Context>({
   variables: {},
+  setVariables: () => {},
   changePage: () => {},
-  changeTake: () => {},
-  items: [],
-  setVariables: () => {}
+  items: []
 });
 
 const ItemsProvider: React.FC = ({ children }) => {
-  const { data: countData, error: countError } = useItemsCountQuery();
-  const { take, skip, changePage, changeTake } = useChangePage(
-    5,
-    0,
-    countData?.itemsCount
-  );
   const [variables, setVariables] = useState({});
-
-  const { data } = useItemsQuery({
-    variables: {
-      ...variables,
-      take,
-      skip
-    },
-    fetchPolicy: 'cache-and-network'
-  });
+  const { data } = useItemsQuery({ variables });
+  const { changePage } = useChangePage(5, 0, data?.items.count || 0);
 
   return (
     <ItemsContext.Provider
       value={{
-        variables: {
-          ...variables,
-          take,
-          skip
-        },
+        variables,
+        setVariables,
         changePage,
-        changeTake,
-        items: data?.items || [],
-        setVariables
+        items: data?.items.select || []
       }}
     >
       {children}
