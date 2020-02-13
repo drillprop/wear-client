@@ -5,7 +5,6 @@ import {
   Gender,
   useCreateItemMutation
 } from '../../../generated/types';
-import { ITEMS } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
@@ -17,6 +16,7 @@ import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
 import { CreateItemWrapper } from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
+import ITEMS from '../../../graphql/queries/ITEMS';
 
 const CreateItemForm: React.FC = () => {
   const { values, handleInput, setForm, clearForm } = useForm({

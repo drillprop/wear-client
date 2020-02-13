@@ -6,8 +6,8 @@ import {
   Gender,
   useDeleteItemMutation
 } from '../../../../generated/types';
-import { ITEMS } from '../../../../graphql/queries';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
+import ITEMS from '../../../../graphql/queries/ITEMS';
 
 interface Props {
   id: string;
