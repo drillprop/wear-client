@@ -116,6 +116,7 @@ export const SINGLE_ITEM = gql`
     item(id: $id) {
       id
       name
+      description
       price
       imageUrl
       category

@@ -562,7 +562,7 @@ export type SingleItemQuery = (
   { __typename?: 'Query' }
   & { item: Maybe<(
     { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+    & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
   )> }
 );
 
@@ -1118,6 +1118,7 @@ export const SingleItemDocument = gql`
   item(id: $id) {
     id
     name
+    description
     price
     imageUrl
     category
