@@ -553,14 +553,6 @@ export type ItemsQuery = (
   ) }
 );
 
-export type ItemsCountQueryVariables = {};
-
-
-export type ItemsCountQuery = (
-  { __typename?: 'Query' }
-  & Pick<Query, 'itemsCount'>
-);
-
 export type SingleItemQueryVariables = {
   id: Scalars['ID']
 };
@@ -1121,36 +1113,6 @@ export function useItemsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOp
 export type ItemsQueryHookResult = ReturnType<typeof useItemsQuery>;
 export type ItemsLazyQueryHookResult = ReturnType<typeof useItemsLazyQuery>;
 export type ItemsQueryResult = ApolloReactCommon.QueryResult<ItemsQuery, ItemsQueryVariables>;
-export const ItemsCountDocument = gql`
-    query ItemsCount {
-  itemsCount
-}
-    `;
-
-/**
- * __useItemsCountQuery__
- *
- * To run a query within a React component, call `useItemsCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useItemsCountQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useItemsCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useItemsCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ItemsCountQuery, ItemsCountQueryVariables>) {
-        return ApolloReactHooks.useQuery<ItemsCountQuery, ItemsCountQueryVariables>(ItemsCountDocument, baseOptions);
-      }
-export function useItemsCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ItemsCountQuery, ItemsCountQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<ItemsCountQuery, ItemsCountQueryVariables>(ItemsCountDocument, baseOptions);
-        }
-export type ItemsCountQueryHookResult = ReturnType<typeof useItemsCountQuery>;
-export type ItemsCountLazyQueryHookResult = ReturnType<typeof useItemsCountLazyQuery>;
-export type ItemsCountQueryResult = ApolloReactCommon.QueryResult<ItemsCountQuery, ItemsCountQueryVariables>;
 export const SingleItemDocument = gql`
     query SingleItem($id: ID!) {
   item(id: $id) {

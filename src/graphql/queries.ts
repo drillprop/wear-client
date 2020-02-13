@@ -111,12 +111,6 @@ export const ITEMS = gql`
   }
 `;
 
-export const ITEMS_COUNT = gql`
-  query ItemsCount {
-    itemsCount
-  }
-`;
-
 export const SINGLE_ITEM = gql`
   query SingleItem($id: ID!) {
     item(id: $id) {
