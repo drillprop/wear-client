@@ -25,7 +25,10 @@ const ItemsProvider: React.FC = ({ children }) => {
   const [variables, setVariables] = useState({ take: 5, skip: 0 });
   const { skip, take } = variables;
 
-  const { data } = useItemsQuery({ variables });
+  const { data } = useItemsQuery({
+    variables,
+    fetchPolicy: 'cache-and-network'
+  });
   const count = data?.items.count || 0;
   const items = data?.items.select || [];
 
