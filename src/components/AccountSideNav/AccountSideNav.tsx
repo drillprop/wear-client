@@ -4,7 +4,9 @@ import { AccountCard, AccountCardPar } from './AccountSideNav.styles';
 import {
   SideNavMainTitle,
   SideNavList,
-  SideNavItem
+  SideNavItem,
+  SideNavWrapper,
+  SideNavSticky
 } from '../../styles/sideNav.styles';
 
 interface Props {
@@ -13,30 +15,32 @@ interface Props {
 
 const AccountSideNav: React.FC<Props> = ({ email }) => {
   return (
-    <nav>
-      <SideNavMainTitle>{email}</SideNavMainTitle>
-      <AccountCard>
-        <AccountCardPar>Total Orders: 0</AccountCardPar>
-        <AccountCardPar>Member since 20/12/2019</AccountCardPar>
-      </AccountCard>
-      <SideNavList>
-        <SideNavItem>
-          <LinkAnchor highlight href='/account/profile'>
-            profile
-          </LinkAnchor>
-        </SideNavItem>
-        <SideNavItem>
-          <LinkAnchor highlight href='/account/contact'>
-            contact details
-          </LinkAnchor>
-        </SideNavItem>
-        <SideNavItem>
-          <LinkAnchor highlight href='/account/orders'>
-            orders
-          </LinkAnchor>
-        </SideNavItem>
-      </SideNavList>
-    </nav>
+    <SideNavWrapper>
+      <SideNavSticky>
+        <SideNavMainTitle>{email}</SideNavMainTitle>
+        <AccountCard>
+          <AccountCardPar>Total Orders: 0</AccountCardPar>
+          <AccountCardPar>Member since 20/12/2019</AccountCardPar>
+        </AccountCard>
+        <SideNavList>
+          <SideNavItem>
+            <LinkAnchor highlight href='/account/profile'>
+              profile
+            </LinkAnchor>
+          </SideNavItem>
+          <SideNavItem>
+            <LinkAnchor highlight href='/account/contact'>
+              contact details
+            </LinkAnchor>
+          </SideNavItem>
+          <SideNavItem>
+            <LinkAnchor highlight href='/account/orders'>
+              orders
+            </LinkAnchor>
+          </SideNavItem>
+        </SideNavList>
+      </SideNavSticky>
+    </SideNavWrapper>
   );
 };
 

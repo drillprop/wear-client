@@ -2,6 +2,17 @@ import styled from 'styled-components';
 import { fontLevel6 } from './fontSizes';
 import { roboto } from './fonts';
 
+export const SideNavWrapper = styled.div`
+  position: relative;
+`;
+
+export const SideNavSticky = styled.nav`
+  @supports (position: sticky) {
+    position: sticky;
+    top: 120px;
+  }
+`;
+
 export const SideNavMainTitle = styled.h1`
   font-size: ${fontLevel6};
   margin: 0;
