@@ -479,19 +479,6 @@ export type DeleteItemMutation = (
   ) }
 );
 
-export type SingleItemQueryVariables = {
-  id: Scalars['ID']
-};
-
-
-export type SingleItemQuery = (
-  { __typename?: 'Query' }
-  & { item: Maybe<(
-    { __typename?: 'Item' }
-    & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-  )> }
-);
-
 export type SingleUserQueryVariables = {
   id: Scalars['ID']
 };
@@ -550,6 +537,19 @@ export type MeQuery = (
       { __typename?: 'Address' }
       & Pick<Address, 'addressLine1' | 'addressLine2' | 'zipCode' | 'city' | 'country'>
     )> }
+  )> }
+);
+
+export type SingleItemQueryVariables = {
+  id: Scalars['ID']
+};
+
+
+export type SingleItemQuery = (
+  { __typename?: 'Query' }
+  & { item: Maybe<(
+    { __typename?: 'Item' }
+    & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
   )> }
 );
 
@@ -933,47 +933,6 @@ export function useDeleteItemMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type DeleteItemMutationHookResult = ReturnType<typeof useDeleteItemMutation>;
 export type DeleteItemMutationResult = ApolloReactCommon.MutationResult<DeleteItemMutation>;
 export type DeleteItemMutationOptions = ApolloReactCommon.BaseMutationOptions<DeleteItemMutation, DeleteItemMutationVariables>;
-export const SingleItemDocument = gql`
-    query SingleItem($id: ID!) {
-  item(id: $id) {
-    id
-    name
-    description
-    price
-    imageUrl
-    category
-    gender
-    createdAt
-    updatedAt
-  }
-}
-    `;
-
-/**
- * __useSingleItemQuery__
- *
- * To run a query within a React component, call `useSingleItemQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleItemQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSingleItemQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useSingleItemQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
-        return ApolloReactHooks.useQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
-      }
-export function useSingleItemLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
-        }
-export type SingleItemQueryHookResult = ReturnType<typeof useSingleItemQuery>;
-export type SingleItemLazyQueryHookResult = ReturnType<typeof useSingleItemLazyQuery>;
-export type SingleItemQueryResult = ApolloReactCommon.QueryResult<SingleItemQuery, SingleItemQueryVariables>;
 export const SingleUserDocument = gql`
     query SingleUser($id: ID!) {
   user(id: $id) {
@@ -1126,6 +1085,47 @@ export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptio
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = ApolloReactCommon.QueryResult<MeQuery, MeQueryVariables>;
+export const SingleItemDocument = gql`
+    query SingleItem($id: ID!) {
+  item(id: $id) {
+    id
+    name
+    description
+    price
+    imageUrl
+    category
+    gender
+    createdAt
+    updatedAt
+  }
+}
+    `;
+
+/**
+ * __useSingleItemQuery__
+ *
+ * To run a query within a React component, call `useSingleItemQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSingleItemQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSingleItemQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSingleItemQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
+        return ApolloReactHooks.useQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
+      }
+export function useSingleItemLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SingleItemQuery, SingleItemQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<SingleItemQuery, SingleItemQueryVariables>(SingleItemDocument, baseOptions);
+        }
+export type SingleItemQueryHookResult = ReturnType<typeof useSingleItemQuery>;
+export type SingleItemLazyQueryHookResult = ReturnType<typeof useSingleItemLazyQuery>;
+export type SingleItemQueryResult = ApolloReactCommon.QueryResult<SingleItemQuery, SingleItemQueryVariables>;
 export const UsersDocument = gql`
     query Users($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $whereRole: UserRole, $whereEmail: String, $whereFirstName: String, $whereLastName: String) {
   users(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
