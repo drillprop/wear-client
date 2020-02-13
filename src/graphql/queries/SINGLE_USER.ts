@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 
-export const SINGLE_USER = gql`
+export default gql`
   query SingleUser($id: ID!) {
     user(id: $id) {
       id
