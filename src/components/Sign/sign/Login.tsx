@@ -2,13 +2,13 @@ import React, { FormEvent, useEffect } from 'react';
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/Input/Input';
 import { useLoginMutation } from '../../../generated/types';
-import { ME } from '../../../graphql/queries';
+import ME from '../../../graphql/queries/ME';
 import useForm from '../../../hooks/useForm';
+import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import SignImage from '../../SignImage/SignImage';
 import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
 import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
 import { ForgotPassword } from './Login.styles';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 
 interface Props {
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;

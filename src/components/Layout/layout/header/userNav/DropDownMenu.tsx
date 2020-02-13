@@ -1,12 +1,12 @@
 import React from 'react';
-import {
-  DropDownWrapper,
-  DropDownList,
-  DropDownItem
-} from './DropDownMenu.styles';
-import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
 import { useSignoutMutation } from '../../../../../generated/types';
-import { ME } from '../../../../../graphql/queries';
+import ME from '../../../../../graphql/queries/ME';
+import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
+import {
+  DropDownItem,
+  DropDownList,
+  DropDownWrapper
+} from './DropDownMenu.styles';
 
 interface Props {
   admin?: boolean;

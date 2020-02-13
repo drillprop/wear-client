@@ -3,7 +3,7 @@ import { ApolloAppContext } from 'next-with-apollo';
 import Router from 'next/router';
 import React from 'react';
 import { MeQuery } from '../generated/types';
-import { ME } from '../graphql/queries';
+import ME from '../graphql/queries/ME';
 
 const redirect = (context: ApolloAppContext, target: string) => {
   if (context.res) {

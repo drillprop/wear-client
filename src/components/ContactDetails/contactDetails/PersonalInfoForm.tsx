@@ -3,12 +3,12 @@ import {
   useMeQuery,
   useUpdatePersonalInfoMutation
 } from '../../../generated/types';
-import { ME } from '../../../graphql/queries';
+import ME from '../../../graphql/queries/ME';
 import useForm from '../../../hooks/useForm';
+import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import Input from '../../Input/Input';
-import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 
 const PersonalInfoForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
