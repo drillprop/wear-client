@@ -6,7 +6,7 @@ import {
   Gender,
   useDeleteItemMutation
 } from '../../../../generated/types';
-import { ITEMS, ITEMS_COUNT } from '../../../../graphql/queries';
+import { ITEMS } from '../../../../graphql/queries';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 
 interface Props {
@@ -20,17 +20,10 @@ interface Props {
 
 const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
   const { variables } = useContext(ItemsContext);
+
   const [deleteItem] = useDeleteItemMutation({
     variables: { id },
-    refetchQueries: [
-      {
-        query: ITEMS,
-        variables
-      },
-      {
-        query: ITEMS_COUNT
-      }
-    ]
+    refetchQueries: [{ query: ITEMS, variables }]
   });
 
   return (

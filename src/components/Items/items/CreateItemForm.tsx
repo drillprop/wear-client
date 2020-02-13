@@ -5,7 +5,7 @@ import {
   Gender,
   useCreateItemMutation
 } from '../../../generated/types';
-import { ITEMS, ITEMS_COUNT } from '../../../graphql/queries';
+import { ITEMS } from '../../../graphql/queries';
 import useForm from '../../../hooks/useForm';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
@@ -29,16 +29,9 @@ const CreateItemForm: React.FC = () => {
   });
 
   const { variables } = useContext(ItemsContext);
+
   const [createItem, { data, error }] = useCreateItemMutation({
-    refetchQueries: [
-      {
-        query: ITEMS,
-        variables
-      },
-      {
-        query: ITEMS_COUNT
-      }
-    ]
+    refetchQueries: [{ query: ITEMS, variables }]
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
