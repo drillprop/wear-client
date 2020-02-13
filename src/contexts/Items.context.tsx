@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import {
   ItemsQuery,
   ItemsQueryVariables,
@@ -23,8 +23,35 @@ export const ItemsContext = createContext<Context>({
 
 const ItemsProvider: React.FC = ({ children }) => {
   const [variables, setVariables] = useState({ take: 5, skip: 0 });
+  const { skip, take } = variables;
+
   const { data } = useItemsQuery({ variables });
-  const changePage = () => {};
+  const count = data?.items.count || 0;
+  const items = data?.items.select || [];
+
+  useEffect(() => {
+    setVariables({
+      ...variables,
+      skip: take >= count ? Math.max(0, count - take) : skip
+    });
+  }, [take, count]);
+
+  const changePage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const { textContent } = e.currentTarget;
+
+    if (textContent === '>') {
+      setVariables({
+        ...variables,
+        skip: count > skip + take ? skip + take : skip
+      });
+    }
+    if (textContent === '<') {
+      setVariables({
+        ...variables,
+        skip: Math.max(0, skip - take)
+      });
+    }
+  };
 
   return (
     <ItemsContext.Provider
@@ -32,8 +59,8 @@ const ItemsProvider: React.FC = ({ children }) => {
         variables,
         setVariables,
         changePage,
-        items: data?.items.select || [],
-        count: data?.items.count || 0
+        items,
+        count
       }}
     >
       {children}
