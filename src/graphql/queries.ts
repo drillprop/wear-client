@@ -1,11 +1,5 @@
 import { gql } from 'apollo-boost';
 
-export const USERS_COUNT = gql`
-  query UsersCount {
-    usersCount
-  }
-`;
-
 export const ITEMS = gql`
   query Items(
     $whereId: ID
