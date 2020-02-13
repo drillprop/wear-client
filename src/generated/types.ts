@@ -74,7 +74,7 @@ export type Item = {
 export type ItemsAndCount = {
    __typename?: 'ItemsAndCount',
   select: Array<Maybe<Item>>,
-  count?: Maybe<Scalars['Int']>,
+  count: Scalars['Int'],
 };
 
 export type LoginInput = {
