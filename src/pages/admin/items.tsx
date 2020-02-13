@@ -6,7 +6,7 @@ import ItemsProvider from '../../contexts/Items.context';
 const ItemsPage: NextPage = () => {
   return (
     <ItemsProvider>
-      <Items />;
+      <Items />
     </ItemsProvider>
   );
 };
