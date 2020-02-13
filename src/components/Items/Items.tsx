@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { ItemsContext } from '../../contexts/Items.context';
-import { useItemsCountQuery } from '../../generated/types';
 import { SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
