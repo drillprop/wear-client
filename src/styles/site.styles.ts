@@ -6,7 +6,7 @@ import { fontLevel1 } from './fontSizes';
 export const SiteWrapper = styled.div`
   display: grid;
   grid-gap: 90px;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: auto 1fr;
 `;
 
 export const SiteForm = styled.form`

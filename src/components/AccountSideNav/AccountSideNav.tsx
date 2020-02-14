@@ -1,13 +1,12 @@
 import React from 'react';
-import LinkAnchor from '../LinkAnchor/LinkAnchor';
-import { AccountCard, AccountCardPar } from './AccountSideNav.styles';
 import {
-  SideNavMainTitle,
-  SideNavList,
   SideNavItem,
-  SideNavWrapper,
-  SideNavSticky
+  SideNavList,
+  SideNavMainTitle,
+  SideNavSticky,
+  SideNavWrapper
 } from '../../styles/sideNav.styles';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
 interface Props {
   email?: string;
@@ -18,10 +17,6 @@ const AccountSideNav: React.FC<Props> = ({ email }) => {
     <SideNavWrapper>
       <SideNavSticky>
         <SideNavMainTitle>{email}</SideNavMainTitle>
-        <AccountCard>
-          <AccountCardPar>Total Orders: 0</AccountCardPar>
-          <AccountCardPar>Member since 20/12/2019</AccountCardPar>
-        </AccountCard>
         <SideNavList>
           <SideNavItem>
             <LinkAnchor highlight href='/account/profile'>
