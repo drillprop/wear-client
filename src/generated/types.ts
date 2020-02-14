@@ -24,13 +24,14 @@ export type Address = {
 };
 
 export enum Category {
-  Trouser = 'TROUSER',
+  Trousers = 'TROUSERS',
   Dress = 'DRESS',
   Blouse = 'BLOUSE',
   Tshirt = 'TSHIRT',
   Shirt = 'SHIRT',
   Jacket = 'JACKET',
-  Blazer = 'BLAZER'
+  Blazer = 'BLAZER',
+  Sweatshirt = 'SWEATSHIRT'
 }
 
 export type CreateItemInput = {
