@@ -62,8 +62,25 @@ export const AddToCart = styled.button`
   box-shadow: inset 0 0 0 2px ${black};
   font-size: ${fontLevel2};
   font-family: ${montserrat};
+  transition: color 200ms, background-color 200ms, stroke 200ms;
+  svg {
+    position: relative;
+    right: 10px;
+    circle {
+      transition: stroke 200ms;
+    }
+    path {
+      transition: stroke 200ms;
+    }
+  }
   :hover {
     background-color: ${white};
     color: ${black};
+    circle {
+      stroke: ${black};
+    }
+    path {
+      stroke: ${black};
+    }
   }
 `;

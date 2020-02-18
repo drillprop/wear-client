@@ -4,7 +4,9 @@ import {
   UserRole,
   useSingleItemQuery
 } from '../../generated/types';
+import { white } from '../../styles/colors';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
+import CartIcon from '../CartIcon/CartIcon';
 import Select from '../Select/Select';
 import {
   AddToCart,
@@ -52,7 +54,10 @@ const SingleItem: React.FC<Props> = ({ query }) => {
               onChange={() => null}
               options={['S', 'M', 'L', 'XL', 'XXL']}
             />
-            <AddToCart>add to cart</AddToCart>
+            <AddToCart>
+              <CartIcon color={white} size={'1em'} />
+              add to cart
+            </AddToCart>
           </SingleItemInfo>
         </SingleItemMain>
       </div>
