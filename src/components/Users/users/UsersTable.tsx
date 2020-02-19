@@ -1,5 +1,5 @@
 import { ApolloError } from 'apollo-boost';
-import React from 'react';
+import React, { useContext } from 'react';
 import { UsersQuery } from '../../../generated/types';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
@@ -9,16 +9,15 @@ import {
   TableHeadCell
 } from '../../../styles/table.styles';
 import UserRow from './usersTable/UserRow';
+import { UsersContext } from '../../../contexts/Users.context';
+import UsersFilters from './usersTable/UsersFilters';
 
-interface Props {
-  users?: UsersQuery['users'];
-  error?: ApolloError;
-}
-
-const UsersTable: React.FC<Props> = ({ users }) => {
+const UsersTable: React.FC = () => {
+  const { users } = useContext(UsersContext);
   return (
     <SiteForm>
       <SiteSubtitle>List of Users</SiteSubtitle>
+      <UsersFilters />
       <Table>
         <TableHead>
           <tr>
