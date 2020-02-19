@@ -25,14 +25,17 @@ export default gql`
         whereLastName: $whereLastName
       }
     ) {
-      id
-      email
-      firstName
-      lastName
-      phoneNumber
-      role
-      createdOrders {
+      count
+      select {
         id
+        email
+        firstName
+        lastName
+        phoneNumber
+        role
+        createdOrders {
+          id
+        }
       }
     }
   }

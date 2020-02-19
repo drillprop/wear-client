@@ -217,13 +217,11 @@ export type Query = {
    __typename?: 'Query',
   item?: Maybe<Item>,
   items: ItemsAndCount,
-  itemsCount: Scalars['Int'],
   orders: Array<Maybe<Order>>,
   ordersCount: Scalars['Int'],
   me?: Maybe<User>,
   user?: Maybe<User>,
-  users: Array<Maybe<User>>,
-  usersCount: Scalars['Int'],
+  users: UsersAndCount,
 };
 
 
@@ -336,6 +334,12 @@ export enum UserRole {
   Employee = 'EMPLOYEE',
   Customer = 'CUSTOMER'
 }
+
+export type UsersAndCount = {
+   __typename?: 'UsersAndCount',
+  select: Array<Maybe<User>>,
+  count: Scalars['Int'],
+};
 
 export type ChangePasswordMutationVariables = {
   password: Scalars['String'],
@@ -569,22 +573,18 @@ export type UsersQueryVariables = {
 
 export type UsersQuery = (
   { __typename?: 'Query' }
-  & { users: Array<Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role'>
-    & { createdOrders: Array<Maybe<(
-      { __typename?: 'Order' }
-      & Pick<Order, 'id'>
+  & { users: (
+    { __typename?: 'UsersAndCount' }
+    & Pick<UsersAndCount, 'count'>
+    & { select: Array<Maybe<(
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role'>
+      & { createdOrders: Array<Maybe<(
+        { __typename?: 'Order' }
+        & Pick<Order, 'id'>
+      )>> }
     )>> }
-  )>> }
-);
-
-export type UsersCountQueryVariables = {};
-
-
-export type UsersCountQuery = (
-  { __typename?: 'Query' }
-  & Pick<Query, 'usersCount'>
+  ) }
 );
 
 
@@ -1130,14 +1130,17 @@ export type SingleUserQueryResult = ApolloReactCommon.QueryResult<SingleUserQuer
 export const UsersDocument = gql`
     query Users($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $whereRole: UserRole, $whereEmail: String, $whereFirstName: String, $whereLastName: String) {
   users(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
-    id
-    email
-    firstName
-    lastName
-    phoneNumber
-    role
-    createdOrders {
+    count
+    select {
       id
+      email
+      firstName
+      lastName
+      phoneNumber
+      role
+      createdOrders {
+        id
+      }
     }
   }
 }
@@ -1176,33 +1179,3 @@ export function useUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOp
 export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = ApolloReactCommon.QueryResult<UsersQuery, UsersQueryVariables>;
-export const UsersCountDocument = gql`
-    query UsersCount {
-  usersCount
-}
-    `;
-
-/**
- * __useUsersCountQuery__
- *
- * To run a query within a React component, call `useUsersCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersCountQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useUsersCountQuery({
- *   variables: {
- *   },
- * });
- */
-export function useUsersCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<UsersCountQuery, UsersCountQueryVariables>) {
-        return ApolloReactHooks.useQuery<UsersCountQuery, UsersCountQueryVariables>(UsersCountDocument, baseOptions);
-      }
-export function useUsersCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<UsersCountQuery, UsersCountQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<UsersCountQuery, UsersCountQueryVariables>(UsersCountDocument, baseOptions);
-        }
-export type UsersCountQueryHookResult = ReturnType<typeof useUsersCountQuery>;
-export type UsersCountLazyQueryHookResult = ReturnType<typeof useUsersCountLazyQuery>;
-export type UsersCountQueryResult = ApolloReactCommon.QueryResult<UsersCountQuery, UsersCountQueryVariables>;
