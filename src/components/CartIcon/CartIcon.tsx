@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSvg } from './CartIcon.styles';
+import { CartIconSvg } from './CartIcon.styles';
 
 interface Props {
   color?: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const CartIcon: React.FC<Props> = ({ color = '#000', size = 24 }) => {
   return (
-    <StyledSvg height={size} viewBox='0 0 24 24' width={size} color={color}>
+    <CartIconSvg height={size} viewBox='0 0 24 24' width={size} color={color}>
       <circle
         cx='8'
         cy='21'
@@ -34,7 +34,7 @@ const CartIcon: React.FC<Props> = ({ color = '#000', size = 24 }) => {
         strokeLinejoin='round'
         strokeWidth='2'
       />
-    </StyledSvg>
+    </CartIconSvg>
   );
 };
 

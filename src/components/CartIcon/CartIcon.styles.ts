@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface StyledSvgProps {
+interface Props {
   color: string;
 }
 
-export const StyledSvg = styled.svg<StyledSvgProps>`
+export const CartIconSvg = styled.svg<Props>`
   circle {
     stroke: ${props => props.color};
   }
