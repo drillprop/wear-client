@@ -16,7 +16,7 @@ const Pagination: React.FC<Props> = ({ total = 0, take, skip, changePage }) => {
   const pageNumber = Math.ceil(skip / take + 1 || 1);
   const totalPages = Math.ceil(total / take);
 
-  return (
+  return totalPages >= 1 ? (
     <PageNumbersWrapper>
       <NextPrevPage onClick={changePage}>&lt;</NextPrevPage>
       <PageNumber>
@@ -24,7 +24,7 @@ const Pagination: React.FC<Props> = ({ total = 0, take, skip, changePage }) => {
       </PageNumber>
       <NextPrevPage onClick={changePage}>&gt;</NextPrevPage>
     </PageNumbersWrapper>
-  );
+  ) : null;
 };
 
 export default Pagination;
