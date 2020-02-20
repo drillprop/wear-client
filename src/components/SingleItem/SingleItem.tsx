@@ -18,6 +18,7 @@ import {
   SingleItemName,
   SingleItemPrice
 } from './SingleItem.styles';
+import ShopSideNav from '../ShopSideNav/ShopSideNav';
 
 interface Props {
   query: {
@@ -36,7 +37,7 @@ const SingleItem: React.FC<Props> = ({ query }) => {
   });
   return (
     <SiteWrapper>
-      <nav />
+      <ShopSideNav />
       <div>
         <SiteSubtitle>{data?.item?.category}</SiteSubtitle>
         <SingleItemMain>
