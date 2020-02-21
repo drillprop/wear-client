@@ -1,15 +1,19 @@
 import React from 'react';
-import { Ul, Li } from '../Header.styles';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
+import { Li, Ul } from '../Header.styles';
 
 const ShopNav = () => {
   return (
     <Ul>
       <Li>
-        <LinkAnchor href='/woman'>women</LinkAnchor>
+        <LinkAnchor href='/woman' as='/woman'>
+          women
+        </LinkAnchor>
       </Li>
       <Li>
-        <LinkAnchor href='/man'>men</LinkAnchor>
+        <LinkAnchor href='/man' as='/man'>
+          men
+        </LinkAnchor>
       </Li>
     </Ul>
   );
