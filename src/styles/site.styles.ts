@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { gray2, gray3, gray6 } from './colors';
 import { roboto } from './fonts';
-import { fontLevel1 } from './fontSizes';
+import { fontLevel1, fontLevel6 } from './fontSizes';
 
 export const SiteWrapper = styled.div`
   display: grid;
@@ -24,6 +24,7 @@ export const SiteSubtitle = styled.h2`
   color: ${gray2};
   text-transform: uppercase;
   font-weight: 500;
+  font-size: ${fontLevel6};
   margin-bottom: 30px;
   ::after {
     left: 0;
