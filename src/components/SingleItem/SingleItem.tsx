@@ -6,8 +6,10 @@ import {
 } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
+import getGenderCategories from '../../utils/getGenderCategories';
 import CartIcon from '../CartIcon/CartIcon';
 import Select from '../Select/Select';
+import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import {
   AddToCart,
   SingleItemDescription,
@@ -18,7 +20,6 @@ import {
   SingleItemName,
   SingleItemPrice
 } from './SingleItem.styles';
-import ShopSideNav from '../ShopSideNav/ShopSideNav';
 
 interface Props {
   query: {
@@ -35,9 +36,11 @@ const SingleItem: React.FC<Props> = ({ query }) => {
       id: query.id
     }
   });
+  const genderCategories =
+    data?.item?.gender && getGenderCategories(data?.item?.gender);
   return (
     <SiteWrapper>
-      <ShopSideNav />
+      <ShopSideNav title={data?.item?.gender} categories={genderCategories} />
       <div>
         <SiteSubtitle>{data?.item?.category}</SiteSubtitle>
         <SingleItemMain>
