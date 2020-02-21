@@ -1,24 +1,23 @@
 import styled from 'styled-components';
-import { gray3 } from './colors';
+import { black, gray1, gray2 } from './colors';
 import { roboto } from './fonts';
-import { fontLevel3 } from './fontSizes';
+import { fontLevel3, fontLevel5 } from './fontSizes';
 
 export const SideNavWrapper = styled.div`
   position: relative;
 `;
 
 export const SideNavSticky = styled.nav`
-  padding-right: 20px;
   @supports (position: sticky) {
+    top: 160px;
     position: sticky;
-    top: 210px;
   }
 `;
 
 export const SideNavMainTitle = styled.h1`
-  font-size: ${fontLevel3};
+  font-size: ${fontLevel5};
   font-weight: 700;
-  color: ${gray3};
+  color: ${gray1};
   margin: 0;
   font-family: ${roboto};
   text-transform: uppercase;
@@ -31,9 +30,12 @@ export const SideNavList = styled.ul`
 
 export const SideNavItem = styled.li`
   font-family: ${roboto};
-  margin-top: 18px;
+  margin-top: 14px;
   text-transform: uppercase;
   font-weight: 400;
-  letter-spacing: 2px;
   font-size: ${fontLevel3};
+  color: ${gray2};
+  :hover {
+    color: ${black};
+  }
 `;
