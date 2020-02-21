@@ -53,8 +53,8 @@ export type EditItemInput = {
 };
 
 export enum Gender {
-  Male = 'MALE',
-  Female = 'FEMALE'
+  Man = 'MAN',
+  Woman = 'WOMAN'
 }
 
 export type Item = {
