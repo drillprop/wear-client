@@ -26,9 +26,11 @@ interface Props {
   query: {
     id: string;
   };
+  title?: string;
 }
 
-const SingleItem: React.FC<Props> = ({ query }) => {
+const SingleItem: React.FC<Props> = ({ query, title }) => {
+  console.log(title);
   const meQuery = useMeQuery();
   const isAdmin =
     meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
@@ -41,9 +43,6 @@ const SingleItem: React.FC<Props> = ({ query }) => {
     data?.item?.gender && getGenderCategories(data?.item?.gender);
   return (
     <>
-      <Head>
-        <title> wear {data?.item && `| ${data?.item?.name}`} </title>
-      </Head>
       <SiteWrapper>
         <ShopSideNav title={data?.item?.gender} categories={genderCategories} />
         <div>
