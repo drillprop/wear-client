@@ -1,15 +1,34 @@
+import { ApolloQueryResult } from 'apollo-boost';
 import { NextPage } from 'next';
+import { ApolloAppContext } from 'next-with-apollo';
+import Head from 'next/head';
 import React from 'react';
 import SingleItem from '../../components/SingleItem/SingleItem';
+import { SingleItemQuery } from '../../generated/types';
+import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 
 interface Props {
-  query: {
-    id: string;
-  };
+  singleItemQuery: ApolloQueryResult<SingleItemQuery>;
 }
 
-const Item: NextPage<Props> = ({ query }) => {
-  return <SingleItem query={query} />;
+const Item: NextPage<Props> = ({ singleItemQuery }) => {
+  const { data } = singleItemQuery;
+  return (
+    <>
+      <Head>
+        <title> wear {data.item?.name && `| ${data.item?.name}`}</title>
+      </Head>
+      <SingleItem title={data.item?.name} item={data.item} />
+    </>
+  );
+};
+
+Item.getInitialProps = async (ctx: ApolloAppContext) => {
+  const singleItemQuery = await ctx.apolloClient.query<SingleItemQuery>({
+    query: SINGLE_ITEM,
+    variables: ctx.query
+  });
+  return { singleItemQuery };
 };
 
 export default Item;

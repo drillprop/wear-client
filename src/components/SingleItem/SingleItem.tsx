@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  useMeQuery,
-  UserRole,
-  useSingleItemQuery
-} from '../../generated/types';
+import { SingleItemQuery, useMeQuery, UserRole } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import getGenderCategories from '../../utils/getGenderCategories';
@@ -20,42 +16,31 @@ import {
   SingleItemName,
   SingleItemPrice
 } from './SingleItem.styles';
-import Head from 'next/head';
 
 interface Props {
-  query: {
-    id: string;
-  };
   title?: string;
+  item?: SingleItemQuery['item'];
 }
 
-const SingleItem: React.FC<Props> = ({ query, title }) => {
-  console.log(title);
+const SingleItem: React.FC<Props> = ({ title, item }) => {
   const meQuery = useMeQuery();
   const isAdmin =
     meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
-  const { data } = useSingleItemQuery({
-    variables: {
-      id: query.id
-    }
-  });
-  const genderCategories =
-    data?.item?.gender && getGenderCategories(data?.item?.gender);
+
+  const genderCategories = item?.gender && getGenderCategories(item?.gender);
   return (
     <>
       <SiteWrapper>
-        <ShopSideNav title={data?.item?.gender} categories={genderCategories} />
+        <ShopSideNav title={item?.gender} categories={genderCategories} />
         <div>
-          <SiteSubtitle>{data?.item?.category}</SiteSubtitle>
+          <SiteSubtitle>{item?.category}</SiteSubtitle>
           <SingleItemMain>
-            <SingleItemImg src={data?.item?.imageUrl} alt={data?.item?.name} />
+            <SingleItemImg src={item?.imageUrl} alt={item?.name} />
             <SingleItemInfo>
               {isAdmin && <SingleItemEdit>Edit</SingleItemEdit>}
-              <SingleItemName>{data?.item?.name}</SingleItemName>
-              <SingleItemDescription>
-                {data?.item?.description}
-              </SingleItemDescription>
-              <SingleItemPrice>$ {data?.item?.price}</SingleItemPrice>
+              <SingleItemName>{item?.name}</SingleItemName>
+              <SingleItemDescription>{item?.description}</SingleItemDescription>
+              <SingleItemPrice>$ {item?.price}</SingleItemPrice>
               <Select
                 label='Pick size'
                 placeHolder='SIZE'
