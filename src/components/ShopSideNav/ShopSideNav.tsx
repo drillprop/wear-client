@@ -1,43 +1,27 @@
 import React from 'react';
 import { Category } from '../../generated/types';
 import {
-  SideNavWrapper,
-  SideNavSticky,
+  SideNavItem,
+  SideNavList,
   SideNavMainTitle,
-  SideNavList
+  SideNavSticky,
+  SideNavWrapper
 } from '../../styles/sideNav.styles';
-import {
-  CategoryList,
-  CategoryItem,
-  SideNavGender
-} from './ShopSideNav.styles';
 
-const ShopSideNav = () => {
-  const womanCategories = Object.values(Category);
-  const manCategories = Object.values(Category).filter(
-    cat => cat !== Category.Dress && cat !== Category.Blouse
-  );
+interface Props {
+  title?: string;
+  categories?: Category[];
+}
+
+const ShopSideNav: React.FC<Props> = ({ title, categories }) => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <SideNavMainTitle>Shop</SideNavMainTitle>
+        <SideNavMainTitle>{title}</SideNavMainTitle>
         <SideNavList>
-          <SideNavGender>
-            Woman
-            <CategoryList>
-              {womanCategories.map(category => (
-                <CategoryItem key={category}>{category} </CategoryItem>
-              ))}
-            </CategoryList>
-          </SideNavGender>
-          <SideNavGender>
-            Man
-            <CategoryList>
-              {manCategories.map(category => (
-                <CategoryItem key={category}>{category} </CategoryItem>
-              ))}
-            </CategoryList>
-          </SideNavGender>
+          {categories?.map(category => (
+            <SideNavItem key={category}>{category}</SideNavItem>
+          ))}
         </SideNavList>
       </SideNavSticky>
     </SideNavWrapper>
