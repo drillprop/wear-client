@@ -1,10 +1,23 @@
 import { NextPage } from 'next';
 import React from 'react';
 import Shop from '../../components/Shop/Shop';
-import { Gender } from '../../generated/types';
+import { Gender, Category } from '../../generated/types';
 
-const ShopPage: NextPage = () => {
-  return <Shop gender={Gender.Man}></Shop>;
+interface Props {
+  query: {
+    category?: string;
+  };
+}
+
+const ShopPage: NextPage<Props> = ({ query }) => {
+  return (
+    <Shop
+      gender={Gender.Man}
+      category={
+        query.category ? (query.category.toUpperCase() as Category) : null
+      }
+    />
+  );
 };
 
 export default ShopPage;
