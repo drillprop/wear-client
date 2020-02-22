@@ -231,12 +231,12 @@ export type QueryItemArgs = {
 
 
 export type QueryItemsArgs = {
-  input?: Maybe<SearchItemInput>
+  where?: Maybe<SearchItemInput>
 };
 
 
 export type QueryOrdersArgs = {
-  input?: Maybe<SearchOrdersInput>
+  where?: Maybe<SearchOrdersInput>
 };
 
 
@@ -246,7 +246,7 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
-  input?: Maybe<SearchUserInput>
+  where?: Maybe<SearchUserInput>
 };
 
 export type RegisterInput = {
@@ -255,45 +255,45 @@ export type RegisterInput = {
 };
 
 export type SearchInput = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
 };
 
 export type SearchItemInput = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
   priceFrom?: Maybe<Scalars['Float']>,
   priceTo?: Maybe<Scalars['Float']>,
-  whereName?: Maybe<Scalars['String']>,
-  whereCategory?: Maybe<Category>,
-  whereGender?: Maybe<Gender>,
+  name?: Maybe<Scalars['String']>,
+  category?: Maybe<Category>,
+  gender?: Maybe<Gender>,
 };
 
 export type SearchOrdersInput = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
-  whereStatus?: Maybe<OrderStatus>,
+  status?: Maybe<OrderStatus>,
 };
 
 export type SearchUserInput = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
-  whereRole?: Maybe<UserRole>,
-  whereEmail?: Maybe<Scalars['String']>,
-  whereFirstName?: Maybe<Scalars['String']>,
-  whereLastName?: Maybe<Scalars['String']>,
+  role?: Maybe<UserRole>,
+  email?: Maybe<Scalars['String']>,
+  firstName?: Maybe<Scalars['String']>,
+  lastName?: Maybe<Scalars['String']>,
 };
 
 export type SuccessMessage = {
@@ -485,16 +485,16 @@ export type UpdatePersonalInfoMutation = (
 );
 
 export type ItemsQueryVariables = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
   priceFrom?: Maybe<Scalars['Float']>,
   priceTo?: Maybe<Scalars['Float']>,
-  whereName?: Maybe<Scalars['String']>,
-  whereCategory?: Maybe<Category>,
-  whereGender?: Maybe<Gender>
+  name?: Maybe<Scalars['String']>,
+  category?: Maybe<Category>,
+  gender?: Maybe<Gender>
 };
 
 
@@ -559,15 +559,15 @@ export type SingleUserQuery = (
 );
 
 export type UsersQueryVariables = {
-  whereId?: Maybe<Scalars['ID']>,
+  id?: Maybe<Scalars['ID']>,
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
-  orderBy?: Maybe<Scalars['String']>,
+  sortBy?: Maybe<Scalars['String']>,
   desc?: Maybe<Scalars['Boolean']>,
-  whereRole?: Maybe<UserRole>,
-  whereEmail?: Maybe<Scalars['String']>,
-  whereFirstName?: Maybe<Scalars['String']>,
-  whereLastName?: Maybe<Scalars['String']>
+  role?: Maybe<UserRole>,
+  email?: Maybe<Scalars['String']>,
+  firstName?: Maybe<Scalars['String']>,
+  lastName?: Maybe<Scalars['String']>
 };
 
 
@@ -935,8 +935,8 @@ export type UpdatePersonalInfoMutationHookResult = ReturnType<typeof useUpdatePe
 export type UpdatePersonalInfoMutationResult = ApolloReactCommon.MutationResult<UpdatePersonalInfoMutation>;
 export type UpdatePersonalInfoMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>;
 export const ItemsDocument = gql`
-    query Items($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $whereName: String, $whereCategory: Category, $whereGender: Gender) {
-  items(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, whereName: $whereName, whereCategory: $whereCategory, whereGender: $whereGender}) {
+    query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender) {
+  items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender}) {
     count
     select {
       id
@@ -964,16 +964,16 @@ export const ItemsDocument = gql`
  * @example
  * const { data, loading, error } = useItemsQuery({
  *   variables: {
- *      whereId: // value for 'whereId'
+ *      id: // value for 'id'
  *      take: // value for 'take'
  *      skip: // value for 'skip'
- *      orderBy: // value for 'orderBy'
+ *      sortBy: // value for 'sortBy'
  *      desc: // value for 'desc'
  *      priceFrom: // value for 'priceFrom'
  *      priceTo: // value for 'priceTo'
- *      whereName: // value for 'whereName'
- *      whereCategory: // value for 'whereCategory'
- *      whereGender: // value for 'whereGender'
+ *      name: // value for 'name'
+ *      category: // value for 'category'
+ *      gender: // value for 'gender'
  *   },
  * });
  */
@@ -1128,8 +1128,8 @@ export type SingleUserQueryHookResult = ReturnType<typeof useSingleUserQuery>;
 export type SingleUserLazyQueryHookResult = ReturnType<typeof useSingleUserLazyQuery>;
 export type SingleUserQueryResult = ApolloReactCommon.QueryResult<SingleUserQuery, SingleUserQueryVariables>;
 export const UsersDocument = gql`
-    query Users($whereId: ID, $take: Int, $skip: Int, $orderBy: String, $desc: Boolean, $whereRole: UserRole, $whereEmail: String, $whereFirstName: String, $whereLastName: String) {
-  users(input: {whereId: $whereId, take: $take, skip: $skip, orderBy: $orderBy, desc: $desc, whereRole: $whereRole, whereEmail: $whereEmail, whereFirstName: $whereFirstName, whereLastName: $whereLastName}) {
+    query Users($id: ID, $take: Int, $skip: Int, $sortBy: String, $desc: Boolean, $role: UserRole, $email: String, $firstName: String, $lastName: String) {
+  users(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, desc: $desc, role: $role, email: $email, firstName: $firstName, lastName: $lastName}) {
     count
     select {
       id
@@ -1158,15 +1158,15 @@ export const UsersDocument = gql`
  * @example
  * const { data, loading, error } = useUsersQuery({
  *   variables: {
- *      whereId: // value for 'whereId'
+ *      id: // value for 'id'
  *      take: // value for 'take'
  *      skip: // value for 'skip'
- *      orderBy: // value for 'orderBy'
+ *      sortBy: // value for 'sortBy'
  *      desc: // value for 'desc'
- *      whereRole: // value for 'whereRole'
- *      whereEmail: // value for 'whereEmail'
- *      whereFirstName: // value for 'whereFirstName'
- *      whereLastName: // value for 'whereLastName'
+ *      role: // value for 'role'
+ *      email: // value for 'email'
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
  *   },
  * });
  */

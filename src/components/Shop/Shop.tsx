@@ -14,8 +14,8 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
   const [filters, setFilters] = useState({
     take: 5,
     skip: 0,
-    whereGender: gender,
-    whereCategory: category
+    gender,
+    category
   });
 
   const { data } = useItemsQuery({
@@ -23,7 +23,7 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
   });
 
   useEffect(() => {
-    setFilters({ ...filters, whereCategory: category });
+    setFilters({ ...filters, category });
   }, [category]);
 
   return (

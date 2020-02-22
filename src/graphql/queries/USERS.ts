@@ -2,27 +2,27 @@ import { gql } from 'apollo-boost';
 
 export default gql`
   query Users(
-    $whereId: ID
+    $id: ID
     $take: Int
     $skip: Int
-    $orderBy: String
+    $sortBy: String
     $desc: Boolean
-    $whereRole: UserRole
-    $whereEmail: String
-    $whereFirstName: String
-    $whereLastName: String
+    $role: UserRole
+    $email: String
+    $firstName: String
+    $lastName: String
   ) {
     users(
-      input: {
-        whereId: $whereId
+      where: {
+        id: $id
         take: $take
         skip: $skip
-        orderBy: $orderBy
+        sortBy: $sortBy
         desc: $desc
-        whereRole: $whereRole
-        whereEmail: $whereEmail
-        whereFirstName: $whereFirstName
-        whereLastName: $whereLastName
+        role: $role
+        email: $email
+        firstName: $firstName
+        lastName: $lastName
       }
     ) {
       count

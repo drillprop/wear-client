@@ -11,33 +11,31 @@ const ItemsFilters = () => {
     <ItemsFiltersWrapper>
       <Input
         label='search item by name'
-        name='whereName'
+        name='name'
         placeholder='search'
         type='search'
         icon='/search-icon.svg'
         small
-        value={variables.whereName as string}
+        value={variables.name as string}
         onChange={e =>
           setVariables({
             ...variables,
-            whereName: e.target.value
+            name: e.target.value
           })
         }
       />
       <Select
         label='gender'
-        value={variables.whereGender}
-        onChange={whereGender => setVariables({ ...variables, whereGender })}
+        value={variables.gender}
+        onChange={gender => setVariables({ ...variables, gender })}
         placeHolder='gender'
         options={Object.values(Gender)}
         small
       />
       <Select
         label='category'
-        value={variables.whereCategory}
-        onChange={whereCategory =>
-          setVariables({ ...variables, whereCategory })
-        }
+        value={variables.category}
+        onChange={category => setVariables({ ...variables, category })}
         placeHolder='category'
         options={Object.values(Category)}
         small

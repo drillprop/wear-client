@@ -11,23 +11,23 @@ const UsersFilters = () => {
     <UsersFiltersWrapper>
       <Input
         label='search user by email'
-        name='whereEmail'
+        name='email'
         placeholder='search'
         type='search'
         icon='/search-icon.svg'
         small
-        value={variables.whereEmail as string}
+        value={variables.email as string}
         onChange={e =>
           setVariables({
             ...variables,
-            whereEmail: e.target.value
+            email: e.target.value
           })
         }
       />
       <Select
         label='role'
-        value={variables.whereRole}
-        onChange={whereRole => setVariables({ ...variables, whereRole })}
+        value={variables.role}
+        onChange={role => setVariables({ ...variables, role })}
         placeHolder='role'
         options={Object.values(UserRole)}
         small

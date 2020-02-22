@@ -15,12 +15,12 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters }) => {
     <ShopFiltersWrapper>
       <Input
         label='search item by name'
-        name='whereName'
-        value={filters.whereName ? filters.whereName : ''}
+        name='name'
+        value={filters.name ? filters.name : ''}
         onChange={e =>
           setFilters({
             ...filters,
-            whereName: e.target.value
+            name: e.target.value
           })
         }
         placeholder='search'

@@ -2,29 +2,29 @@ import { gql } from 'apollo-boost';
 
 export default gql`
   query Items(
-    $whereId: ID
+    $id: ID
     $take: Int
     $skip: Int
-    $orderBy: String
+    $sortBy: String
     $desc: Boolean
     $priceFrom: Float
     $priceTo: Float
-    $whereName: String
-    $whereCategory: Category
-    $whereGender: Gender
+    $name: String
+    $category: Category
+    $gender: Gender
   ) {
     items(
-      input: {
-        whereId: $whereId
+      where: {
+        id: $id
         take: $take
         skip: $skip
-        orderBy: $orderBy
+        sortBy: $sortBy
         desc: $desc
         priceFrom: $priceFrom
         priceTo: $priceTo
-        whereName: $whereName
-        whereCategory: $whereCategory
-        whereGender: $whereGender
+        name: $name
+        category: $category
+        gender: $gender
       }
     ) {
       count
