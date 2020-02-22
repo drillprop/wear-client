@@ -7,7 +7,7 @@ import CreateItemForm from './items/CreateItemForm';
 import ItemsTable from './items/ItemsTable';
 
 const Items: React.FC = () => {
-  const { changePage, variables, count } = useContext(ItemsContext);
+  const { variables, count, setVariables } = useContext(ItemsContext);
 
   return (
     <SiteWrapper>
@@ -16,10 +16,11 @@ const Items: React.FC = () => {
         <CreateItemForm />
         <ItemsTable />
         <Pagination
-          changePage={changePage}
           take={variables.take || 5}
           skip={variables.skip || 0}
           total={count}
+          state={variables}
+          setNewState={setVariables}
         />
       </div>
     </SiteWrapper>
