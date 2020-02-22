@@ -40,8 +40,6 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
         <pre>{JSON.stringify(data, null, 2)}</pre>
         <Pagination
           total={data?.items.count}
-          take={take}
-          skip={skip}
           setNewState={setFilters}
           state={filters}
         />

@@ -14,8 +14,6 @@ const Users = () => {
       <div>
         <UsersTable />
         <Pagination
-          take={variables.take || 5}
-          skip={variables.skip || 0}
           total={count}
           state={variables}
           setNewState={setVariables}
