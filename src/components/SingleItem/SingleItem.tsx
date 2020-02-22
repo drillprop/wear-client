@@ -27,35 +27,34 @@ const SingleItem: React.FC<Props> = ({ title, item }) => {
   const isAdmin =
     meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
 
-  const genderCategories = item?.gender && getGenderCategories(item?.gender);
-  return (
-    <>
-      <SiteWrapper>
-        <ShopSideNav title={item?.gender} categories={genderCategories} />
-        <div>
-          <SiteSubtitle>{item?.category}</SiteSubtitle>
-          <SingleItemMain>
-            <SingleItemImg src={item?.imageUrl} alt={item?.name} />
-            <SingleItemInfo>
-              {isAdmin && <SingleItemEdit>Edit</SingleItemEdit>}
-              <SingleItemName>{item?.name}</SingleItemName>
-              <SingleItemDescription>{item?.description}</SingleItemDescription>
-              <SingleItemPrice>$ {item?.price}</SingleItemPrice>
-              <Select
-                label='Pick size'
-                placeHolder='SIZE'
-                onChange={() => null}
-                options={['S', 'M', 'L', 'XL', 'XXL']}
-              />
-              <AddToCart>
-                <CartIcon color={white} size={'1em'} />
-                add to cart
-              </AddToCart>
-            </SingleItemInfo>
-          </SingleItemMain>
-        </div>
-      </SiteWrapper>
-    </>
+  return item ? (
+    <SiteWrapper>
+      <ShopSideNav gender={item?.gender} />
+      <div>
+        <SiteSubtitle>{item?.category}</SiteSubtitle>
+        <SingleItemMain>
+          <SingleItemImg src={item?.imageUrl} alt={item?.name} />
+          <SingleItemInfo>
+            {isAdmin && <SingleItemEdit>Edit</SingleItemEdit>}
+            <SingleItemName>{item?.name}</SingleItemName>
+            <SingleItemDescription>{item?.description}</SingleItemDescription>
+            <SingleItemPrice>$ {item?.price}</SingleItemPrice>
+            <Select
+              label='Pick size'
+              placeHolder='SIZE'
+              onChange={() => null}
+              options={['S', 'M', 'L', 'XL', 'XXL']}
+            />
+            <AddToCart>
+              <CartIcon color={white} size={'1em'} />
+              add to cart
+            </AddToCart>
+          </SingleItemInfo>
+        </SingleItemMain>
+      </div>
+    </SiteWrapper>
+  ) : (
+    <div>no such item</div>
   );
 };
 
