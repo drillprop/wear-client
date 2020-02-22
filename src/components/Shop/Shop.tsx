@@ -17,7 +17,6 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
     whereGender: gender,
     whereCategory: category
   });
-  const { take, skip } = filters;
 
   const { data } = useItemsQuery({
     variables: { ...filters }
