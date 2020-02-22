@@ -9,7 +9,7 @@ export const SideNavWrapper = styled.div`
 
 export const SideNavSticky = styled.nav`
   @supports (position: sticky) {
-    top: 90px;
+    top: 140px;
     position: sticky;
   }
 `;
@@ -19,7 +19,6 @@ export const SideNavMainTitle = styled.h1`
   font-weight: 700;
   color: ${gray1};
   margin: 0;
-  margin-top: 40px;
   font-family: ${roboto};
   text-transform: uppercase;
 `;
