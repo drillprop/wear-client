@@ -20,43 +20,12 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
   const { take, skip } = filters;
 
   const { data } = useItemsQuery({
-    variables: {
-      ...filters
-    }
+    variables: { ...filters }
   });
 
   useEffect(() => {
-    setFilters({
-      ...filters,
-      whereCategory: category
-    });
+    setFilters({ ...filters, whereCategory: category });
   }, [category]);
-
-  const count = data?.items.count || 0;
-
-  useEffect(() => {
-    setFilters({
-      ...filters,
-      skip: take >= count ? Math.max(0, count - take) : skip
-    });
-  }, [take, count]);
-
-  const changePage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { textContent } = e.currentTarget;
-
-    if (textContent === '>') {
-      setFilters({
-        ...filters,
-        skip: count > skip + take ? skip + take : skip
-      });
-    }
-    if (textContent === '<') {
-      setFilters({
-        ...filters,
-        skip: Math.max(0, skip - take)
-      });
-    }
-  };
 
   return (
     <SiteWrapper>
@@ -73,7 +42,8 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
           total={data?.items.count}
           take={take}
           skip={skip}
-          changePage={changePage}
+          setNewState={setFilters}
+          state={filters}
         />
       </div>
     </SiteWrapper>
