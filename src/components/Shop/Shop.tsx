@@ -7,7 +7,7 @@ import ShopFilters from './shop/ShopFilters';
 
 interface Props {
   gender: Gender;
-  category?: Category;
+  category?: Category | null;
 }
 
 const Shop: React.FC<Props> = ({ gender, category }) => {
