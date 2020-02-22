@@ -1,5 +1,5 @@
 import React from 'react';
-import { Category } from '../../generated/types';
+import { Category, Gender } from '../../generated/types';
 import {
   SideNavItem,
   SideNavList,
@@ -7,20 +7,31 @@ import {
   SideNavSticky,
   SideNavWrapper
 } from '../../styles/sideNav.styles';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
+import getGenderCategories from '../../utils/getGenderCategories';
 
 interface Props {
-  title?: string;
-  categories?: Category[];
+  gender: Gender;
 }
 
-const ShopSideNav: React.FC<Props> = ({ title, categories }) => {
+const ShopSideNav: React.FC<Props> = ({ gender }) => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <SideNavMainTitle>{title}</SideNavMainTitle>
+        <SideNavMainTitle>{gender}</SideNavMainTitle>
         <SideNavList>
-          {categories?.map(category => (
-            <SideNavItem key={category}>{category}</SideNavItem>
+          {getGenderCategories(gender).map(category => (
+            <LinkAnchor
+              key={category}
+              href={{
+                pathname: `${gender.toLowerCase()}`,
+                query: {
+                  category: category.toLowerCase()
+                }
+              }}
+            >
+              <SideNavItem>{category}</SideNavItem>
+            </LinkAnchor>
           ))}
         </SideNavList>
       </SideNavSticky>
