@@ -7,7 +7,7 @@ interface Props {
   type: string;
   icon?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
+  value?: string | number;
   required?: boolean;
   name?: string;
   marginTop?: string;

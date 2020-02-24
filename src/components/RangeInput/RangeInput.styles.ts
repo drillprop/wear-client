@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { black, grays } from '../../styles/colors';
-import { roboto } from '../../styles/fonts';
+import { roboto, montserrat } from '../../styles/fonts';
 import { fontLevel1 } from '../../styles/fontSizes';
 
 export const rangeTrack = css`
@@ -35,18 +35,18 @@ export const RangeInputWrapper = styled.div<RangeInputWrapperInterface>`
   width: ${props => props.width};
 `;
 export const RangeValueAndInput = styled.div`
-  border: 1px solid ${grays[6]};
+  padding-left: 10px;
   display: flex;
 `;
 
-export const RangeValue = styled.div`
+export const RangeValue = styled.input`
   font-size: ${fontLevel1};
+  font-family: ${montserrat};
+  border: 0;
   color: ${grays[2]};
   height: 44px;
-  width: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 60px;
+  text-align: center;
 `;
 
 export const StyledRangeInput = styled.input`

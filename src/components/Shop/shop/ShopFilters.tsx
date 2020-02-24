@@ -15,15 +15,17 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters }) => {
   return (
     <ShopFiltersWrapper>
       <RangeInput
+        max={370}
         label={'price from'}
-        value={filters.priceFrom || 0}
+        value={filters.priceFrom || 370}
         onChange={e =>
           setFilters({ ...filters, priceFrom: parseInt(e.target.value) })
         }
       />
       <RangeInput
+        max={370}
         label={'price to'}
-        value={filters.priceTo || 0}
+        value={filters.priceTo || 370}
         onChange={e =>
           setFilters({ ...filters, priceTo: parseInt(e.target.value) })
         }
