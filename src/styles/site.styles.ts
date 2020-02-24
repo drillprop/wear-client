@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray2, gray3, gray6 } from './colors';
+import { grays } from './colors';
 import { roboto } from './fonts';
 import { fontLevel1, fontLevel6 } from './fontSizes';
 
@@ -21,7 +21,7 @@ export const SiteSubtitle = styled.h2`
   margin-top: 18px;
   position: relative;
   font-family: ${roboto};
-  color: ${gray2};
+  color: ${grays[2]};
   text-transform: uppercase;
   font-weight: 500;
   font-size: ${fontLevel6};
@@ -33,11 +33,11 @@ export const SiteSubtitle = styled.h2`
     position: absolute;
     width: 100%;
     height: 1px;
-    background-color: ${gray6};
+    background-color: ${grays[6]};
   }
 `;
 
 export const SiteParagraph = styled.p`
-  color: ${gray3};
+  color: ${grays[3]};
   font-size: ${fontLevel1};
 `;

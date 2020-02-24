@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
-import { gray1 } from '../../styles/colors';
+import { grays } from '../../styles/colors';
 
 interface FieldSetProps {
   marginTop: string;
@@ -14,7 +14,7 @@ export const RadioGroupFieldSet = styled.fieldset<FieldSetProps>`
   padding-left: 5px;
   margin-top: ${props => props.marginTop};
   width: ${props => props.width};
-  border: 2px solid ${gray1};
+  border: 2px solid ${grays[1]};
 `;
 
 export const RadioGroupLegend = styled.legend`
@@ -25,6 +25,6 @@ export const RadioGroupLegend = styled.legend`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontLevel2};
-  color: ${gray1};
+  color: ${grays[1]};
   text-transform: uppercase;
 `;

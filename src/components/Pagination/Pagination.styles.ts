@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, gray5 } from '../../styles/colors';
+import { black, grays } from '../../styles/colors';
 import { roboto } from '../../styles/fonts';
 import { fontLevel2 } from '../../styles/fontSizes';
 
@@ -10,8 +10,8 @@ export const PageNumbersWrapper = styled.div`
 `;
 
 export const PageNumber = styled.div`
-  border-top: 1px solid ${gray5};
-  border-bottom: 1px solid ${gray5};
+  border-top: 1px solid ${grays[5]};
+  border-bottom: 1px solid ${grays[5]};
   display: flex;
   justify-content: center;
   color: ${black};
@@ -25,7 +25,7 @@ export const NextPrevPage = styled.div`
   cursor: pointer;
   font-family: ${roboto};
   font-weight: bold;
-  border: 1px solid ${gray5};
+  border: 1px solid ${grays[5]};
   font-size: ${fontLevel2};
   display: flex;
   justify-content: center;

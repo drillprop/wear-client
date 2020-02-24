@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { gray1, gray6, gray7, gray8 } from './colors';
+import { grays } from './colors';
 import { montserrat, roboto } from './fonts';
 import { fontLevel1 } from './fontSizes';
 
 export const Table = styled.table`
   width: 100%;
   margin-top: 50px;
-  border: 1px solid ${gray6};
+  border: 1px solid ${grays[6]};
   border-spacing: 0px;
 `;
 
@@ -15,8 +15,8 @@ export const TableHead = styled.thead`
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
-  background-color: ${gray1};
-  color: ${gray6};
+  background-color: ${grays[1]};
+  color: ${grays[6]};
 `;
 
 export const TableHeadCell = styled.th`
@@ -31,10 +31,10 @@ export const TableBody = styled.tbody`
 export const TableBodyRow = styled.tr`
   cursor: pointer;
   &:nth-child(even) {
-    background-color: ${gray8};
+    background-color: ${grays[8]};
   }
   :hover {
-    background-color: ${gray7};
+    background-color: ${grays[7]};
   }
 `;
 

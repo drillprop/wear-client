@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray1, gray6, gray7, white } from '../../../../styles/colors';
+import { grays, white } from '../../../../styles/colors';
 import { montserrat, roboto } from '../../../../styles/fonts';
 import { fontLevel2 } from '../../../../styles/fontSizes';
 
@@ -21,7 +21,7 @@ export const TopLabel = styled.label`
   font-weight: 700;
   font-size: ${fontLevel2};
   margin-bottom: 5px;
-  color: ${gray1};
+  color: ${grays[1]};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -34,8 +34,8 @@ export const ImageBox = styled.div<{ imageUrl?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${gray6};
-  background-color: ${gray7};
+  border: 1px solid ${grays[6]};
+  background-color: ${grays[7]};
   background-position: center;
   background-size: cover;
   ${props => props.imageUrl && `background-image: url(${props.imageUrl});`};
@@ -45,11 +45,11 @@ export const FileInputLabel = styled.label<FileInputLabelProps>`
   height: 44px;
   width: 250px;
   background-color: ${white};
-  border: 1px solid ${gray6};
+  border: 1px solid ${grays[6]};
   font-family: ${montserrat};
   font-weight: 500;
   font-size: ${fontLevel2};
-  color: ${props => (props.highlight ? gray1 : '#757575')};
+  color: ${props => (props.highlight ? grays[1] : '#757575')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,7 +76,7 @@ export const DiscardImageButton = styled.div`
   z-index: 50;
   top: 20px;
   right: 20px;
-  border: 1px solid ${gray6};
+  border: 1px solid ${grays[6]};
   border-radius: 100%;
   width: 30px;
   height: 30px;
@@ -87,7 +87,7 @@ export const DiscardImageButton = styled.div`
     content: '';
     width: 13px;
     height: 1px;
-    background-color: ${gray1};
+    background-color: ${grays[1]};
   }
   ::before {
     transform: rotate(45deg);

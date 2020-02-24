@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray7, white } from '../../../../../styles/colors';
+import { grays, white } from '../../../../../styles/colors';
 
 export const DropDownWrapper = styled.div`
   display: none;
@@ -19,5 +19,5 @@ export const DropDownList = styled.ul`
 
 export const DropDownItem = styled.li<{ admin?: boolean }>`
   padding: 20px 0 22px 22px;
-  ${props => props.admin && `background-color: ${gray7}`};
+  ${props => props.admin && `background-color: ${grays[7]}`};
 `;

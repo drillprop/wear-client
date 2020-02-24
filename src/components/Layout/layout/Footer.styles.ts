@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { roboto } from '../../../styles/fonts';
 import { fontLevel1, fontLevel2 } from '../../../styles/fontSizes';
-import { gray7, gray6 } from '../../../styles/colors';
+import { grays } from '../../../styles/colors';
 
 export const FooterWrapper = styled.footer`
   margin-top: 90px;
   padding: 40px;
   display: grid;
-  background-color: ${gray7};
+  background-color: ${grays[7]};
   grid-gap: 50px;
   grid-template-rows: 1fr auto;
 `;

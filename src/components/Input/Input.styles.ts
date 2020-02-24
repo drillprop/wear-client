@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray1, gray4, gray6 } from '../../styles/colors';
+import { grays } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel1, fontLevel2 } from '../../styles/fontSizes';
 
@@ -13,7 +13,7 @@ export const StyledLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
-  color: ${props => (props.small ? gray4 : gray1)};
+  color: ${props => (props.small ? grays[4] : grays[1])};
   margin-bottom: 5px;
   display: block;
   cursor: pointer;
@@ -40,7 +40,7 @@ export const StyledInput = styled.input<{ small?: boolean }>`
   margin: 0;
   padding-left: 40px;
   border: ${props =>
-    props.small ? `1px solid ${gray6}` : `2px solid ${gray1}`};
+    props.small ? `1px solid ${grays[6]}` : `2px solid ${grays[1]}`};
   font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
   font-family: ${montserrat};
 `;

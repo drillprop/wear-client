@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { gray1, gray3, gray4, gray6, gray8, white } from '../../styles/colors';
+import { grays, white } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
 import { fontLevel1, fontLevel2 } from '../../styles/fontSizes';
 
@@ -13,7 +13,7 @@ const arrowUp = (small?: boolean) => css`
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid ${small ? gray3 : gray1};
+    border-bottom: 5px solid ${small ? grays[3] : grays[1]};
   }
 `;
 
@@ -26,7 +26,7 @@ const arrowDown = (small?: boolean) => css`
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid ${small ? gray3 : gray1};
+    border-top: 5px solid ${small ? grays[3] : grays[1]};
   }
 `;
 
@@ -41,7 +41,7 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-weight: 700;
   margin-bottom: 5px;
   font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
-  color: ${props => (props.small ? gray4 : gray1)};
+  color: ${props => (props.small ? grays[4] : grays[1])};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -69,7 +69,9 @@ export const CustomSelect = styled.div<{ small?: boolean }>`
   width: 100%;
   margin: 0;
   box-shadow: ${props =>
-    props.small ? `inset 0 0 0 1px ${gray6};` : `inset 0 0 0 2px ${gray1}`};
+    props.small
+      ? `inset 0 0 0 1px ${grays[6]};`
+      : `inset 0 0 0 2px ${grays[1]}`};
   font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
 `;
 
@@ -94,8 +96,8 @@ export const PlaceHolder = styled.span`
 `;
 
 export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
-  border-left: 1px solid ${gray6};
-  border-right: 1px solid ${gray6};
+  border-left: 1px solid ${grays[6]};
+  border-right: 1px solid ${grays[6]};
   border-top: none;
   background-color: ${white};
   position: relative;
@@ -108,14 +110,14 @@ export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
   font-family: ${montserrat};
   font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
   &:nth-of-type(odd) {
-    background-color: ${gray8};
-    ${props => props.highlight && `background-color: ${gray6};`};
+    background-color: ${grays[8]};
+    ${props => props.highlight && `background-color: ${grays[6]};`};
   }
   :hover {
-    background-color: ${gray6};
+    background-color: ${grays[6]};
   }
   :last-of-type {
-    border-bottom: 1px solid ${gray6};
+    border-bottom: 1px solid ${grays[6]};
   }
-  ${props => props.highlight && `background-color: ${gray6};`};
+  ${props => props.highlight && `background-color: ${grays[6]};`};
 `;

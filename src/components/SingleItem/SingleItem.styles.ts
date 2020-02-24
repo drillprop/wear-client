@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, gray3, gray5, white } from '../../styles/colors';
+import { black, white, grays } from '../../styles/colors';
 import { montserrat } from '../../styles/fonts';
 import {
   fontLevel2,
@@ -30,7 +30,7 @@ export const SingleItemInfo = styled.section`
 
 export const SingleItemEdit = styled.span`
   position: absolute;
-  color: ${gray5};
+  color: ${grays[5]};
   font-size: ${fontLevel2};
 `;
 
@@ -42,7 +42,7 @@ export const SingleItemName = styled.h1`
 `;
 export const SingleItemDescription = styled.p`
   font-size: ${fontLevel3};
-  color: ${gray3};
+  color: ${grays[3]};
   margin: 0;
   margin-top: 40px;
   line-height: 1.8;
