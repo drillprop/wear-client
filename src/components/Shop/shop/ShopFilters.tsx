@@ -3,6 +3,7 @@ import { Gender, ItemsQueryVariables } from '../../../generated/types';
 import Input from '../../Input/Input';
 import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
+import RangeInput from '../../RangeInput/RangeInput';
 
 interface Props {
   setFilters: any;
@@ -13,6 +14,20 @@ interface Props {
 const ShopFilters: React.FC<Props> = ({ setFilters, filters }) => {
   return (
     <ShopFiltersWrapper>
+      <RangeInput
+        label={'price from'}
+        value={filters.priceFrom || 0}
+        onChange={e =>
+          setFilters({ ...filters, priceFrom: parseInt(e.target.value) })
+        }
+      />
+      <RangeInput
+        label={'price to'}
+        value={filters.priceTo || 0}
+        onChange={e =>
+          setFilters({ ...filters, priceTo: parseInt(e.target.value) })
+        }
+      />
       <Input
         label='search item by name'
         name='name'
