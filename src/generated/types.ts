@@ -76,6 +76,8 @@ export type ItemsAndCount = {
    __typename?: 'ItemsAndCount',
   select: Array<Maybe<Item>>,
   count: Scalars['Int'],
+  maxPrice?: Maybe<Scalars['Float']>,
+  minPrice?: Maybe<Scalars['Float']>,
 };
 
 export type LoginInput = {
@@ -502,7 +504,7 @@ export type ItemsQuery = (
   { __typename?: 'Query' }
   & { items: (
     { __typename?: 'ItemsAndCount' }
-    & Pick<ItemsAndCount, 'count'>
+    & Pick<ItemsAndCount, 'minPrice' | 'maxPrice' | 'count'>
     & { select: Array<Maybe<(
       { __typename?: 'Item' }
       & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
@@ -937,7 +939,6 @@ export type UpdatePersonalInfoMutationOptions = ApolloReactCommon.BaseMutationOp
 export const ItemsDocument = gql`
     query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender) {
   items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender}) {
-    count
     select {
       id
       name
@@ -948,6 +949,9 @@ export const ItemsDocument = gql`
       createdAt
       updatedAt
     }
+    minPrice
+    maxPrice
+    count
   }
 }
     `;

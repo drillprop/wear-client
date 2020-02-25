@@ -27,7 +27,6 @@ export default gql`
         gender: $gender
       }
     ) {
-      count
       select {
         id
         name
@@ -38,6 +37,9 @@ export default gql`
         createdAt
         updatedAt
       }
+      minPrice
+      maxPrice
+      count
     }
   }
 `;
