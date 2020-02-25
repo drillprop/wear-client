@@ -6,7 +6,7 @@ export default gql`
     $take: Int
     $skip: Int
     $sortBy: String
-    $desc: Boolean
+    $sortOrder: SortOrder
     $priceFrom: Float
     $priceTo: Float
     $name: String
@@ -19,7 +19,7 @@ export default gql`
         take: $take
         skip: $skip
         sortBy: $sortBy
-        desc: $desc
+        sortOrder: $sortOrder
         priceFrom: $priceFrom
         priceTo: $priceTo
         name: $name

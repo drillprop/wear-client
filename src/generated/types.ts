@@ -261,7 +261,7 @@ export type SearchInput = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
 };
 
 export type SearchItemInput = {
@@ -269,7 +269,7 @@ export type SearchItemInput = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
   priceFrom?: Maybe<Scalars['Float']>,
   priceTo?: Maybe<Scalars['Float']>,
   name?: Maybe<Scalars['String']>,
@@ -282,7 +282,7 @@ export type SearchOrdersInput = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
   status?: Maybe<OrderStatus>,
 };
 
@@ -291,12 +291,17 @@ export type SearchUserInput = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
   role?: Maybe<UserRole>,
   email?: Maybe<Scalars['String']>,
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
 };
+
+export enum SortOrder {
+  Asc = 'ASC',
+  Desc = 'DESC'
+}
 
 export type SuccessMessage = {
    __typename?: 'SuccessMessage',
@@ -491,7 +496,7 @@ export type ItemsQueryVariables = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
   priceFrom?: Maybe<Scalars['Float']>,
   priceTo?: Maybe<Scalars['Float']>,
   name?: Maybe<Scalars['String']>,
@@ -565,7 +570,7 @@ export type UsersQueryVariables = {
   take?: Maybe<Scalars['Int']>,
   skip?: Maybe<Scalars['Int']>,
   sortBy?: Maybe<Scalars['String']>,
-  desc?: Maybe<Scalars['Boolean']>,
+  sortOrder?: Maybe<SortOrder>,
   role?: Maybe<UserRole>,
   email?: Maybe<Scalars['String']>,
   firstName?: Maybe<Scalars['String']>,
@@ -937,8 +942,8 @@ export type UpdatePersonalInfoMutationHookResult = ReturnType<typeof useUpdatePe
 export type UpdatePersonalInfoMutationResult = ApolloReactCommon.MutationResult<UpdatePersonalInfoMutation>;
 export type UpdatePersonalInfoMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>;
 export const ItemsDocument = gql`
-    query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $desc: Boolean, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender) {
-  items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, desc: $desc, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender}) {
+    query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $sortOrder: SortOrder, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender) {
+  items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, sortOrder: $sortOrder, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender}) {
     select {
       id
       name
@@ -971,7 +976,7 @@ export const ItemsDocument = gql`
  *      take: // value for 'take'
  *      skip: // value for 'skip'
  *      sortBy: // value for 'sortBy'
- *      desc: // value for 'desc'
+ *      sortOrder: // value for 'sortOrder'
  *      priceFrom: // value for 'priceFrom'
  *      priceTo: // value for 'priceTo'
  *      name: // value for 'name'
@@ -1131,8 +1136,8 @@ export type SingleUserQueryHookResult = ReturnType<typeof useSingleUserQuery>;
 export type SingleUserLazyQueryHookResult = ReturnType<typeof useSingleUserLazyQuery>;
 export type SingleUserQueryResult = ApolloReactCommon.QueryResult<SingleUserQuery, SingleUserQueryVariables>;
 export const UsersDocument = gql`
-    query Users($id: ID, $take: Int, $skip: Int, $sortBy: String, $desc: Boolean, $role: UserRole, $email: String, $firstName: String, $lastName: String) {
-  users(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, desc: $desc, role: $role, email: $email, firstName: $firstName, lastName: $lastName}) {
+    query Users($id: ID, $take: Int, $skip: Int, $sortBy: String, $sortOrder: SortOrder, $role: UserRole, $email: String, $firstName: String, $lastName: String) {
+  users(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, sortOrder: $sortOrder, role: $role, email: $email, firstName: $firstName, lastName: $lastName}) {
     count
     select {
       id
@@ -1165,7 +1170,7 @@ export const UsersDocument = gql`
  *      take: // value for 'take'
  *      skip: // value for 'skip'
  *      sortBy: // value for 'sortBy'
- *      desc: // value for 'desc'
+ *      sortOrder: // value for 'sortOrder'
  *      role: // value for 'role'
  *      email: // value for 'email'
  *      firstName: // value for 'firstName'

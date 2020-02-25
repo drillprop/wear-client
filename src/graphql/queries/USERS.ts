@@ -6,7 +6,7 @@ export default gql`
     $take: Int
     $skip: Int
     $sortBy: String
-    $desc: Boolean
+    $sortOrder: SortOrder
     $role: UserRole
     $email: String
     $firstName: String
@@ -18,7 +18,7 @@ export default gql`
         take: $take
         skip: $skip
         sortBy: $sortBy
-        desc: $desc
+        sortOrder: $sortOrder
         role: $role
         email: $email
         firstName: $firstName
