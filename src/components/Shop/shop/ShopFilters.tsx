@@ -20,7 +20,10 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
         label={'price from'}
         value={filters.priceFrom || 0}
         onChange={e =>
-          setFilters({ ...filters, priceFrom: parseInt(e.target.value) })
+          setFilters({
+            ...filters,
+            priceFrom: Math.min(parseInt(e.target.value), filters.priceTo || 0)
+          })
         }
       />
       <RangeInput
@@ -28,7 +31,10 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
         label={'price to'}
         value={filters.priceTo || maxPrice}
         onChange={e =>
-          setFilters({ ...filters, priceTo: parseInt(e.target.value) })
+          setFilters({
+            ...filters,
+            priceTo: Math.max(parseInt(e.target.value), filters.priceFrom || 0)
+          })
         }
       />
       <Input
