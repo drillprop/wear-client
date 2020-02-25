@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Category, Gender, useItemsQuery } from '../../generated/types';
+import {
+  Category,
+  Gender,
+  useItemsQuery,
+  SortOrder
+} from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import Pagination from '../Pagination/Pagination';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
@@ -15,7 +20,9 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
     take: 5,
     skip: 0,
     gender,
-    category
+    category,
+    sortBy: 'created_at',
+    sortOrder: SortOrder.Desc
   });
 
   const { data } = useItemsQuery({

@@ -1,6 +1,10 @@
 import debounce from 'lodash.debounce';
 import React, { useEffect, useState } from 'react';
-import { Gender, ItemsQueryVariables } from '../../../generated/types';
+import {
+  Gender,
+  ItemsQueryVariables,
+  SortOrder
+} from '../../../generated/types';
 import Input from '../../Input/Input';
 import RangeInput from '../../RangeInput/RangeInput';
 import Select from '../../Select/Select';
@@ -13,15 +17,14 @@ interface Props {
   maxPrice: number;
 }
 
+type SortType = 'newest' | 'lowest price' | 'highest price';
+
 const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
   const [priceRange, setPriceRange] = useState({
     priceFrom: 0,
     priceTo: 0
   });
-
-  const debounceSetFilters = debounce((filters: ItemsQueryVariables) => {
-    setFilters({ ...filters });
-  }, 300);
+  const [sortValue, setSortValue] = useState<SortType>('newest');
 
   useEffect(() => {
     debounceSetFilters({
@@ -35,6 +38,24 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
     setPriceRange({ priceFrom: 0, priceTo: maxPrice });
   }, [maxPrice]);
 
+  const debounceSetFilters = debounce((filters: ItemsQueryVariables) => {
+    setFilters({ ...filters });
+  }, 300);
+
+  const handleSort = (sort: SortType) => {
+    if (sort === 'newest')
+      setFilters({
+        ...filters,
+        sortBy: 'created_at',
+        sortOrder: SortOrder.Desc
+      });
+    else if (sort === 'lowest price')
+      setFilters({ ...filters, sortBy: 'price', sortOrder: SortOrder.Asc });
+    else if (sort === 'highest price')
+      setFilters({ ...filters, sortBy: 'price', sortOrder: SortOrder.Desc });
+
+    setSortValue(sort);
+  };
   return (
     <ShopFiltersWrapper>
       <RangeInput
@@ -82,6 +103,14 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
         value={filters.take}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
+        small
+      />
+      <Select
+        label='sort by'
+        value={sortValue}
+        placeHolder='name'
+        options={['newest', 'lowest price', 'highest price']}
+        onChange={handleSort}
         small
       />
     </ShopFiltersWrapper>

@@ -15,7 +15,7 @@ interface Props {
   label: string;
   icon?: string;
   placeHolder?: string;
-  onChange: (val?: string | null) => void;
+  onChange: (val: any) => void;
   value?: string | number | null;
   small?: boolean;
 }
