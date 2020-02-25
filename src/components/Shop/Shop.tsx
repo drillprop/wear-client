@@ -3,12 +3,14 @@ import {
   Category,
   Gender,
   useItemsQuery,
-  SortOrder
+  SortOrder,
+  ItemsQueryVariables
 } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import Pagination from '../Pagination/Pagination';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import ShopFilters from './shop/ShopFilters';
+import debounce from 'lodash.debounce';
 
 interface Props {
   gender: Gender;
@@ -16,7 +18,7 @@ interface Props {
 }
 
 const Shop: React.FC<Props> = ({ gender, category }) => {
-  const [filters, setFilters] = useState({
+  const [variables, setVariables] = useState<ItemsQueryVariables>({
     take: 5,
     skip: 0,
     gender,
@@ -25,12 +27,17 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
     sortOrder: SortOrder.Desc
   });
 
+  const debouncedSetFilters = debounce(
+    (variables: ItemsQueryVariables) => setVariables(variables),
+    300
+  );
+
   const { data } = useItemsQuery({
-    variables: { ...filters }
+    variables: { ...variables }
   });
 
   useEffect(() => {
-    setFilters({ ...filters, category });
+    setVariables({ ...variables, category });
   }, [category]);
 
   return (
@@ -40,15 +47,15 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
         <SiteSubtitle>shop</SiteSubtitle>
         <ShopFilters
           maxPrice={data?.items.maxPrice || 0}
-          filters={filters}
-          setFilters={setFilters}
+          variables={variables}
+          setVariables={debouncedSetFilters}
           gender={gender}
         />
         <pre>{JSON.stringify(data, null, 2)}</pre>
         <Pagination
           total={data?.items.count}
-          setNewState={setFilters}
-          state={filters}
+          setNewState={setVariables}
+          state={variables}
         />
       </div>
     </SiteWrapper>

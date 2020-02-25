@@ -1,4 +1,3 @@
-import debounce from 'lodash.debounce';
 import React, { useEffect, useState } from 'react';
 import {
   Gender,
@@ -11,49 +10,53 @@ import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
 
 interface Props {
-  setFilters: any;
-  filters: ItemsQueryVariables;
+  setVariables: any;
+  variables: ItemsQueryVariables;
   gender: Gender;
   maxPrice: number;
 }
 
 type SortType = 'newest' | 'lowest price' | 'highest price';
 
-const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
-  const [priceRange, setPriceRange] = useState({
+const ShopFilters: React.FC<Props> = ({
+  setVariables,
+  variables,
+  maxPrice
+}) => {
+  const [filtersState, setFiltersState] = useState({
     priceFrom: 0,
-    priceTo: 0
+    priceTo: 0,
+    name: ''
   });
   const [sortValue, setSortValue] = useState<SortType>('newest');
 
   useEffect(() => {
-    debounceSetFilters({
-      ...filters,
-      ...priceRange
+    setVariables({
+      ...variables,
+      ...filtersState
     });
-    return () => debounceSetFilters.cancel();
-  }, [priceRange]);
+    return () => setVariables.cancel();
+  }, [filtersState]);
 
   useEffect(() => {
-    setPriceRange({ priceFrom: 0, priceTo: maxPrice });
+    setFiltersState({ ...filtersState, priceTo: maxPrice });
   }, [maxPrice]);
-
-  const debounceSetFilters = debounce((filters: ItemsQueryVariables) => {
-    setFilters({ ...filters });
-  }, 300);
 
   const handleSort = (sort: SortType) => {
     if (sort === 'newest')
-      setFilters({
-        ...filters,
+      setVariables({
+        ...variables,
         sortBy: 'created_at',
         sortOrder: SortOrder.Desc
       });
     else if (sort === 'lowest price')
-      setFilters({ ...filters, sortBy: 'price', sortOrder: SortOrder.Asc });
+      setVariables({ ...variables, sortBy: 'price', sortOrder: SortOrder.Asc });
     else if (sort === 'highest price')
-      setFilters({ ...filters, sortBy: 'price', sortOrder: SortOrder.Desc });
-
+      setVariables({
+        ...variables,
+        sortBy: 'price',
+        sortOrder: SortOrder.Desc
+      });
     setSortValue(sort);
   };
   return (
@@ -61,32 +64,32 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
       <RangeInput
         max={maxPrice}
         label={'price from'}
-        value={priceRange.priceFrom}
+        value={filtersState.priceFrom}
         onChange={e =>
-          setPriceRange({
-            ...priceRange,
-            priceFrom: Math.min(parseInt(e.target.value), priceRange.priceTo)
+          setFiltersState({
+            ...filtersState,
+            priceFrom: Math.min(parseInt(e.target.value), filtersState.priceTo)
           })
         }
       />
       <RangeInput
         max={maxPrice}
         label={'price to'}
-        value={priceRange.priceTo}
+        value={filtersState.priceTo}
         onChange={e =>
-          setPriceRange({
-            ...priceRange,
-            priceTo: Math.max(parseInt(e.target.value), priceRange.priceFrom)
+          setFiltersState({
+            ...filtersState,
+            priceTo: Math.max(parseInt(e.target.value), filtersState.priceFrom)
           })
         }
       />
       <Input
         label='search item by name'
         name='name'
-        value={filters.name ? filters.name : ''}
+        value={filtersState.name}
         onChange={e =>
-          setFilters({
-            ...filters,
+          setFiltersState({
+            ...filtersState,
             name: e.target.value
           })
         }
@@ -98,9 +101,9 @@ const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
       <Select
         label='items per page'
         onChange={take =>
-          take && setFilters({ ...filters, take: parseInt(take) })
+          take && setVariables({ ...variables, take: parseInt(take) })
         }
-        value={filters.take}
+        value={variables.take}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
         small
