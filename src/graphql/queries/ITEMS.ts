@@ -37,7 +37,6 @@ export default gql`
         createdAt
         updatedAt
       }
-      minPrice
       maxPrice
       count
     }

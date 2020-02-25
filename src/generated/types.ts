@@ -504,7 +504,7 @@ export type ItemsQuery = (
   { __typename?: 'Query' }
   & { items: (
     { __typename?: 'ItemsAndCount' }
-    & Pick<ItemsAndCount, 'minPrice' | 'maxPrice' | 'count'>
+    & Pick<ItemsAndCount, 'maxPrice' | 'count'>
     & { select: Array<Maybe<(
       { __typename?: 'Item' }
       & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
@@ -949,7 +949,6 @@ export const ItemsDocument = gql`
       createdAt
       updatedAt
     }
-    minPrice
     maxPrice
     count
   }
