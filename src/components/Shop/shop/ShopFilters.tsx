@@ -1,9 +1,10 @@
-import React from 'react';
+import debounce from 'lodash.debounce';
+import React, { useEffect, useState } from 'react';
 import { Gender, ItemsQueryVariables } from '../../../generated/types';
 import Input from '../../Input/Input';
+import RangeInput from '../../RangeInput/RangeInput';
 import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
-import RangeInput from '../../RangeInput/RangeInput';
 
 interface Props {
   setFilters: any;
@@ -13,27 +14,48 @@ interface Props {
 }
 
 const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
+  const [priceRange, setPriceRange] = useState({
+    priceFrom: 0,
+    priceTo: 0
+  });
+
+  const debounceSetFilters = debounce((filters: ItemsQueryVariables) => {
+    setFilters({ ...filters });
+  }, 300);
+
+  useEffect(() => {
+    debounceSetFilters({
+      ...filters,
+      ...priceRange
+    });
+    return () => debounceSetFilters.cancel();
+  }, [priceRange]);
+
+  useEffect(() => {
+    setPriceRange({ priceFrom: 0, priceTo: maxPrice });
+  }, [maxPrice]);
+
   return (
     <ShopFiltersWrapper>
       <RangeInput
         max={maxPrice}
         label={'price from'}
-        value={filters.priceFrom || 0}
+        value={priceRange.priceFrom}
         onChange={e =>
-          setFilters({
-            ...filters,
-            priceFrom: Math.min(parseInt(e.target.value), filters.priceTo || 0)
+          setPriceRange({
+            ...priceRange,
+            priceFrom: Math.min(parseInt(e.target.value), priceRange.priceTo)
           })
         }
       />
       <RangeInput
         max={maxPrice}
         label={'price to'}
-        value={filters.priceTo || maxPrice}
+        value={priceRange.priceTo}
         onChange={e =>
-          setFilters({
-            ...filters,
-            priceTo: Math.max(parseInt(e.target.value), filters.priceFrom || 0)
+          setPriceRange({
+            ...priceRange,
+            priceTo: Math.max(parseInt(e.target.value), priceRange.priceFrom)
           })
         }
       />
