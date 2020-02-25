@@ -9,23 +9,24 @@ interface Props {
   setFilters: any;
   filters: ItemsQueryVariables;
   gender: Gender;
+  maxPrice: number;
 }
 
-const ShopFilters: React.FC<Props> = ({ setFilters, filters }) => {
+const ShopFilters: React.FC<Props> = ({ setFilters, filters, maxPrice }) => {
   return (
     <ShopFiltersWrapper>
       <RangeInput
-        max={370}
+        max={maxPrice}
         label={'price from'}
-        value={filters.priceFrom || 370}
+        value={filters.priceFrom || 0}
         onChange={e =>
           setFilters({ ...filters, priceFrom: parseInt(e.target.value) })
         }
       />
       <RangeInput
-        max={370}
+        max={maxPrice}
         label={'price to'}
-        value={filters.priceTo || 370}
+        value={filters.priceTo || maxPrice}
         onChange={e =>
           setFilters({ ...filters, priceTo: parseInt(e.target.value) })
         }

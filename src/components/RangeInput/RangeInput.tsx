@@ -1,10 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import {
   RangeInputLabel,
   RangeInputWrapper,
   RangeValue,
-  StyledRangeInput,
-  RangeValueAndInput
+  RangeValueAndInput,
+  StyledRangeInput
 } from './RangeInput.styles';
 
 interface Props {
@@ -25,7 +25,7 @@ const RangeInput: React.FC<Props> = ({
   value = 0,
   onChange,
   name,
-  max = 100,
+  max,
   placeholder
 }) => {
   return (
@@ -34,7 +34,6 @@ const RangeInput: React.FC<Props> = ({
       <RangeValueAndInput>
         <StyledRangeInput
           name={name}
-          min={0}
           max={max}
           id={label}
           value={value}
@@ -43,7 +42,6 @@ const RangeInput: React.FC<Props> = ({
         />
         <RangeValue
           type='number'
-          min={0}
           max={max}
           onChange={onChange}
           placeholder={placeholder}

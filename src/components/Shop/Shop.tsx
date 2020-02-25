@@ -32,6 +32,7 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
       <div>
         <SiteSubtitle>shop</SiteSubtitle>
         <ShopFilters
+          maxPrice={data?.items.maxPrice || 0}
           filters={filters}
           setFilters={setFilters}
           gender={gender}
