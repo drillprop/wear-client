@@ -31,6 +31,7 @@ const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
       href={{
         pathname: `/${gender.toLowerCase()}/item`,
         query: {
+          category: category.toLowerCase(),
           id
         }
       }}

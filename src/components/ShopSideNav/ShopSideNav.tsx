@@ -9,29 +9,35 @@ import {
 } from '../../styles/sideNav.styles';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import getGenderCategories from '../../utils/getGenderCategories';
+import { useRouter } from 'next/router';
 
 interface Props {
   gender: Gender;
 }
 
 const ShopSideNav: React.FC<Props> = ({ gender }) => {
+  const { query } = useRouter();
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <SideNavMainTitle>{gender}</SideNavMainTitle>
+        <SideNavMainTitle>
+          <LinkAnchor href={gender.toLowerCase()}>{gender}</LinkAnchor>
+        </SideNavMainTitle>
         <SideNavList>
           {getGenderCategories(gender).map(category => (
-            <LinkAnchor
-              key={category}
-              href={{
-                pathname: `${gender.toLowerCase()}`,
-                query: {
-                  category: category.toLowerCase()
-                }
-              }}
-            >
-              <SideNavItem>{category}</SideNavItem>
-            </LinkAnchor>
+            <SideNavItem key={category}>
+              <LinkAnchor
+                queryHighlight={query.category === category.toLowerCase()}
+                href={{
+                  pathname: `/${gender.toLowerCase()}`,
+                  query: {
+                    category: category.toLowerCase()
+                  }
+                }}
+              >
+                {category}
+              </LinkAnchor>
+            </SideNavItem>
           ))}
         </SideNavList>
       </SideNavSticky>
