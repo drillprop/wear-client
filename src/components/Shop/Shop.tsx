@@ -11,6 +11,7 @@ import Pagination from '../Pagination/Pagination';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import ShopFilters from './shop/ShopFilters';
 import debounce from 'lodash.debounce';
+import Products from './shop/Products';
 
 interface Props {
   gender: Gender;
@@ -51,7 +52,7 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
           setVariables={debouncedSetFilters}
           gender={gender}
         />
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <Products items={data?.items.select || []} />
         <Pagination
           total={data?.items.count}
           setNewState={setVariables}
