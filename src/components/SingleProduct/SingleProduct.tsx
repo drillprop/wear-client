@@ -2,27 +2,26 @@ import React from 'react';
 import { SingleItemQuery, useMeQuery, UserRole } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
-import getGenderCategories from '../../utils/getGenderCategories';
 import CartIcon from '../CartIcon/CartIcon';
 import Select from '../Select/Select';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import {
   AddToCart,
-  SingleItemDescription,
-  SingleItemEdit,
-  SingleItemImg,
-  SingleItemInfo,
-  SingleItemMain,
-  SingleItemName,
-  SingleItemPrice
-} from './SingleItem.styles';
+  SingleProductDescription,
+  SingleProductEdit,
+  SingleProductImg,
+  SingleProductInfo,
+  SingleProductMain,
+  SingleProductName,
+  SingleProductPrice
+} from './SingleProduct.styles';
 
 interface Props {
   title?: string;
   item?: SingleItemQuery['item'];
 }
 
-const SingleItem: React.FC<Props> = ({ title, item }) => {
+const SingleProduct: React.FC<Props> = ({ title, item }) => {
   const meQuery = useMeQuery();
   const isAdmin =
     meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
@@ -32,13 +31,15 @@ const SingleItem: React.FC<Props> = ({ title, item }) => {
       <ShopSideNav gender={item?.gender} />
       <div>
         <SiteSubtitle>{item?.category}</SiteSubtitle>
-        <SingleItemMain>
-          <SingleItemImg src={item?.imageUrl} alt={item?.name} />
-          <SingleItemInfo>
-            {isAdmin && <SingleItemEdit>Edit</SingleItemEdit>}
-            <SingleItemName>{item?.name}</SingleItemName>
-            <SingleItemDescription>{item?.description}</SingleItemDescription>
-            <SingleItemPrice>$ {item?.price}</SingleItemPrice>
+        <SingleProductMain>
+          <SingleProductImg src={item?.imageUrl} alt={item?.name} />
+          <SingleProductInfo>
+            {isAdmin && <SingleProductEdit>Edit</SingleProductEdit>}
+            <SingleProductName>{item?.name}</SingleProductName>
+            <SingleProductDescription>
+              {item?.description}
+            </SingleProductDescription>
+            <SingleProductPrice>$ {item?.price}</SingleProductPrice>
             <Select
               label='Pick size'
               placeHolder='SIZE'
@@ -49,8 +50,8 @@ const SingleItem: React.FC<Props> = ({ title, item }) => {
               <CartIcon color={white} size={'1em'} />
               add to cart
             </AddToCart>
-          </SingleItemInfo>
-        </SingleItemMain>
+          </SingleProductInfo>
+        </SingleProductMain>
       </div>
     </SiteWrapper>
   ) : (
@@ -58,4 +59,4 @@ const SingleItem: React.FC<Props> = ({ title, item }) => {
   );
 };
 
-export default SingleItem;
+export default SingleProduct;

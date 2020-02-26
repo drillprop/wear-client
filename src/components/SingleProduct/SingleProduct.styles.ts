@@ -8,39 +8,39 @@ import {
   fontLevel7
 } from '../../styles/fontSizes';
 
-export const SingleItemMain = styled.div`
+export const SingleProductMain = styled.div`
   margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, auto));
   gap: 40px;
 `;
 
-export const SingleItemImg = styled.img`
+export const SingleProductImg = styled.img`
   height: 500px;
   max-width: 100%;
   object-fit: cover;
 `;
 
-export const SingleItemInfo = styled.section`
+export const SingleProductInfo = styled.section`
   position: relative;
   display: grid;
   align-items: start;
   height: 500px;
 `;
 
-export const SingleItemEdit = styled.span`
+export const SingleProductEdit = styled.span`
   position: absolute;
   color: ${grays[5]};
   font-size: ${fontLevel2};
 `;
 
-export const SingleItemName = styled.h1`
+export const SingleProductName = styled.h1`
   font-size: ${fontLevel6};
   margin: 0;
   align-self: end;
   text-transform: uppercase;
 `;
-export const SingleItemDescription = styled.p`
+export const SingleProductDescription = styled.p`
   font-size: ${fontLevel3};
   color: ${grays[3]};
   margin: 0;
@@ -48,7 +48,7 @@ export const SingleItemDescription = styled.p`
   line-height: 1.8;
 `;
 
-export const SingleItemPrice = styled.div`
+export const SingleProductPrice = styled.div`
   font-size: ${fontLevel7};
 `;
 
