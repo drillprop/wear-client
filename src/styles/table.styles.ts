@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { grays } from './colors';
 import { montserrat, roboto } from './fonts';
-import { fontLevel1 } from './fontSizes';
+import fontSizes from './fontSizes';
 
 export const Table = styled.table`
   width: 100%;
@@ -11,7 +11,7 @@ export const Table = styled.table`
 `;
 
 export const TableHead = styled.thead`
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
@@ -24,7 +24,7 @@ export const TableHeadCell = styled.th`
 `;
 
 export const TableBody = styled.tbody`
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   font-family: ${montserrat};
 `;
 

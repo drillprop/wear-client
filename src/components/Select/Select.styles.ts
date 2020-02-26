@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { grays, white } from '../../styles/colors';
 import { montserrat, roboto } from '../../styles/fonts';
-import { fontLevel1, fontLevel2 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 
 const arrowUp = (small?: boolean) => css`
   ::after {
@@ -40,7 +40,7 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-family: ${roboto};
   font-weight: 700;
   margin-bottom: 5px;
-  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
   color: ${props => (props.small ? grays[4] : grays[1])};
   display: block;
   cursor: pointer;
@@ -72,7 +72,7 @@ export const CustomSelect = styled.div<{ small?: boolean }>`
     props.small
       ? `inset 0 0 0 1px ${grays[6]};`
       : `inset 0 0 0 2px ${grays[1]}`};
-  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
 `;
 
 export const CustomSelectedOption = styled.div<{
@@ -84,7 +84,7 @@ export const CustomSelectedOption = styled.div<{
   display: flex;
   align-items: center;
   font-family: ${montserrat};
-  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
   padding-left: 40px;
   width: 100%;
   ${props => (props.active ? arrowUp(props.small) : arrowDown(props.small))};
@@ -108,7 +108,7 @@ export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
   align-items: center;
   width: calc(100%);
   font-family: ${montserrat};
-  font-size: ${props => (props.small ? fontLevel1 : fontLevel2)};
+  font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
   &:nth-of-type(odd) {
     background-color: ${grays[8]};
     ${props => props.highlight && `background-color: ${grays[6]};`};

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../../styles/fonts';
-import { fontLevel10, fontLevel2 } from '../../../styles/fontSizes';
+import fontSizes from '../../../styles/fontSizes';
 import { black, white } from '../../../styles/colors';
 
 export const HeaderWrapper = styled.header`
@@ -23,7 +23,7 @@ export const Logo = styled.div`
   color: ${black};
   font-weight: 700;
   margin: 0;
-  font-size: ${fontLevel10};
+  font-size: ${fontSizes[9]};
   font-style: italic;
 `;
 
@@ -43,7 +43,7 @@ export const Ul = styled.ul`
   font-weight: 400;
   letter-spacing: 2px;
   display: flex;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   justify-content: space-between;
   :first-child {
     font-weight: 700;

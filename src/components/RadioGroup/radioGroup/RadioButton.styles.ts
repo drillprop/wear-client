@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { black, grays } from '../../../styles/colors';
 import { montserrat } from '../../../styles/fonts';
-import { fontLevel2 } from '../../../styles/fontSizes';
+import fontSizes from '../../../styles/fontSizes';
 
 const sharedCSS = css`
   position: absolute;
@@ -21,7 +21,7 @@ export const RadioButtonWrapper = styled.div`
 export const RadioLabel = styled.label`
   margin-left: 25px;
   font-family: ${montserrat};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   color: rgb(117, 117, 117);
   cursor: pointer;
   text-transform: uppercase;

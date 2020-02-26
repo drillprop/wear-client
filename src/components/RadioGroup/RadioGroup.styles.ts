@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 import { grays } from '../../styles/colors';
 
 interface FieldSetProps {
@@ -24,7 +24,7 @@ export const RadioGroupLegend = styled.legend`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   color: ${grays[1]};
   text-transform: uppercase;
 `;

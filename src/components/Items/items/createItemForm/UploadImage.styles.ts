@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { grays, white } from '../../../../styles/colors';
 import { montserrat, roboto } from '../../../../styles/fonts';
-import { fontLevel2 } from '../../../../styles/fontSizes';
+import fontSizes from '../../../../styles/fontSizes';
 
 interface FileInputLabelProps {
   highlight?: boolean;
@@ -19,7 +19,7 @@ export const TopLabel = styled.label`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   margin-bottom: 5px;
   color: ${grays[1]};
   display: block;
@@ -48,7 +48,7 @@ export const FileInputLabel = styled.label<FileInputLabelProps>`
   border: 1px solid ${grays[6]};
   font-family: ${montserrat};
   font-weight: 500;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   color: ${props => (props.highlight ? grays[1] : '#757575')};
   display: flex;
   justify-content: center;

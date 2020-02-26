@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { fontLevel2 } from '../../../styles/fontSizes';
+import fontSizes from '../../../styles/fontSizes';
 
 export const ForgotPassword = styled.p`
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   text-align: center;
   width: 100%;
   margin: 0;

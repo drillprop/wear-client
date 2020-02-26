@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { black, white, grays } from '../../styles/colors';
 import { montserrat } from '../../styles/fonts';
-import {
-  fontLevel2,
-  fontLevel3,
-  fontLevel6,
-  fontLevel7
-} from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 
 export const SingleProductMain = styled.div`
   margin-top: 50px;
@@ -31,17 +26,17 @@ export const SingleProductInfo = styled.section`
 export const SingleProductEdit = styled.span`
   position: absolute;
   color: ${grays[5]};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
 `;
 
 export const SingleProductName = styled.h1`
-  font-size: ${fontLevel6};
+  font-size: ${fontSizes[5]};
   margin: 0;
   align-self: end;
   text-transform: uppercase;
 `;
 export const SingleProductDescription = styled.p`
-  font-size: ${fontLevel3};
+  font-size: ${fontSizes[2]};
   color: ${grays[3]};
   margin: 0;
   margin-top: 40px;
@@ -49,7 +44,7 @@ export const SingleProductDescription = styled.p`
 `;
 
 export const SingleProductPrice = styled.div`
-  font-size: ${fontLevel7};
+  font-size: ${fontSizes[6]};
 `;
 
 export const AddToCart = styled.button`
@@ -60,7 +55,7 @@ export const AddToCart = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   box-shadow: inset 0 0 0 2px ${black};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   font-family: ${montserrat};
   transition: color 200ms, background-color 200ms, stroke 200ms;
   svg {

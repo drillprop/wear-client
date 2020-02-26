@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { black, grays, white } from '../../styles/colors';
 import { roboto } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 
 export const CheckboxWrapper = styled.div<{ marginTop?: string }>`
   display: flex;
@@ -14,7 +14,7 @@ export const CheckboxLabel = styled.label`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   color: ${grays[1]};
   display: block;
   cursor: pointer;

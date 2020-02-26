@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { grays, black } from '../../../../styles/colors';
 import { roboto } from '../../../../styles/fonts';
-import { fontLevel3 } from '../../../../styles/fontSizes';
+import fontSizes from '../../../../styles/fontSizes';
 
 export const ProductCardWrapper = styled.div`
   position: relative;
@@ -37,12 +37,12 @@ export const ProductName = styled.div`
   opacity: 0.8;
   transition: opacity 300ms;
   font-family: ${roboto};
-  font-size: ${fontLevel3};
+  font-size: ${fontSizes[2]};
   color: ${black};
 `;
 
 export const ProductPrice = styled.div`
   font-family: ${roboto};
-  font-size: ${fontLevel3};
+  font-size: ${fontSizes[2]};
   color: ${black};
 `;

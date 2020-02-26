@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../../styles/fonts';
-import { fontLevel1, fontLevel2 } from '../../../styles/fontSizes';
+import fontSizes from '../../../styles/fontSizes';
 import { grays } from '../../../styles/colors';
 
 export const FooterWrapper = styled.footer`
@@ -25,7 +25,7 @@ export const FooterBottom = styled.div`
   margin: 0 140px;
   padding-top: 20px;
   border-top: 1px solid grey;
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   text-align: center;
 `;
 
@@ -55,11 +55,11 @@ export const FooterHeadings = styled.h4`
   margin: 0;
   text-transform: uppercase;
   font-family: ${roboto};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
 `;
 
 export const FooterList = styled.ul`
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   padding: 0;
   margin: 25px auto 0;
 `;
@@ -73,7 +73,7 @@ export const FooterItem = styled.li`
 `;
 
 export const FooterText = styled.p`
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   margin: 25px 0 0 0;
   line-height: 2;
 `;

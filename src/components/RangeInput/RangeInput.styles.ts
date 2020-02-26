@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { black, grays } from '../../styles/colors';
 import { roboto, montserrat } from '../../styles/fonts';
-import { fontLevel1 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 
 export const rangeTrack = css`
   height: 5px;
@@ -40,7 +40,7 @@ export const RangeValueAndInput = styled.div`
 `;
 
 export const RangeValue = styled.input`
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   font-family: ${montserrat};
   border: 0;
   color: ${grays[2]};
@@ -77,7 +77,7 @@ export const RangeInputLabel = styled.label`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel1};
+  font-size: ${fontSizes[0]};
   color: ${grays[4]};
   display: block;
   cursor: pointer;

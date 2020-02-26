@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto } from '../../styles/fonts';
-import { fontLevel4 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 import { black, white } from '../../styles/colors';
 
 export const StyledSwitchSignButton = styled.button`
@@ -10,7 +10,7 @@ export const StyledSwitchSignButton = styled.button`
   left: 50%;
   cursor: pointer;
   font-family: ${roboto};
-  font-size: ${fontLevel4};
+  font-size: ${fontSizes[3]};
   background-color: ${white};
   border: none;
   border-radius: 100%;

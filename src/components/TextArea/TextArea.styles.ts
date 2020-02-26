@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { roboto, montserrat } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 import { grays } from '../../styles/colors';
 
 interface TextAreaWrapperProps {
@@ -17,7 +17,7 @@ export const TextAreaLabel = styled.label`
   position: relative;
   font-family: ${roboto};
   font-weight: 700;
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   margin-bottom: 5px;
   color: ${grays[1]};
   display: block;
@@ -33,5 +33,5 @@ export const StyledTextArea = styled.textarea`
   width: 100%;
   height: 90px;
   font-family: ${montserrat};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
 `;

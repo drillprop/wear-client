@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { black, grays } from './colors';
 import { roboto } from './fonts';
-import { fontLevel3, fontLevel5 } from './fontSizes';
+import fontSizes from './fontSizes';
 
 export const SideNavWrapper = styled.div`
   position: relative;
@@ -15,7 +15,7 @@ export const SideNavSticky = styled.nav`
 `;
 
 export const SideNavMainTitle = styled.h1`
-  font-size: ${fontLevel5};
+  font-size: ${fontSizes[4]};
   font-weight: 700;
   color: ${grays[1]};
   margin: 0;
@@ -33,7 +33,7 @@ export const SideNavItem = styled.li`
   margin-top: 14px;
   text-transform: uppercase;
   font-weight: 400;
-  font-size: ${fontLevel3};
+  font-size: ${fontSizes[2]};
   color: ${grays[2]};
   :hover {
     color: ${black};

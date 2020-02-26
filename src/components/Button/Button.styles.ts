@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { montserrat } from '../../styles/fonts';
-import { fontLevel2 } from '../../styles/fontSizes';
+import fontSizes from '../../styles/fontSizes';
 import { black, white } from '../../styles/colors';
 
 interface Props {
@@ -18,7 +18,7 @@ export const StyledButton = styled.button<Props>`
   color: ${({ mainColor = black }) => mainColor};
   border: 3px solid ${({ mainColor = black }) => mainColor};
   ${props => props.marginTop && `margin-top: ${props.marginTop}`};
-  font-size: ${fontLevel2};
+  font-size: ${fontSizes[1]};
   font-weight: 700;
   padding: 10px;
   transition: color 150ms;
