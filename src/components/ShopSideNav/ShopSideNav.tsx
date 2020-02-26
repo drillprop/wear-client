@@ -20,9 +20,9 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <SideNavMainTitle>
-          <LinkAnchor href={gender.toLowerCase()}>{gender}</LinkAnchor>
-        </SideNavMainTitle>
+        <LinkAnchor href={gender.toLowerCase()}>
+          <SideNavMainTitle>{gender}</SideNavMainTitle>
+        </LinkAnchor>
         <SideNavList>
           {getGenderCategories(gender).map(category => (
             <SideNavItem key={category}>
