@@ -17,7 +17,7 @@ export const SideNavSticky = styled.nav`
 export const SideNavMainTitle = styled.h1`
   font-size: ${fontSizes[4]};
   font-weight: 700;
-  color: ${grays[1]};
+  color: ${grays[0]};
   margin: 0;
   font-family: ${roboto};
   text-transform: uppercase;
@@ -34,7 +34,7 @@ export const SideNavItem = styled.li`
   text-transform: uppercase;
   font-weight: 400;
   font-size: ${fontSizes[2]};
-  color: ${grays[2]};
+  color: ${grays[1]};
   :hover {
     color: ${black};
   }

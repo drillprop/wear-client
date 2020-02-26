@@ -10,8 +10,8 @@ export const PageNumbersWrapper = styled.div`
 `;
 
 export const PageNumber = styled.div`
-  border-top: 1px solid ${grays[5]};
-  border-bottom: 1px solid ${grays[5]};
+  border-top: 1px solid ${grays[4]};
+  border-bottom: 1px solid ${grays[4]};
   display: flex;
   justify-content: center;
   color: ${black};
@@ -25,7 +25,7 @@ export const NextPrevPage = styled.div`
   cursor: pointer;
   font-family: ${roboto};
   font-weight: bold;
-  border: 1px solid ${grays[5]};
+  border: 1px solid ${grays[4]};
   font-size: ${fontSizes[1]};
   display: flex;
   justify-content: center;

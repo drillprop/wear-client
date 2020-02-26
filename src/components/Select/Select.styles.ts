@@ -13,7 +13,7 @@ const arrowUp = (small?: boolean) => css`
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid ${small ? grays[3] : grays[1]};
+    border-bottom: 5px solid ${small ? grays[2] : grays[0]};
   }
 `;
 
@@ -26,7 +26,7 @@ const arrowDown = (small?: boolean) => css`
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid ${small ? grays[3] : grays[1]};
+    border-top: 5px solid ${small ? grays[2] : grays[0]};
   }
 `;
 
@@ -41,7 +41,7 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-weight: 700;
   margin-bottom: 5px;
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
-  color: ${props => (props.small ? grays[4] : grays[1])};
+  color: ${props => (props.small ? grays[3] : grays[0])};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
@@ -70,8 +70,8 @@ export const CustomSelect = styled.div<{ small?: boolean }>`
   margin: 0;
   box-shadow: ${props =>
     props.small
-      ? `inset 0 0 0 1px ${grays[6]};`
-      : `inset 0 0 0 2px ${grays[1]}`};
+      ? `inset 0 0 0 1px ${grays[5]};`
+      : `inset 0 0 0 2px ${grays[0]}`};
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
 `;
 
@@ -96,8 +96,8 @@ export const PlaceHolder = styled.span`
 `;
 
 export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
-  border-left: 1px solid ${grays[6]};
-  border-right: 1px solid ${grays[6]};
+  border-left: 1px solid ${grays[5]};
+  border-right: 1px solid ${grays[5]};
   border-top: none;
   background-color: ${white};
   position: relative;
@@ -110,14 +110,14 @@ export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
   font-family: ${montserrat};
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
   &:nth-of-type(odd) {
-    background-color: ${grays[8]};
-    ${props => props.highlight && `background-color: ${grays[6]};`};
+    background-color: ${grays[7]};
+    ${props => props.highlight && `background-color: ${grays[5]};`};
   }
   :hover {
-    background-color: ${grays[6]};
+    background-color: ${grays[5]};
   }
   :last-of-type {
-    border-bottom: 1px solid ${grays[6]};
+    border-bottom: 1px solid ${grays[5]};
   }
-  ${props => props.highlight && `background-color: ${grays[6]};`};
+  ${props => props.highlight && `background-color: ${grays[5]};`};
 `;

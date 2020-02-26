@@ -20,7 +20,7 @@ export const ProductCardImg = styled.img`
   max-width: 300px;
   height: 390px;
   object-fit: cover;
-  border: 1px solid ${grays[5]};
+  border: 1px solid ${grays[4]};
   position: relative;
   transition: transform 300ms, opacity 300ms;
 `;

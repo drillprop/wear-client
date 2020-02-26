@@ -5,7 +5,7 @@ import fontSizes from '../../styles/fontSizes';
 
 export const rangeTrack = css`
   height: 5px;
-  background: ${grays[5]};
+  background: ${grays[4]};
 `;
 export const rangeThumb = css`
   appearance: none;
@@ -43,7 +43,7 @@ export const RangeValue = styled.input`
   font-size: ${fontSizes[0]};
   font-family: ${montserrat};
   border: 0;
-  color: ${grays[2]};
+  color: ${grays[1]};
   height: 44px;
   width: 60px;
   text-align: center;
@@ -78,7 +78,7 @@ export const RangeInputLabel = styled.label`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontSizes[0]};
-  color: ${grays[4]};
+  color: ${grays[3]};
   display: block;
   cursor: pointer;
   text-transform: uppercase;

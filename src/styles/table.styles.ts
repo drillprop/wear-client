@@ -6,7 +6,7 @@ import fontSizes from './fontSizes';
 export const Table = styled.table`
   width: 100%;
   margin-top: 50px;
-  border: 1px solid ${grays[6]};
+  border: 1px solid ${grays[5]};
   border-spacing: 0px;
 `;
 
@@ -15,8 +15,8 @@ export const TableHead = styled.thead`
   text-transform: uppercase;
   font-family: ${roboto};
   text-align: left;
-  background-color: ${grays[1]};
-  color: ${grays[6]};
+  background-color: ${grays[0]};
+  color: ${grays[5]};
 `;
 
 export const TableHeadCell = styled.th`
@@ -31,10 +31,10 @@ export const TableBody = styled.tbody`
 export const TableBodyRow = styled.tr`
   cursor: pointer;
   &:nth-child(even) {
-    background-color: ${grays[8]};
+    background-color: ${grays[7]};
   }
   :hover {
-    background-color: ${grays[7]};
+    background-color: ${grays[6]};
   }
 `;
 

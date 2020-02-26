@@ -7,7 +7,7 @@ export const FooterWrapper = styled.footer`
   margin-top: 90px;
   padding: 40px;
   display: grid;
-  background-color: ${grays[7]};
+  background-color: ${grays[6]};
   grid-gap: 50px;
   grid-template-rows: 1fr auto;
 `;

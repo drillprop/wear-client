@@ -21,7 +21,7 @@ export const SiteSubtitle = styled.h2`
   margin-top: 18px;
   position: relative;
   font-family: ${roboto};
-  color: ${grays[2]};
+  color: ${grays[1]};
   text-transform: uppercase;
   font-weight: 500;
   font-size: ${fontSizes[5]};
@@ -33,11 +33,11 @@ export const SiteSubtitle = styled.h2`
     position: absolute;
     width: 100%;
     height: 1px;
-    background-color: ${grays[6]};
+    background-color: ${grays[5]};
   }
 `;
 
 export const SiteParagraph = styled.p`
-  color: ${grays[3]};
+  color: ${grays[2]};
   font-size: ${fontSizes[0]};
 `;

@@ -15,7 +15,7 @@ export const CheckboxLabel = styled.label`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontSizes[1]};
-  color: ${grays[1]};
+  color: ${grays[0]};
   display: block;
   cursor: pointer;
   text-transform: uppercase;

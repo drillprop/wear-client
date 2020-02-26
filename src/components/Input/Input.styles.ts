@@ -13,7 +13,7 @@ export const StyledLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
-  color: ${props => (props.small ? grays[4] : grays[1])};
+  color: ${props => (props.small ? grays[3] : grays[0])};
   margin-bottom: 5px;
   display: block;
   cursor: pointer;
@@ -40,7 +40,7 @@ export const StyledInput = styled.input<{ small?: boolean }>`
   margin: 0;
   padding-left: 40px;
   border: ${props =>
-    props.small ? `1px solid ${grays[6]}` : `2px solid ${grays[1]}`};
+    props.small ? `1px solid ${grays[5]}` : `2px solid ${grays[0]}`};
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
   font-family: ${montserrat};
 `;

@@ -19,5 +19,5 @@ export const DropDownList = styled.ul`
 
 export const DropDownItem = styled.li<{ admin?: boolean }>`
   padding: 20px 0 22px 22px;
-  ${props => props.admin && `background-color: ${grays[7]}`};
+  ${props => props.admin && `background-color: ${grays[6]}`};
 `;

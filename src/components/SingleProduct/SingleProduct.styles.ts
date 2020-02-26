@@ -25,7 +25,7 @@ export const SingleProductInfo = styled.section`
 
 export const SingleProductEdit = styled.span`
   position: absolute;
-  color: ${grays[5]};
+  color: ${grays[4]};
   font-size: ${fontSizes[1]};
 `;
 
@@ -37,7 +37,7 @@ export const SingleProductName = styled.h1`
 `;
 export const SingleProductDescription = styled.p`
   font-size: ${fontSizes[2]};
-  color: ${grays[3]};
+  color: ${grays[2]};
   margin: 0;
   margin-top: 40px;
   line-height: 1.8;

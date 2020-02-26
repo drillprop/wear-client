@@ -50,7 +50,7 @@ export const CustomRadioButton = styled.span`
   cursor: pointer;
   ${sharedCSS}
   border-radius: 100%;
-  border: 2px solid ${grays[1]};
+  border: 2px solid ${grays[0]};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,7 @@ export const CustomRadioButton = styled.span`
     position: absolute;
     width: 6px;
     height: 6px;
-    background-color: ${grays[2]};
+    background-color: ${grays[1]};
     transition: opacity 400ms;
   }
 `;
