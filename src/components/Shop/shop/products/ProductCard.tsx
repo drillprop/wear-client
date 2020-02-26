@@ -3,9 +3,10 @@ import { ItemsQuery } from '../../../../generated/types';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
   ProductCardImg,
-  ProductCardName,
-  ProductCardPrice,
-  ProductCardWrapper
+  ProductCardWrapper,
+  ProductName,
+  ProductPrice,
+  ProductNameAndPrice
 } from './ProductCard.styles';
 
 interface Props {
@@ -27,8 +28,10 @@ const ProductCard: React.FC<Props> = ({ item }) => {
             }}
           >
             <ProductCardImg src={item.imageUrl} alt={item.name} />
-            <ProductCardName>{item.name}</ProductCardName>
-            <ProductCardPrice>${item.price}</ProductCardPrice>
+            <ProductNameAndPrice>
+              <ProductName>{item.name}</ProductName>
+              <ProductPrice>${item.price}</ProductPrice>
+            </ProductNameAndPrice>
           </LinkAnchor>
         </ProductCardWrapper>
       </>
