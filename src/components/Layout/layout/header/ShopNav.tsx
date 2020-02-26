@@ -6,13 +6,13 @@ const ShopNav = () => {
   return (
     <Ul>
       <Li>
-        <LinkAnchor href='/woman' as='/woman'>
-          women
+        <LinkAnchor highlight href='/woman'>
+          woman
         </LinkAnchor>
       </Li>
       <Li>
-        <LinkAnchor href='/man' as='/man'>
-          men
+        <LinkAnchor highlight href='/man'>
+          man
         </LinkAnchor>
       </Li>
     </Ul>
