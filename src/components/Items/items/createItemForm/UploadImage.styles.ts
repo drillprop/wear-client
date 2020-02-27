@@ -9,9 +9,7 @@ interface FileInputLabelProps {
 }
 
 export const UploadImageWrapper = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 550px;
+  height: 600px;
 `;
 
 export const TopLabel = styled.label`
@@ -29,7 +27,6 @@ export const TopLabel = styled.label`
 
 export const ImageBox = styled.div<{ imageUrl?: string }>`
   position: relative;
-  width: 350px;
   height: 100%;
   display: flex;
   justify-content: center;
