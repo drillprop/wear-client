@@ -1,6 +1,5 @@
-import { ApolloError } from 'apollo-boost';
-import React, { useContext } from 'react';
-import { UsersQuery } from '../../../generated/types';
+import React from 'react';
+import { UsersQuery, UsersQueryVariables } from '../../../generated/types';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
@@ -9,15 +8,19 @@ import {
   TableHeadCell
 } from '../../../styles/table.styles';
 import UserRow from './usersTable/UserRow';
-import { UsersContext } from '../../../contexts/Users.context';
 import UsersFilters from './usersTable/UsersFilters';
 
-const UsersTable: React.FC = () => {
-  const { users } = useContext(UsersContext);
+interface Props {
+  users: UsersQuery['users']['select'];
+  variables: UsersQueryVariables;
+  setVariables: React.Dispatch<React.SetStateAction<UsersQueryVariables>>;
+}
+
+const UsersTable: React.FC<Props> = ({ users, variables, setVariables }) => {
   return (
     <SiteForm>
       <SiteSubtitle>List of Users</SiteSubtitle>
-      <UsersFilters />
+      <UsersFilters variables={variables} setVariables={setVariables} />
       <Table>
         <TableHead>
           <tr>

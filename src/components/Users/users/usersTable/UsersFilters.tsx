@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { UserRole, UsersQueryVariables } from '../../../../generated/types';
 import Input from '../../../Input/Input';
 import Select from '../../../Select/Select';
 import { UsersFiltersWrapper } from './UsersFilters.styles';
-import { UsersContext } from '../../../../contexts/Users.context';
-import { UserRole } from '../../../../generated/types';
 
-const UsersFilters = () => {
-  const { variables, setVariables } = useContext(UsersContext);
+interface Props {
+  variables: UsersQueryVariables;
+  setVariables: React.Dispatch<React.SetStateAction<UsersQueryVariables>>;
+}
+
+const UsersFilters: React.FC<Props> = ({ variables, setVariables }) => {
   return (
     <UsersFiltersWrapper>
       <Input
