@@ -4,11 +4,12 @@ import {
   SortOrder,
   useItemsQuery
 } from '../../generated/types';
-import { SiteWrapper } from '../../styles/site.styles';
+import { SiteWrapper, SiteSubtitle } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
 import CreateItemForm from './items/CreateItemForm';
 import ItemsTable from './items/ItemsTable';
+import ItemsFilters from './items/ItemsFilters';
 
 const Items: React.FC = () => {
   const [variables, setVariables] = useState<ItemsQueryVariables>({
@@ -34,11 +35,9 @@ const Items: React.FC = () => {
       <AdminSideNav />
       <div>
         <CreateItemForm variables={variables} />
-        <ItemsTable
-          items={items}
-          variables={variables}
-          setVariables={setVariables}
-        />
+        <SiteSubtitle>List of Items</SiteSubtitle>
+        <ItemsFilters variables={variables} setVariables={setVariables} />
+        <ItemsTable items={items} variables={variables} />
         <Pagination
           total={count}
           state={variables}

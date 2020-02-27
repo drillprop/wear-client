@@ -1,6 +1,6 @@
 import React from 'react';
 import { ItemsQuery, ItemsQueryVariables } from '../../../generated/types';
-import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
+import { SiteForm } from '../../../styles/site.styles';
 import {
   Table,
   TableBody,
@@ -8,19 +8,15 @@ import {
   TableHeadCell
 } from '../../../styles/table.styles';
 import ItemRow from './itemsTable/ItemRow';
-import ItemsFilters from './itemsTable/ItemsFilters';
 
 interface Props {
   items: ItemsQuery['items']['select'];
   variables: ItemsQueryVariables;
-  setVariables: React.Dispatch<React.SetStateAction<ItemsQueryVariables>>;
 }
 
-const ItemsTable: React.FC<Props> = ({ items, variables, setVariables }) => {
+const ItemsTable: React.FC<Props> = ({ items, variables }) => {
   return (
     <SiteForm>
-      <SiteSubtitle>List of Items</SiteSubtitle>
-      <ItemsFilters variables={variables} setVariables={setVariables} />
       <Table>
         <TableHead>
           <tr>

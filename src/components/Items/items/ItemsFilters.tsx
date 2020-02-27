@@ -3,9 +3,9 @@ import {
   Category,
   Gender,
   ItemsQueryVariables
-} from '../../../../generated/types';
-import Input from '../../../Input/Input';
-import Select from '../../../Select/Select';
+} from '../../../generated/types';
+import Input from '../../Input/Input';
+import Select from '../../Select/Select';
 import { ItemsFiltersWrapper } from './ItemsFilters.styles';
 
 interface Props {
