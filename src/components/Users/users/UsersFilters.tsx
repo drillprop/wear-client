@@ -1,8 +1,8 @@
 import React from 'react';
-import { UserRole, UsersQueryVariables } from '../../../../generated/types';
-import Input from '../../../Input/Input';
-import Select from '../../../Select/Select';
 import { UsersFiltersWrapper } from './UsersFilters.styles';
+import { UsersQueryVariables, UserRole } from '../../../generated/types';
+import Input from '../../Input/Input';
+import Select from '../../Select/Select';
 
 interface Props {
   variables: UsersQueryVariables;
