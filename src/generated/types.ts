@@ -41,6 +41,7 @@ export type CreateItemInput = {
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
+  sizes?: Maybe<ItemSizes>,
 };
 
 
@@ -50,6 +51,7 @@ export type EditItemInput = {
   price?: Maybe<Scalars['Float']>,
   imageUrl?: Maybe<Scalars['String']>,
   category?: Maybe<Category>,
+  sizes?: Maybe<ItemSizes>,
 };
 
 export enum Gender {
@@ -67,6 +69,7 @@ export type Item = {
   gender: Gender,
   description?: Maybe<Scalars['String']>,
   createdBy: User,
+  sizes?: Maybe<Size>,
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
   totalCount: Scalars['Int'],
@@ -78,6 +81,15 @@ export type ItemsAndCount = {
   count: Scalars['Int'],
   maxPrice?: Maybe<Scalars['Float']>,
   minPrice?: Maybe<Scalars['Float']>,
+};
+
+export type ItemSizes = {
+  xs?: Maybe<Scalars['Int']>,
+  s?: Maybe<Scalars['Int']>,
+  m?: Maybe<Scalars['Int']>,
+  l?: Maybe<Scalars['Int']>,
+  xl?: Maybe<Scalars['Int']>,
+  xxl?: Maybe<Scalars['Int']>,
 };
 
 export type LoginInput = {
@@ -298,6 +310,16 @@ export type SearchUserInput = {
   lastName?: Maybe<Scalars['String']>,
 };
 
+export type Size = {
+   __typename?: 'Size',
+  xs?: Maybe<Scalars['Int']>,
+  s?: Maybe<Scalars['Int']>,
+  m?: Maybe<Scalars['Int']>,
+  l?: Maybe<Scalars['Int']>,
+  xl?: Maybe<Scalars['Int']>,
+  xxl?: Maybe<Scalars['Int']>,
+};
+
 export enum SortOrder {
   Asc = 'ASC',
   Desc = 'DESC'
@@ -513,6 +535,10 @@ export type ItemsQuery = (
     & { select: Array<Maybe<(
       { __typename?: 'Item' }
       & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+      & { sizes: Maybe<(
+        { __typename?: 'Size' }
+        & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
+      )> }
     )>> }
   ) }
 );
@@ -542,6 +568,10 @@ export type SingleItemQuery = (
   & { item: Maybe<(
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
+    & { sizes: Maybe<(
+      { __typename?: 'Size' }
+      & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
+    )> }
   )> }
 );
 
@@ -953,6 +983,14 @@ export const ItemsDocument = gql`
       gender
       createdAt
       updatedAt
+      sizes {
+        xs
+        s
+        m
+        l
+        xl
+        xxl
+      }
     }
     maxPrice
     count
@@ -1055,6 +1093,14 @@ export const SingleItemDocument = gql`
     gender
     createdAt
     updatedAt
+    sizes {
+      xs
+      s
+      m
+      l
+      xl
+      xxl
+    }
   }
 }
     `;

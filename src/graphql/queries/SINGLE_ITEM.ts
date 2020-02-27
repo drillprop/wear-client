@@ -12,6 +12,14 @@ export default gql`
       gender
       createdAt
       updatedAt
+      sizes {
+        xs
+        s
+        m
+        l
+        xl
+        xxl
+      }
     }
   }
 `;
