@@ -23,17 +23,26 @@ interface Props {
 }
 
 const CreateItemForm: React.FC<Props> = ({ variables }) => {
+  const sizes = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
     price: 0,
     category: '',
     gender: '',
     description: '',
-    imageUrl: ''
+    imageUrl: '',
+    xs: 0,
+    s: 0,
+    m: 0,
+    l: 0,
+    xl: 0,
+    xxl: 0
   });
 
   const [createItem, { data, error }] = useCreateItemMutation({
-    refetchQueries: [{ query: ITEMS, variables }]
+    refetchQueries: [{ query: ITEMS, variables }],
+    onCompleted: () => clearForm(values)
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -45,10 +54,16 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     createItem({
       variables: {
         ...values,
+        imageUrl,
         price: parseFloat(values.price),
-        imageUrl
+        xs: parseInt(values.xs),
+        s: parseInt(values.s),
+        m: parseInt(values.m),
+        l: parseInt(values.l),
+        xl: parseInt(values.xl),
+        xxl: parseInt(values.x)
       }
-    }).then(() => clearForm(values));
+    });
   };
   return (
     <SiteForm onSubmit={handleSubmit}>
@@ -104,6 +119,19 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             value={values.description}
             onChange={handleInput}
           />
+          {sizes.map(size => (
+            <Input
+              key={size}
+              name={size}
+              icon='/category-icon.svg'
+              width='90px'
+              type='number'
+              placeholder='0'
+              value={values[size]}
+              label={size}
+              onChange={handleInput}
+            />
+          ))}
           <Button width='350px' type='submit'>
             save
           </Button>
