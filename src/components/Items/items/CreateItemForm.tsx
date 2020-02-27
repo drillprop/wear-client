@@ -15,7 +15,7 @@ import Input from '../../Input/Input';
 import RadioGroup from '../../RadioGroup/RadioGroup';
 import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
-import { CreateItemWrapper } from './CreateItemForm.styles';
+import { CreateItemWrapper, SizesInputsWrapper } from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
 
 interface Props {
@@ -71,10 +71,6 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
       <ErrorMessage error={error} />
       {data?.createItem.id && 'Succesfully create item'}
       <CreateItemWrapper>
-        <UploadImage
-          onChange={imageUrl => setForm({ ...values, imageUrl })}
-          imageUrl={values.imageUrl}
-        />
         <div>
           <Input
             type='text'
@@ -119,19 +115,28 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             value={values.description}
             onChange={handleInput}
           />
-          {sizes.map(size => (
-            <Input
-              key={size}
-              name={size}
-              icon='/category-icon.svg'
-              width='90px'
-              type='number'
-              placeholder='0'
-              value={values[size]}
-              label={size}
-              onChange={handleInput}
-            />
-          ))}
+          <SizesInputsWrapper>
+            {sizes.map(size => (
+              <Input
+                key={size}
+                name={size}
+                icon='/category-icon.svg'
+                width='90px'
+                type='number'
+                marginTop='0'
+                placeholder='0'
+                value={values[size]}
+                label={size}
+                onChange={handleInput}
+              />
+            ))}
+          </SizesInputsWrapper>
+        </div>
+        <div>
+          <UploadImage
+            onChange={imageUrl => setForm({ ...values, imageUrl })}
+            imageUrl={values.imageUrl}
+          />
           <Button width='350px' type='submit'>
             save
           </Button>

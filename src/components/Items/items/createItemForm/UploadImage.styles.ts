@@ -11,7 +11,7 @@ interface FileInputLabelProps {
 export const UploadImageWrapper = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  height: 600px;
+  height: 550px;
 `;
 
 export const TopLabel = styled.label`
