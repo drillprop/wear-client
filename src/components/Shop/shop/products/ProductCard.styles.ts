@@ -16,14 +16,16 @@ export const ProductCardWrapper = styled.div`
 `;
 
 export const ProductCardImg = styled.img`
+  min-width: 300px;
   width: 300px;
-  max-width: 300px;
+  min-height: 390px;
   height: 390px;
   object-fit: cover;
   border: 1px solid ${grays[4]};
   position: relative;
   transition: transform 300ms, opacity 300ms;
 `;
+
 export const ProductNameAndPrice = styled.div`
   margin-top: 14px;
   display: flex;
