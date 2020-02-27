@@ -391,7 +391,13 @@ export type CreateItemMutationVariables = {
   imageUrl: Scalars['String'],
   category: Category,
   gender: Gender,
-  description?: Maybe<Scalars['String']>
+  description?: Maybe<Scalars['String']>,
+  xs?: Maybe<Scalars['Int']>,
+  s?: Maybe<Scalars['Int']>,
+  m?: Maybe<Scalars['Int']>,
+  l?: Maybe<Scalars['Int']>,
+  xl?: Maybe<Scalars['Int']>,
+  xxl?: Maybe<Scalars['Int']>
 };
 
 
@@ -400,6 +406,10 @@ export type CreateItemMutation = (
   & { createItem: (
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
+    & { sizes: Maybe<(
+      { __typename?: 'Size' }
+      & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
+    )> }
   ) }
 );
 
@@ -660,8 +670,8 @@ export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswo
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const CreateItemDocument = gql`
-    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String) {
-  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description}) {
+    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String, $xs: Int, $s: Int, $m: Int, $l: Int, $xl: Int, $xxl: Int) {
+  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description, sizes: {xs: $xs, s: $s, m: $m, l: $l, xl: $xl, xxl: $xxl}}) {
     id
     name
     price
@@ -669,6 +679,14 @@ export const CreateItemDocument = gql`
     category
     gender
     createdAt
+    sizes {
+      xs
+      s
+      m
+      l
+      xl
+      xxl
+    }
   }
 }
     `;
@@ -693,6 +711,12 @@ export type CreateItemMutationFn = ApolloReactCommon.MutationFunction<CreateItem
  *      category: // value for 'category'
  *      gender: // value for 'gender'
  *      description: // value for 'description'
+ *      xs: // value for 'xs'
+ *      s: // value for 's'
+ *      m: // value for 'm'
+ *      l: // value for 'l'
+ *      xl: // value for 'xl'
+ *      xxl: // value for 'xxl'
  *   },
  * });
  */
