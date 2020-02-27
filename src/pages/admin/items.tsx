@@ -1,14 +1,9 @@
 import { NextPage } from 'next';
 import React from 'react';
 import Items from '../../components/Items/Items';
-import ItemsProvider from '../../contexts/Items.context';
 
 const ItemsPage: NextPage = () => {
-  return (
-    <ItemsProvider>
-      <Items />
-    </ItemsProvider>
-  );
+  return <Items />;
 };
 
 export default ItemsPage;

@@ -1,5 +1,9 @@
-import React, { useContext } from 'react';
-import { ItemsContext } from '../../contexts/Items.context';
+import React, { useState, useEffect } from 'react';
+import {
+  ItemsQueryVariables,
+  SortOrder,
+  useItemsQuery
+} from '../../generated/types';
 import { SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
@@ -7,14 +11,34 @@ import CreateItemForm from './items/CreateItemForm';
 import ItemsTable from './items/ItemsTable';
 
 const Items: React.FC = () => {
-  const { variables, count, setVariables } = useContext(ItemsContext);
+  const [variables, setVariables] = useState<ItemsQueryVariables>({
+    take: 5,
+    skip: 0,
+    sortBy: 'Item.createdAt',
+    sortOrder: SortOrder.Asc
+  });
 
+  const { data } = useItemsQuery({
+    variables: { ...variables },
+    fetchPolicy: 'cache-and-network'
+  });
+
+  useEffect(() => {
+    setVariables({ ...variables });
+  }, [data]);
+
+  const count = data?.items.count || 0;
+  const items = data?.items.select || [];
   return (
     <SiteWrapper>
       <AdminSideNav />
       <div>
-        <CreateItemForm />
-        <ItemsTable />
+        <CreateItemForm variables={variables} />
+        <ItemsTable
+          items={items}
+          variables={variables}
+          setVariables={setVariables}
+        />
         <Pagination
           total={count}
           state={variables}

@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import React, { useContext } from 'react';
-import { ItemsContext } from '../../../../contexts/Items.context';
+import React from 'react';
 import {
   Category,
   Gender,
+  ItemsQueryVariables,
   useDeleteItemMutation
 } from '../../../../generated/types';
-import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 import ITEMS from '../../../../graphql/queries/ITEMS';
+import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 
 interface Props {
   id: string;
@@ -16,11 +16,17 @@ interface Props {
   imageUrl: string;
   category: Category;
   gender: Gender;
+  variables: ItemsQueryVariables;
 }
 
-const ItemRow: React.FC<Props> = ({ id, name, price, category, gender }) => {
-  const { variables } = useContext(ItemsContext);
-
+const ItemRow: React.FC<Props> = ({
+  id,
+  name,
+  price,
+  category,
+  gender,
+  variables
+}) => {
   const [deleteItem] = useDeleteItemMutation({
     variables: { id },
     refetchQueries: [{ query: ITEMS, variables }]

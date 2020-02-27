@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
-import { ItemsContext } from '../../../../contexts/Items.context';
-import { Category, Gender } from '../../../../generated/types';
+import React from 'react';
+import {
+  Category,
+  Gender,
+  ItemsQueryVariables
+} from '../../../../generated/types';
 import Input from '../../../Input/Input';
 import Select from '../../../Select/Select';
 import { ItemsFiltersWrapper } from './ItemsFilters.styles';
 
-const ItemsFilters = () => {
-  const { variables, setVariables } = useContext(ItemsContext);
+interface Props {
+  variables: ItemsQueryVariables;
+  setVariables: React.Dispatch<React.SetStateAction<ItemsQueryVariables>>;
+}
+
+const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
   return (
     <ItemsFiltersWrapper>
       <Input

@@ -1,10 +1,11 @@
-import { FormEvent, useContext } from 'react';
-import { ItemsContext } from '../../../contexts/Items.context';
+import { FormEvent } from 'react';
 import {
   Category,
   Gender,
+  ItemsQueryVariables,
   useCreateItemMutation
 } from '../../../generated/types';
+import ITEMS from '../../../graphql/queries/ITEMS';
 import useForm from '../../../hooks/useForm';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
@@ -16,9 +17,12 @@ import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
 import { CreateItemWrapper } from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
-import ITEMS from '../../../graphql/queries/ITEMS';
 
-const CreateItemForm: React.FC = () => {
+interface Props {
+  variables: ItemsQueryVariables;
+}
+
+const CreateItemForm: React.FC<Props> = ({ variables }) => {
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
     price: 0,
@@ -27,8 +31,6 @@ const CreateItemForm: React.FC = () => {
     description: '',
     imageUrl: ''
   });
-
-  const { variables } = useContext(ItemsContext);
 
   const [createItem, { data, error }] = useCreateItemMutation({
     refetchQueries: [{ query: ITEMS, variables }]

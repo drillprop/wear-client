@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ItemsContext } from '../../../contexts/Items.context';
+import React from 'react';
+import { ItemsQuery, ItemsQueryVariables } from '../../../generated/types';
 import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
 import {
   Table,
@@ -10,12 +10,17 @@ import {
 import ItemRow from './itemsTable/ItemRow';
 import ItemsFilters from './itemsTable/ItemsFilters';
 
-const ItemsTable: React.FC = () => {
-  const { items } = useContext(ItemsContext);
+interface Props {
+  items: ItemsQuery['items']['select'];
+  variables: ItemsQueryVariables;
+  setVariables: React.Dispatch<React.SetStateAction<ItemsQueryVariables>>;
+}
+
+const ItemsTable: React.FC<Props> = ({ items, variables, setVariables }) => {
   return (
     <SiteForm>
       <SiteSubtitle>List of Items</SiteSubtitle>
-      <ItemsFilters />
+      <ItemsFilters variables={variables} setVariables={setVariables} />
       <Table>
         <TableHead>
           <tr>
@@ -39,6 +44,7 @@ const ItemsTable: React.FC = () => {
                     imageUrl={item.imageUrl}
                     category={item.category}
                     gender={item.gender}
+                    variables={variables}
                   />
                 )
             )}
