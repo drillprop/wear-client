@@ -24,7 +24,7 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
     skip: 0,
     gender,
     category,
-    sortBy: 'created_at',
+    sortBy: 'Item.createdAt',
     sortOrder: SortOrder.Desc
   });
 
