@@ -1,6 +1,5 @@
 import React from 'react';
 import { ItemsQuery, ItemsQueryVariables } from '../../../generated/types';
-import { SiteForm } from '../../../styles/site.styles';
 import {
   Table,
   TableBody,
@@ -16,37 +15,35 @@ interface Props {
 
 const ItemsTable: React.FC<Props> = ({ items, variables }) => {
   return (
-    <SiteForm>
-      <Table>
-        <TableHead>
-          <tr>
-            <TableHeadCell>name</TableHeadCell>
-            <TableHeadCell>price</TableHeadCell>
-            <TableHeadCell>category</TableHeadCell>
-            <TableHeadCell>gender</TableHeadCell>
-            <TableHeadCell>delete item</TableHeadCell>
-          </tr>
-        </TableHead>
-        <TableBody>
-          {items &&
-            items.map(
-              item =>
-                item && (
-                  <ItemRow
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    price={item.price}
-                    imageUrl={item.imageUrl}
-                    category={item.category}
-                    gender={item.gender}
-                    variables={variables}
-                  />
-                )
-            )}
-        </TableBody>
-      </Table>
-    </SiteForm>
+    <Table>
+      <TableHead>
+        <tr>
+          <TableHeadCell>name</TableHeadCell>
+          <TableHeadCell>price</TableHeadCell>
+          <TableHeadCell>category</TableHeadCell>
+          <TableHeadCell>gender</TableHeadCell>
+          <TableHeadCell>delete item</TableHeadCell>
+        </tr>
+      </TableHead>
+      <TableBody>
+        {items &&
+          items.map(
+            item =>
+              item && (
+                <ItemRow
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  price={item.price}
+                  imageUrl={item.imageUrl}
+                  category={item.category}
+                  gender={item.gender}
+                  variables={variables}
+                />
+              )
+          )}
+      </TableBody>
+    </Table>
   );
 };
 

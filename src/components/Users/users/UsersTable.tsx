@@ -1,6 +1,5 @@
 import React from 'react';
 import { UsersQuery } from '../../../generated/types';
-import { SiteForm } from '../../../styles/site.styles';
 import {
   Table,
   TableBody,
@@ -15,33 +14,31 @@ interface Props {
 
 const UsersTable: React.FC<Props> = ({ users }) => {
   return (
-    <SiteForm>
-      <Table>
-        <TableHead>
-          <tr>
-            <TableHeadCell>email</TableHeadCell>
-            <TableHeadCell>full name</TableHeadCell>
-            <TableHeadCell>role</TableHeadCell>
-            <TableHeadCell>orders</TableHeadCell>
-          </tr>
-        </TableHead>
-        <TableBody>
-          {users &&
-            users.map(
-              user =>
-                user && (
-                  <UserRow
-                    key={user.id}
-                    email={user.email}
-                    role={user.role}
-                    id={user.id}
-                    fullName={`${user.firstName || ''} ${user.lastName || ''}`}
-                  />
-                )
-            )}
-        </TableBody>
-      </Table>
-    </SiteForm>
+    <Table>
+      <TableHead>
+        <tr>
+          <TableHeadCell>email</TableHeadCell>
+          <TableHeadCell>full name</TableHeadCell>
+          <TableHeadCell>role</TableHeadCell>
+          <TableHeadCell>orders</TableHeadCell>
+        </tr>
+      </TableHead>
+      <TableBody>
+        {users &&
+          users.map(
+            user =>
+              user && (
+                <UserRow
+                  key={user.id}
+                  email={user.email}
+                  role={user.role}
+                  id={user.id}
+                  fullName={`${user.firstName || ''} ${user.lastName || ''}`}
+                />
+              )
+          )}
+      </TableBody>
+    </Table>
   );
 };
 
