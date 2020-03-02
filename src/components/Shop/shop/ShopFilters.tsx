@@ -65,21 +65,6 @@ const ShopFilters: React.FC<Props> = ({
   };
   return (
     <ShopFiltersWrapper>
-      <Input
-        label='search item by name'
-        name='name'
-        value={filtersState.name}
-        onChange={e =>
-          setFiltersState({
-            ...filtersState,
-            name: e.target.value
-          })
-        }
-        placeholder='search'
-        type='search'
-        icon='/search-icon.svg'
-        small
-      />
       <RangeInput
         max={maxPrice}
         label={'price from'}
@@ -101,6 +86,21 @@ const ShopFilters: React.FC<Props> = ({
             priceTo: Math.max(parseInt(e.target.value), filtersState.priceFrom)
           })
         }
+      />
+      <Input
+        label='search item by name'
+        name='name'
+        value={filtersState.name}
+        onChange={e =>
+          setFiltersState({
+            ...filtersState,
+            name: e.target.value
+          })
+        }
+        placeholder='search'
+        type='search'
+        icon='/search-icon.svg'
+        small
       />
       <Select
         label='items per page'

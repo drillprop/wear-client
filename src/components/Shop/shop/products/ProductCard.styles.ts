@@ -22,7 +22,6 @@ export const ProductCardImg = styled.img`
   height: 390px;
   object-fit: cover;
   border: 1px solid ${grays[4]};
-  position: relative;
   transition: transform 300ms, opacity 300ms;
 `;
 
@@ -30,7 +29,6 @@ export const ProductNameAndPrice = styled.div`
   margin-top: 14px;
   display: flex;
   justify-content: space-between;
-  position: absolute;
   background-color: white;
   width: 100%;
 `;
