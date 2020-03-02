@@ -23,7 +23,7 @@ interface Props {
 }
 
 const CreateItemForm: React.FC<Props> = ({ variables }) => {
-  const sizes = ['xs', 's', 'm', 'l', 'xl', 'xxl'];
+  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
@@ -32,12 +32,12 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    xs: 0,
-    s: 0,
-    m: 0,
-    l: 0,
-    xl: 0,
-    xxl: 0
+    XS: 0,
+    S: 0,
+    M: 0,
+    L: 0,
+    XL: 0,
+    XXL: 0
   });
 
   const [createItem, { data, error }] = useCreateItemMutation({
@@ -56,12 +56,12 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
         ...values,
         imageUrl,
         price: parseFloat(values.price),
-        xs: parseInt(values.xs),
-        s: parseInt(values.s),
-        m: parseInt(values.m),
-        l: parseInt(values.l),
-        xl: parseInt(values.xl),
-        xxl: parseInt(values.x)
+        XS: parseInt(values.XS),
+        S: parseInt(values.S),
+        M: parseInt(values.M),
+        L: parseInt(values.L),
+        XL: parseInt(values.XL),
+        XXL: parseInt(values.XXL)
       }
     });
   };
