@@ -35,7 +35,6 @@ export const RangeInputWrapper = styled.div<RangeInputWrapperInterface>`
   width: ${props => props.width};
 `;
 export const RangeValueAndInput = styled.div`
-  padding-left: 10px;
   display: flex;
 `;
 
@@ -44,7 +43,7 @@ export const RangeValue = styled.input`
   font-family: ${montserrat};
   border: 0;
   color: ${grays[1]};
-  height: 44px;
+  height: 36px;
   width: 60px;
   text-align: center;
 `;
@@ -52,7 +51,6 @@ export const RangeValue = styled.input`
 export const StyledRangeInput = styled.input`
   appearance: none;
   width: 100%;
-  padding-right: 20px;
   ::-webkit-slider-runnable-track {
     ${rangeTrack}
   }

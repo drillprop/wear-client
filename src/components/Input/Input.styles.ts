@@ -22,13 +22,13 @@ export const StyledLabel = styled.label<{ icon?: string; small?: boolean }>`
     content: '';
     position: absolute;
     display: block;
-    margin-top: 22px;
+    margin-top: ${props => (props.small ? '20px' : '22px')};
     z-index: 1;
-    width: 44px;
-    height: 44px;
+    width: ${props => (props.small ? '34px' : '44px')};
+    height: ${props => (props.small ? '34px' : '44px')};
     opacity: ${props => (props.small ? 0.6 : 0.9)};
     background-image: ${({ icon }) => `url(${icon})`};
-    background-size: 14px;
+    background-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
     background-repeat: no-repeat;
     background-position: 50% 50%;
   }
@@ -36,9 +36,9 @@ export const StyledLabel = styled.label<{ icon?: string; small?: boolean }>`
 
 export const StyledInput = styled.input<{ small?: boolean }>`
   width: 100%;
-  height: 44px;
+  height: ${props => (props.small ? '36px' : '44px')};
   margin: 0;
-  padding-left: 40px;
+  padding-left: ${props => (props.small ? '30px' : '40px')};
   border: ${props =>
     props.small ? `1px solid ${grays[5]}` : `2px solid ${grays[0]}`};
   font-size: ${props => (props.small ? fontSizes[0] : fontSizes[1])};
