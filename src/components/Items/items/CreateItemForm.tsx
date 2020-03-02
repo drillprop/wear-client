@@ -75,6 +75,10 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
       <ErrorMessage error={error} />
       {data?.createItem.id && 'Succesfully create item'}
       <CreateItemWrapper>
+        <UploadImage
+          onChange={imageUrl => setForm({ ...values, imageUrl })}
+          imageUrl={values.imageUrl}
+        />
         <div>
           <Input
             type='text'
@@ -135,15 +139,11 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
               />
             ))}
           </SizesInputsWrapper>
+          <Button width='100%' type='submit'>
+            save
+          </Button>
         </div>
-        <UploadImage
-          onChange={imageUrl => setForm({ ...values, imageUrl })}
-          imageUrl={values.imageUrl}
-        />
       </CreateItemWrapper>
-      <Button width='350px' type='submit'>
-        save
-      </Button>
     </SiteForm>
   );
 };
