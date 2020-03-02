@@ -12,6 +12,7 @@ export default gql`
     $name: String
     $category: Category
     $gender: Gender
+    $available: Boolean
   ) {
     items(
       where: {
@@ -25,6 +26,7 @@ export default gql`
         name: $name
         category: $category
         gender: $gender
+        available: $available
       }
     ) {
       select {

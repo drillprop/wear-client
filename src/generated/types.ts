@@ -283,6 +283,7 @@ export type SearchItemInput = {
   name?: Maybe<Scalars['String']>,
   category?: Maybe<Category>,
   gender?: Maybe<Gender>,
+  available?: Maybe<Scalars['Boolean']>,
 };
 
 export type SearchOrdersInput = {
@@ -529,7 +530,8 @@ export type ItemsQueryVariables = {
   priceTo?: Maybe<Scalars['Float']>,
   name?: Maybe<Scalars['String']>,
   category?: Maybe<Category>,
-  gender?: Maybe<Gender>
+  gender?: Maybe<Gender>,
+  available?: Maybe<Scalars['Boolean']>
 };
 
 
@@ -983,8 +985,8 @@ export type UpdatePersonalInfoMutationHookResult = ReturnType<typeof useUpdatePe
 export type UpdatePersonalInfoMutationResult = ApolloReactCommon.MutationResult<UpdatePersonalInfoMutation>;
 export type UpdatePersonalInfoMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdatePersonalInfoMutation, UpdatePersonalInfoMutationVariables>;
 export const ItemsDocument = gql`
-    query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $sortOrder: SortOrder, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender) {
-  items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, sortOrder: $sortOrder, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender}) {
+    query Items($id: ID, $take: Int, $skip: Int, $sortBy: String, $sortOrder: SortOrder, $priceFrom: Float, $priceTo: Float, $name: String, $category: Category, $gender: Gender, $available: Boolean) {
+  items(where: {id: $id, take: $take, skip: $skip, sortBy: $sortBy, sortOrder: $sortOrder, priceFrom: $priceFrom, priceTo: $priceTo, name: $name, category: $category, gender: $gender, available: $available}) {
     select {
       id
       name
@@ -1027,6 +1029,7 @@ export const ItemsDocument = gql`
  *      name: // value for 'name'
  *      category: // value for 'category'
  *      gender: // value for 'gender'
+ *      available: // value for 'available'
  *   },
  * });
  */

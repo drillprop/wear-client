@@ -20,7 +20,7 @@ const Items: React.FC = () => {
   });
 
   const { data } = useItemsQuery({
-    variables: { ...variables },
+    variables: { ...variables, available: false },
     fetchPolicy: 'cache-and-network'
   });
 
