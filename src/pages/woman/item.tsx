@@ -18,7 +18,7 @@ const Item: NextPage<Props> = ({ singleItemQuery }) => {
       <Head>
         <title> wear {data.item?.name && `| ${data.item?.name}`}</title>
       </Head>
-      <SingleProduct title={data.item?.name} item={data.item} />
+      <SingleProduct item={data.item} />
     </>
   );
 };

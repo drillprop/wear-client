@@ -13,18 +13,24 @@ import {
   SingleProductInfo,
   SingleProductMain,
   SingleProductName,
-  SingleProductPrice
+  SingleProductPrice,
+  Unavailable
 } from './SingleProduct.styles';
 
 interface Props {
-  title?: string;
   item?: SingleItemQuery['item'];
 }
 
-const SingleProduct: React.FC<Props> = ({ title, item }) => {
+const SingleProduct: React.FC<Props> = ({ item }) => {
   const meQuery = useMeQuery();
   const isAdmin =
     meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
+
+  const sizes =
+    item?.sizes &&
+    item.sizes
+      .filter(size => size.quantity && size)
+      .map(size => size.sizeSymbol);
 
   return item ? (
     <SiteWrapper>
@@ -40,16 +46,22 @@ const SingleProduct: React.FC<Props> = ({ title, item }) => {
               {item?.description}
             </SingleProductDescription>
             <SingleProductPrice>$ {item?.price}</SingleProductPrice>
-            <Select
-              label='Pick size'
-              placeHolder='SIZE'
-              onChange={() => null}
-              options={['S', 'M', 'L', 'XL', 'XXL']}
-            />
-            <AddToCart>
-              <CartIcon color={white} size={'1em'} />
-              add to cart
-            </AddToCart>
+            {sizes?.length ? (
+              <>
+                <Select
+                  label='Pick size'
+                  placeHolder='SIZE'
+                  onChange={() => null}
+                  options={sizes || []}
+                />
+                <AddToCart>
+                  <CartIcon color={white} size={'1em'} />
+                  add to cart
+                </AddToCart>
+              </>
+            ) : (
+              <Unavailable>product is not available at the moment</Unavailable>
+            )}
           </SingleProductInfo>
         </SingleProductMain>
       </div>

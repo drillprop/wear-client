@@ -79,3 +79,8 @@ export const AddToCart = styled.button`
     }
   }
 `;
+
+export const Unavailable = styled.span`
+  font-size: ${fontSizes[2]};
+  color: ${grays[4]};
+`;
