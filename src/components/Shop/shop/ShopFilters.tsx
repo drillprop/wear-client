@@ -103,6 +103,14 @@ const ShopFilters: React.FC<Props> = ({
         small
       />
       <Select
+        label='sort by'
+        value={sortValue}
+        placeHolder='name'
+        options={['newest', 'lowest price', 'highest price']}
+        onChange={handleSort}
+        small
+      />
+      <Select
         label='items per page'
         onChange={take =>
           take && setVariables({ ...variables, take: parseInt(take) })
@@ -110,14 +118,6 @@ const ShopFilters: React.FC<Props> = ({
         value={variables.take}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
-        small
-      />
-      <Select
-        label='sort by'
-        value={sortValue}
-        placeHolder='name'
-        options={['newest', 'lowest price', 'highest price']}
-        onChange={handleSort}
         small
       />
     </ShopFiltersWrapper>
