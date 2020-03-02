@@ -8,12 +8,7 @@ export default gql`
     $category: Category!
     $gender: Gender!
     $description: String
-    $XS: Int!
-    $S: Int!
-    $M: Int!
-    $L: Int!
-    $XL: Int!
-    $XXL: Int!
+    $sizes: [ItemSizesInput!]
   ) {
     createItem(
       input: {
@@ -23,14 +18,7 @@ export default gql`
         category: $category
         gender: $gender
         description: $description
-        sizes: [
-          { sizeSymbol: XS, quantity: $XS }
-          { sizeSymbol: S, quantity: $S }
-          { sizeSymbol: M, quantity: $M }
-          { sizeSymbol: L, quantity: $L }
-          { sizeSymbol: XL, quantity: $XL }
-          { sizeSymbol: XXL, quantity: $XXL }
-        ]
+        sizes: $sizes
       }
     ) {
       id

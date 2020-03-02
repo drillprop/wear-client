@@ -393,12 +393,7 @@ export type CreateItemMutationVariables = {
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
-  XS: Scalars['Int'],
-  S: Scalars['Int'],
-  M: Scalars['Int'],
-  L: Scalars['Int'],
-  XL: Scalars['Int'],
-  XXL: Scalars['Int']
+  sizes?: Maybe<Array<ItemSizesInput>>
 };
 
 
@@ -671,8 +666,8 @@ export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswo
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const CreateItemDocument = gql`
-    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String, $XS: Int!, $S: Int!, $M: Int!, $L: Int!, $XL: Int!, $XXL: Int!) {
-  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description, sizes: [{sizeSymbol: XS, quantity: $XS}, {sizeSymbol: S, quantity: $S}, {sizeSymbol: M, quantity: $M}, {sizeSymbol: L, quantity: $L}, {sizeSymbol: XL, quantity: $XL}, {sizeSymbol: XXL, quantity: $XXL}]}) {
+    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String, $sizes: [ItemSizesInput!]) {
+  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description, sizes: $sizes}) {
     id
     name
     price
@@ -708,12 +703,7 @@ export type CreateItemMutationFn = ApolloReactCommon.MutationFunction<CreateItem
  *      category: // value for 'category'
  *      gender: // value for 'gender'
  *      description: // value for 'description'
- *      XS: // value for 'XS'
- *      S: // value for 'S'
- *      M: // value for 'M'
- *      L: // value for 'L'
- *      XL: // value for 'XL'
- *      XXL: // value for 'XXL'
+ *      sizes: // value for 'sizes'
  *   },
  * });
  */

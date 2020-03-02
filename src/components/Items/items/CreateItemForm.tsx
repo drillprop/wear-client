@@ -3,7 +3,8 @@ import {
   Category,
   Gender,
   ItemsQueryVariables,
-  useCreateItemMutation
+  useCreateItemMutation,
+  SizeSymbol
 } from '../../../generated/types';
 import ITEMS from '../../../graphql/queries/ITEMS';
 import useForm from '../../../hooks/useForm';
@@ -23,7 +24,7 @@ interface Props {
 }
 
 const CreateItemForm: React.FC<Props> = ({ variables }) => {
-  const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+  const availableSizes = Object.values(SizeSymbol);
 
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
@@ -32,12 +33,10 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    XS: 0,
-    S: 0,
-    M: 0,
-    L: 0,
-    XL: 0,
-    XXL: 0
+    ...availableSizes.reduce((acc: any, size) => {
+      acc[size] = 0;
+      return acc;
+    }, {})
   });
 
   const [createItem, { data, error }] = useCreateItemMutation({
@@ -51,17 +50,22 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     const file = await uploadImageToCloudinary(values.imageUrl);
     const imageUrl = file.secure_url;
 
+    const sizes = availableSizes
+      .map(
+        size =>
+          values[size] && {
+            sizeSymbol: size,
+            quantity: parseInt(values[size])
+          }
+      )
+      .filter(size => size && size);
+
     createItem({
       variables: {
         ...values,
         imageUrl,
         price: parseFloat(values.price),
-        XS: parseInt(values.XS),
-        S: parseInt(values.S),
-        M: parseInt(values.M),
-        L: parseInt(values.L),
-        XL: parseInt(values.XL),
-        XXL: parseInt(values.XXL)
+        sizes
       }
     });
   };
@@ -116,7 +120,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             onChange={handleInput}
           />
           <SizesInputsWrapper>
-            {sizes.map(size => (
+            {availableSizes.map(size => (
               <Input
                 key={size}
                 name={size}
