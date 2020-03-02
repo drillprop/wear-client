@@ -37,12 +37,8 @@ export default gql`
         createdAt
         updatedAt
         sizes {
-          xs
-          s
-          m
-          l
-          xl
-          xxl
+          sizeSymbol
+          quantity
         }
       }
       maxPrice

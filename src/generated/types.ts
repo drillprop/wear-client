@@ -41,7 +41,7 @@ export type CreateItemInput = {
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
-  sizes?: Maybe<ItemSizes>,
+  sizes?: Maybe<Array<ItemSizesInput>>,
 };
 
 
@@ -51,7 +51,7 @@ export type EditItemInput = {
   price?: Maybe<Scalars['Float']>,
   imageUrl?: Maybe<Scalars['String']>,
   category?: Maybe<Category>,
-  sizes?: Maybe<ItemSizes>,
+  sizes?: Maybe<Array<ItemSizesInput>>,
 };
 
 export enum Gender {
@@ -69,7 +69,7 @@ export type Item = {
   gender: Gender,
   description?: Maybe<Scalars['String']>,
   createdBy: User,
-  sizes?: Maybe<Size>,
+  sizes?: Maybe<Array<Size>>,
   createdAt: Scalars['DateTime'],
   updatedAt?: Maybe<Scalars['DateTime']>,
   totalCount: Scalars['Int'],
@@ -83,13 +83,9 @@ export type ItemsAndCount = {
   minPrice?: Maybe<Scalars['Float']>,
 };
 
-export type ItemSizes = {
-  xs?: Maybe<Scalars['Int']>,
-  s?: Maybe<Scalars['Int']>,
-  m?: Maybe<Scalars['Int']>,
-  l?: Maybe<Scalars['Int']>,
-  xl?: Maybe<Scalars['Int']>,
-  xxl?: Maybe<Scalars['Int']>,
+export type ItemSizesInput = {
+  sizeSymbol: SizeSymbol,
+  quantity: Scalars['Int'],
 };
 
 export type LoginInput = {
@@ -312,13 +308,18 @@ export type SearchUserInput = {
 
 export type Size = {
    __typename?: 'Size',
-  xs?: Maybe<Scalars['Int']>,
-  s?: Maybe<Scalars['Int']>,
-  m?: Maybe<Scalars['Int']>,
-  l?: Maybe<Scalars['Int']>,
-  xl?: Maybe<Scalars['Int']>,
-  xxl?: Maybe<Scalars['Int']>,
+  sizeSymbol?: Maybe<SizeSymbol>,
+  quantity?: Maybe<Scalars['Int']>,
 };
+
+export enum SizeSymbol {
+  Xs = 'XS',
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  Xl = 'XL',
+  Xxl = 'XXL'
+}
 
 export enum SortOrder {
   Asc = 'ASC',
@@ -392,12 +393,12 @@ export type CreateItemMutationVariables = {
   category: Category,
   gender: Gender,
   description?: Maybe<Scalars['String']>,
-  xs?: Maybe<Scalars['Int']>,
-  s?: Maybe<Scalars['Int']>,
-  m?: Maybe<Scalars['Int']>,
-  l?: Maybe<Scalars['Int']>,
-  xl?: Maybe<Scalars['Int']>,
-  xxl?: Maybe<Scalars['Int']>
+  XS: Scalars['Int'],
+  S: Scalars['Int'],
+  M: Scalars['Int'],
+  L: Scalars['Int'],
+  XL: Scalars['Int'],
+  XXL: Scalars['Int']
 };
 
 
@@ -406,10 +407,10 @@ export type CreateItemMutation = (
   & { createItem: (
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
-    & { sizes: Maybe<(
+    & { sizes: Maybe<Array<(
       { __typename?: 'Size' }
-      & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
-    )> }
+      & Pick<Size, 'sizeSymbol' | 'quantity'>
+    )>> }
   ) }
 );
 
@@ -545,10 +546,10 @@ export type ItemsQuery = (
     & { select: Array<Maybe<(
       { __typename?: 'Item' }
       & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-      & { sizes: Maybe<(
+      & { sizes: Maybe<Array<(
         { __typename?: 'Size' }
-        & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
-      )> }
+        & Pick<Size, 'sizeSymbol' | 'quantity'>
+      )>> }
     )>> }
   ) }
 );
@@ -578,10 +579,10 @@ export type SingleItemQuery = (
   & { item: Maybe<(
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-    & { sizes: Maybe<(
+    & { sizes: Maybe<Array<(
       { __typename?: 'Size' }
-      & Pick<Size, 'xs' | 's' | 'm' | 'l' | 'xl' | 'xxl'>
-    )> }
+      & Pick<Size, 'sizeSymbol' | 'quantity'>
+    )>> }
   )> }
 );
 
@@ -670,8 +671,8 @@ export type ChangePasswordMutationHookResult = ReturnType<typeof useChangePasswo
 export type ChangePasswordMutationResult = ApolloReactCommon.MutationResult<ChangePasswordMutation>;
 export type ChangePasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ChangePasswordMutation, ChangePasswordMutationVariables>;
 export const CreateItemDocument = gql`
-    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String, $xs: Int, $s: Int, $m: Int, $l: Int, $xl: Int, $xxl: Int) {
-  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description, sizes: {xs: $xs, s: $s, m: $m, l: $l, xl: $xl, xxl: $xxl}}) {
+    mutation CreateItem($name: String!, $price: Float!, $imageUrl: String!, $category: Category!, $gender: Gender!, $description: String, $XS: Int!, $S: Int!, $M: Int!, $L: Int!, $XL: Int!, $XXL: Int!) {
+  createItem(input: {name: $name, price: $price, imageUrl: $imageUrl, category: $category, gender: $gender, description: $description, sizes: [{sizeSymbol: XS, quantity: $XS}, {sizeSymbol: S, quantity: $S}, {sizeSymbol: M, quantity: $M}, {sizeSymbol: L, quantity: $L}, {sizeSymbol: XL, quantity: $XL}, {sizeSymbol: XXL, quantity: $XXL}]}) {
     id
     name
     price
@@ -680,12 +681,8 @@ export const CreateItemDocument = gql`
     gender
     createdAt
     sizes {
-      xs
-      s
-      m
-      l
-      xl
-      xxl
+      sizeSymbol
+      quantity
     }
   }
 }
@@ -711,12 +708,12 @@ export type CreateItemMutationFn = ApolloReactCommon.MutationFunction<CreateItem
  *      category: // value for 'category'
  *      gender: // value for 'gender'
  *      description: // value for 'description'
- *      xs: // value for 'xs'
- *      s: // value for 's'
- *      m: // value for 'm'
- *      l: // value for 'l'
- *      xl: // value for 'xl'
- *      xxl: // value for 'xxl'
+ *      XS: // value for 'XS'
+ *      S: // value for 'S'
+ *      M: // value for 'M'
+ *      L: // value for 'L'
+ *      XL: // value for 'XL'
+ *      XXL: // value for 'XXL'
  *   },
  * });
  */
@@ -1008,12 +1005,8 @@ export const ItemsDocument = gql`
       createdAt
       updatedAt
       sizes {
-        xs
-        s
-        m
-        l
-        xl
-        xxl
+        sizeSymbol
+        quantity
       }
     }
     maxPrice
@@ -1118,12 +1111,8 @@ export const SingleItemDocument = gql`
     createdAt
     updatedAt
     sizes {
-      xs
-      s
-      m
-      l
-      xl
-      xxl
+      sizeSymbol
+      quantity
     }
   }
 }
