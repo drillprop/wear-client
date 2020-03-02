@@ -1,14 +1,13 @@
 import React from 'react';
-import { SingleItemQuery, useMeQuery, UserRole } from '../../generated/types';
-import { white } from '../../styles/colors';
-import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
-import CartIcon from '../CartIcon/CartIcon';
-import Select from '../Select/Select';
-import ShopSideNav from '../ShopSideNav/ShopSideNav';
+import { SingleItemQuery } from '../../../generated/types';
+import { white } from '../../../styles/colors';
+import { SiteSubtitle, SiteWrapper } from '../../../styles/site.styles';
+import CartIcon from '../../CartIcon/CartIcon';
+import Select from '../../Select/Select';
+import { EditButton } from '../SingleProductContainer.styles';
 import {
   AddToCart,
   SingleProductDescription,
-  SingleProductEdit,
   SingleProductImg,
   SingleProductInfo,
   SingleProductMain,
@@ -16,16 +15,13 @@ import {
   SingleProductPrice,
   Unavailable
 } from './SingleProduct.styles';
-
 interface Props {
   item?: SingleItemQuery['item'];
+  setToEditState: React.Dispatch<React.SetStateAction<boolean>>;
+  isAdmin?: boolean | null;
 }
 
-const SingleProduct: React.FC<Props> = ({ item }) => {
-  const meQuery = useMeQuery();
-  const isAdmin =
-    meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
-
+const SingleProduct: React.FC<Props> = ({ item, setToEditState, isAdmin }) => {
   const sizes =
     item?.sizes &&
     item.sizes
@@ -34,13 +30,14 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
 
   return item ? (
     <SiteWrapper>
-      <ShopSideNav gender={item?.gender} />
       <div>
         <SiteSubtitle>{item?.category}</SiteSubtitle>
         <SingleProductMain>
           <SingleProductImg src={item?.imageUrl} alt={item?.name} />
           <SingleProductInfo>
-            {isAdmin && <SingleProductEdit>Edit</SingleProductEdit>}
+            {isAdmin && (
+              <EditButton onClick={() => setToEditState(true)}>Edit</EditButton>
+            )}
             <SingleProductName>{item?.name}</SingleProductName>
             <SingleProductDescription>
               {item?.description}

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { black, white, grays } from '../../styles/colors';
-import { montserrat } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import { black, white, grays } from '../../../styles/colors';
+import { montserrat } from '../../../styles/fonts';
+import fontSizes from '../../../styles/fontSizes';
 
 export const SingleProductMain = styled.div`
   margin-top: 50px;
@@ -21,12 +21,6 @@ export const SingleProductInfo = styled.section`
   display: grid;
   align-items: start;
   height: 500px;
-`;
-
-export const SingleProductEdit = styled.span`
-  position: absolute;
-  color: ${grays[4]};
-  font-size: ${fontSizes[1]};
 `;
 
 export const SingleProductName = styled.h1`
