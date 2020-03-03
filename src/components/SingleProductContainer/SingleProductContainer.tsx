@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SiteWrapper } from '../../styles/site.styles';
+import { SiteWrapper, SiteSubtitle } from '../../styles/site.styles';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import { SingleItemQuery, useMeQuery, UserRole } from '../../generated/types';
 import SingleProduct from './singleProductContainer/SingleProduct';

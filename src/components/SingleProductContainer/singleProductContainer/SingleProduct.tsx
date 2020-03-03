@@ -1,7 +1,6 @@
 import React from 'react';
 import { SingleItemQuery } from '../../../generated/types';
 import { white } from '../../../styles/colors';
-import { SiteSubtitle, SiteWrapper } from '../../../styles/site.styles';
 import CartIcon from '../../CartIcon/CartIcon';
 import Select from '../../Select/Select';
 import { EditButton } from '../SingleProductContainer.styles';
@@ -29,40 +28,37 @@ const SingleProduct: React.FC<Props> = ({ item, setToEditState, isAdmin }) => {
       .map(size => size.sizeSymbol);
 
   return item ? (
-    <SiteWrapper>
-      <div>
-        <SiteSubtitle>{item?.category}</SiteSubtitle>
-        <SingleProductMain>
-          <SingleProductImg src={item?.imageUrl} alt={item?.name} />
-          <SingleProductInfo>
-            {isAdmin && (
-              <EditButton onClick={() => setToEditState(true)}>Edit</EditButton>
-            )}
-            <SingleProductName>{item?.name}</SingleProductName>
-            <SingleProductDescription>
-              {item?.description}
-            </SingleProductDescription>
-            <SingleProductPrice>$ {item?.price}</SingleProductPrice>
-            {sizes?.length ? (
-              <>
-                <Select
-                  label='Pick size'
-                  placeHolder='SIZE'
-                  onChange={() => null}
-                  options={sizes || []}
-                />
-                <AddToCart>
-                  <CartIcon color={white} size={'1em'} />
-                  add to cart
-                </AddToCart>
-              </>
-            ) : (
-              <Unavailable>product is not available at the moment</Unavailable>
-            )}
-          </SingleProductInfo>
-        </SingleProductMain>
-      </div>
-    </SiteWrapper>
+    <>
+      <SingleProductMain>
+        <SingleProductImg src={item?.imageUrl} alt={item?.name} />
+        <SingleProductInfo>
+          {isAdmin && (
+            <EditButton onClick={() => setToEditState(true)}>Edit</EditButton>
+          )}
+          <SingleProductName>{item?.name}</SingleProductName>
+          <SingleProductDescription>
+            {item?.description}
+          </SingleProductDescription>
+          <SingleProductPrice>$ {item?.price}</SingleProductPrice>
+          {sizes?.length ? (
+            <>
+              <Select
+                label='Pick size'
+                placeHolder='SIZE'
+                onChange={() => null}
+                options={sizes || []}
+              />
+              <AddToCart>
+                <CartIcon color={white} size={'1em'} />
+                add to cart
+              </AddToCart>
+            </>
+          ) : (
+            <Unavailable>product is not available at the moment</Unavailable>
+          )}
+        </SingleProductInfo>
+      </SingleProductMain>
+    </>
   ) : (
     <div>no such item</div>
   );
