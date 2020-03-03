@@ -9,7 +9,7 @@ interface Props {
   label: string;
   placeholder: string;
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  value?: string;
+  value?: string | null;
   required?: boolean;
   name?: string;
   marginTop?: string;
@@ -30,7 +30,7 @@ const TextArea: React.FC<Props> = ({
     <TextAreaWrapper marginTop={marginTop} width={width}>
       <TextAreaLabel htmlFor={label}>{label}</TextAreaLabel>
       <StyledTextArea
-        value={value}
+        value={value || ''}
         onChange={onChange}
         name={name ? name : label}
         id={label}
