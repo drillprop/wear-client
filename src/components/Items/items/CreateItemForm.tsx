@@ -3,12 +3,12 @@ import {
   Category,
   Gender,
   ItemsQueryVariables,
-  useCreateItemMutation,
-  SizeSymbol
+  SizeSymbol,
+  useCreateItemMutation
 } from '../../../generated/types';
 import ITEMS from '../../../graphql/queries/ITEMS';
 import useForm from '../../../hooks/useForm';
-import { SiteForm, SiteSubtitle } from '../../../styles/site.styles';
+import { SiteSubtitle } from '../../../styles/site.styles';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
@@ -16,7 +16,11 @@ import Input from '../../Input/Input';
 import RadioGroup from '../../RadioGroup/RadioGroup';
 import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
-import { CreateItemWrapper, SizesInputsWrapper } from './CreateItemForm.styles';
+import {
+  CreateItemWrapper,
+  SizesInputsWrapper,
+  StyledCreateForm
+} from './CreateItemForm.styles';
 import UploadImage from './createItemForm/UploadImage';
 
 interface Props {
@@ -70,15 +74,11 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     });
   };
   return (
-    <SiteForm onSubmit={handleSubmit}>
+    <StyledCreateForm onSubmit={handleSubmit}>
       <SiteSubtitle>Create an item</SiteSubtitle>
       <ErrorMessage error={error} />
       {data?.createItem.id && 'Succesfully create item'}
       <CreateItemWrapper>
-        <UploadImage
-          onChange={imageUrl => setForm({ ...values, imageUrl })}
-          imageUrl={values.imageUrl}
-        />
         <div>
           <Input
             type='text'
@@ -100,6 +100,12 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             icon='/wallet-icon.svg'
             width='350px'
           />
+          <UploadImage
+            onChange={imageUrl => setForm({ ...values, imageUrl })}
+            imageUrl={values.imageUrl}
+          />
+        </div>
+        <div>
           <Select
             options={Object.values(Category)}
             width='350px'
@@ -144,7 +150,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
           </Button>
         </div>
       </CreateItemWrapper>
-    </SiteForm>
+    </StyledCreateForm>
   );
 };
 

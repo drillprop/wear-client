@@ -4,8 +4,7 @@ import {
   FileInputLabel,
   ImageBox,
   StyledFileInput,
-  TopLabel,
-  UploadImageWrapper
+  TopLabel
 } from './UploadImage.styles';
 
 interface Props {
@@ -45,7 +44,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
   };
 
   return (
-    <UploadImageWrapper>
+    <>
       <TopLabel>UPLOAD AN IMAGE</TopLabel>
       <ImageBox imageUrl={imageUrl}>
         {filename && <DiscardImageButton onClick={discardImage} />}
@@ -68,7 +67,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
           onBlur={() => setOutline(false)}
         />
       </ImageBox>
-    </UploadImageWrapper>
+    </>
   );
 };
 

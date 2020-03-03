@@ -26,14 +26,14 @@ export const SizesInputsWrapper = styled.div`
   border: 2px solid ${grays[0]};
   display: grid;
   padding: 30px 25px;
-  grid-gap: 15px;
+  grid-gap: 30px;
   justify-items: center;
   grid-template-columns: repeat(2, 1fr);
   ::before {
     position: absolute;
     top: -8px;
     left: 5px;
-    content: 'avalaiable sizes';
+    content: 'available sizes';
     background-color: ${white};
     padding: 0;
     padding-right: 5px;

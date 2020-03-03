@@ -8,10 +8,6 @@ interface FileInputLabelProps {
   outline: boolean;
 }
 
-export const UploadImageWrapper = styled.div`
-  height: 100%;
-`;
-
 export const TopLabel = styled.label`
   margin-top: 25px;
   position: relative;
@@ -28,7 +24,7 @@ export const TopLabel = styled.label`
 export const ImageBox = styled.div<{ imageUrl?: string }>`
   position: relative;
   height: 100%;
-  height: 600px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
