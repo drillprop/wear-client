@@ -16,11 +16,12 @@ const Items: React.FC = () => {
     take: 5,
     skip: 0,
     sortBy: 'Item.createdAt',
-    sortOrder: SortOrder.Asc
+    sortOrder: SortOrder.Desc,
+    available: false
   });
 
   const { data } = useItemsQuery({
-    variables: { ...variables, available: false },
+    variables: { ...variables },
     fetchPolicy: 'cache-and-network'
   });
 
