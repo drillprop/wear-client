@@ -505,6 +505,28 @@ export type UpdateAddressMutation = (
   ) }
 );
 
+export type UpdateItemMutationVariables = {
+  id: Scalars['String'],
+  name?: Maybe<Scalars['String']>,
+  price?: Maybe<Scalars['Float']>,
+  imageUrl?: Maybe<Scalars['String']>,
+  category?: Maybe<Category>,
+  sizes?: Maybe<Array<ItemSizesInput>>
+};
+
+
+export type UpdateItemMutation = (
+  { __typename?: 'Mutation' }
+  & { updateItem: (
+    { __typename?: 'Item' }
+    & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
+    & { sizes: Maybe<Array<(
+      { __typename?: 'Size' }
+      & Pick<Size, 'sizeSymbol' | 'quantity'>
+    )>> }
+  ) }
+);
+
 export type UpdatePersonalInfoMutationVariables = {
   firstName?: Maybe<Scalars['String']>,
   lastName?: Maybe<Scalars['String']>,
@@ -950,6 +972,53 @@ export function useUpdateAddressMutation(baseOptions?: ApolloReactHooks.Mutation
 export type UpdateAddressMutationHookResult = ReturnType<typeof useUpdateAddressMutation>;
 export type UpdateAddressMutationResult = ApolloReactCommon.MutationResult<UpdateAddressMutation>;
 export type UpdateAddressMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateAddressMutation, UpdateAddressMutationVariables>;
+export const UpdateItemDocument = gql`
+    mutation UpdateItem($id: String!, $name: String, $price: Float, $imageUrl: String, $category: Category, $sizes: [ItemSizesInput!]) {
+  updateItem(input: {id: $id, name: $name, price: $price, imageUrl: $imageUrl, category: $category, sizes: $sizes}) {
+    id
+    name
+    price
+    imageUrl
+    category
+    gender
+    createdAt
+    sizes {
+      sizeSymbol
+      quantity
+    }
+  }
+}
+    `;
+export type UpdateItemMutationFn = ApolloReactCommon.MutationFunction<UpdateItemMutation, UpdateItemMutationVariables>;
+
+/**
+ * __useUpdateItemMutation__
+ *
+ * To run a mutation, you first call `useUpdateItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateItemMutation, { data, loading, error }] = useUpdateItemMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      name: // value for 'name'
+ *      price: // value for 'price'
+ *      imageUrl: // value for 'imageUrl'
+ *      category: // value for 'category'
+ *      sizes: // value for 'sizes'
+ *   },
+ * });
+ */
+export function useUpdateItemMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateItemMutation, UpdateItemMutationVariables>) {
+        return ApolloReactHooks.useMutation<UpdateItemMutation, UpdateItemMutationVariables>(UpdateItemDocument, baseOptions);
+      }
+export type UpdateItemMutationHookResult = ReturnType<typeof useUpdateItemMutation>;
+export type UpdateItemMutationResult = ApolloReactCommon.MutationResult<UpdateItemMutation>;
+export type UpdateItemMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateItemMutation, UpdateItemMutationVariables>;
 export const UpdatePersonalInfoDocument = gql`
     mutation UpdatePersonalInfo($firstName: String, $lastName: String, $phoneNumber: String) {
   updatePersonalInfo(input: {firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber}) {
