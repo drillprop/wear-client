@@ -13,6 +13,7 @@
     "@types/styled-components": "^4.1.19",
     "apollo-boost": "^0.4.4",
     "dotenv": "^8.2.0",
+    "framer-motion": "^1.9.1",
     "graphql": "^14.5.8",
     "lodash.debounce": "^4.0.8",
     "next": "^9.2.1",
