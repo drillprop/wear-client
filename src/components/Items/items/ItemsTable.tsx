@@ -22,6 +22,7 @@ const ItemsTable: React.FC<Props> = ({ items, variables }) => {
           <TableHeadCell>price</TableHeadCell>
           <TableHeadCell>category</TableHeadCell>
           <TableHeadCell>gender</TableHeadCell>
+          <TableHeadCell>edit item</TableHeadCell>
           <TableHeadCell>delete item</TableHeadCell>
         </tr>
       </TableHead>

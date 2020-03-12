@@ -47,6 +47,19 @@ const ItemRow: React.FC<Props> = ({
         <TableData>{price}</TableData>
         <TableData>{category}</TableData>
         <TableData>{gender}</TableData>
+        <TableData>
+          <Link
+            href={{
+              pathname: `/admin/item`,
+              query: {
+                category: category.toLowerCase(),
+                id
+              }
+            }}
+          >
+            edit item
+          </Link>
+        </TableData>
         <TableData
           onClick={e => {
             e.stopPropagation();
