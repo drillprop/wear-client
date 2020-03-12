@@ -1,9 +1,10 @@
 import React from 'react';
-import { SingleItemQuery } from '../../../generated/types';
-import { white } from '../../../styles/colors';
-import CartIcon from '../../CartIcon/CartIcon';
-import Select from '../../Select/Select';
-import { EditButton } from '../SingleProductContainer.styles';
+import { SingleItemQuery } from '../../generated/types';
+import { white } from '../../styles/colors';
+import { SiteWrapper } from '../../styles/site.styles';
+import CartIcon from '../CartIcon/CartIcon';
+import Select from '../Select/Select';
+import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import {
   AddToCart,
   SingleProductDescription,
@@ -16,11 +17,9 @@ import {
 } from './SingleProduct.styles';
 interface Props {
   item?: SingleItemQuery['item'];
-  setToEditState: React.Dispatch<React.SetStateAction<boolean>>;
-  isAdmin?: boolean | null;
 }
 
-const SingleProduct: React.FC<Props> = ({ item, setToEditState, isAdmin }) => {
+const SingleProduct: React.FC<Props> = ({ item }) => {
   const sizes =
     item?.sizes &&
     item.sizes
@@ -28,13 +27,11 @@ const SingleProduct: React.FC<Props> = ({ item, setToEditState, isAdmin }) => {
       .map(size => size.sizeSymbol);
 
   return item ? (
-    <>
+    <SiteWrapper>
+      <ShopSideNav gender={item?.gender} />
       <SingleProductMain>
         <SingleProductImg src={item?.imageUrl} alt={item?.name} />
         <SingleProductInfo>
-          {isAdmin && (
-            <EditButton onClick={() => setToEditState(true)}>Edit</EditButton>
-          )}
           <SingleProductName>{item?.name}</SingleProductName>
           <SingleProductDescription>
             {item?.description}
@@ -58,7 +55,7 @@ const SingleProduct: React.FC<Props> = ({ item, setToEditState, isAdmin }) => {
           )}
         </SingleProductInfo>
       </SingleProductMain>
-    </>
+    </SiteWrapper>
   ) : (
     <div>no such item</div>
   );

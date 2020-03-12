@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { black, white, grays } from '../../../styles/colors';
-import { montserrat } from '../../../styles/fonts';
-import fontSizes from '../../../styles/fontSizes';
+import { black, white, grays } from '../../styles/colors';
+import { montserrat } from '../../styles/fonts';
+import fontSizes from '../../styles/fontSizes';
 
 export const SingleProductMain = styled.div`
   margin-top: 50px;
