@@ -3,7 +3,7 @@ import { grays, white } from '../../styles/colors';
 import { roboto } from '../../styles/fonts';
 import fontSizes from '../../styles/fontSizes';
 
-export const EditItemWrapper = styled.div`
+export const EditItemWrapper = styled.form`
   position: relative;
 `;
 

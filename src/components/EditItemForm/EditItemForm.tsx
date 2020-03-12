@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Category,
   Gender,
   SingleItemQuery,
-  SizeSymbol,
-  useMeQuery,
-  UserRole
+  SizeSymbol
 } from '../../generated/types';
+import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Input from '../Input/Input';
@@ -20,19 +19,49 @@ interface Props {
 }
 
 const EditItemForm: React.FC<Props> = ({ item }) => {
-  const meQuery = useMeQuery();
-  const isAdmin =
-    meQuery.data?.me && meQuery.data.me.role !== UserRole.Customer;
+  const availableSizes = Object.values(SizeSymbol);
+  const { values, handleInput, setForm } = useForm({
+    name: '',
+    price: 0,
+    category: '',
+    gender: '',
+    description: '',
+    imageUrl: '',
+    ...availableSizes.reduce((acc: any, size) => {
+      acc[size] = 0;
+      return acc;
+    }, {})
+  });
+
+  const sizes = item?.sizes?.reduce((acc: any, size) => {
+    if (size.sizeSymbol) {
+      acc[size.sizeSymbol] = size.quantity;
+      return acc;
+    }
+  }, {});
+  useEffect(() => {
+    setForm({
+      name: item?.name,
+      price: item?.price,
+      category: item?.category,
+      gender: item?.gender,
+      description: item?.description,
+      imageUrl: item?.imageUrl,
+      ...sizes
+    });
+  }, [item]);
+
+  const { name, price, category, gender, description } = values;
   return (
     <SiteWrapper>
       <AdminSideNav />
       <EditItemWrapper>
-        <SiteSubtitle>{item?.category}</SiteSubtitle>
+        <SiteSubtitle>EDIT ITEM</SiteSubtitle>
         <Input
           type='text'
           placeholder='name'
-          onChange={() => {}}
-          value={item?.name}
+          onChange={handleInput}
+          value={name}
           label='name'
           name='name'
           icon='/info-icon.svg'
@@ -41,8 +70,8 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
         <Input
           type='number'
           placeholder='price'
-          onChange={() => {}}
-          value={item?.price}
+          onChange={handleInput}
+          value={price}
           label='price'
           name='price'
           icon='/wallet-icon.svg'
@@ -53,23 +82,23 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
           width='350px'
           label='category'
           placeHolder='select'
-          onChange={() => {}}
-          value={item?.category}
+          onChange={category => setForm({ ...values, category })}
+          value={category}
         />
         <RadioGroup
           legend='Gender'
           width='350px'
           name='gender'
           buttons={Object.values(Gender)}
-          onChange={() => {}}
-          value={item?.gender}
+          onChange={handleInput}
+          value={gender}
         />
         <TextArea
           label='description'
           placeholder='Lorem ipsum dolor sit amet.'
           width='350px'
-          value={item?.description}
-          onChange={() => {}}
+          value={description}
+          onChange={handleInput}
         />
         <SizesInputsWrapper>
           {Object.values(SizeSymbol).map(size => (
@@ -81,12 +110,9 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               type='number'
               marginTop='0'
               placeholder='0'
-              value={
-                item?.sizes?.find(item => item.sizeSymbol === size)?.quantity ||
-                0
-              }
+              value={values[size]}
               label={size}
-              onChange={() => {}}
+              onChange={handleInput}
             />
           ))}
         </SizesInputsWrapper>
