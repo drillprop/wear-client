@@ -8,6 +8,7 @@ import {
 } from '../../../../generated/types';
 import ITEMS from '../../../../graphql/queries/ITEMS';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 
 interface Props {
   id: string;
@@ -48,7 +49,7 @@ const ItemRow: React.FC<Props> = ({
         <TableData>{category}</TableData>
         <TableData>{gender}</TableData>
         <TableData>
-          <Link
+          <LinkAnchor
             href={{
               pathname: `/admin/item`,
               query: {
@@ -58,7 +59,7 @@ const ItemRow: React.FC<Props> = ({
             }}
           >
             edit item
-          </Link>
+          </LinkAnchor>
         </TableData>
         <TableData
           onClick={e => {
