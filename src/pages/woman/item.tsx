@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { ApolloAppContext } from 'next-with-apollo';
 import Head from 'next/head';
 import React from 'react';
-import SingleProductContainer from '../../components/SingleProductContainer/SingleProductContainer';
+import SingleProduct from '../../components/SingleProduct/SingleProduct';
 import { SingleItemQuery } from '../../generated/types';
 import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 
@@ -18,7 +18,7 @@ const Item: NextPage<Props> = ({ singleItemQuery }) => {
       <Head>
         <title> wear {data.item?.name && `| ${data.item?.name}`}</title>
       </Head>
-      <SingleProductContainer item={data.item} />
+      <SingleProduct item={data.item} />
     </>
   );
 };
