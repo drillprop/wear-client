@@ -15,11 +15,10 @@ interface Props {
 
 const AdminItem: NextPage<Props> = ({ singleItemQuery, query }) => {
   const { data } = singleItemQuery;
-  console.log(query);
   return (
     <>
       <Head>
-        <title> wear {data.item?.name && `| ${data.item?.name}`}</title>
+        <title> wear | edit item</title>
       </Head>
       <EditItemForm item={data.item} />;
     </>
