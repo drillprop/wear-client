@@ -3,11 +3,15 @@ import {
   Category,
   Gender,
   SingleItemQuery,
-  SizeSymbol
+  SizeSymbol,
+  useUpdateItemMutation
 } from '../../generated/types';
+import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
+import Button from '../Button/Button';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Input from '../Input/Input';
 import RadioGroup from '../RadioGroup/RadioGroup';
 import Select from '../Select/Select';
@@ -19,7 +23,10 @@ interface Props {
 }
 
 const EditItemForm: React.FC<Props> = ({ item }) => {
-  const availableSizes = Object.values(SizeSymbol);
+  const [updateItem, { data, error }] = useUpdateItemMutation({
+    refetchQueries: [{ query: SINGLE_ITEM, variables: { id: item?.id } }]
+  });
+
   const { values, handleInput, setForm } = useForm({
     name: '',
     price: 0,
@@ -27,10 +34,10 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    ...availableSizes.reduce((acc: any, size) => {
-      acc[size] = 0;
-      return acc;
-    }, {})
+    sizes: Object.values(SizeSymbol).map(sizeSymbol => ({
+      sizeSymbol,
+      quantity: 0
+    }))
   });
 
   const sizes = item?.sizes?.reduce((acc: any, size) => {
@@ -39,24 +46,50 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
       return acc;
     }
   }, {});
+
   useEffect(() => {
     setForm({
-      name: item?.name,
-      price: item?.price,
-      category: item?.category,
-      gender: item?.gender,
-      description: item?.description,
-      imageUrl: item?.imageUrl,
+      ...item,
       ...sizes
     });
   }, [item]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const isNameChanged = () => {
+      if (item?.name !== values.name && values.name) return values.name;
+    };
+
+    const sizes = Object.values(SizeSymbol)
+      .map(
+        sizeSymbol =>
+          values[sizeSymbol] && {
+            sizeSymbol,
+            quantity: parseInt(values[sizeSymbol])
+          }
+      )
+      .filter(Boolean);
+
+    updateItem({
+      variables: {
+        id: item?.id,
+        ...values,
+        name: isNameChanged(),
+        price: parseFloat(values.price),
+        sizes
+      }
+    });
+  };
 
   const { name, price, category, gender, description } = values;
   return (
     <SiteWrapper>
       <AdminSideNav />
-      <EditItemWrapper>
+      <EditItemWrapper onSubmit={handleSubmit}>
         <SiteSubtitle>EDIT ITEM</SiteSubtitle>
+        <ErrorMessage error={error} />
+        {data?.updateItem.id && 'Succesfully updated item'}
         <Input
           type='text'
           placeholder='name'
@@ -116,6 +149,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
             />
           ))}
         </SizesInputsWrapper>
+        <Button type='submit'>Save</Button>
       </EditItemWrapper>
     </SiteWrapper>
   );
