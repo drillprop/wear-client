@@ -21,6 +21,8 @@ import {
   SizesInputsWrapper,
   StyledEditForm
 } from './EditItemForm.styles';
+import UploadImage from '../UploadImage/UploadImage';
+import uploadImageToCloudinary from '../../utils/uploadImageToCloudinary';
 
 interface Props {
   item?: SingleItemQuery['item'];
@@ -65,6 +67,9 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
       if (item?.name !== values.name && values.name) return values.name;
     };
 
+    const file = await uploadImageToCloudinary(values.imageUrl);
+    const imageUrl = file.secure_url;
+
     const sizes = Object.values(SizeSymbol)
       .map(
         sizeSymbol =>
@@ -79,6 +84,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
       variables: {
         id: item?.id,
         ...values,
+        imageUrl,
         name: isNameChanged(),
         price: parseFloat(values.price),
         sizes
@@ -86,7 +92,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     });
   };
 
-  const { name, price, category, gender, description } = values;
+  const { name, price, category, gender, description, imageUrl } = values;
   return (
     <SiteWrapper>
       <AdminSideNav />
@@ -116,6 +122,12 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               icon='/wallet-icon.svg'
               width='350px'
             />
+            <UploadImage
+              onChange={imageUrl => setForm({ ...values, imageUrl })}
+              imageUrl={imageUrl}
+            />
+          </div>
+          <div>
             <Select
               options={Object.values(Category)}
               width='350px'
@@ -132,8 +144,6 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               onChange={handleInput}
               value={gender}
             />
-          </div>
-          <div>
             <TextArea
               label='description'
               placeholder='Lorem ipsum dolor sit amet.'
