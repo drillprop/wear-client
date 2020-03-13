@@ -125,6 +125,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
             <UploadImage
               onChange={imageUrl => setForm({ ...values, imageUrl })}
               imageUrl={imageUrl}
+              placeholder='change image'
             />
           </div>
           <div>

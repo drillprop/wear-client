@@ -10,9 +10,16 @@ import {
 interface Props {
   onChange: (arg: any) => void;
   imageUrl?: string;
+  required?: boolean;
+  placeholder?: string;
 }
 
-const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
+const UploadImage: React.FC<Props> = ({
+  onChange,
+  imageUrl,
+  required,
+  placeholder = 'send a file'
+}) => {
   const [outline, setOutline] = useState(false);
   const [filename, setFilename] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,7 +60,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
           highlight={!!filename}
           outline={outline}
         >
-          {filename ? filename : 'send a file'}
+          {filename ? filename : placeholder}
         </FileInputLabel>
         <StyledFileInput
           ref={inputRef}
@@ -61,7 +68,7 @@ const UploadImage: React.FC<Props> = ({ onChange, imageUrl }) => {
           accept='image/*'
           type='file'
           id='file-input'
-          required
+          required={required}
           onChange={handleUpload}
           onFocus={() => setOutline(true)}
           onBlur={() => setOutline(false)}
