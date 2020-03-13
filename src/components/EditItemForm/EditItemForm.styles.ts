@@ -3,6 +3,14 @@ import { grays, white } from '../../styles/colors';
 import { roboto } from '../../styles/fonts';
 import fontSizes from '../../styles/fontSizes';
 
+export const EditFormLinks = styled.div`
+  font-size: ${fontSizes[3]};
+  text-transform: uppercase;
+  font-family: ${roboto};
+  color: ${grays[4]};
+  margin-bottom: 10px;
+`;
+
 export const StyledEditForm = styled.form`
   display: grid;
   grid-template-rows: repeat(1, 1fr);
@@ -13,7 +21,6 @@ export const EditItemWrapper = styled.div`
   display: grid;
   grid-gap: 0px 100px;
   grid-template-columns: repeat(auto-fill, minmax(auto, 350px));
-  grid-template-rows: repeat(2, auto);
 `;
 
 export const SizesInputsWrapper = styled.div`

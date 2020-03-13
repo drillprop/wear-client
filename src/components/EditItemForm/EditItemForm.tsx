@@ -9,20 +9,22 @@ import {
 import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
+import uploadImageToCloudinary from '../../utils/uploadImageToCloudinary';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Button from '../Button/Button';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Input from '../Input/Input';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import RadioGroup from '../RadioGroup/RadioGroup';
 import Select from '../Select/Select';
 import TextArea from '../TextArea/TextArea';
+import UploadImage from '../UploadImage/UploadImage';
 import {
+  EditFormLinks,
   EditItemWrapper,
   SizesInputsWrapper,
   StyledEditForm
 } from './EditItemForm.styles';
-import UploadImage from '../UploadImage/UploadImage';
-import uploadImageToCloudinary from '../../utils/uploadImageToCloudinary';
 
 interface Props {
   item?: SingleItemQuery['item'];
@@ -98,6 +100,19 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
       <AdminSideNav />
       <StyledEditForm onSubmit={handleSubmit}>
         <SiteSubtitle>EDIT ITEM</SiteSubtitle>
+        <EditFormLinks>
+          <LinkAnchor
+            href={{
+              pathname: `/${item?.gender.toLowerCase()}/item`,
+              query: {
+                category: item?.category.toLowerCase(),
+                id: item?.id
+              }
+            }}
+          >
+            Go to item
+          </LinkAnchor>
+        </EditFormLinks>
         <ErrorMessage error={error} />
         {data?.updateItem.id && 'Succesfully updated item'}
         <EditItemWrapper>
@@ -168,7 +183,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
                 />
               ))}
             </SizesInputsWrapper>
-            <Button type='submit'>Save</Button>
+            <Button type='submit'>save</Button>
           </div>
         </EditItemWrapper>
       </StyledEditForm>
