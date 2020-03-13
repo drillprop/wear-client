@@ -21,7 +21,7 @@ import {
   SizesInputsWrapper,
   StyledCreateForm
 } from './CreateItemForm.styles';
-import UploadImage from './createItemForm/UploadImage';
+import UploadImage from '../../UploadImage/UploadImage';
 
 interface Props {
   variables: ItemsQueryVariables;

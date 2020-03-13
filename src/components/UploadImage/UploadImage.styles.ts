@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { grays, white } from '../../../../styles/colors';
-import { montserrat, roboto } from '../../../../styles/fonts';
-import fontSizes from '../../../../styles/fontSizes';
+import { grays, white } from '../../styles/colors';
+import { montserrat, roboto } from '../../styles/fonts';
+import fontSizes from '../../styles/fontSizes';
 
 interface FileInputLabelProps {
   highlight?: boolean;
