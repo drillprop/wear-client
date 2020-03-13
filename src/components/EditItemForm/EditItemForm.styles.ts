@@ -4,7 +4,6 @@ import { roboto } from '../../styles/fonts';
 import fontSizes from '../../styles/fontSizes';
 
 export const StyledEditForm = styled.form`
-  margin-top: 75px;
   display: grid;
   grid-template-rows: repeat(1, 1fr);
 `;
