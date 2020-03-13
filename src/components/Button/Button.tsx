@@ -3,7 +3,7 @@ import { StyledButton } from './Button.styles';
 
 interface Props {
   type?: 'button' | 'submit' | 'reset' | undefined;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   mainColor?: string;
   width?: string;
   marginTop?: string;
