@@ -16,7 +16,11 @@ import Input from '../Input/Input';
 import RadioGroup from '../RadioGroup/RadioGroup';
 import Select from '../Select/Select';
 import TextArea from '../TextArea/TextArea';
-import { EditItemWrapper, SizesInputsWrapper } from './EditItemForm.styles';
+import {
+  EditItemWrapper,
+  SizesInputsWrapper,
+  StyledEditForm
+} from './EditItemForm.styles';
 
 interface Props {
   item?: SingleItemQuery['item'];
@@ -86,71 +90,77 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
   return (
     <SiteWrapper>
       <AdminSideNav />
-      <EditItemWrapper onSubmit={handleSubmit}>
+      <StyledEditForm onSubmit={handleSubmit}>
         <SiteSubtitle>EDIT ITEM</SiteSubtitle>
         <ErrorMessage error={error} />
         {data?.updateItem.id && 'Succesfully updated item'}
-        <Input
-          type='text'
-          placeholder='name'
-          onChange={handleInput}
-          value={name}
-          label='name'
-          name='name'
-          icon='/info-icon.svg'
-          width='350px'
-        />
-        <Input
-          type='number'
-          placeholder='price'
-          onChange={handleInput}
-          value={price}
-          label='price'
-          name='price'
-          icon='/wallet-icon.svg'
-          width='350px'
-        />
-        <Select
-          options={Object.values(Category)}
-          width='350px'
-          label='category'
-          placeHolder='select'
-          onChange={category => setForm({ ...values, category })}
-          value={category}
-        />
-        <RadioGroup
-          legend='Gender'
-          width='350px'
-          name='gender'
-          buttons={Object.values(Gender)}
-          onChange={handleInput}
-          value={gender}
-        />
-        <TextArea
-          label='description'
-          placeholder='Lorem ipsum dolor sit amet.'
-          width='350px'
-          value={description}
-          onChange={handleInput}
-        />
-        <SizesInputsWrapper>
-          {Object.values(SizeSymbol).map(size => (
+        <EditItemWrapper>
+          <div>
             <Input
-              key={size}
-              name={size}
-              icon='/category-icon.svg'
-              width='90px'
+              type='text'
+              placeholder='name'
+              onChange={handleInput}
+              value={name}
+              label='name'
+              name='name'
+              icon='/info-icon.svg'
+              width='350px'
+            />
+            <Input
               type='number'
-              marginTop='0'
-              placeholder='0'
-              value={values[size]}
-              label={size}
+              placeholder='price'
+              onChange={handleInput}
+              value={price}
+              label='price'
+              name='price'
+              icon='/wallet-icon.svg'
+              width='350px'
+            />
+            <Select
+              options={Object.values(Category)}
+              width='350px'
+              label='category'
+              placeHolder='select'
+              onChange={category => setForm({ ...values, category })}
+              value={category}
+            />
+            <RadioGroup
+              legend='Gender'
+              width='350px'
+              name='gender'
+              buttons={Object.values(Gender)}
+              onChange={handleInput}
+              value={gender}
+            />
+          </div>
+          <div>
+            <TextArea
+              label='description'
+              placeholder='Lorem ipsum dolor sit amet.'
+              width='350px'
+              value={description}
               onChange={handleInput}
             />
-          ))}
-        </SizesInputsWrapper>
-        <Button type='submit'>Save</Button>
-      </EditItemWrapper>
+            <SizesInputsWrapper>
+              {Object.values(SizeSymbol).map(size => (
+                <Input
+                  key={size}
+                  name={size}
+                  icon='/category-icon.svg'
+                  width='90px'
+                  type='number'
+                  marginTop='0'
+                  placeholder='0'
+                  value={values[size]}
+                  label={size}
+                  onChange={handleInput}
+                />
+              ))}
+            </SizesInputsWrapper>
+            <Button type='submit'>Save</Button>
+          </div>
+        </EditItemWrapper>
+      </StyledEditForm>
     </SiteWrapper>
   );
 };
