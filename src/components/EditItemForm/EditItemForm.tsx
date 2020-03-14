@@ -3,12 +3,12 @@ import {
   Category,
   Gender,
   SingleItemQuery,
-  SizeSymbol,
   useUpdateItemMutation
 } from '../../generated/types';
-import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
+import convertSizesToArr from '../../utils/convertSizesToArr';
+import convertSizesToObject from '../../utils/convertSizesToObject';
 import getNewValFromSecObj from '../../utils/getNewValFromSecObj';
 import uploadImageToCloudinary from '../../utils/uploadImageToCloudinary';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
@@ -23,18 +23,16 @@ import UploadImage from '../UploadImage/UploadImage';
 import {
   EditFormLinks,
   EditItemWrapper,
-  SizesInputsWrapper,
   StyledEditForm
 } from './EditItemForm.styles';
+import EditSizes from './editItemForm/EditSizes';
 
 interface Props {
   item?: SingleItemQuery['item'];
 }
 
 const EditItemForm: React.FC<Props> = ({ item }) => {
-  const [updateItem, { data, error }] = useUpdateItemMutation({
-    refetchQueries: [{ query: SINGLE_ITEM, variables: { id: item?.id } }]
-  });
+  const [updateItem, { data, error }] = useUpdateItemMutation();
 
   const { values, handleInput, setForm } = useForm({
     name: '',
@@ -43,20 +41,11 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    sizes: Object.values(SizeSymbol).map(sizeSymbol => ({
-      sizeSymbol,
-      quantity: 0
-    }))
+    sizes: convertSizesToObject([])
   });
 
   useEffect(() => {
-    const sizes = item?.sizes?.reduce((acc: any, size) => {
-      if (size.sizeSymbol) {
-        acc[size.sizeSymbol] = size.quantity;
-        return acc;
-      }
-    }, {});
-    setForm({ ...item, ...sizes });
+    setForm({ ...item, sizes: convertSizesToObject(item?.sizes) });
   }, [item]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,25 +53,14 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     const file =
       values.imageUrl !== item?.imageUrl &&
       (await uploadImageToCloudinary(values.imageUrl));
-    const imageUrl = file.secure_url;
-
-    const sizes = Object.values(SizeSymbol)
-      .map(
-        sizeSymbol =>
-          values[sizeSymbol] && {
-            sizeSymbol,
-            quantity: parseInt(values[sizeSymbol])
-          }
-      )
-      .filter(Boolean);
 
     updateItem({
       variables: {
         ...getNewValFromSecObj(item, values),
         id: item?.id,
-        imageUrl,
+        imageUrl: file.secure_url,
         price: parseFloat(values.price),
-        sizes
+        sizes: convertSizesToArr(values.sizes)
       }
     });
   };
@@ -160,22 +138,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               value={description}
               onChange={handleInput}
             />
-            <SizesInputsWrapper>
-              {Object.values(SizeSymbol).map(size => (
-                <Input
-                  key={size}
-                  name={size}
-                  icon='/category-icon.svg'
-                  width='90px'
-                  type='number'
-                  marginTop='0'
-                  placeholder='0'
-                  value={values[size]}
-                  label={size}
-                  onChange={handleInput}
-                />
-              ))}
-            </SizesInputsWrapper>
+            <EditSizes setForm={setForm} sizes={values.sizes} />
             <Button type='submit'>save</Button>
           </div>
         </EditItemWrapper>
