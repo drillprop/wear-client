@@ -9,6 +9,7 @@ import {
 import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
+import getNewValFromSecObj from '../../utils/getNewValFromSecObj';
 import uploadImageToCloudinary from '../../utils/uploadImageToCloudinary';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Button from '../Button/Button';
@@ -48,28 +49,21 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     }))
   });
 
-  const sizes = item?.sizes?.reduce((acc: any, size) => {
-    if (size.sizeSymbol) {
-      acc[size.sizeSymbol] = size.quantity;
-      return acc;
-    }
-  }, {});
-
   useEffect(() => {
-    setForm({
-      ...item,
-      ...sizes
-    });
+    const sizes = item?.sizes?.reduce((acc: any, size) => {
+      if (size.sizeSymbol) {
+        acc[size.sizeSymbol] = size.quantity;
+        return acc;
+      }
+    }, {});
+    setForm({ ...item, ...sizes });
   }, [item]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const isNameChanged = () => {
-      if (item?.name !== values.name && values.name) return values.name;
-    };
-
-    const file = await uploadImageToCloudinary(values.imageUrl);
+    const file =
+      values.imageUrl !== item?.imageUrl &&
+      (await uploadImageToCloudinary(values.imageUrl));
     const imageUrl = file.secure_url;
 
     const sizes = Object.values(SizeSymbol)
@@ -84,10 +78,9 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
 
     updateItem({
       variables: {
+        ...getNewValFromSecObj(item, values),
         id: item?.id,
-        ...values,
         imageUrl,
-        name: isNameChanged(),
         price: parseFloat(values.price),
         sizes
       }
