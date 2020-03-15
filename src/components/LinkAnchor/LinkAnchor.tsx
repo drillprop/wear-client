@@ -12,11 +12,12 @@ const LinkAnchor: FC<LinkProps & Props> = ({
   href,
   children,
   highlight,
-  queryHighlight
+  queryHighlight,
+  scroll
 }) => {
   const { pathname } = useRouter();
   return (
-    <Link href={href}>
+    <Link href={href} scroll={scroll}>
       <StyledAnchor active={(highlight && pathname === href) || queryHighlight}>
         {children}
       </StyledAnchor>
