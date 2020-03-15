@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   NextPrevPage,
   PageNumber,
@@ -21,14 +21,18 @@ const Pagination: React.FC<Props> = ({
   page
 }) => {
   const { pathname, query } = useRouter();
-  const totalPages = Math.ceil(total / take);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     setNewState((state: any) => ({
       ...state,
       skip: take * page - take
     }));
-  }, [take, total, page]);
+  }, [take, page]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(total / take));
+  }, [total, take]);
 
   return totalPages >= 1 ? (
     <PageNumbersWrapper>
