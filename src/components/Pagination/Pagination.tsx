@@ -4,46 +4,62 @@ import {
   PageNumber,
   PageNumbersWrapper
 } from './Pagination.styles';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
+import Router, { useRouter } from 'next/router';
 
 interface Props {
   total?: number;
   setNewState: React.Dispatch<React.SetStateAction<any>>;
-  state?: any;
+  take: number;
+  page: number;
 }
 
-const Pagination: React.FC<Props> = ({ total = 0, setNewState, state }) => {
-  const { take, skip } = state;
-  const pageNumber = Math.ceil(skip / take + 1 || 1);
+const Pagination: React.FC<Props> = ({
+  total = 0,
+  setNewState,
+  take,
+  page
+}) => {
+  const { pathname } = useRouter();
   const totalPages = Math.ceil(total / take);
 
   useEffect(() => {
-    setNewState({
+    if (page > totalPages) {
+      Router.push(pathname);
+    }
+    setNewState((state: any) => ({
       ...state,
-      skip: 0
-    });
-  }, [take, total]);
-
-  const changePage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { textContent } = e.currentTarget;
-    if (textContent === '>')
-      setNewState({
-        ...state,
-        skip: total > skip + take ? skip + take : skip
-      });
-    if (textContent === '<')
-      setNewState({
-        ...state,
-        skip: Math.max(0, skip - take)
-      });
-  };
+      skip: take * page - take
+    }));
+  }, [take, total, page]);
 
   return totalPages >= 1 ? (
     <PageNumbersWrapper>
-      <NextPrevPage onClick={changePage}>&lt;</NextPrevPage>
+      <LinkAnchor
+        scroll={false}
+        href={{
+          pathname: 'items',
+          query: {
+            page: page - 1 || 1
+          }
+        }}
+      >
+        <NextPrevPage>&lt;</NextPrevPage>
+      </LinkAnchor>
       <PageNumber>
-        {pageNumber} of {totalPages}
+        {page} of {totalPages}
       </PageNumber>
-      <NextPrevPage onClick={changePage}>&gt;</NextPrevPage>
+      <LinkAnchor
+        scroll={false}
+        href={{
+          pathname: 'items',
+          query: {
+            page: totalPages > page ? page + 1 : totalPages
+          }
+        }}
+      >
+        <NextPrevPage>&gt;</NextPrevPage>
+      </LinkAnchor>
     </PageNumbersWrapper>
   ) : null;
 };
