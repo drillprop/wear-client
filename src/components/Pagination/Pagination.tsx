@@ -20,13 +20,10 @@ const Pagination: React.FC<Props> = ({
   take,
   page
 }) => {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
   const totalPages = Math.ceil(total / take);
 
   useEffect(() => {
-    if (page > totalPages) {
-      Router.push(pathname);
-    }
     setNewState((state: any) => ({
       ...state,
       skip: take * page - take
@@ -40,6 +37,7 @@ const Pagination: React.FC<Props> = ({
         href={{
           pathname,
           query: {
+            ...query,
             page: page - 1 || 1
           }
         }}
@@ -54,6 +52,7 @@ const Pagination: React.FC<Props> = ({
         href={{
           pathname,
           query: {
+            ...query,
             page: totalPages > page ? page + 1 : totalPages
           }
         }}

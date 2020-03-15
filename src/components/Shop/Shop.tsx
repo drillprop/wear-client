@@ -16,9 +16,13 @@ import Products from './shop/Products';
 interface Props {
   gender: Gender;
   category?: Category | null;
+  query: {
+    category?: string;
+    page?: string;
+  };
 }
 
-const Shop: React.FC<Props> = ({ gender, category }) => {
+const Shop: React.FC<Props> = ({ gender, category, query }) => {
   const [variables, setVariables] = useState<ItemsQueryVariables>({
     take: 5,
     skip: 0,
@@ -54,9 +58,10 @@ const Shop: React.FC<Props> = ({ gender, category }) => {
         />
         <Products items={data?.items.select || []} />
         <Pagination
+          page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
+          take={variables.take || 5}
           setNewState={setVariables}
-          state={variables}
         />
       </div>
     </SiteWrapper>

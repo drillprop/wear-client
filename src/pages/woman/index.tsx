@@ -6,6 +6,7 @@ import { Gender, Category } from '../../generated/types';
 interface Props {
   query: {
     category?: string;
+    page?: string;
   };
 }
 
@@ -13,6 +14,7 @@ const ShopPage: NextPage<Props> = ({ query }) => {
   return (
     <Shop
       gender={Gender.Woman}
+      query={query}
       category={
         query.category ? (query.category.toUpperCase() as Category) : null
       }
