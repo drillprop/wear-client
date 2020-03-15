@@ -10,7 +10,13 @@ import Pagination from '../Pagination/Pagination';
 import UsersTable from './users/UsersTable';
 import UsersFilters from './users/UsersFilters';
 
-const Users = () => {
+interface Props {
+  query: {
+    page?: string;
+  };
+}
+
+const Users: React.FC<Props> = ({ query }) => {
   const [variables, setVariables] = useState<UsersQueryVariables>({
     take: 5,
     skip: 0,
@@ -38,8 +44,9 @@ const Users = () => {
         <UsersFilters variables={variables} setVariables={setVariables} />
         <UsersTable users={users} />
         <Pagination
+          page={(query.page && parseInt(query.page)) || 1}
           total={count}
-          state={variables}
+          take={variables.take || 5}
           setNewState={setVariables}
         />
       </div>

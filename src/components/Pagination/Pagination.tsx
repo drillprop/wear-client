@@ -38,7 +38,7 @@ const Pagination: React.FC<Props> = ({
       <LinkAnchor
         scroll={false}
         href={{
-          pathname: 'items',
+          pathname,
           query: {
             page: page - 1 || 1
           }
@@ -52,7 +52,7 @@ const Pagination: React.FC<Props> = ({
       <LinkAnchor
         scroll={false}
         href={{
-          pathname: 'items',
+          pathname,
           query: {
             page: totalPages > page ? page + 1 : totalPages
           }
