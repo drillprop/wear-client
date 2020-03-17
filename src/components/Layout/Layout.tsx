@@ -4,6 +4,7 @@ import { Main, PageWrapper } from './Layout.styles';
 import { useRouter } from 'next/router';
 import Footer from './layout/Footer';
 import Head from 'next/head';
+import CartContextProvider from '../../contexts/CartContext';
 
 const Layout: React.FC = ({ children }) => {
   const { pathname } = useRouter();
@@ -14,9 +15,11 @@ const Layout: React.FC = ({ children }) => {
         <title>wear {subpath && `| ${subpath}`}</title>
       </Head>
       <PageWrapper>
-        <Header />
-        <Main>{children}</Main>
-        {pathname !== '/sign' && <Footer />}
+        <CartContextProvider>
+          <Header />
+          <Main>{children}</Main>
+          {pathname !== '/sign' && <Footer />}
+        </CartContextProvider>
       </PageWrapper>
     </>
   );
