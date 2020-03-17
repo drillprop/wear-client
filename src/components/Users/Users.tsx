@@ -22,7 +22,7 @@ const Users: React.FC<Props> = ({ query }) => {
     skip: 0,
     sortBy: 'User.createdAt',
     email: '',
-    sortOrder: SortOrder.Asc
+    sortOrder: SortOrder.ASC
   });
 
   const { data } = useUsersQuery({

@@ -29,7 +29,7 @@ const Shop: React.FC<Props> = ({ gender, category, query }) => {
     gender,
     category,
     sortBy: 'Item.createdAt',
-    sortOrder: SortOrder.Desc
+    sortOrder: SortOrder.DESC
   });
 
   const debouncedSetFilters = debounce(

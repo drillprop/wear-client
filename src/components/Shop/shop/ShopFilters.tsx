@@ -47,19 +47,19 @@ const ShopFilters: React.FC<Props> = ({
       setVariables({
         ...variables,
         sortBy: 'Item.createdAt',
-        sortOrder: SortOrder.Desc
+        sortOrder: SortOrder.DESC
       });
     else if (sort === 'lowest price')
       setVariables({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.Asc
+        sortOrder: SortOrder.ASC
       });
     else if (sort === 'highest price')
       setVariables({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.Desc
+        sortOrder: SortOrder.DESC
       });
     setSortValue(sort);
   };

@@ -13,7 +13,7 @@ interface Props {
 const ShopPage: NextPage<Props> = ({ query }) => {
   return (
     <Shop
-      gender={Gender.Man}
+      gender={Gender.MAN}
       query={query}
       category={
         query.category ? (query.category.toUpperCase() as Category) : null

@@ -15,7 +15,7 @@ const UserNav: React.FC = () => {
           {data?.me ? data.me.email : 'login'}
         </LinkAnchor>
         {data?.me ? (
-          <DropDownMenu admin={data.me.role !== UserRole.Customer} />
+          <DropDownMenu admin={data.me.role !== UserRole.CUSTOMER} />
         ) : null}
       </LiWithDropdown>
       <Li>

@@ -22,7 +22,7 @@ const Items: React.FC<Props> = ({ query }) => {
     take: 5,
     skip: 0,
     sortBy: 'Item.createdAt',
-    sortOrder: SortOrder.Desc,
+    sortOrder: SortOrder.DESC,
     available: false
   });
 
