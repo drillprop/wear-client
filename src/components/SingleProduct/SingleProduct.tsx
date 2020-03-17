@@ -61,7 +61,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
                 value={size}
                 options={sizes}
               />
-              <AddToCart type='submit'>
+              <AddToCart disabled={!!!size} type='submit'>
                 <CartIcon color={white} size={'1em'} />
                 add to cart
               </AddToCart>

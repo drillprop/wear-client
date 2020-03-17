@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { black, white, grays } from '../../styles/colors';
 import { montserrat } from '../../styles/fonts';
 import fontSizes from '../../styles/fontSizes';
@@ -44,11 +44,11 @@ export const AddToCart = styled.button`
   margin-top: 40px;
   height: 44px;
   border: none;
-  background: ${black};
+  background: ${props => (props.disabled ? grays[3] : black)};
   color: ${white};
   text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: inset 0 0 0 2px ${black};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  ${props => !props.disabled && `box-shadow: inset 0 0 0 2px ${black}`};
   font-size: ${fontSizes[1]};
   font-family: ${montserrat};
   transition: color 200ms, background-color 200ms, stroke 200ms;
@@ -62,6 +62,9 @@ export const AddToCart = styled.button`
       transition: stroke 200ms;
     }
   }
+  ${props => !props.disabled && buttonHover};
+`;
+const buttonHover = css`
   :hover {
     background-color: ${white};
     color: ${black};
