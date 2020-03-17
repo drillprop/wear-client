@@ -9,6 +9,8 @@ generates:
       - 'typescript-operations'
       - 'typescript-react-apollo'
 config:
+  namingConvention:
+    enumValues: upper-case#upperCase
   withComponent: false
   withHOC: false
   withHooks: true
