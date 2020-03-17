@@ -17,9 +17,6 @@ export const SingleProductImg = styled.img`
 `;
 
 export const SingleProductInfo = styled.section`
-  position: relative;
-  display: grid;
-  align-items: start;
   height: 500px;
 `;
 
@@ -38,10 +35,13 @@ export const SingleProductDescription = styled.p`
 `;
 
 export const SingleProductPrice = styled.div`
+  margin-top: 50px;
   font-size: ${fontSizes[6]};
 `;
 
 export const AddToCart = styled.button`
+  width: 100%;
+  margin-top: 40px;
   height: 44px;
   border: none;
   background: ${black};
