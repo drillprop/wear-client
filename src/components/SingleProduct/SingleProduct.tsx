@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { CartContext, CartItem } from '../../contexts/CartContext';
 import { SingleItemQuery } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteWrapper } from '../../styles/site.styles';
@@ -20,12 +21,25 @@ interface Props {
 }
 
 const SingleProduct: React.FC<Props> = ({ item }) => {
+  const [size, setSize] = useState('');
+
   const sizes =
     item?.sizes &&
     item.sizes
       .filter(size => size.quantity && size)
       .map(size => size.sizeSymbol);
 
+  const { setCartItems, cartItems } = useContext(CartContext);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (item) {
+      const { id, name, price, imageUrl } = item;
+      const newItem = { id, size, name, price, imageUrl };
+      setSize('');
+      setCartItems((state: CartItem[]) => [...state, newItem]);
+    }
+  };
   return item ? (
     <SiteWrapper>
       <ShopSideNav gender={item?.gender} />
@@ -38,18 +52,20 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
           </SingleProductDescription>
           <SingleProductPrice>$ {item?.price}</SingleProductPrice>
           {sizes?.length ? (
-            <>
+            <form onSubmit={handleSubmit}>
               <Select
+                marginTop={'100px'}
                 label='Pick size'
                 placeHolder='SIZE'
-                onChange={() => null}
-                options={sizes || []}
+                onChange={size => setSize(size)}
+                value={size}
+                options={sizes}
               />
-              <AddToCart>
+              <AddToCart type='submit'>
                 <CartIcon color={white} size={'1em'} />
                 add to cart
               </AddToCart>
-            </>
+            </form>
           ) : (
             <Unavailable>product is not available at the moment</Unavailable>
           )}
