@@ -7,10 +7,11 @@ import Head from 'next/head';
 
 const Layout: React.FC = ({ children }) => {
   const { pathname } = useRouter();
+  const subpath = pathname.split('/').pop();
   return (
     <>
       <Head>
-        <title>wear | {`${pathname.split('/').pop()}`}</title>
+        <title>wear {subpath && `| ${subpath}`}</title>
       </Head>
       <PageWrapper>
         <Header />
