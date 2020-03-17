@@ -3,15 +3,15 @@ import { Image, ImageTitle, ImageWrapper } from './HomepageImage.styles';
 import Link from 'next/link';
 
 interface Props {
-  title: string;
+  link: string;
   imageUrl: string;
 }
 
-const HomepageImage: React.FC<Props> = ({ imageUrl, title }) => {
+const HomepageImage: React.FC<Props> = ({ imageUrl, link, children }) => {
   return (
-    <Link href={title}>
+    <Link href={link}>
       <ImageWrapper>
-        <ImageTitle>{title}</ImageTitle>
+        <ImageTitle>{children}</ImageTitle>
         <Image imageUrl={imageUrl}></Image>
       </ImageWrapper>
     </Link>
