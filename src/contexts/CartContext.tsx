@@ -1,14 +1,17 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
 
 export interface CartItem {
-  size: SizeSymbol;
+  size?: keyof typeof SizeSymbol | '';
   name: string;
   price: number;
   imageUrl: string;
 }
 
-export const CartContext = createContext<any>({
+export const CartContext = createContext<{
+  cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+}>({
   cartItems: [],
   setCartItems: () => []
 });
@@ -20,6 +23,11 @@ const CartContextProvider: React.FC = ({ children }) => {
       {children}
     </CartContext.Provider>
   );
+};
+
+export const useCart = () => {
+  const ctx = useContext(CartContext);
+  return { ...ctx };
 };
 
 export default CartContextProvider;

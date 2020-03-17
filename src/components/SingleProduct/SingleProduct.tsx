@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { CartContext, CartItem } from '../../contexts/CartContext';
-import { SingleItemQuery } from '../../generated/types';
+import React, { useState } from 'react';
+import { useCart } from '../../contexts/CartContext';
+import { SingleItemQuery, SizeSymbol } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteWrapper } from '../../styles/site.styles';
 import CartIcon from '../CartIcon/CartIcon';
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const SingleProduct: React.FC<Props> = ({ item }) => {
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState<keyof typeof SizeSymbol | ''>('');
 
   const sizes =
     item?.sizes &&
@@ -29,7 +29,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       .filter(size => size.quantity && size)
       .map(size => size.sizeSymbol);
 
-  const { setCartItems, cartItems } = useContext(CartContext);
+  const { setCartItems } = useCart();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       const { id, name, price, imageUrl } = item;
       const newItem = { id, size, name, price, imageUrl };
       setSize('');
-      setCartItems((state: CartItem[]) => [...state, newItem]);
+      setCartItems(state => [...state, newItem]);
     }
   };
   return item ? (
