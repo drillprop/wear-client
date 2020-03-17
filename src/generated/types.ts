@@ -4,378 +4,401 @@ import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
-  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
-  DateTime: any,
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  DateTime: any;
 };
 
 export type Address = {
-   __typename?: 'Address',
-  id: Scalars['ID'],
-  addressLine1?: Maybe<Scalars['String']>,
-  addressLine2?: Maybe<Scalars['String']>,
-  zipCode?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
+   __typename?: 'Address';
+  id: Scalars['ID'];
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  zipCode?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
 };
 
 export enum Category {
-  Trousers = 'TROUSERS',
-  Dress = 'DRESS',
-  Blouse = 'BLOUSE',
-  Tshirt = 'TSHIRT',
-  Shirt = 'SHIRT',
-  Jacket = 'JACKET',
-  Blazer = 'BLAZER',
-  Sweatshirt = 'SWEATSHIRT'
+  TROUSERS = 'TROUSERS',
+  DRESS = 'DRESS',
+  BLOUSE = 'BLOUSE',
+  TSHIRT = 'TSHIRT',
+  SHIRT = 'SHIRT',
+  JACKET = 'JACKET',
+  BLAZER = 'BLAZER',
+  SWEATSHIRT = 'SWEATSHIRT'
 }
 
 export type CreateItemInput = {
-  name: Scalars['String'],
-  price: Scalars['Float'],
-  imageUrl: Scalars['String'],
-  category: Category,
-  gender: Gender,
-  description?: Maybe<Scalars['String']>,
-  sizes?: Maybe<Array<ItemSizesInput>>,
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  imageUrl: Scalars['String'];
+  category: Category;
+  gender: Gender;
+  description?: Maybe<Scalars['String']>;
+  sizes?: Maybe<Array<ItemSizesInput>>;
+};
+
+export type CreateOrderInput = {
+  itemId: Scalars['ID'];
+  size: SizeSymbol;
 };
 
 
 export type EditItemInput = {
-  id: Scalars['String'],
-  name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
-  imageUrl?: Maybe<Scalars['String']>,
-  category?: Maybe<Category>,
-  sizes?: Maybe<Array<ItemSizesInput>>,
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  imageUrl?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  sizes?: Maybe<Array<ItemSizesInput>>;
 };
 
 export enum Gender {
-  Man = 'MAN',
-  Woman = 'WOMAN'
+  MAN = 'MAN',
+  WOMAN = 'WOMAN'
 }
 
 export type Item = {
-   __typename?: 'Item',
-  id: Scalars['ID'],
-  name: Scalars['String'],
-  price: Scalars['Float'],
-  imageUrl: Scalars['String'],
-  category: Category,
-  gender: Gender,
-  description?: Maybe<Scalars['String']>,
-  createdBy: User,
-  sizes?: Maybe<Array<Size>>,
-  createdAt: Scalars['DateTime'],
-  updatedAt?: Maybe<Scalars['DateTime']>,
-  totalCount: Scalars['Int'],
+   __typename?: 'Item';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  imageUrl: Scalars['String'];
+  category: Category;
+  gender: Gender;
+  description?: Maybe<Scalars['String']>;
+  createdBy: User;
+  sizes?: Maybe<Array<Size>>;
+  createdAt: Scalars['DateTime'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  totalCount: Scalars['Int'];
 };
 
 export type ItemsAndCount = {
-   __typename?: 'ItemsAndCount',
-  select: Array<Maybe<Item>>,
-  count: Scalars['Int'],
-  maxPrice?: Maybe<Scalars['Float']>,
-  minPrice?: Maybe<Scalars['Float']>,
+   __typename?: 'ItemsAndCount';
+  select: Array<Maybe<Item>>;
+  count: Scalars['Int'];
+  maxPrice?: Maybe<Scalars['Float']>;
+  minPrice?: Maybe<Scalars['Float']>;
 };
 
 export type ItemSizesInput = {
-  sizeSymbol: SizeSymbol,
-  quantity: Scalars['Int'],
+  sizeSymbol: SizeSymbol;
+  quantity: Scalars['Int'];
 };
 
 export type LoginInput = {
-  email: Scalars['String'],
-  password: Scalars['String'],
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Mutation = {
-   __typename?: 'Mutation',
-  updateAddress: SuccessMessage,
-  createItem: Item,
-  deleteItem: SuccessMessage,
-  updateItem: Item,
-  createOrder: Order,
-  deleteOrder: SuccessMessage,
-  manageOrder: SuccessMessage,
-  changePassword: SuccessMessage,
-  changeUserRole: SuccessMessage,
-  deleteAccount: SuccessMessage,
-  login: User,
-  register: User,
-  requestResetPassword: SuccessMessage,
-  resetPassword: User,
-  signout: SuccessMessage,
-  subscribeToNewsletter: SuccessMessage,
-  updatePersonalInfo: SuccessMessage,
+   __typename?: 'Mutation';
+  updateAddress: SuccessMessage;
+  createItem: Item;
+  deleteItem: SuccessMessage;
+  updateItem: Item;
+  createOrder: Order;
+  deleteOrder: SuccessMessage;
+  manageOrder: SuccessMessage;
+  changePassword: SuccessMessage;
+  changeUserRole: SuccessMessage;
+  deleteAccount: SuccessMessage;
+  login: User;
+  register: User;
+  requestResetPassword: SuccessMessage;
+  resetPassword: User;
+  signout: SuccessMessage;
+  subscribeToNewsletter: SuccessMessage;
+  updatePersonalInfo: SuccessMessage;
 };
 
 
 export type MutationUpdateAddressArgs = {
-  input: UpdateAddressInput
+  input: UpdateAddressInput;
 };
 
 
 export type MutationCreateItemArgs = {
-  input: CreateItemInput
+  input: CreateItemInput;
 };
 
 
 export type MutationDeleteItemArgs = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type MutationUpdateItemArgs = {
-  input: EditItemInput
+  input: EditItemInput;
 };
 
 
 export type MutationCreateOrderArgs = {
-  input: Array<Scalars['ID']>
+  input: Array<CreateOrderInput>;
 };
 
 
 export type MutationDeleteOrderArgs = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type MutationManageOrderArgs = {
-  status: OrderStatus,
-  id: Scalars['ID']
+  status: OrderStatus;
+  id: Scalars['ID'];
 };
 
 
 export type MutationChangePasswordArgs = {
-  password: Scalars['String'],
-  newPassword: Scalars['String'],
-  confirmPassword: Scalars['String']
+  password: Scalars['String'];
+  newPassword: Scalars['String'];
+  confirmPassword: Scalars['String'];
 };
 
 
 export type MutationChangeUserRoleArgs = {
-  role: UserRole,
-  email: Scalars['String']
+  role: UserRole;
+  email: Scalars['String'];
 };
 
 
 export type MutationDeleteAccountArgs = {
-  password: Scalars['String']
+  password: Scalars['String'];
 };
 
 
 export type MutationLoginArgs = {
-  input: LoginInput
+  input: LoginInput;
 };
 
 
 export type MutationRegisterArgs = {
-  input: RegisterInput
+  input: RegisterInput;
 };
 
 
 export type MutationRequestResetPasswordArgs = {
-  email: Scalars['String']
+  email: Scalars['String'];
 };
 
 
 export type MutationResetPasswordArgs = {
-  resetToken: Scalars['String'],
-  password: Scalars['String']
+  resetToken: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
 export type MutationSubscribeToNewsletterArgs = {
-  newsletter: Scalars['Boolean']
+  newsletter: Scalars['Boolean'];
 };
 
 
 export type MutationUpdatePersonalInfoArgs = {
-  input: PersonalInfoInput
+  input: PersonalInfoInput;
 };
 
 export type Order = {
-   __typename?: 'Order',
-  id: Scalars['ID'],
-  createdAt: Scalars['DateTime'],
-  updatedAt?: Maybe<Scalars['DateTime']>,
-  status: OrderStatus,
-  totalCount: Scalars['Int'],
-  orderedBy: User,
-  orderedItems: Array<Item>,
+   __typename?: 'Order';
+  id: Scalars['ID'];
+  createdAt: Scalars['DateTime'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  status: OrderStatus;
+  totalCount: Scalars['Int'];
+  orderedBy: User;
+  orderedItems: Array<Ordered_Item>;
+};
+
+export type Ordered_Item = {
+   __typename?: 'Ordered_Item';
+  id: Scalars['ID'];
+  item: Item;
+  sizeSymbol: SizeSymbol;
 };
 
 export enum OrderStatus {
-  Pending = 'PENDING',
-  Paid = 'PAID',
-  Sent = 'SENT',
-  Completed = 'COMPLETED'
+  PENDING = 'PENDING',
+  PAID = 'PAID',
+  SENT = 'SENT',
+  COMPLETED = 'COMPLETED'
 }
 
 export type PersonalInfoInput = {
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['String']>,
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
-   __typename?: 'Query',
-  item?: Maybe<Item>,
-  items: ItemsAndCount,
-  orders: Array<Maybe<Order>>,
-  ordersCount: Scalars['Int'],
-  me?: Maybe<User>,
-  user?: Maybe<User>,
-  users: UsersAndCount,
+   __typename?: 'Query';
+  item?: Maybe<Item>;
+  items: ItemsAndCount;
+  order?: Maybe<Order>;
+  orders: Array<Maybe<Order>>;
+  ordersCount: Scalars['Int'];
+  orderedItem?: Maybe<Ordered_Item>;
+  me?: Maybe<User>;
+  user?: Maybe<User>;
+  users: UsersAndCount;
 };
 
 
 export type QueryItemArgs = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type QueryItemsArgs = {
-  where?: Maybe<SearchItemInput>
+  where?: Maybe<SearchItemInput>;
+};
+
+
+export type QueryOrderArgs = {
+  id: Scalars['ID'];
 };
 
 
 export type QueryOrdersArgs = {
-  where?: Maybe<SearchOrdersInput>
+  where?: Maybe<SearchOrdersInput>;
+};
+
+
+export type QueryOrderedItemArgs = {
+  id: Scalars['ID'];
 };
 
 
 export type QueryUserArgs = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type QueryUsersArgs = {
-  where?: Maybe<SearchUserInput>
+  where?: Maybe<SearchUserInput>;
 };
 
 export type RegisterInput = {
-  email: Scalars['String'],
-  password: Scalars['String'],
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type SearchInput = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
 };
 
 export type SearchItemInput = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
-  priceFrom?: Maybe<Scalars['Float']>,
-  priceTo?: Maybe<Scalars['Float']>,
-  name?: Maybe<Scalars['String']>,
-  category?: Maybe<Category>,
-  gender?: Maybe<Gender>,
-  available?: Maybe<Scalars['Boolean']>,
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
+  priceFrom?: Maybe<Scalars['Float']>;
+  priceTo?: Maybe<Scalars['Float']>;
+  name?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  gender?: Maybe<Gender>;
+  available?: Maybe<Scalars['Boolean']>;
 };
 
 export type SearchOrdersInput = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
-  status?: Maybe<OrderStatus>,
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
+  status?: Maybe<OrderStatus>;
 };
 
 export type SearchUserInput = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
-  role?: Maybe<UserRole>,
-  email?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
+  role?: Maybe<UserRole>;
+  email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
 };
 
 export type Size = {
-   __typename?: 'Size',
-  sizeSymbol?: Maybe<SizeSymbol>,
-  quantity?: Maybe<Scalars['Int']>,
+   __typename?: 'Size';
+  sizeSymbol?: Maybe<SizeSymbol>;
+  quantity?: Maybe<Scalars['Int']>;
 };
 
 export enum SizeSymbol {
-  Xs = 'XS',
+  XS = 'XS',
   S = 'S',
   M = 'M',
   L = 'L',
-  Xl = 'XL',
-  Xxl = 'XXL'
+  XL = 'XL',
+  XXL = 'XXL'
 }
 
 export enum SortOrder {
-  Asc = 'ASC',
-  Desc = 'DESC'
+  ASC = 'ASC',
+  DESC = 'DESC'
 }
 
 export type SuccessMessage = {
-   __typename?: 'SuccessMessage',
-  message: Scalars['String'],
+   __typename?: 'SuccessMessage';
+  message: Scalars['String'];
 };
 
 export type UpdateAddressInput = {
-  addressLine1?: Maybe<Scalars['String']>,
-  addressLine2?: Maybe<Scalars['String']>,
-  zipCode?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>,
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  zipCode?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
 };
 
 export type User = {
-   __typename?: 'User',
-  id: Scalars['ID'],
-  email: Scalars['String'],
-  password: Scalars['String'],
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['String']>,
-  role: UserRole,
-  createdAt: Scalars['DateTime'],
-  updatedAt?: Maybe<Scalars['DateTime']>,
-  resetToken?: Maybe<Scalars['String']>,
-  resetTokenExpiry?: Maybe<Scalars['DateTime']>,
-  newsletter?: Maybe<Scalars['Boolean']>,
-  createdItems: Array<Maybe<Item>>,
-  createdOrders: Array<Maybe<Order>>,
-  address?: Maybe<Address>,
-  totalCount?: Maybe<Scalars['Int']>,
+   __typename?: 'User';
+  id: Scalars['ID'];
+  email: Scalars['String'];
+  password: Scalars['String'];
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  role: UserRole;
+  createdAt: Scalars['DateTime'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  resetToken?: Maybe<Scalars['String']>;
+  resetTokenExpiry?: Maybe<Scalars['DateTime']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  createdItems: Array<Maybe<Item>>;
+  createdOrders: Array<Maybe<Order>>;
+  address?: Maybe<Address>;
+  totalCount?: Maybe<Scalars['Int']>;
 };
 
 export enum UserRole {
-  Admin = 'ADMIN',
-  Employee = 'EMPLOYEE',
-  Customer = 'CUSTOMER'
+  ADMIN = 'ADMIN',
+  EMPLOYEE = 'EMPLOYEE',
+  CUSTOMER = 'CUSTOMER'
 }
 
 export type UsersAndCount = {
-   __typename?: 'UsersAndCount',
-  select: Array<Maybe<User>>,
-  count: Scalars['Int'],
+   __typename?: 'UsersAndCount';
+  select: Array<Maybe<User>>;
+  count: Scalars['Int'];
 };
 
 export type ChangePasswordMutationVariables = {
-  password: Scalars['String'],
-  newPassword: Scalars['String'],
-  confirmPassword: Scalars['String']
+  password: Scalars['String'];
+  newPassword: Scalars['String'];
+  confirmPassword: Scalars['String'];
 };
 
 
@@ -388,13 +411,13 @@ export type ChangePasswordMutation = (
 );
 
 export type CreateItemMutationVariables = {
-  name: Scalars['String'],
-  price: Scalars['Float'],
-  imageUrl: Scalars['String'],
-  category: Category,
-  gender: Gender,
-  description?: Maybe<Scalars['String']>,
-  sizes?: Maybe<Array<ItemSizesInput>>
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  imageUrl: Scalars['String'];
+  category: Category;
+  gender: Gender;
+  description?: Maybe<Scalars['String']>;
+  sizes?: Maybe<Array<ItemSizesInput>>;
 };
 
 
@@ -403,7 +426,7 @@ export type CreateItemMutation = (
   & { createItem: (
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
-    & { sizes: Maybe<Array<(
+    & { sizes?: Maybe<Array<(
       { __typename?: 'Size' }
       & Pick<Size, 'sizeSymbol' | 'quantity'>
     )>> }
@@ -411,7 +434,7 @@ export type CreateItemMutation = (
 );
 
 export type DeleteAccountMutationVariables = {
-  password: Scalars['String']
+  password: Scalars['String'];
 };
 
 
@@ -424,7 +447,7 @@ export type DeleteAccountMutation = (
 );
 
 export type DeleteItemMutationVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
@@ -437,8 +460,8 @@ export type DeleteItemMutation = (
 );
 
 export type LoginMutationVariables = {
-  email: Scalars['String'],
-  password: Scalars['String']
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
@@ -451,8 +474,8 @@ export type LoginMutation = (
 );
 
 export type RegisterMutationVariables = {
-  email: Scalars['String'],
-  password: Scalars['String']
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
@@ -476,7 +499,7 @@ export type SignoutMutation = (
 );
 
 export type SubscribeToNewsletterMutationVariables = {
-  newsletter: Scalars['Boolean']
+  newsletter: Scalars['Boolean'];
 };
 
 
@@ -489,11 +512,11 @@ export type SubscribeToNewsletterMutation = (
 );
 
 export type UpdateAddressMutationVariables = {
-  addressLine1?: Maybe<Scalars['String']>,
-  addressLine2?: Maybe<Scalars['String']>,
-  zipCode?: Maybe<Scalars['String']>,
-  city?: Maybe<Scalars['String']>,
-  country?: Maybe<Scalars['String']>
+  addressLine1?: Maybe<Scalars['String']>;
+  addressLine2?: Maybe<Scalars['String']>;
+  zipCode?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
 };
 
 
@@ -506,12 +529,12 @@ export type UpdateAddressMutation = (
 );
 
 export type UpdateItemMutationVariables = {
-  id: Scalars['String'],
-  name?: Maybe<Scalars['String']>,
-  price?: Maybe<Scalars['Float']>,
-  imageUrl?: Maybe<Scalars['String']>,
-  category?: Maybe<Category>,
-  sizes?: Maybe<Array<ItemSizesInput>>
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
+  imageUrl?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  sizes?: Maybe<Array<ItemSizesInput>>;
 };
 
 
@@ -520,7 +543,7 @@ export type UpdateItemMutation = (
   & { updateItem: (
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt'>
-    & { sizes: Maybe<Array<(
+    & { sizes?: Maybe<Array<(
       { __typename?: 'Size' }
       & Pick<Size, 'sizeSymbol' | 'quantity'>
     )>> }
@@ -528,9 +551,9 @@ export type UpdateItemMutation = (
 );
 
 export type UpdatePersonalInfoMutationVariables = {
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>,
-  phoneNumber?: Maybe<Scalars['String']>
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
 };
 
 
@@ -543,17 +566,17 @@ export type UpdatePersonalInfoMutation = (
 );
 
 export type ItemsQueryVariables = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
-  priceFrom?: Maybe<Scalars['Float']>,
-  priceTo?: Maybe<Scalars['Float']>,
-  name?: Maybe<Scalars['String']>,
-  category?: Maybe<Category>,
-  gender?: Maybe<Gender>,
-  available?: Maybe<Scalars['Boolean']>
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
+  priceFrom?: Maybe<Scalars['Float']>;
+  priceTo?: Maybe<Scalars['Float']>;
+  name?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  gender?: Maybe<Gender>;
+  available?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -565,7 +588,7 @@ export type ItemsQuery = (
     & { select: Array<Maybe<(
       { __typename?: 'Item' }
       & Pick<Item, 'id' | 'name' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-      & { sizes: Maybe<Array<(
+      & { sizes?: Maybe<Array<(
         { __typename?: 'Size' }
         & Pick<Size, 'sizeSymbol' | 'quantity'>
       )>> }
@@ -578,10 +601,10 @@ export type MeQueryVariables = {};
 
 export type MeQuery = (
   { __typename?: 'Query' }
-  & { me: Maybe<(
+  & { me?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'resetToken' | 'resetTokenExpiry' | 'newsletter'>
-    & { address: Maybe<(
+    & { address?: Maybe<(
       { __typename?: 'Address' }
       & Pick<Address, 'addressLine1' | 'addressLine2' | 'zipCode' | 'city' | 'country'>
     )> }
@@ -589,16 +612,16 @@ export type MeQuery = (
 );
 
 export type SingleItemQueryVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type SingleItemQuery = (
   { __typename?: 'Query' }
-  & { item: Maybe<(
+  & { item?: Maybe<(
     { __typename?: 'Item' }
     & Pick<Item, 'id' | 'name' | 'description' | 'price' | 'imageUrl' | 'category' | 'gender' | 'createdAt' | 'updatedAt'>
-    & { sizes: Maybe<Array<(
+    & { sizes?: Maybe<Array<(
       { __typename?: 'Size' }
       & Pick<Size, 'sizeSymbol' | 'quantity'>
     )>> }
@@ -606,16 +629,16 @@ export type SingleItemQuery = (
 );
 
 export type SingleUserQueryVariables = {
-  id: Scalars['ID']
+  id: Scalars['ID'];
 };
 
 
 export type SingleUserQuery = (
   { __typename?: 'Query' }
-  & { user: Maybe<(
+  & { user?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'email' | 'firstName' | 'lastName' | 'phoneNumber' | 'role' | 'createdAt' | 'updatedAt' | 'newsletter'>
-    & { address: Maybe<(
+    & { address?: Maybe<(
       { __typename?: 'Address' }
       & Pick<Address, 'addressLine1' | 'addressLine2' | 'zipCode' | 'city' | 'country'>
     )>, createdOrders: Array<Maybe<(
@@ -626,15 +649,15 @@ export type SingleUserQuery = (
 );
 
 export type UsersQueryVariables = {
-  id?: Maybe<Scalars['ID']>,
-  take?: Maybe<Scalars['Int']>,
-  skip?: Maybe<Scalars['Int']>,
-  sortBy?: Maybe<Scalars['String']>,
-  sortOrder?: Maybe<SortOrder>,
-  role?: Maybe<UserRole>,
-  email?: Maybe<Scalars['String']>,
-  firstName?: Maybe<Scalars['String']>,
-  lastName?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['ID']>;
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  sortBy?: Maybe<Scalars['String']>;
+  sortOrder?: Maybe<SortOrder>;
+  role?: Maybe<UserRole>;
+  email?: Maybe<Scalars['String']>;
+  firstName?: Maybe<Scalars['String']>;
+  lastName?: Maybe<Scalars['String']>;
 };
 
 
