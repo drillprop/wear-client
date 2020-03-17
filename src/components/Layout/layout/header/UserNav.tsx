@@ -19,7 +19,7 @@ const UserNav: React.FC = () => {
         ) : null}
       </LiWithDropdown>
       <Li>
-        <LinkAnchor href='/checkout'>
+        <LinkAnchor href='/cart'>
           <img src='/shoping-icon.svg' alt='shopping cart icon' /> cart
         </LinkAnchor>
       </Li>

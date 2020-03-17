@@ -26,7 +26,7 @@ const DropDownMenu: React.FC<Props> = ({ admin }) => {
           <LinkAnchor href='/account/orders'>my orders </LinkAnchor>
         </DropDownItem>
         <DropDownItem>
-          <LinkAnchor href='/checkout'>my cart </LinkAnchor>
+          <LinkAnchor href='/cart'>my cart </LinkAnchor>
         </DropDownItem>
         {admin && (
           <DropDownItem admin>
