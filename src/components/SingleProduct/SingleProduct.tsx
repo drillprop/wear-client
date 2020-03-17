@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { SingleItemQuery, SizeSymbol } from '../../generated/types';
 import { white } from '../../styles/colors';
@@ -22,6 +22,7 @@ interface Props {
 
 const SingleProduct: React.FC<Props> = ({ item }) => {
   const [size, setSize] = useState<keyof typeof SizeSymbol | ''>('');
+  const [alert, setAlert] = useState('');
 
   const sizes =
     item?.sizes &&
@@ -31,13 +32,26 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
 
   const { setCartItems } = useCart();
 
+  useEffect(() => {
+    let timeout: any;
+    if (alert) {
+      timeout = setTimeout(() => {
+        setAlert('');
+      }, 1000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [alert]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (item) {
       const { id, name, price, imageUrl } = item;
       const newItem = { id, size, name, price, imageUrl };
-      setSize('');
+      setAlert('product added to your cart');
       setCartItems(state => [...state, newItem]);
+      setSize('');
     }
   };
   return item ? (
@@ -63,7 +77,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
               />
               <AddToCart disabled={!!!size} type='submit'>
                 <CartIcon color={white} size={'1em'} />
-                add to cart
+                {alert ? alert : 'add to cart'}
               </AddToCart>
             </form>
           ) : (
