@@ -13,7 +13,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   display: grid;
   grid-template-columns: 280px 1fr;
-  grid-gap: 90px;
+  grid-gap: 50px;
 `;
 
 export const Logo = styled.div`
@@ -56,9 +56,10 @@ export const Li = styled.li`
   :last-child {
     margin-left: 22px;
   }
-  img {
-    width: 12px;
-    height: 12px;
+  img,
+  svg {
+    width: 14px;
+    height: 14px;
     top: 0.125em;
     margin-right: 10px;
     position: relative;

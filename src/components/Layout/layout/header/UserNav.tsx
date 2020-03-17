@@ -1,5 +1,8 @@
 import React from 'react';
+import { useCart } from '../../../../contexts/CartContext';
 import { useMeQuery, UserRole } from '../../../../generated/types';
+import { black } from '../../../../styles/colors';
+import CartIcon from '../../../CartIcon/CartIcon';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import { Li, Ul } from '../Header.styles';
 import { LiWithDropdown } from './UserNav.styles';
@@ -7,6 +10,11 @@ import DropDownMenu from './userNav/DropDownMenu';
 
 const UserNav: React.FC = () => {
   const { data } = useMeQuery();
+  const { cartItems } = useCart();
+  const cartItemsLength = cartItems.length;
+  const products = cartItemsLength
+    ? `${cartItemsLength} product${cartItemsLength > 1 ? 's' : ''} in `
+    : '';
   return (
     <Ul>
       <LiWithDropdown>
@@ -19,8 +27,10 @@ const UserNav: React.FC = () => {
         ) : null}
       </LiWithDropdown>
       <Li>
-        <LinkAnchor href='/cart'>
-          <img src='/shoping-icon.svg' alt='shopping cart icon' /> cart
+        <LinkAnchor href='/cart' queryHighlight={!!cartItemsLength}>
+          <CartIcon fill={cartItemsLength ? black : 'none'} />
+          {products}
+          cart
         </LinkAnchor>
       </Li>
     </Ul>
