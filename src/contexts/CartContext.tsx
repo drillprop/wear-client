@@ -1,17 +1,20 @@
 import React, { createContext, useState } from 'react';
+import { SizeSymbol } from '../generated/types';
 
-interface Context {
-  cartItems: any[];
-  setCartItems: React.Dispatch<React.SetStateAction<never[]>>;
+export interface CartItem {
+  size: SizeSymbol;
+  name: string;
+  price: number;
+  imageUrl: string;
 }
 
-export const CartContext = createContext<Context>({
+export const CartContext = createContext<any>({
   cartItems: [],
   setCartItems: () => []
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   return (
     <CartContext.Provider value={{ cartItems, setCartItems }}>
       {children}
