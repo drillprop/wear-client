@@ -16,23 +16,48 @@ export const CartContext = createContext<{
   addItemToCart: (item: CartItem) => void;
   cartVisible: boolean;
   toggleCartVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  totals: {
+    total: number;
+    totalPrice: number;
+  };
+  incTotals: React.Dispatch<
+    React.SetStateAction<{
+      total: number;
+      totalPrice: number;
+    }>
+  >;
 }>({
   cartItems: [],
   addItemToCart: (_: CartItem) => [],
   cartVisible: true,
-  toggleCartVisible: () => {}
+  toggleCartVisible: () => {},
+  totals: {
+    total: 0,
+    totalPrice: 0
+  },
+  incTotals: () => {}
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartVisible, toggleCartVisible] = useState(false);
-
+  const [totals, incTotals] = useState({
+    total: 0,
+    totalPrice: 0
+  });
   const addItemToCart = (item: CartItem) =>
     setCartItems(addItem(cartItems, item));
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addItemToCart, cartVisible, toggleCartVisible }}
+      value={{
+        cartItems,
+        addItemToCart,
+        cartVisible,
+        toggleCartVisible,
+        totals,
+        incTotals
+      }}
     >
       {children}
     </CartContext.Provider>
