@@ -30,7 +30,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       .filter(size => size.quantity && size)
       .map(size => size.sizeSymbol);
 
-  const { addItemToCart } = useCart();
+  const { addItemToCart, incTotals } = useCart();
 
   useEffect(() => {
     let timeout: any;
@@ -50,6 +50,10 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       const { id, name, price, imageUrl } = item;
       const newItem = { id, size, name, price, imageUrl, quantity: 1 };
       setAlert('product added to your cart');
+      incTotals(({ total, totalPrice }) => ({
+        total: total + 1,
+        totalPrice: totalPrice + price
+      }));
       addItemToCart(newItem);
       setSize('');
     }
