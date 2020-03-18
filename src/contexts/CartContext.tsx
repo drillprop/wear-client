@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
 
 export interface CartItem {
+  id: string;
   size?: keyof typeof SizeSymbol | '';
   name: string;
   price: number;
