@@ -1,12 +1,13 @@
 import React from 'react';
 import {
-  useSignoutMutation,
   useMeQuery,
-  UserRole
-} from '../../../../../generated/types';
-import ME from '../../../../../graphql/queries/ME';
-import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
+  UserRole,
+  useSignoutMutation
+} from '../../../../generated/types';
+import ME from '../../../../graphql/queries/ME';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
+  LiWithDropdown,
   ProfileDropDownItem,
   ProfileDropDownList,
   ProfileDropDownWrapper
@@ -19,7 +20,7 @@ const ProfileDropDown: React.FC = () => {
   const { data } = useMeQuery();
   const admin = data?.me?.role === UserRole.ADMIN;
   return (
-    <>
+    <LiWithDropdown>
       <LinkAnchor href='/sign'>
         <img src='/user-icon.svg' alt='profile icon' />
         {data?.me ? data.me.email : 'login'}
@@ -47,7 +48,7 @@ const ProfileDropDown: React.FC = () => {
           </ProfileDropDownList>
         </ProfileDropDownWrapper>
       ) : null}
-    </>
+    </LiWithDropdown>
   );
 };
 
