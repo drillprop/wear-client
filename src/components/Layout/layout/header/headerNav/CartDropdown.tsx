@@ -14,7 +14,8 @@ import {
   CartItemInfo,
   CartItemName,
   CartItemPrice,
-  CartItemSize
+  CartItemSize,
+  CartItemsMore
 } from './CartDropdown.styles';
 
 const CartDropdown = () => {
@@ -36,19 +37,24 @@ const CartDropdown = () => {
       {cartVisible && !!cartItemsLength && (
         <CartDropDownWrapper>
           <CartDropdownList>
-            {cartItems.map(item => (
-              <CartDropdownItem key={item.id + 'size:' + item.size}>
-                <CartItemImg src={item.imageUrl} alt='product image' />
-                <CartItemInfo>
-                  <CartItemName>{item.name}</CartItemName>
-                  <CartItemSize>size: {item.size}</CartItemSize>
-                  <CartItemPrice>
-                    price: {item.quantity} x ${item.price}
-                  </CartItemPrice>
-                </CartItemInfo>
-              </CartDropdownItem>
-            ))}
+            {cartItems
+              .map(item => (
+                <CartDropdownItem key={item.id + 'size:' + item.size}>
+                  <CartItemImg src={item.imageUrl} alt='product image' />
+                  <CartItemInfo>
+                    <CartItemName>{item.name}</CartItemName>
+                    <CartItemSize>size: {item.size}</CartItemSize>
+                    <CartItemPrice>
+                      price: {item.quantity} x ${item.price}
+                    </CartItemPrice>
+                  </CartItemInfo>
+                </CartDropdownItem>
+              ))
+              .slice(0, 3)}
           </CartDropdownList>
+          <CartItemsMore>
+            {cartItemsLength > 3 && `and ${cartItemsLength - 3} more`}
+          </CartItemsMore>
           <Link href='/cart'>
             <CartDropdownButton>go to cart</CartDropdownButton>
           </Link>

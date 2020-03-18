@@ -62,6 +62,14 @@ export const CartItemPrice = styled.div`
   font-weight: 700;
 `;
 
+export const CartItemsMore = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  padding: 5px 0;
+  background-color: ${grays[4]};
+  color: ${white};
+`;
+
 export const CartDropdownButton = styled.button`
   font-family: ${montserrat};
   cursor: pointer;
