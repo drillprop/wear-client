@@ -30,9 +30,8 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       .filter(size => size.quantity && size)
       .map(size => size.sizeSymbol);
 
-  const { addItemToCart, cartItems } = useCart();
+  const { addItemToCart } = useCart();
 
-  console.log(cartItems);
   useEffect(() => {
     let timeout: any;
     if (alert) {
