@@ -19,10 +19,10 @@ import {
 } from './CartDropdown.styles';
 
 const CartDropdown = () => {
-  const { cartItems, cartVisible, toggleCartVisible } = useCart();
+  const { cartItems, cartVisible, toggleCartVisible, totals } = useCart();
   const cartItemsLength = cartItems.length;
-  const products = cartItemsLength
-    ? `${cartItemsLength} product${cartItemsLength > 1 ? 's' : ''} in `
+  const products = totals.total
+    ? `${totals.total} product${totals.total > 1 ? 's' : ''} in `
     : '';
   return (
     <Li
@@ -52,9 +52,9 @@ const CartDropdown = () => {
               ))
               .slice(0, 3)}
           </CartDropdownList>
-          <CartItemsMore>
-            {cartItemsLength > 3 && `and ${cartItemsLength - 3} more`}
-          </CartItemsMore>
+          {cartItemsLength > 3 && (
+            <CartItemsMore>{`and ${cartItemsLength - 3} more`}</CartItemsMore>
+          )}
           <Link href='/cart'>
             <CartDropdownButton>go to cart</CartDropdownButton>
           </Link>

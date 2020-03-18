@@ -65,7 +65,7 @@ export const CartItemPrice = styled.div`
 export const CartItemsMore = styled.div`
   margin-top: 20px;
   text-align: center;
-  padding: 5px 0;
+  padding: 10px 0;
   background-color: ${grays[4]};
   color: ${white};
 `;
@@ -75,7 +75,7 @@ export const CartDropdownButton = styled.button`
   cursor: pointer;
   font-size: ${fontSizes[1]};
   display: block;
-  margin: 10px auto;
+  margin: 20px auto;
   background-color: ${black};
   border: none;
   padding: 10px 30px;
