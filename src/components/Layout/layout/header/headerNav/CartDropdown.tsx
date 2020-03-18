@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { useCart } from '../../../../../contexts/CartContext';
 import { black } from '../../../../../styles/colors';
 import CartIcon from '../../../../CartIcon/CartIcon';
@@ -36,16 +36,21 @@ const CartDropdown = () => {
       {cartVisible && !!cartItemsLength && (
         <CartDropDownWrapper>
           <CartDropdownList>
-            {cartItems.map(item => (
-              <CartDropdownItem key={item.id}>
-                <CartItemImg src={item.imageUrl} alt='girl' />
-                <CartItemInfo>
-                  <CartItemName>{item.name}</CartItemName>
-                  <CartItemSize>{item.size}</CartItemSize>
-                  <CartItemPrice>${item.price}</CartItemPrice>
-                </CartItemInfo>
-              </CartDropdownItem>
-            ))}
+            {cartItems
+              .map(item => (
+                <CartDropdownItem key={item.id + item.size}>
+                  <CartItemImg src={item.imageUrl} alt='girl' />
+                  <CartItemInfo>
+                    <CartItemName>{item.name}</CartItemName>
+                    <CartItemSize>size: {item.size}</CartItemSize>
+                    <CartItemPrice>
+                      price: {item.quantity} x ${item.price}
+                    </CartItemPrice>
+                  </CartItemInfo>
+                </CartDropdownItem>
+              ))
+              .reverse()
+              .slice(0, 3)}
           </CartDropdownList>
           <Link href='/cart'>
             <CartDropdownButton>go to cart</CartDropdownButton>

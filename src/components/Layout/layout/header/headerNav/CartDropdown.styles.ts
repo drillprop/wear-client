@@ -42,12 +42,14 @@ export const CartItemImg = styled.img`
   margin: 0;
 `;
 export const CartItemInfo = styled.div`
+  text-transform: none;
   letter-spacing: 0;
   font-family: ${montserrat};
   font-size: ${fontSizes[0]};
   color: ${grays[0]};
 `;
 export const CartItemName = styled.div`
+  text-transform: uppercase;
   color: ${black};
   letter-spacing: 0;
   font-weight: 700;
