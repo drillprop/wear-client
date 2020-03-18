@@ -20,12 +20,6 @@ export const CartContext = createContext<{
     total: number;
     totalPrice: number;
   };
-  incTotals: React.Dispatch<
-    React.SetStateAction<{
-      total: number;
-      totalPrice: number;
-    }>
-  >;
 }>({
   cartItems: [],
   addItemToCart: (_: CartItem) => [],
@@ -34,8 +28,7 @@ export const CartContext = createContext<{
   totals: {
     total: 0,
     totalPrice: 0
-  },
-  incTotals: () => {}
+  }
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
@@ -45,8 +38,13 @@ const CartContextProvider: React.FC = ({ children }) => {
     total: 0,
     totalPrice: 0
   });
-  const addItemToCart = (item: CartItem) =>
+  const addItemToCart = (item: CartItem) => {
+    incTotals(({ total, totalPrice }) => ({
+      total: total + 1,
+      totalPrice: totalPrice + item.price
+    }));
     setCartItems(addItem(cartItems, item));
+  };
 
   return (
     <CartContext.Provider
@@ -55,8 +53,7 @@ const CartContextProvider: React.FC = ({ children }) => {
         addItemToCart,
         cartVisible,
         toggleCartVisible,
-        totals,
-        incTotals
+        totals
       }}
     >
       {children}
