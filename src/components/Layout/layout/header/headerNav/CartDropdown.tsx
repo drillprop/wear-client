@@ -36,21 +36,18 @@ const CartDropdown = () => {
       {cartVisible && !!cartItemsLength && (
         <CartDropDownWrapper>
           <CartDropdownList>
-            {cartItems
-              .map(item => (
-                <CartDropdownItem key={item.id + item.size}>
-                  <CartItemImg src={item.imageUrl} alt='girl' />
-                  <CartItemInfo>
-                    <CartItemName>{item.name}</CartItemName>
-                    <CartItemSize>size: {item.size}</CartItemSize>
-                    <CartItemPrice>
-                      price: {item.quantity} x ${item.price}
-                    </CartItemPrice>
-                  </CartItemInfo>
-                </CartDropdownItem>
-              ))
-              .reverse()
-              .slice(0, 3)}
+            {cartItems.map(item => (
+              <CartDropdownItem key={item.id + 'size:' + item.size}>
+                <CartItemImg src={item.imageUrl} alt='product image' />
+                <CartItemInfo>
+                  <CartItemName>{item.name}</CartItemName>
+                  <CartItemSize>size: {item.size}</CartItemSize>
+                  <CartItemPrice>
+                    price: {item.quantity} x ${item.price}
+                  </CartItemPrice>
+                </CartItemInfo>
+              </CartDropdownItem>
+            ))}
           </CartDropdownList>
           <Link href='/cart'>
             <CartDropdownButton>go to cart</CartDropdownButton>
