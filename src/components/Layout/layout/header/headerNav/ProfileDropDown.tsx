@@ -22,7 +22,7 @@ const ProfileDropDown: React.FC = () => {
   return (
     <LiWithDropdown>
       <LinkAnchor href='/sign'>
-        <img src='/user-icon.svg' alt='profile icon' />
+        <img className='icon' src='/user-icon.svg' alt='profile icon' />
         {data?.me ? data.me.email : 'login'}
       </LinkAnchor>
       {data?.me ? (

@@ -27,11 +27,12 @@ export const Ul = styled.ul`
 
 export const Li = styled.li`
   margin-left: 0px;
+  position: relative;
   text-transform: uppercase;
   :last-child {
     margin-left: 22px;
   }
-  img,
+  .icon,
   svg {
     width: 14px;
     height: 14px;
