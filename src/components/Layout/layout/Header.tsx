@@ -1,9 +1,9 @@
 import React from 'react';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
-import { HeaderWrapper, Logo, Navigation } from './Header.styles';
+import { HeaderWrapper, Logo, Navigation, Ul, Li } from './Header.styles';
 import HamburgerMenu from './header/HamburgerMenu';
-import ShopNav from './header/ShopNav';
-import UserNav from './header/UserNav';
+import CartDropdown from './header/CartDropdown';
+import ProfileDropDown from './header/ProfileDropDown';
 
 const Header: React.FC = () => {
   return (
@@ -12,8 +12,22 @@ const Header: React.FC = () => {
         <Logo>wear</Logo>
       </LinkAnchor>
       <Navigation>
-        <ShopNav />
-        <UserNav />
+        <Ul>
+          <Li>
+            <LinkAnchor highlight href='/woman'>
+              woman
+            </LinkAnchor>
+          </Li>
+          <Li>
+            <LinkAnchor highlight href='/man'>
+              man
+            </LinkAnchor>
+          </Li>
+        </Ul>
+        <Ul>
+          <ProfileDropDown />
+          <CartDropdown />
+        </Ul>
       </Navigation>
       <HamburgerMenu />
     </HeaderWrapper>
