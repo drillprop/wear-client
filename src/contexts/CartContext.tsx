@@ -11,15 +11,22 @@ export interface CartItem {
 export const CartContext = createContext<{
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  cartVisible: boolean;
+  toggleCartVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   cartItems: [],
-  setCartItems: () => []
+  setCartItems: () => [],
+  cartVisible: true,
+  toggleCartVisible: () => {}
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartVisible, toggleCartVisible] = useState(false);
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems }}>
+    <CartContext.Provider
+      value={{ cartItems, setCartItems, cartVisible, toggleCartVisible }}
+    >
       {children}
     </CartContext.Provider>
   );
