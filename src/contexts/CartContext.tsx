@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
+import { addItem } from './CartContext.utils';
 
 export interface CartItem {
   id: string;
@@ -7,16 +8,17 @@ export interface CartItem {
   name: string;
   price: number;
   imageUrl: string;
+  quantity: number;
 }
 
 export const CartContext = createContext<{
   cartItems: CartItem[];
-  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+  addItemToCart: (item: CartItem) => void;
   cartVisible: boolean;
   toggleCartVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   cartItems: [],
-  setCartItems: () => [],
+  addItemToCart: (_: CartItem) => [],
   cartVisible: true,
   toggleCartVisible: () => {}
 });
@@ -24,9 +26,13 @@ export const CartContext = createContext<{
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartVisible, toggleCartVisible] = useState(false);
+
+  const addItemToCart = (item: CartItem) =>
+    setCartItems(addItem(cartItems, item));
+
   return (
     <CartContext.Provider
-      value={{ cartItems, setCartItems, cartVisible, toggleCartVisible }}
+      value={{ cartItems, addItemToCart, cartVisible, toggleCartVisible }}
     >
       {children}
     </CartContext.Provider>
