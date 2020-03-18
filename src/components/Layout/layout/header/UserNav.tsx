@@ -9,7 +9,6 @@ import { LiWithDropdown } from './UserNav.styles';
 import ProfileDropDown from './userNav/ProfileDropDown';
 
 const UserNav: React.FC = () => {
-  const { data } = useMeQuery();
   const { cartItems } = useCart();
   const cartItemsLength = cartItems.length;
   const products = cartItemsLength
@@ -18,13 +17,7 @@ const UserNav: React.FC = () => {
   return (
     <Ul>
       <LiWithDropdown>
-        <LinkAnchor href='/sign'>
-          <img src='/user-icon.svg' alt='profile icon' />
-          {data?.me ? data.me.email : 'login'}
-        </LinkAnchor>
-        {data?.me ? (
-          <ProfileDropDown admin={data.me.role !== UserRole.CUSTOMER} />
-        ) : null}
+        <ProfileDropDown />
       </LiWithDropdown>
       <Li>
         <LinkAnchor href='/cart' queryHighlight={!!cartItemsLength}>
