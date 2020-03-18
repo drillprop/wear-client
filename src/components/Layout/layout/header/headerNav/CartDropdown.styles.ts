@@ -63,11 +63,20 @@ export const CartItemPrice = styled.div`
 `;
 
 export const CartItemsMore = styled.div`
+  position: relative;
   margin-top: 20px;
   text-align: center;
   padding: 10px 0;
   background-color: ${grays[4]};
   color: ${white};
+`;
+
+export const TotalPrice = styled.div`
+  font-weight: 700;
+  padding: 20px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 90px);
 `;
 
 export const CartDropdownButton = styled.button`
