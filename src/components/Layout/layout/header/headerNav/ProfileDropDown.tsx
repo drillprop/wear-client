@@ -3,9 +3,9 @@ import {
   useMeQuery,
   UserRole,
   useSignoutMutation
-} from '../../../../generated/types';
-import ME from '../../../../graphql/queries/ME';
-import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
+} from '../../../../../generated/types';
+import ME from '../../../../../graphql/queries/ME';
+import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
 import {
   LiWithDropdown,
   ProfileDropDownItem,

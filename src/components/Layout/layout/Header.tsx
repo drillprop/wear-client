@@ -1,9 +1,7 @@
 import React from 'react';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
-import { HeaderWrapper, Logo, Navigation, Ul, Li } from './Header.styles';
-import HamburgerMenu from './header/HamburgerMenu';
-import CartDropdown from './header/CartDropdown';
-import ProfileDropDown from './header/ProfileDropDown';
+import { HeaderWrapper, Logo } from './Header.styles';
+import HeaderNav from './header/HeaderNav';
 
 const Header: React.FC = () => {
   return (
@@ -11,25 +9,7 @@ const Header: React.FC = () => {
       <LinkAnchor href='/'>
         <Logo>wear</Logo>
       </LinkAnchor>
-      <Navigation>
-        <Ul>
-          <Li>
-            <LinkAnchor highlight href='/woman'>
-              woman
-            </LinkAnchor>
-          </Li>
-          <Li>
-            <LinkAnchor highlight href='/man'>
-              man
-            </LinkAnchor>
-          </Li>
-        </Ul>
-        <Ul>
-          <ProfileDropDown />
-          <CartDropdown />
-        </Ul>
-      </Navigation>
-      <HamburgerMenu />
+      <HeaderNav />
     </HeaderWrapper>
   );
 };

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { black, white } from '../../../../../styles/colors';
+import { black, white } from '../../../../../../styles/colors';
 
 interface SideMenuProps {
   rotate?: number;

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useCart } from '../../../../contexts/CartContext';
-import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
-import CartIcon from '../../../CartIcon/CartIcon';
-import { black } from '../../../../styles/colors';
-import { Li } from '../Header.styles';
+import { useCart } from '../../../../../contexts/CartContext';
+import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
+import CartIcon from '../../../../CartIcon/CartIcon';
+import { black } from '../../../../../styles/colors';
+import { Li } from '../HeaderNav.styles';
 
 const CartDropdown = () => {
   const { cartItems } = useCart();

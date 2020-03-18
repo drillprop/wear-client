@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { grays, white } from '../../../../styles/colors';
-import { Li } from '../Header.styles';
+import { grays, white } from '../../../../../styles/colors';
+import { Li } from '../HeaderNav.styles';
 
 export const LiWithDropdown = styled(Li)`
   position: relative;
