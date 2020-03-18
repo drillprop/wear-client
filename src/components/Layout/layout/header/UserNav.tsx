@@ -6,7 +6,7 @@ import CartIcon from '../../../CartIcon/CartIcon';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import { Li, Ul } from '../Header.styles';
 import { LiWithDropdown } from './UserNav.styles';
-import DropDownMenu from './userNav/DropDownMenu';
+import ProfileDropDown from './userNav/ProfileDropDown';
 
 const UserNav: React.FC = () => {
   const { data } = useMeQuery();
@@ -23,7 +23,7 @@ const UserNav: React.FC = () => {
           {data?.me ? data.me.email : 'login'}
         </LinkAnchor>
         {data?.me ? (
-          <DropDownMenu admin={data.me.role !== UserRole.CUSTOMER} />
+          <ProfileDropDown admin={data.me.role !== UserRole.CUSTOMER} />
         ) : null}
       </LiWithDropdown>
       <Li>

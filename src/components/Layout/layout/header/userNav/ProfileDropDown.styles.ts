@@ -1,23 +1,27 @@
 import styled from 'styled-components';
 import { grays, white } from '../../../../../styles/colors';
 
-export const DropDownWrapper = styled.div`
+export const ProfileDropDownWrapper = styled.div`
   display: none;
   position: absolute;
   background-color: ${white};
-  min-width: 110%;
+  width: 100%;
 `;
 
-export const DropDownList = styled.ul`
+export const ProfileDropDownList = styled.ul`
   margin: 0;
   padding: 0;
-  margin-top: 22px;
   :last-child {
     cursor: pointer;
   }
 `;
 
-export const DropDownItem = styled.li<{ admin?: boolean }>`
-  padding: 20px 0 22px 22px;
+export const ProfileDropDownItem = styled.li<{ admin?: boolean }>`
+  :first-child {
+    padding-top: 40px;
+  }
+  padding-left: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   ${props => props.admin && `background-color: ${grays[6]}`};
 `;
