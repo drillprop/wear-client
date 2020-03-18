@@ -1,14 +1,15 @@
 import { CartItem } from './CartContext';
 
 export const addItem = (items: CartItem[], itemToAdd: CartItem): CartItem[] => {
-  const isCartExist = items.find(
+  const isCartExist = items.findIndex(
     item => item.id === itemToAdd.id && item.size === itemToAdd.size
   );
 
-  if (isCartExist) {
-    return items.map(item =>
-      item.id === itemToAdd.id ? { ...item, quantity: item.quantity + 1 } : item
-    );
+  if (isCartExist >= 0) {
+    const [splicedItem] = items.splice(isCartExist, 1);
+    splicedItem.quantity = splicedItem.quantity + 1;
+    items.unshift(splicedItem);
+    return items;
   }
-  return [...items, { ...itemToAdd, quantity: 1 }];
+  return [{ ...itemToAdd, quantity: 1 }, ...items];
 };
