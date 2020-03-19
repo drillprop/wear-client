@@ -30,7 +30,7 @@ export const Li = styled.li`
   position: relative;
   text-transform: uppercase;
   :last-child {
-    margin-left: 20px;
+    margin-left: 40px;
   }
   .icon,
   svg {
