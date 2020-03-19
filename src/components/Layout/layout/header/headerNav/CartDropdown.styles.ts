@@ -35,34 +35,34 @@ export const CartDropdownItem = styled.li`
   }
 `;
 
-export const CartItemImg = styled.img`
+export const CartDropdownItemImg = styled.img`
   object-fit: cover;
   width: 90px;
   height: 120px;
   margin: 0;
 `;
-export const CartItemInfo = styled.div`
+export const CartDropdownItemInfo = styled.div`
   text-transform: none;
   letter-spacing: 0;
   font-family: ${montserrat};
   font-size: ${fontSizes[0]};
   color: ${grays[0]};
 `;
-export const CartItemName = styled.div`
+export const CartDropdownItemName = styled.div`
   text-transform: uppercase;
   color: ${black};
   letter-spacing: 0;
   font-weight: 700;
 `;
-export const CartItemSize = styled.div`
+export const CartDropdownItemSize = styled.div`
   margin-top: 30px;
 `;
-export const CartItemPrice = styled.div`
+export const CartDropdownItemPrice = styled.div`
   margin-top: 20px;
   font-weight: 700;
 `;
 
-export const CartItemsMore = styled.div`
+export const CartDropdownItemsMore = styled.div`
   position: relative;
   margin: 0 auto;
   margin-top: 20px;
@@ -73,7 +73,7 @@ export const CartItemsMore = styled.div`
   color: ${white};
 `;
 
-export const TotalPrice = styled.div`
+export const CartDropdownTotalPrice = styled.div`
   font-weight: 700;
   margin-top: 20px;
   padding: 0 25px;

@@ -10,13 +10,13 @@ import {
   CartDropdownItem,
   CartDropdownList,
   CartDropDownWrapper,
-  CartItemImg,
-  CartItemInfo,
-  CartItemName,
-  CartItemPrice,
-  CartItemSize,
-  CartItemsMore,
-  TotalPrice
+  CartDropdownItemImg,
+  CartDropdownItemInfo,
+  CartDropdownItemName,
+  CartDropdownItemSize,
+  CartDropdownItemPrice,
+  CartDropdownItemsMore,
+  CartDropdownTotalPrice
 } from './CartDropdown.styles';
 
 const CartDropdown = () => {
@@ -41,25 +41,31 @@ const CartDropdown = () => {
             {cartItems
               .map(item => (
                 <CartDropdownItem key={item.id + 'size:' + item.size}>
-                  <CartItemImg src={item.imageUrl} alt='product image' />
-                  <CartItemInfo>
-                    <CartItemName>{item.name}</CartItemName>
-                    <CartItemSize>size: {item.size}</CartItemSize>
-                    <CartItemPrice>
+                  <CartDropdownItemImg
+                    src={item.imageUrl}
+                    alt='product image'
+                  />
+                  <CartDropdownItemInfo>
+                    <CartDropdownItemName>{item.name}</CartDropdownItemName>
+                    <CartDropdownItemSize>
+                      size: {item.size}
+                    </CartDropdownItemSize>
+                    <CartDropdownItemPrice>
                       price: {item.quantity} x ${item.price}
-                    </CartItemPrice>
-                  </CartItemInfo>
+                    </CartDropdownItemPrice>
+                  </CartDropdownItemInfo>
                 </CartDropdownItem>
               ))
               .slice(0, 2)}
           </CartDropdownList>
           {cartItemsLength > 2 && (
-            <CartItemsMore>{`and ${cartItemsLength - 2} more`}</CartItemsMore>
+            <CartDropdownItemsMore>{`and ${cartItemsLength -
+              2} more`}</CartDropdownItemsMore>
           )}
-          <TotalPrice>
+          <CartDropdownTotalPrice>
             <div>total:</div>
             <div>${totals.totalPrice}</div>
-          </TotalPrice>
+          </CartDropdownTotalPrice>
           <Link href='/cart'>
             <CartDropdownButton>go to cart</CartDropdownButton>
           </Link>
