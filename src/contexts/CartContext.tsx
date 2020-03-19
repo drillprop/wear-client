@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SizeSymbol } from '../generated/types';
-import { addItem } from './CartContext.utils';
+import { addItem, getCartTotals } from './CartContext.utils';
+import Cookies from 'js-cookie';
 
 export interface CartItem {
   id: string;
@@ -38,12 +39,24 @@ const CartContextProvider: React.FC = ({ children }) => {
     total: 0,
     totalPrice: 0
   });
+
+  useEffect(() => {
+    const cartItems = Cookies.getJSON('cartItems');
+    const totals = getCartTotals(cartItems);
+    incTotals(totals);
+    if (cartItems) {
+      setCartItems(prevState => [...prevState, ...cartItems]);
+    }
+  }, []);
+
   const addItemToCart = (item: CartItem) => {
     incTotals(({ total, totalPrice }) => ({
       total: total + 1,
       totalPrice: totalPrice + item.price
     }));
-    setCartItems(addItem(cartItems, item));
+    const newItems = addItem(cartItems, item);
+    Cookies.set('cartItems', newItems);
+    setCartItems(newItems);
   };
 
   return (
