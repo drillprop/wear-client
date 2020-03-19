@@ -3,7 +3,7 @@ import { SizeSymbol } from '../generated/types';
 import { addItem, getCartTotals } from './CartContext.utils';
 import Cookies from 'js-cookie';
 
-export interface CartItem {
+export interface ICartItem {
   id: string;
   size?: keyof typeof SizeSymbol | '';
   name: string;
@@ -13,8 +13,8 @@ export interface CartItem {
 }
 
 export const CartContext = createContext<{
-  cartItems: CartItem[];
-  addItemToCart: (item: CartItem) => void;
+  cartItems: ICartItem[];
+  addItemToCart: (item: ICartItem) => void;
   cartVisible: boolean;
   toggleCartVisible: React.Dispatch<React.SetStateAction<boolean>>;
   totals: {
@@ -23,7 +23,7 @@ export const CartContext = createContext<{
   };
 }>({
   cartItems: [],
-  addItemToCart: (_: CartItem) => [],
+  addItemToCart: (_: ICartItem) => [],
   cartVisible: true,
   toggleCartVisible: () => {},
   totals: {
@@ -33,7 +33,7 @@ export const CartContext = createContext<{
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [cartVisible, toggleCartVisible] = useState(false);
   const [totals, incTotals] = useState({
     total: 0,
@@ -49,7 +49,7 @@ const CartContextProvider: React.FC = ({ children }) => {
     }
   }, []);
 
-  const addItemToCart = (item: CartItem) => {
+  const addItemToCart = (item: ICartItem) => {
     incTotals(({ total, totalPrice }) => ({
       total: total + 1,
       totalPrice: totalPrice + item.price

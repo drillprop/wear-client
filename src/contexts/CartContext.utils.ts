@@ -1,6 +1,9 @@
-import { CartItem } from './CartContext';
+import { ICartItem } from './CartContext';
 
-export const addItem = (items: CartItem[], itemToAdd: CartItem): CartItem[] => {
+export const addItem = (
+  items: ICartItem[],
+  itemToAdd: ICartItem
+): ICartItem[] => {
   const isCartExist = items.findIndex(
     item => item.id === itemToAdd.id && item.size === itemToAdd.size
   );
@@ -14,7 +17,7 @@ export const addItem = (items: CartItem[], itemToAdd: CartItem): CartItem[] => {
   return [{ ...itemToAdd, quantity: 1 }, ...items];
 };
 
-export const getCartTotals = (items: CartItem[]) => {
+export const getCartTotals = (items: ICartItem[]) => {
   if (!items) return { total: 0, totalPrice: 0 };
   return items.reduce(
     (acc, item) => {
