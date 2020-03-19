@@ -15,7 +15,7 @@ export const SideNavSticky = styled.nav`
 `;
 
 export const SideNavMainTitle = styled.h1`
-  font-size: ${fontSizes[4]};
+  font-size: ${fontSizes[3]};
   font-weight: 700;
   color: ${grays[0]};
   margin: 0;

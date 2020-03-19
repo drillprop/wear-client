@@ -8,15 +8,11 @@ import {
 } from '../../styles/sideNav.styles';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
-interface Props {
-  email?: string;
-}
-
-const AccountSideNav: React.FC<Props> = ({ email }) => {
+const AccountSideNav: React.FC = () => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <SideNavMainTitle>{email}</SideNavMainTitle>
+        <SideNavMainTitle>account</SideNavMainTitle>
         <SideNavList>
           <SideNavItem>
             <LinkAnchor highlight href='/account/profile'>

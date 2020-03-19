@@ -5,8 +5,8 @@ import fontSizes from './fontSizes';
 
 export const SiteWrapper = styled.div`
   display: grid;
-  grid-gap: 90px;
-  grid-template-columns: auto 1fr;
+  grid-gap: 50px;
+  grid-template-columns: 150px 1fr;
 `;
 
 export const SiteForm = styled.form`
