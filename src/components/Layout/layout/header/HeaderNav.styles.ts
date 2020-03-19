@@ -12,16 +12,16 @@ export const Navigation = styled.nav`
 `;
 
 export const Ul = styled.ul`
+  flex-grow: 1;
   font-family: ${roboto};
   padding: 0;
   margin: 0;
-  font-weight: 400;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   display: flex;
   font-size: ${fontSizes[1]};
-  justify-content: space-between;
-  :first-child {
-    font-weight: 700;
+  justify-content: flex-end;
+  :first-of-type {
+    justify-content: center;
   }
 `;
 
@@ -30,7 +30,7 @@ export const Li = styled.li`
   position: relative;
   text-transform: uppercase;
   :last-child {
-    margin-left: 22px;
+    margin-left: 20px;
   }
   .icon,
   svg {

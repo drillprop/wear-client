@@ -12,8 +12,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   top: 0;
   display: grid;
-  grid-template-columns: 280px 1fr;
-  grid-gap: 50px;
+  grid-template-columns: 200px 1fr;
 `;
 
 export const Logo = styled.div`
