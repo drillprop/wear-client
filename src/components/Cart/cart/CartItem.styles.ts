@@ -3,7 +3,7 @@ import fontSizes from '../../../styles/fontSizes';
 import { grays } from '../../../styles/colors';
 
 export const StyledCartItem = styled.li`
-  max-width: 700px;
+  width: 100%;
   margin-top: 20px;
   position: relative;
   display: grid;
