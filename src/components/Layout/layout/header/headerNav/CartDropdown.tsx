@@ -51,13 +51,13 @@ const CartDropdown = () => {
                   </CartItemInfo>
                 </CartDropdownItem>
               ))
-              .slice(0, 3)}
+              .slice(0, 2)}
           </CartDropdownList>
-          {cartItemsLength > 3 && (
-            <CartItemsMore>{`and ${cartItemsLength - 3} more`}</CartItemsMore>
+          {cartItemsLength > 2 && (
+            <CartItemsMore>{`and ${cartItemsLength - 2} more`}</CartItemsMore>
           )}
           <TotalPrice>
-            <div>total</div>
+            <div>total:</div>
             <div>${totals.totalPrice}</div>
           </TotalPrice>
           <Link href='/cart'>

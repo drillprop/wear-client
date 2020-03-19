@@ -18,19 +18,19 @@ export const CartDropdownItem = styled.li`
   :first-child {
     padding-top: 40px;
   }
-  padding-left: 25px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 25px;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(2, 90px);
   height: 100%;
   ::after {
     position: absolute;
+    display: flex;
+    justify-self: center;
     bottom: 0;
     content: '';
     height: 1px;
-    width: 100%;
+    width: calc(100% - 50px);
     background-color: ${grays[5]};
   }
 `;
@@ -64,7 +64,9 @@ export const CartItemPrice = styled.div`
 
 export const CartItemsMore = styled.div`
   position: relative;
+  margin: 0 auto;
   margin-top: 20px;
+  width: calc(100% - 50px);
   text-align: center;
   padding: 10px 0;
   background-color: ${grays[4]};
@@ -73,7 +75,8 @@ export const CartItemsMore = styled.div`
 
 export const TotalPrice = styled.div`
   font-weight: 700;
-  padding: 20px;
+  margin-top: 20px;
+  padding: 0 25px;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(2, 90px);
