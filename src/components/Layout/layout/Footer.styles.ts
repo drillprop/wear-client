@@ -3,11 +3,16 @@ import { roboto } from '../../../styles/fonts';
 import fontSizes from '../../../styles/fontSizes';
 import { grays } from '../../../styles/colors';
 
-export const FooterWrapper = styled.footer`
+export const FooterBackground = styled.div`
   margin-top: 90px;
-  padding: 100px;
-  display: grid;
   background-color: ${grays[6]};
+`;
+
+export const FooterWrapper = styled.footer`
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 100px 0;
+  display: grid;
   grid-gap: 50px;
   grid-template-rows: 1fr auto;
 `;
@@ -22,7 +27,7 @@ export const FooterTop = styled.div`
 `;
 
 export const FooterBottom = styled.div`
-  margin: 0 140px;
+  margin: 0 50px;
   padding-top: 20px;
   border-top: 1px solid grey;
   font-size: ${fontSizes[0]};
