@@ -1,11 +1,11 @@
 import React from 'react';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
   FooterHeadings,
   FooterLongColumn,
-  IconGroup,
-  FooterText
+  FooterText,
+  IconGroup
 } from '../Footer.styles';
-import Input from '../../../Input/Input';
 
 const NewsLetter = () => {
   return (
@@ -17,14 +17,12 @@ const NewsLetter = () => {
         <img src='/pinterest-icon.svg' alt='pinterest icon' />
       </IconGroup>
       <FooterText>
-        Do you want to receive the special offers? Sign up and get 15% off
+        Do you want to receive the special offers?{' '}
+        <LinkAnchor queryHighlight={true} href='/sign'>
+          Sign up
+        </LinkAnchor>{' '}
+        and get 15% off
       </FooterText>
-      <Input
-        label='subscribe to newsletter'
-        placeholder='email'
-        type='email'
-        icon='/mail-icon.svg'
-      />
     </FooterLongColumn>
   );
 };
