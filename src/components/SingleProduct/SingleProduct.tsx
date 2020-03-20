@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { SingleItemQuery, SizeSymbol } from '../../generated/types';
 import { white } from '../../styles/colors';
@@ -10,7 +10,6 @@ import {
   AddToCart,
   SingleProductDescription,
   SingleProductImg,
-  SingleProductInfo,
   SingleProductMain,
   SingleProductName,
   SingleProductPrice,
@@ -61,7 +60,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       <ShopSideNav gender={item?.gender} />
       <SingleProductMain>
         <SingleProductImg src={item?.imageUrl} alt={item?.name} />
-        <SingleProductInfo>
+        <section>
           <SingleProductName>{item?.name}</SingleProductName>
           <SingleProductDescription>
             {item?.description}
@@ -85,7 +84,7 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
           ) : (
             <Unavailable>product is not available at the moment</Unavailable>
           )}
-        </SingleProductInfo>
+        </section>
       </SingleProductMain>
     </SiteWrapper>
   ) : (

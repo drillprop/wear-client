@@ -6,18 +6,18 @@ import fontSizes from '../../styles/fontSizes';
 export const SingleProductMain = styled.div`
   margin-top: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 350px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
   gap: 40px;
 `;
 
 export const SingleProductImg = styled.img`
   height: 500px;
-  max-width: 100%;
+  width: 100%;
   object-fit: cover;
-`;
-
-export const SingleProductInfo = styled.section`
-  height: 500px;
+  @media (max-width: 400px) {
+    height: 350px;
+  }
+  border: 1px solid ${grays[5]};
 `;
 
 export const SingleProductName = styled.h1`
