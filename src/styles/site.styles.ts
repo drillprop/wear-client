@@ -7,6 +7,9 @@ export const SiteWrapper = styled.div`
   display: grid;
   grid-gap: 50px;
   grid-template-columns: 150px 1fr;
+  @media (max-width: 900px) {
+    grid-template-columns: unset;
+  }
 `;
 
 export const SiteForm = styled.form`

@@ -5,6 +5,9 @@ import fontSizes from './fontSizes';
 
 export const SideNavWrapper = styled.div`
   position: relative;
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 export const SideNavSticky = styled.nav`
