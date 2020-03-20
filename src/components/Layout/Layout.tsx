@@ -18,9 +18,9 @@ const Layout: React.FC = ({ children }) => {
         <CartContextProvider>
           <Header />
           <Main>{children}</Main>
-          {pathname !== '/sign' && <Footer />}
         </CartContextProvider>
       </PageWrapper>
+      {pathname !== '/sign' && <Footer />}
     </>
   );
 };

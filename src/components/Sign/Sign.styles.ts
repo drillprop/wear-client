@@ -3,8 +3,7 @@ import { roboto } from '../../styles/fonts';
 import fontSizes from '../../styles/fontSizes';
 
 export const SignWrapper = styled.div`
-  position: absolute;
-  width: calc(100vw - 80px);
+  max-width: 1300px;
   display: grid;
   height: calc(100vh - 100px);
   grid-template-columns: repeat(2, 1fr);

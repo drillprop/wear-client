@@ -5,7 +5,7 @@ import { grays } from '../../../styles/colors';
 
 export const FooterWrapper = styled.footer`
   margin-top: 90px;
-  padding: 40px;
+  padding: 100px;
   display: grid;
   background-color: ${grays[6]};
   grid-gap: 50px;

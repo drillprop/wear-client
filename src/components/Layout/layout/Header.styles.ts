@@ -10,6 +10,8 @@ export const HeaderWrapper = styled.header`
   position: fixed;
   z-index: 2;
   width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
   top: 0;
   display: grid;
   grid-template-columns: 200px 1fr;
