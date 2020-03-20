@@ -6,7 +6,7 @@ import { roboto } from '../../styles/fonts';
 export const CartWrapper = styled.div`
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(320px, auto));
   grid-gap: 50px;
 `;
 
@@ -17,7 +17,7 @@ export const CartList = styled.ul`
 
 export const OrderSummary = styled.section`
   margin: 0 auto;
-  width: 400px;
+  width: 100%;
   padding: 40px;
 `;
 

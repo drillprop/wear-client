@@ -3,20 +3,15 @@ import fontSizes from '../../../styles/fontSizes';
 import { grays } from '../../../styles/colors';
 
 export const StyledCartItem = styled.li`
-  width: 100%;
-  margin-top: 20px;
+  padding: 20px 0;
   position: relative;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: 110px 1fr;
-  padding-bottom: 20px;
-  padding: 20px;
   border-bottom: 1px solid ${grays[5]};
-`;
-
-export const CartItemInfo = styled.section`
-  display: flex;
-  justify-content: space-between;
+  :last-of-type {
+    border-bottom: none;
+  }
 `;
 
 export const CartItemImg = styled.img`
@@ -26,17 +21,22 @@ export const CartItemImg = styled.img`
   margin: 0;
   border: 1px solid ${grays[5]};
 `;
-
-export const CartItemColumn = styled.div`
+export const CartItemInfo = styled.section`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const CartItemRow = styled.div`
+  display: flex;
   justify-content: space-between;
 `;
 
 export const CartItemName = styled.h4`
   margin: 0;
   text-transform: uppercase;
-  font-size: ${fontSizes[3]};
+  font-size: ${fontSizes[2]};
+  padding-right: 10px;
 `;
 
 export const CartItemSize = styled.div`
@@ -45,14 +45,9 @@ export const CartItemSize = styled.div`
   color: ${grays[3]};
 `;
 
-export const CartItemPrice = styled.div`
-  font-size: ${fontSizes[3]};
-`;
-
 export const CartItemDelete = styled.div`
   cursor: pointer;
-  align-self: flex-end;
-  font-size: ${fontSizes[4]};
+  font-size: ${fontSizes[3]};
   color: ${grays[3]};
 `;
 
@@ -64,4 +59,9 @@ export const CartItemAmount = styled.div`
 export const Arrow = styled.span`
   cursor: pointer;
   padding: 0 10px;
+`;
+
+export const CartItemPrice = styled.div`
+  font-size: ${fontSizes[3]};
+  align-self: flex-end;
 `;
