@@ -18,7 +18,6 @@ export const CartList = styled.ul`
 export const OrderSummary = styled.section`
   margin: 0 auto;
   width: 400px;
-  margin-top: 60px;
   padding: 40px;
 `;
 
@@ -27,7 +26,7 @@ export const OrderTitle = styled.h2`
   text-transform: uppercase;
   text-align: center;
   font-family: ${roboto};
-  font-size: ${fontSizes[5]};
+  font-size: ${fontSizes[7]};
 `;
 
 export const Totals = styled.h3`
