@@ -29,7 +29,6 @@ export const ProductNameAndPrice = styled.div`
   margin-top: 14px;
   display: flex;
   justify-content: space-between;
-  background-color: white;
   width: 100%;
 `;
 
