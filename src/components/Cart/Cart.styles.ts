@@ -6,7 +6,7 @@ import { roboto } from '../../styles/fonts';
 export const CartWrapper = styled.div`
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(400px, auto));
   grid-gap: 50px;
 `;
 
