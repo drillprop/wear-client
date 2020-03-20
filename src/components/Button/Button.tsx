@@ -2,17 +2,16 @@ import React from 'react';
 import { StyledButton } from './Button.styles';
 
 interface Props {
-  type?: 'button' | 'submit' | 'reset' | undefined;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   mainColor?: string;
   width?: string;
   marginTop?: string;
 }
 
-const Button: React.FC<Props> = ({
-  children,
+const Button: React.FC<Props &
+  React.ButtonHTMLAttributes<HTMLButtonElement>> = ({
   type,
   onClick,
+  children,
   mainColor,
   marginTop = '50px',
   width = '100%'
