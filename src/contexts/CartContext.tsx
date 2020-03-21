@@ -1,7 +1,13 @@
 import Cookies from 'js-cookie';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
-import { addItem, getCartTotals, incItem, decrItem } from './CartContext.utils';
+import {
+  addItem,
+  getCartTotals,
+  incItem,
+  decrItem,
+  removeItem
+} from './CartContext.utils';
 
 export interface ICartItem {
   id: string;
@@ -15,6 +21,7 @@ export interface ICartItem {
 interface ICartContext {
   cartItems: ICartItem[];
   addItemToCart: (item: ICartItem) => void;
+  removeItemFromCart: (item: ICartItem) => void;
   incItemInCart: (item: ICartItem) => void;
   decrItemInCart: (item: ICartItem) => void;
   cartVisible: boolean;
@@ -28,6 +35,7 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addItemToCart: (_: ICartItem) => [],
+  removeItemFromCart: (_: ICartItem) => [],
   incItemInCart: (_: ICartItem) => [],
   decrItemInCart: (_: ICartItem) => [],
   cartVisible: true,
@@ -59,6 +67,10 @@ const CartContextProvider: React.FC = ({ children }) => {
     setCartItems(addItem(cartItems, item));
   };
 
+  const removeItemFromCart = (item: ICartItem) => {
+    setCartItems(removeItem(cartItems, item));
+  };
+
   const incItemInCart = (item: ICartItem) =>
     setCartItems(incItem(cartItems, item));
 
@@ -72,6 +84,7 @@ const CartContextProvider: React.FC = ({ children }) => {
         toggleCartVisible,
         cartItems,
         addItemToCart,
+        removeItemFromCart,
         incItemInCart,
         decrItemInCart,
         totals

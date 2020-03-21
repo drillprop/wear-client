@@ -17,6 +17,16 @@ export const addItem = (
   return [{ ...itemToAdd, quantity: 1 }, ...items];
 };
 
+export const removeItem = (items: ICartItem[], itemToDecr: ICartItem) => {
+  const criteria = { size: itemToDecr.size!, id: itemToDecr.id! };
+  return items.filter(item => {
+    for (let key in criteria) {
+      if (item[key as 'size' | 'id'] !== criteria[key as 'size' | 'id'])
+        return true;
+    }
+  });
+};
+
 export const incItem = (items: ICartItem[], itemToInc: ICartItem) => {
   return items.map(item =>
     item.id === itemToInc.id && item.size === itemToInc.size
@@ -31,13 +41,7 @@ export const decrItem = (items: ICartItem[], itemToDecr: ICartItem) => {
   );
 
   if (existingItem?.quantity === 1) {
-    const criteria = { size: itemToDecr.size!, id: itemToDecr.id! };
-    return items.filter(item => {
-      for (let key in criteria) {
-        if (item[key as 'size' | 'id'] !== criteria[key as 'size' | 'id'])
-          return true;
-      }
-    });
+    return removeItem(items, itemToDecr);
   }
 
   return items.map(item =>

@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const { incItemInCart, decrItemInCart } = useCart();
+  const { incItemInCart, decrItemInCart, removeItemFromCart } = useCart();
   return (
     <StyledCartItem>
       <CartItemImg src={item.imageUrl} alt={item.name} />
@@ -28,7 +28,9 @@ const CartItem: React.FC<Props> = ({ item }) => {
             <CartItemName>{item.name}</CartItemName>
             <CartItemSize>size: {item.size}</CartItemSize>
           </div>
-          <CartItemDelete>&#10005;</CartItemDelete>
+          <CartItemDelete onClick={() => removeItemFromCart(item)}>
+            &#10005;
+          </CartItemDelete>
         </CartItemRow>
         <CartItemRow>
           <CartItemAmount>
