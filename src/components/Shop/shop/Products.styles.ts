@@ -6,10 +6,8 @@ import fontSizes from '../../../styles/fontSizes';
 export const ProductsWrapper = styled.div`
   margin-top: 75px;
   display: grid;
-  grid-gap: 40px;
+  grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
-  justify-content: space-between;
-  justify-items: center;
 `;
 
 export const ProductCardWrapper = styled.div`
