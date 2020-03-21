@@ -20,7 +20,7 @@ const Products: React.FC<Props> = ({ items }) => {
       {items.map(
         item =>
           item && (
-            <ProductCardWrapper>
+            <ProductCardWrapper key={item.id}>
               <LinkAnchor
                 href={{
                   pathname: `/${item.gender.toLowerCase()}/item`,
