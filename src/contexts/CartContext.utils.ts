@@ -4,12 +4,12 @@ export const addItem = (
   items: ICartItem[],
   itemToAdd: ICartItem
 ): ICartItem[] => {
-  const isCartExist = items.findIndex(
+  const existingItemIdx = items.findIndex(
     item => item.id === itemToAdd.id && item.size === itemToAdd.size
   );
 
-  if (isCartExist >= 0) {
-    const [splicedItem] = items.splice(isCartExist, 1);
+  if (existingItemIdx >= 0) {
+    const [splicedItem] = items.splice(existingItemIdx, 1);
     splicedItem.quantity = splicedItem.quantity + 1;
     items.unshift(splicedItem);
     return items;

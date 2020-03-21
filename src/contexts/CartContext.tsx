@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
 import { addItem, getCartTotals } from './CartContext.utils';
-import Cookies from 'js-cookie';
 
 export interface ICartItem {
   id: string;
@@ -12,7 +12,7 @@ export interface ICartItem {
   quantity: number;
 }
 
-export const CartContext = createContext<{
+interface ICartContext {
   cartItems: ICartItem[];
   addItemToCart: (item: ICartItem) => void;
   cartVisible: boolean;
@@ -21,7 +21,9 @@ export const CartContext = createContext<{
     total: number;
     totalPrice: number;
   };
-}>({
+}
+
+export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addItemToCart: (_: ICartItem) => [],
   cartVisible: true,
@@ -35,37 +37,31 @@ export const CartContext = createContext<{
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
   const [cartVisible, toggleCartVisible] = useState(false);
-  const [totals, incTotals] = useState({
+  const [totals, countTotals] = useState({
     total: 0,
     totalPrice: 0
   });
 
   useEffect(() => {
-    const cartItems = Cookies.getJSON('cartItems');
-    const totals = getCartTotals(cartItems);
-    incTotals(totals);
-    if (cartItems) {
-      setCartItems(prevState => [...prevState, ...cartItems]);
-    }
+    setCartItems(prevState => [...prevState, ...Cookies.getJSON('cartItems')]);
   }, []);
 
+  useEffect(() => {
+    countTotals(getCartTotals(cartItems));
+    Cookies.set('cartItems', cartItems);
+  }, [JSON.stringify(cartItems)]);
+
   const addItemToCart = (item: ICartItem) => {
-    incTotals(({ total, totalPrice }) => ({
-      total: total + 1,
-      totalPrice: totalPrice + item.price
-    }));
-    const newItems = addItem(cartItems, item);
-    Cookies.set('cartItems', newItems);
-    setCartItems(newItems);
+    setCartItems(addItem(cartItems, item));
   };
 
   return (
     <CartContext.Provider
       value={{
-        cartItems,
-        addItemToCart,
         cartVisible,
         toggleCartVisible,
+        cartItems,
+        addItemToCart,
         totals
       }}
     >
