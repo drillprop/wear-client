@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { SizeSymbol } from '../generated/types';
-import { addItem, getCartTotals } from './CartContext.utils';
+import { addItem, getCartTotals, incItem } from './CartContext.utils';
 
 export interface ICartItem {
   id: string;
@@ -15,6 +15,7 @@ export interface ICartItem {
 interface ICartContext {
   cartItems: ICartItem[];
   addItemToCart: (item: ICartItem) => void;
+  incItemInCart: (item: ICartItem) => void;
   cartVisible: boolean;
   toggleCartVisible: React.Dispatch<React.SetStateAction<boolean>>;
   totals: {
@@ -26,6 +27,7 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({
   cartItems: [],
   addItemToCart: (_: ICartItem) => [],
+  incItemInCart: (_: ICartItem) => [],
   cartVisible: true,
   toggleCartVisible: () => {},
   totals: {
@@ -55,6 +57,9 @@ const CartContextProvider: React.FC = ({ children }) => {
     setCartItems(addItem(cartItems, item));
   };
 
+  const incItemInCart = (item: ICartItem) =>
+    setCartItems(incItem(cartItems, item));
+
   return (
     <CartContext.Provider
       value={{
@@ -62,6 +67,7 @@ const CartContextProvider: React.FC = ({ children }) => {
         toggleCartVisible,
         cartItems,
         addItemToCart,
+        incItemInCart,
         totals
       }}
     >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICartItem } from '../../../contexts/CartContext';
+import { ICartItem, useCart } from '../../../contexts/CartContext';
 import {
   Arrow,
   CartItemAmount,
@@ -18,6 +18,7 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ item }) => {
+  const { incItemInCart } = useCart();
   return (
     <StyledCartItem>
       <CartItemImg src={item.imageUrl} alt={item.name} />
@@ -32,7 +33,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <CartItemRow>
           <CartItemAmount>
             amount: <Arrow>&#10094;</Arrow> {item.quantity}{' '}
-            <Arrow>&#10095;</Arrow>
+            <Arrow onClick={() => incItemInCart(item)}>&#10095;</Arrow>
           </CartItemAmount>
           <CartItemPrice> $ {item.price * item.quantity}</CartItemPrice>
         </CartItemRow>

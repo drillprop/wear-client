@@ -17,6 +17,14 @@ export const addItem = (
   return [{ ...itemToAdd, quantity: 1 }, ...items];
 };
 
+export const incItem = (items: ICartItem[], itemToInc: ICartItem) => {
+  return items.map(item =>
+    item.id === itemToInc.id && item.size === itemToInc.size
+      ? { ...item, quantity: item.quantity + 1 }
+      : item
+  );
+};
+
 export const getCartTotals = (items: ICartItem[]) => {
   if (!items) return { total: 0, totalPrice: 0 };
   return items.reduce(
