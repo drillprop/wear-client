@@ -25,6 +25,28 @@ export const incItem = (items: ICartItem[], itemToInc: ICartItem) => {
   );
 };
 
+export const decrItem = (items: ICartItem[], itemToDecr: ICartItem) => {
+  const existingItem = items.find(
+    item => item.id === itemToDecr.id && item.size === itemToDecr.size
+  );
+
+  if (existingItem?.quantity === 1) {
+    const criteria = { size: itemToDecr.size!, id: itemToDecr.id! };
+    return items.filter(item => {
+      for (let key in criteria) {
+        if (item[key as 'size' | 'id'] !== criteria[key as 'size' | 'id'])
+          return true;
+      }
+    });
+  }
+
+  return items.map(item =>
+    item.id === itemToDecr.id && item.size === itemToDecr.size
+      ? { ...item, quantity: item.quantity - 1 }
+      : item
+  );
+};
+
 export const getCartTotals = (items: ICartItem[]) => {
   if (!items) return { total: 0, totalPrice: 0 };
   return items.reduce(

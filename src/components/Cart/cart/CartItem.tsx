@@ -18,7 +18,7 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const { incItemInCart } = useCart();
+  const { incItemInCart, decrItemInCart } = useCart();
   return (
     <StyledCartItem>
       <CartItemImg src={item.imageUrl} alt={item.name} />
@@ -32,7 +32,8 @@ const CartItem: React.FC<Props> = ({ item }) => {
         </CartItemRow>
         <CartItemRow>
           <CartItemAmount>
-            amount: <Arrow>&#10094;</Arrow> {item.quantity}{' '}
+            amount: <Arrow onClick={() => decrItemInCart(item)}>&#10094;</Arrow>{' '}
+            {item.quantity}{' '}
             <Arrow onClick={() => incItemInCart(item)}>&#10095;</Arrow>
           </CartItemAmount>
           <CartItemPrice> $ {item.price * item.quantity}</CartItemPrice>
