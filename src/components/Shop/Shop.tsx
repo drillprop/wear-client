@@ -24,10 +24,13 @@ interface Props {
 const Shop: React.FC<Props> = ({ gender, query }) => {
   const [variables, setVariables] = useState<ItemsQueryVariables>({
     take: 5,
-    skip: 0,
     gender,
     sortBy: 'Item.createdAt',
     sortOrder: SortOrder.DESC
+  });
+
+  const { data } = useItemsQuery({
+    variables
   });
 
   const debouncedSetFilters = debounce(
@@ -35,14 +38,17 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
     300
   );
 
-  const { data } = useItemsQuery({
-    variables: { ...variables }
-  });
-
   useEffect(() => {
     const category = query.category?.toUpperCase() as Category;
-    setVariables({ ...variables, category });
-  }, [query.category]);
+    setVariables({
+      ...variables,
+      category,
+      gender,
+      skip: query.page
+        ? parseInt(query.page) * (variables?.take || 5) - (variables?.take || 5)
+        : 0
+    });
+  }, [query.category, query.page]);
 
   return (
     <SiteWrapper>
