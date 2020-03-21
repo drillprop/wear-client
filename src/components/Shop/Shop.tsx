@@ -15,19 +15,17 @@ import Products from './shop/Products';
 
 interface Props {
   gender: Gender;
-  category?: Category | null;
   query: {
     category?: string;
     page?: string;
   };
 }
 
-const Shop: React.FC<Props> = ({ gender, category, query }) => {
+const Shop: React.FC<Props> = ({ gender, query }) => {
   const [variables, setVariables] = useState<ItemsQueryVariables>({
     take: 5,
     skip: 0,
     gender,
-    category,
     sortBy: 'Item.createdAt',
     sortOrder: SortOrder.DESC
   });
@@ -42,8 +40,9 @@ const Shop: React.FC<Props> = ({ gender, category, query }) => {
   });
 
   useEffect(() => {
+    const category = query.category?.toUpperCase() as Category;
     setVariables({ ...variables, category });
-  }, [category]);
+  }, [query.category]);
 
   return (
     <SiteWrapper>
