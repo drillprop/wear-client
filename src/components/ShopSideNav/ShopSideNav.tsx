@@ -1,5 +1,6 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import { Category, Gender } from '../../generated/types';
+import { Gender } from '../../generated/types';
 import {
   SideNavItem,
   SideNavList,
@@ -7,9 +8,8 @@ import {
   SideNavSticky,
   SideNavWrapper
 } from '../../styles/sideNav.styles';
-import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import getGenderCategories from '../../utils/getGenderCategories';
-import { useRouter } from 'next/router';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
 interface Props {
   gender: Gender;

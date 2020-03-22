@@ -1,11 +1,11 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import {
   NextPrevPage,
   PageNumber,
   PageNumbersWrapper
 } from './Pagination.styles';
-import LinkAnchor from '../LinkAnchor/LinkAnchor';
-import { useRouter } from 'next/router';
 
 interface Props {
   total?: number;
