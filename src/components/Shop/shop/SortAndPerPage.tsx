@@ -5,8 +5,8 @@ import {
   ItemsQuery,
   ItemsQueryVariables,
   SortOrder
-} from '../../../../generated/types';
-import Select from '../../../Select/Select';
+} from '../../../generated/types';
+import Select from '../../Select/Select';
 
 type SortType = 'newest' | 'lowest price' | 'highest price';
 

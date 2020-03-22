@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import RangeInput from '../../../RangeInput/RangeInput';
-import Input from '../../../Input/Input';
-import { ItemsQueryVariables } from '../../../../generated/types';
+import React, { useEffect, useState } from 'react';
+import { ItemsQueryVariables } from '../../../generated/types';
+import Input from '../../Input/Input';
+import RangeInput from '../../RangeInput/RangeInput';
 
 interface Props {
   refetch: any;

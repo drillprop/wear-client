@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { grays } from '../../../styles/colors';
+import { grays } from '../../styles/colors';
 
 export const ShopFiltersWrapper = styled.div`
   display: grid;
