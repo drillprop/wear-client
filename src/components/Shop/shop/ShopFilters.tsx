@@ -10,7 +10,7 @@ import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
 
 interface Props {
-  setVariables: any;
+  refetch: any;
   variables: ItemsQueryVariables;
   gender: Gender;
   maxPrice: number;
@@ -18,11 +18,7 @@ interface Props {
 
 type SortType = 'newest' | 'lowest price' | 'highest price';
 
-const ShopFilters: React.FC<Props> = ({
-  setVariables,
-  variables,
-  maxPrice
-}) => {
+const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
   const [filtersState, setFiltersState] = useState({
     priceFrom: 0,
     priceTo: 0,
@@ -31,11 +27,11 @@ const ShopFilters: React.FC<Props> = ({
   const [sortValue, setSortValue] = useState<SortType>('newest');
 
   useEffect(() => {
-    setVariables({
+    refetch({
       ...variables,
       ...filtersState
     });
-    return () => setVariables.cancel();
+    return () => refetch.cancel();
   }, [filtersState]);
 
   useEffect(() => {
@@ -44,19 +40,19 @@ const ShopFilters: React.FC<Props> = ({
 
   const handleSort = (sort: SortType) => {
     if (sort === 'newest')
-      setVariables({
+      refetch({
         ...variables,
         sortBy: 'Item.createdAt',
         sortOrder: SortOrder.DESC
       });
     else if (sort === 'lowest price')
-      setVariables({
+      refetch({
         ...variables,
         sortBy: 'Item.price',
         sortOrder: SortOrder.ASC
       });
     else if (sort === 'highest price')
-      setVariables({
+      refetch({
         ...variables,
         sortBy: 'Item.price',
         sortOrder: SortOrder.DESC
@@ -113,7 +109,7 @@ const ShopFilters: React.FC<Props> = ({
       <Select
         label='items per page'
         onChange={take =>
-          take && setVariables({ ...variables, take: parseInt(take) })
+          take && refetch({ ...variables, take: parseInt(take) })
         }
         value={variables.take}
         placeHolder='5'

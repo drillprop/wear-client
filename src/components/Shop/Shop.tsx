@@ -4,7 +4,8 @@ import {
   Gender,
   useItemsQuery,
   SortOrder,
-  ItemsQueryVariables
+  ItemsQueryVariables,
+  ItemsQuery
 } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import Pagination from '../Pagination/Pagination';
@@ -22,33 +23,21 @@ interface Props {
 }
 
 const Shop: React.FC<Props> = ({ gender, query }) => {
-  const [variables, setVariables] = useState<ItemsQueryVariables>({
-    take: 5,
-    gender,
-    sortBy: 'Item.createdAt',
-    sortOrder: SortOrder.DESC
+  const category = query.category?.toUpperCase() as Category;
+
+  const { data, refetch, loading, variables } = useItemsQuery({
+    variables: {
+      gender,
+      sortBy: 'Item.createdAt',
+      sortOrder: SortOrder.DESC,
+      category
+    }
   });
 
-  const { data } = useItemsQuery({
-    variables
-  });
-
-  const debouncedSetFilters = debounce(
-    (variables: ItemsQueryVariables) => setVariables(variables),
+  const debouncedRefetch = debounce(
+    (variables: ItemsQueryVariables) => refetch(variables),
     300
   );
-
-  useEffect(() => {
-    const category = query.category?.toUpperCase() as Category;
-    setVariables({
-      ...variables,
-      category,
-      gender,
-      skip: query.page
-        ? parseInt(query.page) * (variables?.take || 5) - (variables?.take || 5)
-        : 0
-    });
-  }, [query.category, query.page]);
 
   return (
     <SiteWrapper>
@@ -58,16 +47,16 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
         <ShopFilters
           maxPrice={data?.items.maxPrice || 0}
           variables={variables}
-          setVariables={debouncedSetFilters}
+          refetch={debouncedRefetch}
           gender={gender}
         />
         <Products items={data?.items.select || []} />
-        <Pagination
+        {/* <Pagination
           page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
           take={variables.take || 5}
-          setNewState={setVariables}
-        />
+          setNewState={setState}
+        /> */}
       </div>
     </SiteWrapper>
   );
