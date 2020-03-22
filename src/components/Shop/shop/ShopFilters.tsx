@@ -8,6 +8,7 @@ import Input from '../../Input/Input';
 import RangeInput from '../../RangeInput/RangeInput';
 import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
+import { useRouter } from 'next/router';
 
 interface Props {
   refetch: any;
@@ -19,6 +20,8 @@ interface Props {
 type SortType = 'newest' | 'lowest price' | 'highest price';
 
 const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
+  const router = useRouter();
+
   const [filtersState, setFiltersState] = useState({
     priceFrom: 0,
     priceTo: 0,
@@ -32,7 +35,7 @@ const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
       ...filtersState
     });
     return () => refetch.cancel();
-  }, [filtersState]);
+  }, [filtersState.priceFrom, filtersState.priceTo, filtersState.name]);
 
   useEffect(() => {
     setFiltersState({ ...filtersState, priceTo: maxPrice });
@@ -108,9 +111,16 @@ const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
       />
       <Select
         label='items per page'
-        onChange={take =>
-          take && refetch({ ...variables, take: parseInt(take) })
-        }
+        onChange={take => {
+          take && refetch({ ...variables, take: parseInt(take) });
+          router.push(
+            `/${variables.gender?.toLowerCase()}${
+              variables?.category
+                ? `?category=${variables?.category.toLowerCase()}`
+                : ''
+            }`
+          );
+        }}
         value={variables.take}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
