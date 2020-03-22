@@ -1,9 +1,7 @@
-import debounce from 'lodash.debounce';
 import React from 'react';
 import {
   Category,
   Gender,
-  ItemsQueryVariables,
   SortOrder,
   useItemsQuery
 } from '../../generated/types';
@@ -33,11 +31,6 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
     }
   });
 
-  const debouncedRefetch = debounce(
-    (variables: ItemsQueryVariables) => refetch(variables),
-    300
-  );
-
   return (
     <SiteWrapper>
       <ShopSideNav gender={gender} />
@@ -46,7 +39,7 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
         <ShopFilters
           maxPrice={data?.items.maxPrice || 0}
           variables={variables}
-          refetch={debouncedRefetch}
+          refetch={refetch}
           gender={gender}
         />
         <Products items={data?.items.select || []} />

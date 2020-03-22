@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import debounce from 'lodash.debounce';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import {
   Gender,
   ItemsQueryVariables,
-  SortOrder
+  SortOrder,
+  ItemsQuery
 } from '../../../generated/types';
-import Input from '../../Input/Input';
-import RangeInput from '../../RangeInput/RangeInput';
 import Select from '../../Select/Select';
 import { ShopFiltersWrapper } from './ShopFilters.styles';
-import { useRouter } from 'next/router';
+import NameAndPriceFilters from './shopFilters/NameAndPriceFilters';
+import { ApolloQueryResult } from 'apollo-boost';
 
 interface Props {
-  refetch: any;
+  refetch: (
+    variables?: ItemsQueryVariables | undefined
+  ) => Promise<ApolloQueryResult<ItemsQuery>>;
   variables: ItemsQueryVariables;
   gender: Gender;
   maxPrice: number;
@@ -21,25 +25,12 @@ type SortType = 'newest' | 'lowest price' | 'highest price';
 
 const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
   const router = useRouter();
-
-  const [filtersState, setFiltersState] = useState({
-    priceFrom: 0,
-    priceTo: 0,
-    name: ''
-  });
   const [sortValue, setSortValue] = useState<SortType>('newest');
 
-  useEffect(() => {
-    refetch({
-      ...variables,
-      ...filtersState
-    });
-    return () => refetch.cancel();
-  }, [filtersState.priceFrom, filtersState.priceTo, filtersState.name]);
-
-  useEffect(() => {
-    setFiltersState({ ...filtersState, priceTo: maxPrice });
-  }, [maxPrice]);
+  const debouncedRefetch = debounce(
+    (variables: ItemsQueryVariables) => refetch(variables),
+    300
+  );
 
   const handleSort = (sort: SortType) => {
     if (sort === 'newest')
@@ -64,42 +55,10 @@ const ShopFilters: React.FC<Props> = ({ variables, maxPrice, refetch }) => {
   };
   return (
     <ShopFiltersWrapper>
-      <RangeInput
-        max={maxPrice}
-        label={'price from'}
-        value={filtersState.priceFrom}
-        onChange={e =>
-          setFiltersState({
-            ...filtersState,
-            priceFrom: Math.min(parseInt(e.target.value), filtersState.priceTo)
-          })
-        }
-      />
-      <RangeInput
-        max={maxPrice}
-        label={'price to'}
-        value={filtersState.priceTo}
-        onChange={e =>
-          setFiltersState({
-            ...filtersState,
-            priceTo: Math.max(parseInt(e.target.value), filtersState.priceFrom)
-          })
-        }
-      />
-      <Input
-        label='search item by name'
-        name='name'
-        value={filtersState.name}
-        onChange={e =>
-          setFiltersState({
-            ...filtersState,
-            name: e.target.value
-          })
-        }
-        placeholder='search'
-        type='search'
-        icon='/search-icon.svg'
-        small
+      <NameAndPriceFilters
+        maxPrice={maxPrice}
+        variables={variables}
+        refetch={debouncedRefetch}
       />
       <Select
         label='sort by'
