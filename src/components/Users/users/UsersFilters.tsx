@@ -6,10 +6,10 @@ import Select from '../../Select/Select';
 
 interface Props {
   variables: UsersQueryVariables;
-  setVariables: React.Dispatch<React.SetStateAction<UsersQueryVariables>>;
+  refetch: any;
 }
 
-const UsersFilters: React.FC<Props> = ({ variables, setVariables }) => {
+const UsersFilters: React.FC<Props> = ({ variables, refetch }) => {
   return (
     <UsersFiltersWrapper>
       <Input
@@ -21,7 +21,7 @@ const UsersFilters: React.FC<Props> = ({ variables, setVariables }) => {
         small
         value={variables.email as string}
         onChange={e =>
-          setVariables({
+          refetch({
             ...variables,
             email: e.target.value
           })
@@ -30,7 +30,7 @@ const UsersFilters: React.FC<Props> = ({ variables, setVariables }) => {
       <Select
         label='role'
         value={variables.role}
-        onChange={role => setVariables({ ...variables, role })}
+        onChange={role => refetch({ ...variables, role })}
         placeHolder='role'
         options={Object.values(UserRole)}
         small
@@ -38,7 +38,7 @@ const UsersFilters: React.FC<Props> = ({ variables, setVariables }) => {
       <Select
         label='users per page'
         onChange={take =>
-          take && setVariables({ ...variables, take: parseInt(take) })
+          take && refetch({ ...variables, take: parseInt(take) })
         }
         placeHolder='5'
         value={variables.take}
