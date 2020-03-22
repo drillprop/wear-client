@@ -51,12 +51,12 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
           gender={gender}
         />
         <Products items={data?.items.select || []} />
-        {/* <Pagination
+        <Pagination
           page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
           take={variables.take || 5}
-          setNewState={setState}
-        /> */}
+          refetch={refetch}
+        />
       </div>
     </SiteWrapper>
   );

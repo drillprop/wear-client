@@ -5,29 +5,23 @@ import {
   PageNumbersWrapper
 } from './Pagination.styles';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 interface Props {
   total?: number;
-  setNewState: React.Dispatch<React.SetStateAction<any>>;
+  refetch: any;
   take: number;
   page: number;
 }
 
-const Pagination: React.FC<Props> = ({
-  total = 0,
-  setNewState,
-  take,
-  page
-}) => {
+const Pagination: React.FC<Props> = ({ total = 0, refetch, take, page }) => {
   const { pathname, query } = useRouter();
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    setNewState((state: any) => ({
-      ...state,
+    refetch({
       skip: take * page - take
-    }));
+    });
   }, [take, page]);
 
   useEffect(() => {
