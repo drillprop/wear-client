@@ -9,16 +9,17 @@ interface Props {
 }
 
 const LinkAnchor: FC<LinkProps & Props> = ({
-  href,
-  children,
-  highlight,
   queryHighlight,
-  scroll
+  highlight,
+  children,
+  ...props
 }) => {
   const { pathname } = useRouter();
   return (
-    <Link href={href} scroll={scroll}>
-      <StyledAnchor active={(highlight && pathname === href) || queryHighlight}>
+    <Link {...props}>
+      <StyledAnchor
+        active={(highlight && pathname === props.href) || queryHighlight}
+      >
         {children}
       </StyledAnchor>
     </Link>
