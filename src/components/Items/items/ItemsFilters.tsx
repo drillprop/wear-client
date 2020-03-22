@@ -10,10 +10,10 @@ import { ItemsFiltersWrapper } from './ItemsFilters.styles';
 
 interface Props {
   variables: ItemsQueryVariables;
-  setVariables: React.Dispatch<React.SetStateAction<ItemsQueryVariables>>;
+  refetch: any;
 }
 
-const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
+const ItemsFilters: React.FC<Props> = ({ variables, refetch }) => {
   return (
     <ItemsFiltersWrapper>
       <Input
@@ -25,7 +25,7 @@ const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
         small
         value={variables.name as string}
         onChange={e =>
-          setVariables({
+          refetch({
             ...variables,
             name: e.target.value
           })
@@ -34,7 +34,7 @@ const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
       <Select
         label='gender'
         value={variables.gender}
-        onChange={gender => setVariables({ ...variables, gender })}
+        onChange={gender => refetch({ ...variables, gender })}
         placeHolder='gender'
         options={Object.values(Gender)}
         small
@@ -42,7 +42,7 @@ const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
       <Select
         label='category'
         value={variables.category}
-        onChange={category => setVariables({ ...variables, category })}
+        onChange={category => refetch({ ...variables, category })}
         placeHolder='category'
         options={Object.values(Category)}
         small
@@ -50,7 +50,7 @@ const ItemsFilters: React.FC<Props> = ({ variables, setVariables }) => {
       <Select
         label='items per page'
         onChange={take =>
-          take && setVariables({ ...variables, take: parseInt(take) })
+          take && refetch({ ...variables, take: parseInt(take) })
         }
         placeHolder='5'
         value={variables.take}
