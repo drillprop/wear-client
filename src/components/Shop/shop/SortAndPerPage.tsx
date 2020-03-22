@@ -15,11 +15,18 @@ interface Props {
     variables?: ItemsQueryVariables | undefined
   ) => Promise<ApolloQueryResult<ItemsQuery>>;
   variables: ItemsQueryVariables;
+  defaultRoute: string;
 }
 
-const SortAndPerPage: React.FC<Props> = ({ refetch, variables }) => {
-  const router = useRouter();
+const SortAndPerPage: React.FC<Props> = ({
+  refetch,
+  variables,
+  defaultRoute
+}) => {
   const [sortValue, setSortValue] = useState<SortType>('newest');
+
+  const router = useRouter();
+
   const handleSort = (sort: SortType) => {
     if (sort === 'newest')
       refetch({
@@ -54,16 +61,12 @@ const SortAndPerPage: React.FC<Props> = ({ refetch, variables }) => {
       <Select
         label='items per page'
         onChange={take => {
+          if (variables.skip) {
+            router.push(defaultRoute);
+          }
           take && refetch({ ...variables, take: parseInt(take) });
-          router.push(
-            `/${variables.gender?.toLowerCase()}${
-              variables?.category
-                ? `?category=${variables?.category.toLowerCase()}`
-                : ''
-            }`
-          );
         }}
-        value={variables.take}
+        value={variables.take || 5}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
         small

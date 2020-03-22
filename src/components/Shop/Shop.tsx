@@ -1,4 +1,5 @@
 import debounce from 'lodash.debounce';
+import { useRouter } from 'next/router';
 import React from 'react';
 import {
   Category,
@@ -25,20 +26,28 @@ interface Props {
 
 const Shop: React.FC<Props> = ({ gender, query }) => {
   const category = query.category?.toUpperCase() as Category;
+  const router = useRouter();
 
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       gender,
       sortBy: 'Item.createdAt',
+      take: 5,
       sortOrder: SortOrder.DESC,
       category
     }
   });
 
-  const debouncedRefetch = debounce(
-    (variables: ItemsQueryVariables) => refetch(variables),
-    300
-  );
+  const defaultRoute = `/${variables.gender?.toLowerCase()}${
+    variables?.category ? `?category=${variables?.category.toLowerCase()}` : ''
+  }`;
+
+  const debouncedRefetch = debounce((variables: ItemsQueryVariables) => {
+    if (variables.skip) {
+      router.push(defaultRoute);
+    }
+    refetch(variables);
+  }, 400);
 
   return (
     <SiteWrapper>
@@ -51,7 +60,11 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
             refetch={debouncedRefetch}
             variables={variables}
           />
-          <SortAndPerPage refetch={refetch} variables={variables} />
+          <SortAndPerPage
+            refetch={refetch}
+            variables={variables}
+            defaultRoute={defaultRoute}
+          />
         </ShopFiltersWrapper>
         <Products items={data?.items.select || []} />
         <Pagination
