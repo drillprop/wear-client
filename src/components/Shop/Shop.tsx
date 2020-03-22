@@ -38,7 +38,7 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
     }
   });
 
-  const defaultRoute = `/${variables.gender?.toLowerCase()}${
+  const defaultRoute = `/${gender.toLowerCase()}${
     variables?.category ? `?category=${variables?.category.toLowerCase()}` : ''
   }`;
 
@@ -70,7 +70,7 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
         <Pagination
           page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
-          take={variables.take || 5}
+          take={(variables && variables.take) || 5}
           refetch={refetch}
         />
       </div>

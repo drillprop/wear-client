@@ -66,7 +66,7 @@ const SortAndPerPage: React.FC<Props> = ({
           }
           take && refetch({ ...variables, take: parseInt(take) });
         }}
-        value={variables.take || 5}
+        value={(variables && variables.take) || 5}
         placeHolder='5'
         options={[5, 10, 15, 20, 25]}
         small
