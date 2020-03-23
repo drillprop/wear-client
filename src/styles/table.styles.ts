@@ -29,9 +29,9 @@ export const TableBody = styled.tbody`
   border-spacing: 0px;
 `;
 
-export const TableBodyRow = styled.tr`
+export const TableBodyRow = styled.tr<{ nthChild?: string }>`
   cursor: pointer;
-  &:nth-child(even) {
+  &:nth-child(${props => (props.nthChild ? props.nthChild : 'even')}) {
     background-color: ${grays[6]};
   }
   :hover {
