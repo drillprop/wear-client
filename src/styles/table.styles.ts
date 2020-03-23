@@ -6,8 +6,7 @@ import fontSizes from './fontSizes';
 export const Table = styled.table`
   width: 100%;
   margin-top: 50px;
-  border: 1px solid ${grays[5]};
-  border-spacing: 0px;
+  border-collapse: collapse;
 `;
 
 export const TableHead = styled.thead`
@@ -26,15 +25,17 @@ export const TableHeadCell = styled.th`
 export const TableBody = styled.tbody`
   font-size: ${fontSizes[0]};
   font-family: ${montserrat};
+  border: 1px solid ${grays[5]};
+  border-spacing: 0px;
 `;
 
 export const TableBodyRow = styled.tr`
   cursor: pointer;
   &:nth-child(even) {
-    background-color: ${grays[7]};
+    background-color: ${grays[6]};
   }
   :hover {
-    background-color: ${grays[6]};
+    background-color: ${grays[5]};
   }
 `;
 
