@@ -8,12 +8,9 @@ import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
 
 interface Props {
   singleItemQuery: ApolloQueryResult<SingleItemQuery>;
-  query?: {
-    category?: string;
-  };
 }
 
-const AdminItem: NextPage<Props> = ({ singleItemQuery, query }) => {
+const AdminItem: NextPage<Props> = ({ singleItemQuery }) => {
   const { data } = singleItemQuery;
   return (
     <>
