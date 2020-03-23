@@ -1,5 +1,5 @@
 import React from 'react';
-import HomepageImage from '../HomepageImage/HomepageImage';
+import HomepageImage from './home/HomepageImage';
 
 import { HomePageWrapper } from './Home.styles';
 
