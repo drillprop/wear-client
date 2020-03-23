@@ -12,7 +12,6 @@ interface Props {
 }
 
 const ShopPage: NextPage<Props> = ({ query }) => {
-  console.log(query);
   return <Shop gender={Gender.MAN} query={query} />;
 };
 
