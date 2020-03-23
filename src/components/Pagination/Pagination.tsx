@@ -1,5 +1,5 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import {
   NextPrevPage,
   PageNumber,
@@ -35,7 +35,8 @@ const Pagination: React.FC<Props> = ({
 
   return totalPages >= 1 ? (
     <PageNumbersWrapper>
-      <LinkAnchor
+      <Link
+        passHref
         scroll={false}
         href={{
           pathname: path,
@@ -46,11 +47,12 @@ const Pagination: React.FC<Props> = ({
         as={`?page=${page - 1 || 1}`}
       >
         <NextPrevPage>&lt;</NextPrevPage>
-      </LinkAnchor>
+      </Link>
       <PageNumber>
         {page} of {totalPages}
       </PageNumber>
-      <LinkAnchor
+      <Link
+        passHref
         scroll={false}
         href={{
           pathname: path,
@@ -61,7 +63,7 @@ const Pagination: React.FC<Props> = ({
         as={`?page=${totalPages > page ? page + 1 : totalPages}`}
       >
         <NextPrevPage>&gt;</NextPrevPage>
-      </LinkAnchor>
+      </Link>
     </PageNumbersWrapper>
   ) : null;
 };

@@ -20,7 +20,7 @@ export const PageNumber = styled.div`
   padding: 10px 30px;
 `;
 
-export const NextPrevPage = styled.div`
+export const NextPrevPage = styled.a`
   user-select: none;
   cursor: pointer;
   font-family: ${roboto};
