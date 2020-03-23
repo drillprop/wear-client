@@ -21,14 +21,6 @@ const NameAndPriceFilters: React.FC<Props> = ({
   });
 
   useEffect(() => {
-    refetch({
-      ...variables,
-      ...filtersState
-    });
-    return () => refetch.cancel();
-  }, [filtersState.priceFrom, filtersState.priceTo, filtersState.name]);
-
-  useEffect(() => {
     setFiltersState({ ...filtersState, priceTo: maxPrice });
   }, [maxPrice]);
 
@@ -38,34 +30,46 @@ const NameAndPriceFilters: React.FC<Props> = ({
         max={maxPrice}
         label={'price from'}
         value={filtersState.priceFrom}
-        onChange={e =>
+        onChange={e => {
           setFiltersState({
             ...filtersState,
             priceFrom: Math.min(parseInt(e.target.value), filtersState.priceTo)
-          })
-        }
+          });
+          refetch({
+            ...variables,
+            priceFrom: Math.min(parseInt(e.target.value), filtersState.priceTo)
+          });
+        }}
       />
       <RangeInput
         max={maxPrice}
         label={'price to'}
         value={filtersState.priceTo}
-        onChange={e =>
+        onChange={e => {
           setFiltersState({
             ...filtersState,
             priceTo: Math.max(parseInt(e.target.value), filtersState.priceFrom)
-          })
-        }
+          });
+          refetch({
+            ...variables,
+            priceTo: Math.max(parseInt(e.target.value), filtersState.priceFrom)
+          });
+        }}
       />
       <Input
         label='search item by name'
         name='name'
         value={filtersState.name}
-        onChange={e =>
+        onChange={e => {
           setFiltersState({
             ...filtersState,
             name: e.target.value
-          })
-        }
+          });
+          refetch({
+            ...variables,
+            name: e.target.value
+          });
+        }}
         placeholder='search'
         type='search'
         icon='/search-icon.svg'
