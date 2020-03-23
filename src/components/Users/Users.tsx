@@ -33,6 +33,8 @@ const Users: React.FC<Props> = ({ query }) => {
         <UsersFilters variables={variables} refetch={refetch} />
         <UsersTable users={users} />
         <Pagination
+          path={'/admin/users'}
+          asPath={'/admin/users'}
           page={(query.page && parseInt(query.page)) || 1}
           total={count}
           take={variables.take || 5}

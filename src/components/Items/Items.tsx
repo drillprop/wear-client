@@ -35,6 +35,8 @@ const Items: React.FC<Props> = ({ query }) => {
         <ItemsFilters variables={variables} refetch={refetch} />
         <ItemsTable items={items} variables={variables} />
         <Pagination
+          path={'/admin/items'}
+          asPath={'/admin/items'}
           page={(query.page && parseInt(query.page)) || 1}
           total={count}
           take={variables.take || 5}
