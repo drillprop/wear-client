@@ -16,7 +16,7 @@ export const HeaderWrapper = styled.header`
   grid-template-columns: 200px 1fr;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.h1`
   font-family: ${roboto};
   line-height: 1.5;
   text-decoration: none;
