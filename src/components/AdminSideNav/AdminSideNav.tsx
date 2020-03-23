@@ -15,17 +15,17 @@ const AdminSideNav: React.FC = () => {
         <SideNavMainTitle>ADMIN PANEL</SideNavMainTitle>
         <SideNavList>
           <SideNavItem>
-            <LinkAnchor highlight href='/admin/users'>
+            <LinkAnchor wordToHighlight='users' href='/admin/users'>
               users
             </LinkAnchor>
           </SideNavItem>
           <SideNavItem>
-            <LinkAnchor highlight href='/admin/items'>
+            <LinkAnchor wordToHighlight='items' href='/admin/items'>
               items
             </LinkAnchor>
           </SideNavItem>
           <SideNavItem>
-            <LinkAnchor highlight href='/admin/orders'>
+            <LinkAnchor wordToHighlight='orders' href='/admin/orders'>
               user's orders
             </LinkAnchor>
           </SideNavItem>

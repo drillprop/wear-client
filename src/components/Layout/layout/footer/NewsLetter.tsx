@@ -18,10 +18,7 @@ const NewsLetter = () => {
       </IconGroup>
       <FooterText>
         Do you want to receive the special offers?{' '}
-        <LinkAnchor queryHighlight={true} href='/sign'>
-          Sign up
-        </LinkAnchor>{' '}
-        and get 15% off
+        <LinkAnchor href='/sign'>Sign up</LinkAnchor> and get 15% off
       </FooterText>
     </FooterLongColumn>
   );

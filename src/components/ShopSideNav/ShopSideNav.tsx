@@ -16,7 +16,6 @@ interface Props {
 }
 
 const ShopSideNav: React.FC<Props> = ({ gender }) => {
-  const { query } = useRouter();
   return (
     <SideNavWrapper>
       <SideNavSticky>
@@ -27,7 +26,7 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
           {getGenderCategories(gender).map(category => (
             <SideNavItem key={category}>
               <LinkAnchor
-                queryHighlight={query.category === category.toLowerCase()}
+                wordToHighlight={category.toLowerCase()}
                 href='/shop/[gender]/[category]'
                 as={`/shop/${gender.toLowerCase()}/${category.toLowerCase()}`}
               >

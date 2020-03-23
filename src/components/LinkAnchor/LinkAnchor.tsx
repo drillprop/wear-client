@@ -4,24 +4,24 @@ import React, { FC } from 'react';
 import { StyledAnchor } from './LinkAnchor.styles';
 
 interface Props {
-  highlight?: boolean;
-  queryHighlight?: boolean;
+  wordToHighlight?: string;
 }
 
 const LinkAnchor: FC<LinkProps & Props> = ({
-  queryHighlight,
-  highlight,
+  wordToHighlight,
   children,
   ...props
 }) => {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
+  const path = asPath.split('/').slice(-2);
+
+  const isPathIncludes = wordToHighlight
+    ? path.includes(wordToHighlight)
+    : false;
+
   return (
     <Link {...props}>
-      <StyledAnchor
-        active={(highlight && pathname === props.href) || queryHighlight}
-      >
-        {children}
-      </StyledAnchor>
+      <StyledAnchor active={isPathIncludes}>{children}</StyledAnchor>
     </Link>
   );
 };

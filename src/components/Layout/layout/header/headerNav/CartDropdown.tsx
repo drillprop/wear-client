@@ -30,7 +30,7 @@ const CartDropdown = () => {
       onMouseEnter={() => toggleCartVisible(true)}
       onMouseLeave={() => toggleCartVisible(false)}
     >
-      <LinkAnchor href='/cart' queryHighlight={!!cartItemsLength}>
+      <LinkAnchor href='/cart' wordToHighlight='cart'>
         <CartIcon fill={cartItemsLength ? black : 'none'} />
         {products}
         cart
