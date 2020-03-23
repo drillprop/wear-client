@@ -3,6 +3,7 @@ import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 import Link from 'next/link';
 
 interface Props {
+  grey?: boolean;
   id: string;
   email: string;
   fullName?: string;
@@ -10,7 +11,14 @@ interface Props {
   orders?: string[];
 }
 
-const UserRow: React.FC<Props> = ({ id, email, fullName, role, orders }) => {
+const UserRow: React.FC<Props> = ({
+  grey,
+  id,
+  email,
+  fullName,
+  role,
+  orders
+}) => {
   return (
     <Link
       href={{
@@ -20,7 +28,7 @@ const UserRow: React.FC<Props> = ({ id, email, fullName, role, orders }) => {
         }
       }}
     >
-      <TableBodyRow>
+      <TableBodyRow grey={grey}>
         <TableData>{email}</TableData>
         <TableData>{fullName} </TableData>
         <TableData>{role}</TableData>

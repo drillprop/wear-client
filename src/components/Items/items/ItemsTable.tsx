@@ -29,9 +29,10 @@ const ItemsTable: React.FC<Props> = ({ items, variables }) => {
       <TableBody>
         {items &&
           items.map(
-            item =>
+            (item, idx) =>
               item && (
                 <ItemRow
+                  grey={idx % 2 !== 0}
                   key={item.id}
                   id={item.id}
                   name={item.name}

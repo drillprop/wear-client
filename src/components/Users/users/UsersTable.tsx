@@ -26,9 +26,10 @@ const UsersTable: React.FC<Props> = ({ users }) => {
       <TableBody>
         {users &&
           users.map(
-            user =>
+            (user, idx) =>
               user && (
                 <UserRow
+                  grey={idx % 2 !== 0}
                   key={user.id}
                   email={user.email}
                   role={user.role}

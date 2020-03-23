@@ -11,6 +11,7 @@ import { TableBodyRow, TableData } from '../../../../styles/table.styles';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 
 interface Props {
+  grey?: boolean;
   id: string;
   name: string;
   price: number;
@@ -26,7 +27,8 @@ const ItemRow: React.FC<Props> = ({
   price,
   category,
   gender,
-  variables
+  variables,
+  grey
 }) => {
   const [deleteItem] = useDeleteItemMutation({
     variables: { id },
@@ -41,7 +43,7 @@ const ItemRow: React.FC<Props> = ({
       }}
       as={`/shop/${gender.toLowerCase()}/item?id=${id}`}
     >
-      <TableBodyRow>
+      <TableBodyRow grey={grey}>
         <TableData>{name}</TableData>
         <TableData>{price}</TableData>
         <TableData>{category}</TableData>
