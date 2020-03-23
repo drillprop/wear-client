@@ -19,7 +19,7 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <LinkAnchor href={gender.toLowerCase()}>
+        <LinkAnchor href='/shop/[gender]' as={`/shop/${gender.toLowerCase()}`}>
           <SideNavMainTitle>{gender}</SideNavMainTitle>
         </LinkAnchor>
         <SideNavList>
