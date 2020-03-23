@@ -8,7 +8,14 @@ import CartContextProvider from '../../contexts/CartContext';
 
 const Layout: React.FC = ({ children }) => {
   const { asPath, pathname } = useRouter();
-  const subpath = asPath.split('/').pop();
+  const subpath = asPath
+    .split(/\/|\?/gi)
+    .filter(el => el !== 'shop')
+    .slice(1)
+    .join(' | ')
+    .split('=')
+    .join(' ');
+
   return (
     <>
       <Head>
