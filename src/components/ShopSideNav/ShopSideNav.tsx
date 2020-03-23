@@ -28,12 +28,8 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
             <SideNavItem key={category}>
               <LinkAnchor
                 queryHighlight={query.category === category.toLowerCase()}
-                href={{
-                  pathname: `/${gender.toLowerCase()}`,
-                  query: {
-                    category: category.toLowerCase()
-                  }
-                }}
+                href='/[gender]/[category]'
+                as={`/${gender.toLowerCase()}/${category.toLowerCase()}`}
               >
                 {category}
               </LinkAnchor>
