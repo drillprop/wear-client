@@ -7,8 +7,8 @@ import Head from 'next/head';
 import CartContextProvider from '../../contexts/CartContext';
 
 const Layout: React.FC = ({ children }) => {
-  const { pathname } = useRouter();
-  const subpath = pathname.split('/').pop();
+  const { asPath, pathname } = useRouter();
+  const subpath = asPath.split('/').pop();
   return (
     <>
       <Head>
