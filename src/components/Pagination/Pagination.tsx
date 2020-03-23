@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 import {
@@ -8,14 +7,22 @@ import {
 } from './Pagination.styles';
 
 interface Props {
+  path: string;
+  asPath: string;
   total?: number;
   refetch: any;
   take: number;
   page: number;
 }
 
-const Pagination: React.FC<Props> = ({ total = 0, refetch, take, page }) => {
-  const { pathname, query } = useRouter();
+const Pagination: React.FC<Props> = ({
+  total = 0,
+  refetch,
+  take,
+  page,
+  path,
+  asPath
+}) => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
@@ -33,12 +40,12 @@ const Pagination: React.FC<Props> = ({ total = 0, refetch, take, page }) => {
       <LinkAnchor
         scroll={false}
         href={{
-          pathname,
+          pathname: path,
           query: {
-            ...query,
             page: page - 1 || 1
           }
         }}
+        as={`${asPath}?page=${page - 1 || 1}`}
       >
         <NextPrevPage>&lt;</NextPrevPage>
       </LinkAnchor>
@@ -48,12 +55,12 @@ const Pagination: React.FC<Props> = ({ total = 0, refetch, take, page }) => {
       <LinkAnchor
         scroll={false}
         href={{
-          pathname,
+          pathname: path,
           query: {
-            ...query,
             page: totalPages > page ? page + 1 : totalPages
           }
         }}
+        as={`${asPath}?page=${totalPages > page ? page + 1 : totalPages}`}
       >
         <NextPrevPage>&gt;</NextPrevPage>
       </LinkAnchor>
