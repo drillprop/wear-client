@@ -72,12 +72,7 @@ const Shop: React.FC<Props> = ({ query }) => {
         </ShopFiltersWrapper>
         <Products items={data?.items.select || []} />
         <Pagination
-          path={category ? `/[gender]/[category]` : `/[gender]`}
-          asPath={
-            category
-              ? `/${query?.gender}/${query?.category}`
-              : `/${query?.gender}`
-          }
+          path={path}
           page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
           take={(variables && variables.take) || 5}

@@ -36,7 +36,6 @@ const Items: React.FC<Props> = ({ query }) => {
         <ItemsTable items={items} variables={variables} />
         <Pagination
           path={'/admin/items'}
-          asPath={'/admin/items'}
           page={(query.page && parseInt(query.page)) || 1}
           total={count}
           take={variables.take || 5}

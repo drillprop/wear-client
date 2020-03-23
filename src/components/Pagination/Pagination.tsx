@@ -8,7 +8,6 @@ import {
 
 interface Props {
   path: string;
-  asPath: string;
   total?: number;
   refetch: any;
   take: number;
@@ -20,8 +19,7 @@ const Pagination: React.FC<Props> = ({
   refetch,
   take,
   page,
-  path,
-  asPath
+  path
 }) => {
   const [totalPages, setTotalPages] = useState(0);
 
@@ -45,7 +43,7 @@ const Pagination: React.FC<Props> = ({
             page: page - 1 || 1
           }
         }}
-        as={`${asPath}?page=${page - 1 || 1}`}
+        as={`?page=${page - 1 || 1}`}
       >
         <NextPrevPage>&lt;</NextPrevPage>
       </LinkAnchor>
@@ -60,7 +58,7 @@ const Pagination: React.FC<Props> = ({
             page: totalPages > page ? page + 1 : totalPages
           }
         }}
-        as={`${asPath}?page=${totalPages > page ? page + 1 : totalPages}`}
+        as={`?page=${totalPages > page ? page + 1 : totalPages}`}
       >
         <NextPrevPage>&gt;</NextPrevPage>
       </LinkAnchor>
