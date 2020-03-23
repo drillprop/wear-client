@@ -11,12 +11,12 @@ const HeaderNav = () => {
       <Navigation>
         <Ul>
           <Li>
-            <LinkAnchor highlight href='/[gender]' as='/woman'>
+            <LinkAnchor highlight href='/shop/[gender]' as='/shop/woman'>
               woman
             </LinkAnchor>
           </Li>
           <Li>
-            <LinkAnchor highlight href='/[gender]' as='/man'>
+            <LinkAnchor highlight href='/shop/[gender]' as='/shop/man'>
               man
             </LinkAnchor>
           </Li>

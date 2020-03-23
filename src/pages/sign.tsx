@@ -7,4 +7,4 @@ const SignPage: NextPage = () => {
   return <Sign />;
 };
 
-export default withAuth(SignPage, '/checkout');
+export default withAuth(SignPage, '/cart');
