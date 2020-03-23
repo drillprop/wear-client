@@ -15,13 +15,15 @@ interface Props {
     variables?: ItemsQueryVariables | undefined
   ) => Promise<ApolloQueryResult<ItemsQuery>>;
   variables: ItemsQueryVariables;
-  defaultRoute: string;
+  path: string;
+  asPath: string;
 }
 
 const SortAndPerPage: React.FC<Props> = ({
   refetch,
   variables,
-  defaultRoute
+  path,
+  asPath
 }) => {
   const [sortValue, setSortValue] = useState<SortType>('newest');
 
@@ -62,7 +64,7 @@ const SortAndPerPage: React.FC<Props> = ({
         label='items per page'
         onChange={take => {
           if (variables.skip) {
-            router.push(defaultRoute);
+            router.push(path, asPath);
           }
           take && refetch({ ...variables, take: parseInt(take) });
         }}

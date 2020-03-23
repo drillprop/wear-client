@@ -21,11 +21,13 @@ interface Props {
   query: {
     category?: string;
     page?: string;
+    gender?: string;
   };
 }
 
-const Shop: React.FC<Props> = ({ gender, query }) => {
+const Shop: React.FC<Props> = ({ query }) => {
   const category = query.category?.toUpperCase() as Category;
+  const gender = query.gender?.toUpperCase() as Gender;
   const router = useRouter();
 
   const { data, refetch, variables } = useItemsQuery({
@@ -38,13 +40,14 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
     }
   });
 
-  const defaultRoute = `/${gender.toLowerCase()}${
-    variables?.category ? `?category=${variables?.category.toLowerCase()}` : ''
-  }`;
+  const path = category ? `/[gender]/[category]` : `/[gender]`;
+  const asPath = category
+    ? `/${query?.gender}/${query?.category}`
+    : `/${query?.gender}`;
 
   const debouncedRefetch = debounce((variables: ItemsQueryVariables) => {
     if (variables.skip) {
-      router.push(defaultRoute);
+      router.push(path, asPath);
     }
     refetch(variables);
   }, 400);
@@ -63,11 +66,18 @@ const Shop: React.FC<Props> = ({ gender, query }) => {
           <SortAndPerPage
             refetch={refetch}
             variables={variables}
-            defaultRoute={defaultRoute}
+            path={path}
+            asPath={asPath}
           />
         </ShopFiltersWrapper>
         <Products items={data?.items.select || []} />
         <Pagination
+          path={category ? `/[gender]/[category]` : `/[gender]`}
+          asPath={
+            category
+              ? `/${query?.gender}/${query?.category}`
+              : `/${query?.gender}`
+          }
           page={(query.page && parseInt(query.page)) || 1}
           total={data?.items.count}
           take={(variables && variables.take) || 5}
