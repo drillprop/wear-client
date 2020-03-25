@@ -9,11 +9,12 @@ import ItemsTable from './items/ItemsTable';
 
 interface Props {
   query: {
-    page?: string;
+    page: string;
   };
 }
 
 const Items: React.FC<Props> = ({ query }) => {
+  console.log(query);
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       take: 5,
@@ -36,7 +37,7 @@ const Items: React.FC<Props> = ({ query }) => {
         <ItemsTable items={items} variables={variables} />
         <Pagination
           path={'/admin/items'}
-          page={(query.page && parseInt(query.page)) || 1}
+          page={parseInt(query.page) || 1}
           total={count}
           take={variables.take || 5}
           refetch={refetch}

@@ -5,8 +5,8 @@ import Shop from '../../../components/Shop/Shop';
 interface Props {
   query: {
     gender?: string;
-    category?: string;
-    page?: string;
+    category: string;
+    page: string;
   };
 }
 

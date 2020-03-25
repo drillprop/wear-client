@@ -8,7 +8,7 @@ import UsersTable from './users/UsersTable';
 
 interface Props {
   query: {
-    page?: string;
+    page: string;
   };
 }
 
@@ -34,7 +34,7 @@ const Users: React.FC<Props> = ({ query }) => {
         <UsersTable users={users} />
         <Pagination
           path={'/admin/users'}
-          page={(query.page && parseInt(query.page)) || 1}
+          page={parseInt(query.page) || 1}
           total={count}
           take={variables.take || 5}
           refetch={refetch}

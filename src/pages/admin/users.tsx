@@ -4,7 +4,7 @@ import Users from '../../components/Users/Users';
 
 interface Props {
   query: {
-    page?: string;
+    page: string;
   };
 }
 

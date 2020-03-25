@@ -4,7 +4,7 @@ import Items from '../../components/Items/Items';
 
 interface Props {
   query: {
-    page?: string;
+    page: string;
   };
 }
 

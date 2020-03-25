@@ -18,8 +18,8 @@ import SortAndPerPage from './shop/SortAndPerPage';
 
 interface Props {
   query: {
-    category?: string;
-    page?: string;
+    category: string;
+    page: string;
     gender?: string;
   };
 }
@@ -29,7 +29,7 @@ const Shop: React.FC<Props> = ({ query }) => {
   const gender = query.gender?.toUpperCase() as Gender;
   const router = useRouter();
 
-  const skip = query?.page ? parseInt(query.page) * 5 - 5 : 0;
+  const skip = parseInt(query.page) * 5 - 5 || 0;
 
   const { data, refetch, variables } = useItemsQuery({
     variables: {
@@ -75,7 +75,7 @@ const Shop: React.FC<Props> = ({ query }) => {
         <Products items={data?.items.select || []} />
         <Pagination
           path={path}
-          page={(query.page && parseInt(query.page)) || 1}
+          page={parseInt(query.page) || 1}
           total={data?.items.count}
           take={(variables && variables.take) || 5}
           refetch={refetch}
