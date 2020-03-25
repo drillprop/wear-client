@@ -14,7 +14,6 @@ interface Props {
 }
 
 const Items: React.FC<Props> = ({ query }) => {
-  console.log(query);
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       take: 5,
@@ -34,7 +33,7 @@ const Items: React.FC<Props> = ({ query }) => {
         <CreateItemForm variables={variables} />
         <SiteSubtitle>List of Items</SiteSubtitle>
         <ItemsFilters variables={variables} refetch={refetch} />
-        <ItemsTable items={items} variables={variables} />
+        {!!items && <ItemsTable items={items} variables={variables} />}
         <Pagination
           path={'/admin/items'}
           page={parseInt(query.page) || 1}

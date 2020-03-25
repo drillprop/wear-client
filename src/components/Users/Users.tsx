@@ -31,7 +31,7 @@ const Users: React.FC<Props> = ({ query }) => {
       <div>
         <SiteSubtitle>List of Users</SiteSubtitle>
         <UsersFilters variables={variables} refetch={refetch} />
-        <UsersTable users={users} />
+        {!!users.length && <UsersTable users={users} />}
         <Pagination
           path={'/admin/users'}
           page={parseInt(query.page) || 1}

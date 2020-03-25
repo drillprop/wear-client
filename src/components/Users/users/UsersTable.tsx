@@ -24,20 +24,19 @@ const UsersTable: React.FC<Props> = ({ users }) => {
         </tr>
       </TableHead>
       <TableBody>
-        {users &&
-          users.map(
-            (user, idx) =>
-              user && (
-                <UserRow
-                  grey={idx % 2 !== 0}
-                  key={user.id}
-                  email={user.email}
-                  role={user.role}
-                  id={user.id}
-                  fullName={`${user.firstName || ''} ${user.lastName || ''}`}
-                />
-              )
-          )}
+        {users.map(
+          (user, idx) =>
+            user && (
+              <UserRow
+                grey={idx % 2 !== 0}
+                key={user.id}
+                email={user.email}
+                role={user.role}
+                id={user.id}
+                fullName={`${user.firstName || ''} ${user.lastName || ''}`}
+              />
+            )
+        )}
       </TableBody>
     </Table>
   );
