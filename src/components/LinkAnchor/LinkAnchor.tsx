@@ -13,7 +13,7 @@ const LinkAnchor: FC<LinkProps & Props> = ({
   ...props
 }) => {
   const { asPath } = useRouter();
-  const path = asPath.split('/').slice(-2);
+  const path = asPath.split(/\/|\?/gi);
 
   const isPathIncludes = wordToHighlight
     ? path.includes(wordToHighlight)
