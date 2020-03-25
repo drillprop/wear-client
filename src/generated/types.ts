@@ -76,7 +76,6 @@ export type Item = {
   sizes?: Maybe<Array<Size>>;
   createdAt: Scalars['DateTime'];
   updatedAt?: Maybe<Scalars['DateTime']>;
-  totalCount: Scalars['Int'];
 };
 
 export type ItemsAndCount = {
@@ -209,7 +208,6 @@ export type Order = {
   createdAt: Scalars['DateTime'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   status: OrderStatus;
-  totalCount: Scalars['Int'];
   orderedBy: User;
   orderedItems: Array<Ordered_Item>;
 };
@@ -240,7 +238,7 @@ export type Query = {
   items: ItemsAndCount;
   order?: Maybe<Order>;
   orders: Array<Maybe<Order>>;
-  ordersCount: Scalars['Int'];
+  userOrders?: Maybe<UserOrdersAndCount>;
   orderedItem?: Maybe<Ordered_Item>;
   me?: Maybe<User>;
   user?: Maybe<User>;
@@ -265,6 +263,12 @@ export type QueryOrderArgs = {
 
 export type QueryOrdersArgs = {
   where?: Maybe<SearchOrdersInput>;
+};
+
+
+export type QueryUserOrdersArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
 };
 
 
@@ -380,7 +384,12 @@ export type User = {
   createdItems: Array<Maybe<Item>>;
   createdOrders: Array<Maybe<Order>>;
   address?: Maybe<Address>;
-  totalCount?: Maybe<Scalars['Int']>;
+};
+
+export type UserOrdersAndCount = {
+   __typename?: 'UserOrdersAndCount';
+  select: Array<Maybe<Order>>;
+  count: Scalars['Int'];
 };
 
 export enum UserRole {
@@ -675,6 +684,32 @@ export type UsersQuery = (
       )>> }
     )>> }
   ) }
+);
+
+export type UserOrdersQueryVariables = {
+  take?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type UserOrdersQuery = (
+  { __typename?: 'Query' }
+  & { userOrders?: Maybe<(
+    { __typename?: 'UserOrdersAndCount' }
+    & Pick<UserOrdersAndCount, 'count'>
+    & { select: Array<Maybe<(
+      { __typename?: 'Order' }
+      & Pick<Order, 'id' | 'createdAt' | 'status'>
+      & { orderedItems: Array<(
+        { __typename?: 'Ordered_Item' }
+        & Pick<Ordered_Item, 'id' | 'sizeSymbol'>
+        & { item: (
+          { __typename?: 'Item' }
+          & Pick<Item, 'name' | 'price'>
+        ) }
+      )> }
+    )>> }
+  )> }
 );
 
 
@@ -1331,3 +1366,50 @@ export function useUsersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOp
 export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = ApolloReactCommon.QueryResult<UsersQuery, UsersQueryVariables>;
+export const UserOrdersDocument = gql`
+    query UserOrders($take: Int, $skip: Int) {
+  userOrders(take: $take, skip: $skip) {
+    count
+    select {
+      id
+      createdAt
+      status
+      orderedItems {
+        id
+        sizeSymbol
+        item {
+          name
+          price
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserOrdersQuery__
+ *
+ * To run a query within a React component, call `useUserOrdersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserOrdersQuery({
+ *   variables: {
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useUserOrdersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<UserOrdersQuery, UserOrdersQueryVariables>) {
+        return ApolloReactHooks.useQuery<UserOrdersQuery, UserOrdersQueryVariables>(UserOrdersDocument, baseOptions);
+      }
+export function useUserOrdersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<UserOrdersQuery, UserOrdersQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<UserOrdersQuery, UserOrdersQueryVariables>(UserOrdersDocument, baseOptions);
+        }
+export type UserOrdersQueryHookResult = ReturnType<typeof useUserOrdersQuery>;
+export type UserOrdersLazyQueryHookResult = ReturnType<typeof useUserOrdersLazyQuery>;
+export type UserOrdersQueryResult = ApolloReactCommon.QueryResult<UserOrdersQuery, UserOrdersQueryVariables>;
