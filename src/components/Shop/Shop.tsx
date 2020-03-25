@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Category,
   Gender,
@@ -17,7 +17,6 @@ import Products from './shop/Products';
 import SortAndPerPage from './shop/SortAndPerPage';
 
 interface Props {
-  gender: Gender;
   query: {
     category?: string;
     page?: string;
@@ -30,9 +29,12 @@ const Shop: React.FC<Props> = ({ query }) => {
   const gender = query.gender?.toUpperCase() as Gender;
   const router = useRouter();
 
+  const skip = query?.page ? parseInt(query.page) * 5 - 5 : 0;
+
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       gender,
+      skip,
       sortBy: 'Item.createdAt',
       take: 5,
       sortOrder: SortOrder.DESC,
