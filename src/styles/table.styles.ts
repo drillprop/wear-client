@@ -25,18 +25,17 @@ export const TableHeadCell = styled.th`
 export const TableBody = styled.tbody`
   font-size: ${fontSizes[0]};
   font-family: ${montserrat};
-  border: 1px solid ${grays[5]};
-  border-spacing: 0px;
 `;
 
 export const TableBodyRow = styled.tr<{ grey?: boolean }>`
   cursor: pointer;
   ${props => props.grey && `background-color: ${grays[6]}`};
   :hover {
-    background-color: ${grays[5]};
+    background-color: ${grays[4]};
   }
 `;
 
 export const TableData = styled.td`
   padding: 20px;
+  border: 1px solid ${grays[5]};
 `;
