@@ -58,7 +58,7 @@ const AccountOrders: React.FC<Props> = ({ query }) => {
         </Table>
         <Pagination
           path={'/account/orders'}
-          page={parseInt(query.page)}
+          page={parseInt(query.page) || 1}
           total={count}
           take={variables.take || 5}
           refetch={refetch}
