@@ -705,7 +705,7 @@ export type UserOrdersQuery = (
         & Pick<Ordered_Item, 'id' | 'sizeSymbol'>
         & { item: (
           { __typename?: 'Item' }
-          & Pick<Item, 'name' | 'price'>
+          & Pick<Item, 'id' | 'name' | 'price'>
         ) }
       )> }
     )>> }
@@ -1378,6 +1378,7 @@ export const UserOrdersDocument = gql`
         id
         sizeSymbol
         item {
+          id
           name
           price
         }
