@@ -5,10 +5,12 @@ import { StyledAnchor } from './LinkAnchor.styles';
 
 interface Props {
   wordToHighlight?: string;
+  highlight?: boolean;
 }
 
 const LinkAnchor: FC<LinkProps & Props> = ({
   wordToHighlight,
+  highlight,
   children,
   ...props
 }) => {
@@ -21,7 +23,9 @@ const LinkAnchor: FC<LinkProps & Props> = ({
 
   return (
     <Link {...props}>
-      <StyledAnchor active={isPathIncludes}>{children}</StyledAnchor>
+      <StyledAnchor active={highlight || isPathIncludes}>
+        {children}
+      </StyledAnchor>
     </Link>
   );
 };
