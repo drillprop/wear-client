@@ -12,6 +12,7 @@ export default gql`
           id
           sizeSymbol
           item {
+            gender
             id
             name
             price
