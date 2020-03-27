@@ -8,7 +8,7 @@ export const DetailsColumn = styled.div`
   width: 300px;
   margin-top: 5px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   div {
     margin-right: 20px;
   }

@@ -6,6 +6,8 @@ import {
   DetailsHeading,
   DetailsWrapper
 } from './OrderRow.styles';
+import convertOrderedItems from '../../../utils/convertOrderedItems';
+import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 
 interface Props {
   grey?: boolean;
@@ -14,7 +16,7 @@ interface Props {
   status?: OrderStatus;
   orderedItems?: Array<
     Pick<Ordered_Item, 'id' | 'sizeSymbol'> & {
-      item: Pick<Item, 'name' | 'price'>;
+      item: Pick<Item, 'name' | 'price' | 'id' | 'gender'>;
     }
   >;
 }
@@ -26,13 +28,14 @@ const OrderRow: React.FC<Props> = ({
   status,
   orderedItems
 }) => {
-  const [detailsHidden, setDetailsHidden] = useState(true);
+  const [detailsHidden, setDetailsHidden] = useState(false);
 
   const totalPrice = orderedItems?.reduce(
     (acc, item) => (acc = acc + item.item.price),
     0
   );
-  console.log(totalPrice);
+
+  const convertedItems = convertOrderedItems(orderedItems || []);
   return (
     <>
       <TableBodyRow
@@ -45,21 +48,31 @@ const OrderRow: React.FC<Props> = ({
         <TableData>{status}</TableData>
       </TableBodyRow>
       {detailsHidden && (
-        <TableBodyRow>
+        <tr>
           <TableData colSpan={5}>
-            <DetailsHeading>Details</DetailsHeading>
+            <DetailsHeading>Ordered Items</DetailsHeading>
             <DetailsWrapper>
-              {orderedItems?.map(item => (
-                <DetailsColumn key={item.id}>
-                  <div>1 x</div>
-                  <div> {item.item.name}</div>
+              {convertedItems.map(item => (
+                <DetailsColumn key={item.id + item.sizeSymbol}>
+                  <div>
+                    {item.quantity} x{' '}
+                    <LinkAnchor
+                      highlight
+                      href={`/shop/[gender]/item?id=${item.id}`}
+                      as={`/shop/${item.gender.toLowerCase()}/item?id=${
+                        item.id
+                      }`}
+                    >
+                      {item.name}
+                    </LinkAnchor>
+                  </div>
                   <div> size: {item.sizeSymbol}</div>
-                  <div> $ {item.item.price}</div>
+                  <div> $ {item.price}</div>
                 </DetailsColumn>
               ))}
             </DetailsWrapper>
           </TableData>
-        </TableBodyRow>
+        </tr>
       )}
     </>
   );
