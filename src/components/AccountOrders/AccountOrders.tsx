@@ -60,7 +60,7 @@ const AccountOrders: React.FC<Props> = ({ query }) => {
           path={'/account/orders'}
           page={parseInt(query.page) || 1}
           total={count}
-          take={variables.take || 5}
+          take={(variables && variables.take) || 5}
           refetch={refetch}
         />
       </div>
