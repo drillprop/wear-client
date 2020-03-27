@@ -1,0 +1,35 @@
+import { Item, Ordered_Item, SizeSymbol } from '../generated/types';
+
+type OrderedItems = Array<
+  Pick<Ordered_Item, 'id' | 'sizeSymbol'> & {
+    item: Pick<Item, 'name' | 'price' | 'id'>;
+  }
+>;
+
+type ConvertedItems = {
+  id: string;
+  sizeSymbol: SizeSymbol;
+  name: string;
+  price: number;
+  quantity: number;
+}[];
+
+export default (orderedItems: OrderedItems) =>
+  orderedItems?.reduce((acc: ConvertedItems, orderItem) => {
+    const existingItem = acc.find(
+      (accItem: any) =>
+        accItem.sizeSymbol === orderItem.sizeSymbol &&
+        accItem.id === orderItem.item.id
+    );
+    if (!existingItem)
+      acc.push({
+        id: orderItem.item.id,
+        sizeSymbol: orderItem.sizeSymbol,
+        name: orderItem.item.name,
+        price: orderItem.item.price,
+        quantity: 1
+      });
+    else existingItem.quantity = existingItem.quantity + 1;
+
+    return acc;
+  }, []);
