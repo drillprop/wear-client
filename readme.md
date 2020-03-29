@@ -2,7 +2,9 @@
 
 _**This project is still work in progress!**_
 
-Fullstack e-commerce application based on React, Typescript and Node.js.
+Full stack e-commerce application based on React, Typescript and Node.js. The application has every features which modern e-commerce websites offer - authentication system, products list with filters, search bar, cart and others.
+
+Besides regular clothing shop, the website has also admin panel, where permitted users can manage products, users and orders.
 
 You can find backend code [here](https://github.com/drillprop/wear-server)
 
