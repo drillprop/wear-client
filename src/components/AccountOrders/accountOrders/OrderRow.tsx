@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Item, Ordered_Item, OrderStatus } from '../../../generated/types';
 import { TableBodyRow, TableData } from '../../../styles/table.styles';
+import convertOrderedItems from '../../../utils/convertOrderedItems';
+import formatDBDate from '../../../utils/formatDBDate';
+import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 import {
   DetailsColumn,
   DetailsHeading,
   DetailsWrapper
 } from './OrderRow.styles';
-import convertOrderedItems from '../../../utils/convertOrderedItems';
-import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 
 interface Props {
   grey?: boolean;
@@ -35,7 +36,9 @@ const OrderRow: React.FC<Props> = ({
     0
   );
 
+  const date = createdAt && formatDBDate(createdAt);
   const convertedItems = convertOrderedItems(orderedItems || []);
+
   return (
     <>
       <TableBodyRow
@@ -43,7 +46,7 @@ const OrderRow: React.FC<Props> = ({
         onClick={() => setDetailsHidden(detailsHidden => !detailsHidden)}
       >
         <TableData>{id}</TableData>
-        <TableData>{createdAt}</TableData>
+        <TableData>{date}</TableData>
         <TableData>$ {totalPrice}</TableData>
         <TableData>{status}</TableData>
       </TableBodyRow>
