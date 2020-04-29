@@ -29,7 +29,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
