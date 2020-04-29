@@ -36,6 +36,10 @@ class MyApp extends App<Props> {
       <>
         <Head>
           <title>wear</title>
+          <link
+            href='https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Condensed:400,700,700i&display=swap'
+            rel='stylesheet'
+          ></link>
           <link rel='stylesheet' type='text/css' href='/nprogress.css' />
         </Head>
         <ApolloProvider client={apollo}>

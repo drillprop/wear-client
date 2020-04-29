@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { black, white } from './colors';
 
 export default createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Condensed:400,700,700i&display=swap');
 
   body {
     margin: 0;
