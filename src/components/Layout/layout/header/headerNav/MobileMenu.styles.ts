@@ -5,7 +5,7 @@ interface HamburgerMenuButtonProps {
   menuActive: boolean;
 }
 
-export const HamburgerMenuWrapper = styled.div`
+export const HamburgerButtonWrapper = styled.div`
   position: absolute;
   right: 70px;
   display: none;
@@ -16,7 +16,7 @@ export const HamburgerMenuWrapper = styled.div`
   }
 `;
 
-export const HamburgerMenuButton = styled.div<HamburgerMenuButtonProps>`
+export const HamburgerButton = styled.div<HamburgerMenuButtonProps>`
   z-index: 1;
   position: absolute;
   width: 28px;
@@ -38,7 +38,7 @@ export const HamburgerMenuButton = styled.div<HamburgerMenuButtonProps>`
   }
 `;
 
-export const HamburgerMenuSwitch = styled.input`
+export const HamburgerButtonSwitch = styled.input`
   cursor: pointer;
   position: absolute;
   top: -10px;
@@ -58,4 +58,40 @@ export const HamburgerMenuSwitch = styled.input`
   :checked + div::after {
     transform: translateY(-10px) rotate(90deg);
   }
+`;
+
+interface MobileNavItemProps {
+  rotate?: number;
+  translateX?: number;
+}
+
+export const Menu = styled.div`
+  position: absolute;
+  background-color: ${black};
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  nav {
+    margin: 0;
+    padding: 0;
+    ul {
+      position: absolute;
+      margin: 0;
+    }
+  }
+`;
+
+export const MobileNavItem = styled.div<MobileNavItemProps>`
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 100%;
+  text-align: left;
+  text-transform: uppercase;
+  transform: ${({ rotate, translateX }) =>
+    `rotate(${rotate}deg) translateX(${translateX}px)`};
+  margin: 0;
+  margin-left: 10px;
+  color: ${white};
 `;

@@ -3,7 +3,7 @@ import { Navigation, Ul, Li } from './HeaderNav.styles';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import ProfileDropDown from './headerNav/ProfileDropDown';
 import CartDropdown from './headerNav/CartDropdown';
-import HamburgerMenu from './headerNav/HamburgerMenu';
+import MobileMenu from './headerNav/MobileMenu';
 
 const HeaderNav = () => {
   return (
@@ -34,7 +34,7 @@ const HeaderNav = () => {
           <CartDropdown />
         </Ul>
       </Navigation>
-      <HamburgerMenu />
+      <MobileMenu />
     </>
   );
 };
