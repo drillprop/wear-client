@@ -10,7 +10,7 @@ const Layout: React.FC = ({ children }) => {
   const { asPath, pathname } = useRouter();
   const subpath = asPath
     .split(/\/|\?/gi)
-    .filter(el => el !== 'shop')
+    .filter((el) => el !== 'shop')
     .slice(1)
     .join(' | ')
     .split('=')
@@ -21,9 +21,9 @@ const Layout: React.FC = ({ children }) => {
       <Head>
         <title>wear {subpath && `| ${subpath}`}</title>
       </Head>
+      <Header />
       <PageWrapper>
         <CartContextProvider>
-          <Header />
           <Main>{children}</Main>
         </CartContextProvider>
       </PageWrapper>

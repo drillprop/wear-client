@@ -11,9 +11,12 @@ export const HeaderWrapper = styled.header`
   z-index: 2;
   width: 100%;
   max-width: 1300px;
+  margin: 0 auto;
   top: 0;
   display: grid;
   grid-template-columns: 200px 1fr;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const Logo = styled.h1`
