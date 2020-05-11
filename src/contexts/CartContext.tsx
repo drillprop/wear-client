@@ -6,7 +6,7 @@ import {
   getCartTotals,
   incItem,
   decrItem,
-  removeItem
+  removeItem,
 } from './CartContext.utils';
 
 export interface ICartItem {
@@ -42,8 +42,8 @@ export const CartContext = createContext<ICartContext>({
   toggleCartVisible: () => {},
   totals: {
     total: 0,
-    totalPrice: 0
-  }
+    totalPrice: 0,
+  },
 });
 
 const CartContextProvider: React.FC = ({ children }) => {
@@ -51,11 +51,14 @@ const CartContextProvider: React.FC = ({ children }) => {
   const [cartVisible, toggleCartVisible] = useState(false);
   const [totals, countTotals] = useState({
     total: 0,
-    totalPrice: 0
+    totalPrice: 0,
   });
 
   useEffect(() => {
-    setCartItems(prevState => [...prevState, ...Cookies.getJSON('cartItems')]);
+    setCartItems((prevState) => [
+      ...prevState,
+      ...Cookies.getJSON('cartItems'),
+    ]);
   }, []);
 
   useEffect(() => {
@@ -87,7 +90,7 @@ const CartContextProvider: React.FC = ({ children }) => {
         removeItemFromCart,
         incItemInCart,
         decrItemInCart,
-        totals
+        totals,
       }}
     >
       {children}

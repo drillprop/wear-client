@@ -2,6 +2,15 @@ import { createGlobalStyle } from 'styled-components';
 import { black, white } from './colors';
 
 export default createGlobalStyle`
+  
+  html, body {
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
 
   body {
     margin: 0;
@@ -15,25 +24,6 @@ export default createGlobalStyle`
   input {
     background-color: ${white};
   }
-
-
-  /* To make footer stick in the bottom  */
-  
-  html, body {
-    height: 100%;
-    box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
-  
-  #__next {
-    height: 100%;
-  }
-  
-
-
 
   li {
     list-style-type: none;
