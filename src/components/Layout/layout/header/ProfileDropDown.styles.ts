@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { grays, white } from '../../../../../styles/colors';
-import { Li } from '../HeaderNav.styles';
+import { grays, white } from '../../../../styles/colors';
+import { Li } from '../Header.styles';
 
 export const LiWithDropdown = styled(Li)`
   position: relative;
@@ -31,5 +31,5 @@ export const ProfileDropDownItem = styled.li<{ admin?: boolean }>`
   padding-left: 25px;
   padding-top: 20px;
   padding-bottom: 20px;
-  ${props => props.admin && `background-color: ${grays[6]}`};
+  ${(props) => props.admin && `background-color: ${grays[6]}`};
 `;

@@ -6,7 +6,7 @@ import {
   Menu,
 } from './MobileMenu.styles';
 
-const HamburgerMenu = () => {
+const MobileMenu = () => {
   const [menuActive, setMenuActive] = useState(true);
   return (
     <>
@@ -32,4 +32,4 @@ const HamburgerMenu = () => {
   );
 };
 
-export default HamburgerMenu;
+export default MobileMenu;

@@ -2,20 +2,20 @@ import React from 'react';
 import {
   useMeQuery,
   UserRole,
-  useSignoutMutation
-} from '../../../../../generated/types';
-import ME from '../../../../../graphql/queries/ME';
-import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
+  useSignoutMutation,
+} from '../../../../generated/types';
+import ME from '../../../../graphql/queries/ME';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
   LiWithDropdown,
   ProfileDropDownItem,
   ProfileDropDownList,
-  ProfileDropDownWrapper
+  ProfileDropDownWrapper,
 } from './ProfileDropDown.styles';
 
 const ProfileDropDown: React.FC = () => {
   const [signOut] = useSignoutMutation({
-    refetchQueries: [{ query: ME }]
+    refetchQueries: [{ query: ME }],
   });
   const { data } = useMeQuery();
   const admin = data?.me?.role === UserRole.ADMIN;

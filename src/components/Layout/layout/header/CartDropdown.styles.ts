@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { white, grays, black } from '../../../../../styles/colors';
-import fontSizes from '../../../../../styles/fontSizes';
-import { montserrat } from '../../../../../styles/fonts';
+import { white, grays, black } from '../../../../styles/colors';
+import fontSizes from '../../../../styles/fontSizes';
+import { montserrat } from '../../../../styles/fonts';
 
 export const CartDropDownWrapper = styled.div`
   position: absolute;

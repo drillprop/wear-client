@@ -1,7 +1,9 @@
 import React from 'react';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
-import { HeaderWrapper, Logo } from './Header.styles';
-import HeaderNav from './header/HeaderNav';
+import { HeaderWrapper, Logo, Ul, Navigation, Li } from './Header.styles';
+import ProfileDropDown from './header/ProfileDropDown';
+import CartDropdown from './header/CartDropdown';
+import MobileMenu from './header/MobileMenu';
 
 const Header: React.FC = () => {
   return (
@@ -9,7 +11,33 @@ const Header: React.FC = () => {
       <LinkAnchor href='/'>
         <Logo>wear</Logo>
       </LinkAnchor>
-      <HeaderNav />
+      <Navigation>
+        <Ul>
+          <Li>
+            <LinkAnchor
+              href='/shop/[gender]'
+              as='/shop/woman'
+              wordToHighlight='woman'
+            >
+              woman
+            </LinkAnchor>
+          </Li>
+          <Li>
+            <LinkAnchor
+              wordToHighlight='man'
+              href='/shop/[gender]'
+              as='/shop/man'
+            >
+              man
+            </LinkAnchor>
+          </Li>
+        </Ul>
+        <Ul>
+          <ProfileDropDown />
+          <CartDropdown />
+        </Ul>
+        <MobileMenu />
+      </Navigation>
     </HeaderWrapper>
   );
 };

@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
-import { useCart } from '../../../../../contexts/CartContext';
-import { black } from '../../../../../styles/colors';
-import CartIcon from '../../../../CartIcon/CartIcon';
-import LinkAnchor from '../../../../LinkAnchor/LinkAnchor';
-import { Li } from '../HeaderNav.styles';
+import { useCart } from '../../../../contexts/CartContext';
+import { black } from '../../../../styles/colors';
+import CartIcon from '../../../CartIcon/CartIcon';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
   CartDropdownButton,
   CartDropdownItem,
@@ -16,8 +15,9 @@ import {
   CartDropdownItemSize,
   CartDropdownItemPrice,
   CartDropdownItemsMore,
-  CartDropdownTotalPrice
+  CartDropdownTotalPrice,
 } from './CartDropdown.styles';
+import { Li } from '../Header.styles';
 
 const CartDropdown = () => {
   const { cartItems, cartVisible, toggleCartVisible, totals } = useCart();
@@ -39,7 +39,7 @@ const CartDropdown = () => {
         <CartDropDownWrapper>
           <CartDropdownList>
             {cartItems
-              .map(item => (
+              .map((item) => (
                 <CartDropdownItem key={item.id + 'size:' + item.size}>
                   <CartDropdownItemImg
                     src={item.imageUrl}
