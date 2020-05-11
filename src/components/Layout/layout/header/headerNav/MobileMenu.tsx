@@ -4,7 +4,6 @@ import {
   HamburgerButtonSwitch,
   HamburgerButtonWrapper,
   Menu,
-  MobileNavItem,
 } from './MobileMenu.styles';
 
 const HamburgerMenu = () => {
@@ -22,10 +21,10 @@ const HamburgerMenu = () => {
       {menuActive && (
         <Menu>
           <ul>
-            <MobileNavItem>YOUR ACCOUNT</MobileNavItem>
-            <MobileNavItem>YOUR CART</MobileNavItem>
-            <MobileNavItem>FOR MEN</MobileNavItem>
-            <MobileNavItem>FOR WOMEN</MobileNavItem>
+            <li>YOUR ACCOUNT</li>
+            <li>YOUR CART</li>
+            <li>FOR MEN</li>
+            <li>FOR WOMEN</li>
           </ul>
         </Menu>
       )}

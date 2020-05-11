@@ -33,8 +33,8 @@ const HeaderNav = () => {
           <ProfileDropDown />
           <CartDropdown />
         </Ul>
+        <MobileMenu />
       </Navigation>
-      <MobileMenu />
     </>
   );
 };

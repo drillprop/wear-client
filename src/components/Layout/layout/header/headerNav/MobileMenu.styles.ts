@@ -60,38 +60,25 @@ export const HamburgerButtonSwitch = styled.input`
   }
 `;
 
-interface MobileNavItemProps {
-  rotate?: number;
-  translateX?: number;
-}
-
 export const Menu = styled.div`
   position: absolute;
+  top: 0;
+  right: 0;
   background-color: ${black};
   width: 100vw;
   height: 100vh;
-  display: flex;
-  nav {
-    margin: 0;
-    padding: 0;
-    ul {
-      position: absolute;
-      margin: 0;
+  display: none;
+  @media (max-width: 900px) {
+    display: block;
+  }
+  ul {
+    margin: 150px auto;
+    li {
+      margin: 15px 70px 0 auto;
+      text-align: right;
+      font-size: 25px;
+      text-transform: uppercase;
+      color: ${white};
     }
   }
-`;
-
-export const MobileNavItem = styled.div<MobileNavItemProps>`
-  font-size: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 100%;
-  text-align: left;
-  text-transform: uppercase;
-  transform: ${({ rotate, translateX }) =>
-    `rotate(${rotate}deg) translateX(${translateX}px)`};
-  margin: 0;
-  margin-left: 10px;
-  color: ${white};
 `;

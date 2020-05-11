@@ -6,9 +6,6 @@ export const Navigation = styled.nav`
   display: flex;
   align-self: center;
   justify-content: space-between;
-  @media (max-width: 900px) {
-    display: none;
-  }
 `;
 
 export const Ul = styled.ul`
@@ -22,6 +19,9 @@ export const Ul = styled.ul`
   justify-content: flex-end;
   :first-of-type {
     justify-content: center;
+  }
+  @media (max-width: 900px) {
+    display: none;
   }
 `;
 
