@@ -7,18 +7,14 @@ import {
   HamburgerButtonWrapper,
   Menu,
 } from './MobileMenu.styles';
+import ToggleAbleList from '../../../ToggleableList/ToggleableList';
+import Link from 'next/link';
 
 const MobileMenu = () => {
   const manCategories = getGenderCategories(Gender.MAN);
   const womanCategories = getGenderCategories(Gender.WOMAN);
   const [menuActive, setMenuActive] = useState(true);
-  const [visibleMenus, toggleMenu] = useState({
-    account: false,
-    man: false,
-    woman: false,
-    admin: false,
-  });
-  const { account, man, woman, admin } = visibleMenus;
+
   return (
     <>
       <HamburgerButtonWrapper>
@@ -32,50 +28,62 @@ const MobileMenu = () => {
       {menuActive && (
         <Menu>
           <ul>
-            <li
-              onClick={() => toggleMenu({ ...visibleMenus, account: !account })}
-            >
-              YOUR ACCOUNT
-              {account && (
-                <ul>
+            <ToggleAbleList title='ACCOUNT'>
+              <ul>
+                <Link href='/account/profile'>
                   <li>my profile</li>
+                </Link>
+                <Link href='/account/contact'>
                   <li>contact details</li>
+                </Link>
+                <Link href='/account/orders'>
                   <li>orders</li>
-                </ul>
-              )}
-            </li>
-            <li>YOUR CART</li>
+                </Link>
+              </ul>
+            </ToggleAbleList>
+            <Link href='/cart'>
+              <li>YOUR CART</li>
+            </Link>
             <li>LOGOUT</li>
-            <li onClick={() => toggleMenu({ ...visibleMenus, woman: !woman })}>
-              WOMAN
-              {woman && (
-                <ul>
-                  {womanCategories.map((category) => (
-                    <li key={category}>{category}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-            <li onClick={() => toggleMenu({ ...visibleMenus, man: !man })}>
-              MAN
-              {man && (
-                <ul>
-                  {manCategories.map((category) => (
-                    <li key={category}>{category}</li>
-                  ))}
-                </ul>
-              )}
-            </li>
-            <li onClick={() => toggleMenu({ ...visibleMenus, admin: !admin })}>
-              ADMIN PANEL
-              {admin && (
-                <ul>
+            <ToggleAbleList title='WOMAN'>
+              <ul>
+                {womanCategories.map((category) => (
+                  <Link
+                    key={category}
+                    href='/shop/[gender]/[category]'
+                    as={`/shop/woman/${category.toLowerCase()}`}
+                  >
+                    <li>{category}</li>
+                  </Link>
+                ))}
+              </ul>
+            </ToggleAbleList>
+            <ToggleAbleList title='MAN'>
+              <ul>
+                {manCategories.map((category) => (
+                  <Link
+                    key={category}
+                    href='/shop/[gender]/[category]'
+                    as={`/shop/man/${category.toLowerCase()}`}
+                  >
+                    <li>{category}</li>
+                  </Link>
+                ))}
+              </ul>
+            </ToggleAbleList>
+            <ToggleAbleList title='ADMIN PANEL'>
+              <ul>
+                <Link href='/admin/users'>
                   <li>users</li>
+                </Link>
+                <Link href='/admin/items'>
                   <li>items</li>
+                </Link>
+                <Link href='/admin/orders'>
                   <li>user's orders</li>
-                </ul>
-              )}
-            </li>
+                </Link>
+              </ul>
+            </ToggleAbleList>
           </ul>
         </Menu>
       )}
