@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { black, white } from '../../../../styles/colors';
+import { black, white, grays } from '../../../../styles/colors';
+import { roboto } from '../../../../styles/fonts';
 
 interface HamburgerMenuButtonProps {
   menuActive: boolean;
@@ -61,6 +62,7 @@ export const HamburgerButtonSwitch = styled.input`
 `;
 
 export const Menu = styled.div`
+  overflow-y: auto;
   position: absolute;
   top: 0;
   right: 0;
@@ -72,13 +74,23 @@ export const Menu = styled.div`
     display: block;
   }
   ul {
-    margin: 150px auto;
+    margin: 100px auto;
     li {
-      margin: 15px 70px 0 auto;
+      margin: 30px 80px 0 auto;
       text-align: right;
-      font-size: 25px;
+      font-size: 24px;
       text-transform: uppercase;
       color: ${white};
+      ul {
+        margin: 0;
+        li {
+          font-family: ${roboto};
+          margin: 14px 0 0;
+          color: ${grays[5]};
+          font-size: 16px;
+          text-align: right;
+        }
+      }
     }
   }
 `;

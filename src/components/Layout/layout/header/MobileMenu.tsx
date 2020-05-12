@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Gender } from '../../../../generated/types';
+import getGenderCategories from '../../../../utils/getGenderCategories';
 import {
   HamburgerButton,
   HamburgerButtonSwitch,
@@ -7,6 +9,8 @@ import {
 } from './MobileMenu.styles';
 
 const MobileMenu = () => {
+  const manCategories = getGenderCategories(Gender.MAN);
+  const womanCategories = getGenderCategories(Gender.WOMAN);
   const [menuActive, setMenuActive] = useState(true);
   return (
     <>
@@ -21,10 +25,40 @@ const MobileMenu = () => {
       {menuActive && (
         <Menu>
           <ul>
-            <li>YOUR ACCOUNT</li>
+            <li>
+              YOUR ACCOUNT
+              <ul>
+                <li>my profile</li>
+                <li>contact details</li>
+                <li>orders</li>
+              </ul>
+            </li>
             <li>YOUR CART</li>
-            <li>FOR MEN</li>
-            <li>FOR WOMEN</li>
+            <li>LOGOUT</li>
+            <li>
+              WOMAN
+              <ul>
+                {womanCategories.map((category) => (
+                  <li key={category}>{category}</li>
+                ))}
+              </ul>
+            </li>
+            <li>
+              MAN
+              <ul>
+                {manCategories.map((category) => (
+                  <li key={category}>{category}</li>
+                ))}
+              </ul>
+            </li>
+            <li>
+              ADMIN PANEL
+              <ul>
+                <li>users</li>
+                <li>items</li>
+                <li>user's orders</li>
+              </ul>
+            </li>
           </ul>
         </Menu>
       )}
