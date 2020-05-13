@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 interface Props {
   title: string;
 }
 
-const ToggleAbleList: React.FC<Props> = ({ children, title }) => {
+const ToggleableList: React.FC<Props> = ({ children, title }) => {
   const [visibleList, toggleList] = useState(false);
   return (
     <li onClick={() => toggleList(!visibleList)}>
       {title}
-      {visibleList && children}
+      {visibleList && <ul>{children}</ul>}
     </li>
   );
 };
 
-export default ToggleAbleList;
+export default ToggleableList;
