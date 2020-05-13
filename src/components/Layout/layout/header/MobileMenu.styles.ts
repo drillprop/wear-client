@@ -90,6 +90,9 @@ export const Menu = styled.div`
           color: ${grays[5]};
           font-size: 16px;
           text-align: right;
+          a {
+            padding: 20px 0 20px 40px;
+          }
         }
       }
     }

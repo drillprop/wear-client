@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { Gender } from '../../../../generated/types';
 import getGenderCategories from '../../../../utils/getGenderCategories';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
+import ToggleableList from '../../../ToggleableList/ToggleableList';
 import {
   HamburgerButton,
   HamburgerButtonSwitch,
   HamburgerButtonWrapper,
   Menu,
 } from './MobileMenu.styles';
-import ToggleableList from '../../../ToggleableList/ToggleableList';
-import Link from 'next/link';
-import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 
 const MobileMenu = () => {
   const manCategories = getGenderCategories(Gender.MAN);
   const womanCategories = getGenderCategories(Gender.WOMAN);
   const [menuActive, setMenuActive] = useState(true);
+  const { asPath } = useRouter();
+
+  useEffect(() => {
+    if (menuActive) {
+      setMenuActive(false);
+    }
+  }, [asPath]);
 
   return (
     <>
