@@ -76,6 +76,7 @@ export const Menu = styled.div`
   ul {
     margin: 100px auto;
     li {
+      cursor: pointer;
       margin: 30px 80px 0 auto;
       text-align: right;
       font-size: 24px;

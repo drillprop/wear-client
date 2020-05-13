@@ -9,6 +9,7 @@ import {
 } from './MobileMenu.styles';
 import ToggleableList from '../../../ToggleableList/ToggleableList';
 import Link from 'next/link';
+import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 
 const MobileMenu = () => {
   const manCategories = getGenderCategories(Gender.MAN);
@@ -29,52 +30,54 @@ const MobileMenu = () => {
         <Menu>
           <ul>
             <ToggleableList title='ACCOUNT'>
-              <Link href='/account/profile'>
-                <li>my profile</li>
-              </Link>
-              <Link href='/account/contact'>
-                <li>contact details</li>
-              </Link>
-              <Link href='/account/orders'>
-                <li>orders</li>
-              </Link>
+              <li>
+                <LinkAnchor href='/account/profile'>my profile</LinkAnchor>
+              </li>
+              <li>
+                <LinkAnchor href='/account/contact'>contact details</LinkAnchor>
+              </li>
+              <li>
+                <LinkAnchor href='/account/orders'>orders</LinkAnchor>
+              </li>
             </ToggleableList>
-            <Link href='/cart'>
-              <li>YOUR CART</li>
-            </Link>
+            <li>
+              <LinkAnchor href='/cart'>YOUR CART</LinkAnchor>
+            </li>
             <li>LOGOUT</li>
             <ToggleableList title='WOMAN'>
               {womanCategories.map((category) => (
-                <Link
-                  key={category}
-                  href='/shop/[gender]/[category]'
-                  as={`/shop/woman/${category.toLowerCase()}`}
-                >
-                  <li>{category}</li>
-                </Link>
+                <li key={category}>
+                  <LinkAnchor
+                    href='/shop/[gender]/[category]'
+                    as={`/shop/woman/${category.toLowerCase()}`}
+                  >
+                    {category}
+                  </LinkAnchor>
+                </li>
               ))}
             </ToggleableList>
             <ToggleableList title='MAN'>
               {manCategories.map((category) => (
-                <Link
-                  key={category}
-                  href='/shop/[gender]/[category]'
-                  as={`/shop/man/${category.toLowerCase()}`}
-                >
-                  <li>{category}</li>
-                </Link>
+                <li key={category}>
+                  <LinkAnchor
+                    href='/shop/[gender]/[category]'
+                    as={`/shop/man/${category.toLowerCase()}`}
+                  >
+                    {category}
+                  </LinkAnchor>
+                </li>
               ))}
             </ToggleableList>
             <ToggleableList title='ADMIN PANEL'>
-              <Link href='/admin/users'>
-                <li>users</li>
-              </Link>
-              <Link href='/admin/items'>
-                <li>items</li>
-              </Link>
-              <Link href='/admin/orders'>
-                <li>user's orders</li>
-              </Link>
+              <li>
+                <LinkAnchor href='/admin/users'>users</LinkAnchor>
+              </li>
+              <li>
+                <LinkAnchor href='/admin/items'>items</LinkAnchor>
+              </li>
+              <li>
+                <LinkAnchor href='/admin/orders'>user's orders</LinkAnchor>
+              </li>
             </ToggleableList>
           </ul>
         </Menu>
