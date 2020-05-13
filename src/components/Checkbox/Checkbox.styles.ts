@@ -5,7 +5,7 @@ import fontSizes from '../../styles/fontSizes';
 
 export const CheckboxWrapper = styled.div<{ marginTop?: string }>`
   display: flex;
-  margin-top: ${props => props.marginTop};
+  margin-top: ${(props) => props.marginTop};
   height: 30px;
   align-items: center;
 `;
@@ -35,6 +35,9 @@ const sharedCSS = css`
   margin-left: 100px;
   height: 30px;
   width: 30px;
+  @media (max-width: 500px) {
+    margin-left: 50px;
+  }
 `;
 
 export const StyledCheckbox = styled.input`
