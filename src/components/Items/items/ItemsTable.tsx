@@ -4,7 +4,7 @@ import {
   Table,
   TableBody,
   TableHead,
-  TableHeadCell
+  TableHeadCell,
 } from '../../../styles/table.styles';
 import ItemRow from './itemsTable/ItemRow';
 
@@ -14,16 +14,21 @@ interface Props {
 }
 
 const ItemsTable: React.FC<Props> = ({ items, variables }) => {
+  const tableColumnNames = [
+    'name',
+    'price',
+    'category',
+    'gender',
+    'edit item',
+    'delete item',
+  ];
   return (
-    <Table>
+    <Table tableColumnNames={tableColumnNames}>
       <TableHead>
         <tr>
-          <TableHeadCell>name</TableHeadCell>
-          <TableHeadCell>price</TableHeadCell>
-          <TableHeadCell>category</TableHeadCell>
-          <TableHeadCell>gender</TableHeadCell>
-          <TableHeadCell>edit item</TableHeadCell>
-          <TableHeadCell>delete item</TableHeadCell>
+          {tableColumnNames.map((name) => (
+            <TableHeadCell key={name}>{name}</TableHeadCell>
+          ))}
         </tr>
       </TableHead>
       <TableBody>

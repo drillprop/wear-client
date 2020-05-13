@@ -4,7 +4,7 @@ import {
   Table,
   TableBody,
   TableHead,
-  TableHeadCell
+  TableHeadCell,
 } from '../../styles/table.styles';
 import AccountSideNav from '../AccountSideNav/AccountSideNav';
 import OrderRow from './accountOrders/OrderRow';
@@ -18,11 +18,12 @@ interface Props {
 }
 
 const AccountOrders: React.FC<Props> = ({ query }) => {
+  const tableColumnNames = ['order', 'date', 'total price', 'status'];
   const { data, variables, refetch } = useUserOrdersQuery({
     variables: {
       take: 5,
-      skip: 0
-    }
+      skip: 0,
+    },
   });
 
   const count = data?.userOrders?.count;
@@ -31,13 +32,12 @@ const AccountOrders: React.FC<Props> = ({ query }) => {
       <AccountSideNav />
       <div>
         <SiteSubtitle>Your orders</SiteSubtitle>
-        <Table>
+        <Table tableColumnNames={tableColumnNames}>
           <TableHead>
             <tr>
-              <TableHeadCell>order id</TableHeadCell>
-              <TableHeadCell>date</TableHeadCell>
-              <TableHeadCell>total price</TableHeadCell>
-              <TableHeadCell>status</TableHeadCell>
+              {tableColumnNames.map((name) => (
+                <TableHeadCell key={name}>{name}</TableHeadCell>
+              ))}
             </tr>
           </TableHead>
           <TableBody>

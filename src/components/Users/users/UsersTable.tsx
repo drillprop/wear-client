@@ -4,7 +4,7 @@ import {
   Table,
   TableBody,
   TableHead,
-  TableHeadCell
+  TableHeadCell,
 } from '../../../styles/table.styles';
 import UserRow from './usersTable/UserRow';
 
@@ -13,14 +13,14 @@ interface Props {
 }
 
 const UsersTable: React.FC<Props> = ({ users }) => {
+  const tableColumnNames = ['email', 'full name', 'role', 'orders'];
   return (
-    <Table>
+    <Table tableColumnNames={tableColumnNames}>
       <TableHead>
         <tr>
-          <TableHeadCell>email</TableHeadCell>
-          <TableHeadCell>full name</TableHeadCell>
-          <TableHeadCell>role</TableHeadCell>
-          <TableHeadCell>orders</TableHeadCell>
+          {tableColumnNames.map((name) => (
+            <TableHeadCell key={name}>{name}</TableHeadCell>
+          ))}
         </tr>
       </TableHead>
       <TableBody>
