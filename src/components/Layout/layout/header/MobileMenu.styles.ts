@@ -70,6 +70,7 @@ export const Menu = styled.div`
   width: 290px;
   height: 100vh;
   display: none;
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.3);
   @media (max-width: 900px) {
     display: block;
   }
