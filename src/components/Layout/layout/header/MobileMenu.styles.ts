@@ -67,19 +67,20 @@ export const Menu = styled.div`
   top: 0;
   right: 0;
   background-color: ${black};
-  width: 100vw;
+  width: 290px;
   height: 100vh;
   display: none;
   @media (max-width: 900px) {
     display: block;
   }
   ul {
+    padding: 0;
     margin: 100px auto;
     li {
       cursor: pointer;
       margin: 30px 80px 0 auto;
       text-align: right;
-      font-size: 24px;
+      font-size: 20px;
       text-transform: uppercase;
       color: ${white};
       ul {
@@ -90,9 +91,6 @@ export const Menu = styled.div`
           color: ${grays[5]};
           font-size: 16px;
           text-align: right;
-          a {
-            padding: 20px 0 20px 40px;
-          }
         }
       }
     }

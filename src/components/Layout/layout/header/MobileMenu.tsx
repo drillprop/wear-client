@@ -71,7 +71,7 @@ const MobileMenu = () => {
                 </li>
               ))}
             </ToggleableList>
-            <ToggleableList title='ADMIN PANEL'>
+            <ToggleableList title='ADMIN'>
               <li>
                 <LinkAnchor href='/admin/users'>users</LinkAnchor>
               </li>
