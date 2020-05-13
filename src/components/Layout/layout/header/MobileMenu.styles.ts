@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { black, white, grays } from '../../../../styles/colors';
 import { roboto } from '../../../../styles/fonts';
+import { motion } from 'framer-motion';
 
 interface HamburgerMenuButtonProps {
   menuActive: boolean;
@@ -61,7 +62,7 @@ export const HamburgerButtonSwitch = styled.input`
   }
 `;
 
-export const Menu = styled.div`
+export const Menu = styled(motion.div)`
   overflow-y: auto;
   position: absolute;
   top: 0;
