@@ -3,7 +3,7 @@ import {
   Category,
   Gender,
   SingleItemQuery,
-  useUpdateItemMutation
+  useUpdateItemMutation,
 } from '../../generated/types';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
@@ -23,7 +23,7 @@ import UploadImage from '../UploadImage/UploadImage';
 import {
   EditFormLinks,
   EditItemWrapper,
-  StyledEditForm
+  StyledEditForm,
 } from './EditItemForm.styles';
 import EditSizes from './editItemForm/EditSizes';
 
@@ -41,7 +41,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    sizes: convertSizesToObject([])
+    sizes: convertSizesToObject([]),
   });
 
   useEffect(() => {
@@ -60,8 +60,8 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
         id: item?.id,
         imageUrl: file.secure_url,
         price: parseFloat(values.price),
-        sizes: convertSizesToArr(values.sizes)
-      }
+        sizes: convertSizesToArr(values.sizes),
+      },
     });
   };
 
@@ -75,7 +75,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
           <LinkAnchor
             href={{
               pathname: `/shop/[gender]/item`,
-              query: { id: item?.id }
+              query: { id: item?.id },
             }}
             as={`/shop/${gender.toLowerCase()}/item?id=${item?.id}`}
           >
@@ -94,7 +94,6 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               label='name'
               name='name'
               icon='/info-icon.svg'
-              width='350px'
             />
             <Input
               type='number'
@@ -104,10 +103,9 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               label='price'
               name='price'
               icon='/wallet-icon.svg'
-              width='350px'
             />
             <UploadImage
-              onChange={imageUrl => setForm({ ...values, imageUrl })}
+              onChange={(imageUrl) => setForm({ ...values, imageUrl })}
               imageUrl={imageUrl}
               placeholder='change image'
             />
@@ -115,15 +113,13 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
           <div>
             <Select
               options={Object.values(Category)}
-              width='350px'
               label='category'
               placeHolder='select'
-              onChange={category => setForm({ ...values, category })}
+              onChange={(category) => setForm({ ...values, category })}
               value={category}
             />
             <RadioGroup
               legend='Gender'
-              width='350px'
               name='gender'
               buttons={Object.values(Gender)}
               onChange={handleInput}
@@ -132,7 +128,6 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
             <TextArea
               label='description'
               placeholder='Lorem ipsum dolor sit amet.'
-              width='350px'
               value={description}
               onChange={handleInput}
             />

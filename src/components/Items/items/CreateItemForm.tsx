@@ -4,7 +4,7 @@ import {
   Gender,
   ItemsQueryVariables,
   SizeSymbol,
-  useCreateItemMutation
+  useCreateItemMutation,
 } from '../../../generated/types';
 import ITEMS from '../../../graphql/queries/ITEMS';
 import useForm from '../../../hooks/useForm';
@@ -19,7 +19,7 @@ import TextArea from '../../TextArea/TextArea';
 import {
   CreateItemWrapper,
   SizesInputsWrapper,
-  StyledCreateForm
+  StyledCreateForm,
 } from './CreateItemForm.styles';
 import UploadImage from '../../UploadImage/UploadImage';
 
@@ -40,12 +40,12 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     ...availableSizes.reduce((acc: any, size) => {
       acc[size] = 0;
       return acc;
-    }, {})
+    }, {}),
   });
 
   const [createItem, { data, error }] = useCreateItemMutation({
     refetchQueries: [{ query: ITEMS, variables }],
-    onCompleted: () => clearForm(values)
+    onCompleted: () => clearForm(values),
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -56,21 +56,21 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 
     const sizes = availableSizes
       .map(
-        size =>
+        (size) =>
           values[size] && {
             sizeSymbol: size,
-            quantity: parseInt(values[size])
+            quantity: parseInt(values[size]),
           }
       )
-      .filter(size => size && size);
+      .filter((size) => size && size);
 
     createItem({
       variables: {
         ...values,
         imageUrl,
         price: parseFloat(values.price),
-        sizes
-      }
+        sizes,
+      },
     });
   };
   return (
@@ -88,7 +88,6 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             label='name'
             name='name'
             icon='/info-icon.svg'
-            width='350px'
           />
           <Input
             type='number'
@@ -98,25 +97,22 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             label='price'
             name='price'
             icon='/wallet-icon.svg'
-            width='350px'
           />
           <UploadImage
-            onChange={imageUrl => setForm({ ...values, imageUrl })}
+            onChange={(imageUrl) => setForm({ ...values, imageUrl })}
             imageUrl={values.imageUrl}
           />
         </div>
         <div>
           <Select
             options={Object.values(Category)}
-            width='350px'
             label='category'
             placeHolder='select'
-            onChange={category => setForm({ ...values, category })}
+            onChange={(category) => setForm({ ...values, category })}
             value={values.category}
           />
           <RadioGroup
             legend='Gender'
-            width='350px'
             name='gender'
             buttons={Object.values(Gender)}
             onChange={handleInput}
@@ -125,17 +121,15 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
           <TextArea
             label='description'
             placeholder='Lorem ipsum dolor sit amet.'
-            width='350px'
             value={values.description}
             onChange={handleInput}
           />
           <SizesInputsWrapper>
-            {availableSizes.map(size => (
+            {availableSizes.map((size) => (
               <Input
                 key={size}
                 name={size}
                 icon='/category-icon.svg'
-                width='90px'
                 type='number'
                 marginTop='0'
                 placeholder='0'

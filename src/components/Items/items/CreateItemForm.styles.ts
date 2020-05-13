@@ -12,7 +12,7 @@ export const CreateItemWrapper = styled.div`
   margin-top: 0;
   display: grid;
   grid-gap: 0px 100px;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 350px));
+  grid-template-columns: repeat(auto-fill, minmax(auto, 300px));
   grid-template-rows: repeat(2, auto);
 `;
 
