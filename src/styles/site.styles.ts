@@ -18,6 +18,9 @@ export const SiteForm = styled.form`
     margin-top: 0;
   }
   margin-top: 75px;
+  @media (max-width: 500px) {
+    width: 260px;
+  }
 `;
 
 export const SiteSubtitle = styled.h2`
