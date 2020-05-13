@@ -37,18 +37,22 @@ export const Table = styled.table<{ tableColumnNames: string[] }>`
       padding-left: 50%;
     }
     td:before {
+      height: 100%;
+      background-color: ${grays[5]};
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
       position: absolute;
-      top: 50%;
       font-weight: 700;
-      transform: translateY(-50%);
-      left: 10px;
+      left: 0px;
       width: 45%;
       white-space: nowrap;
       font-size: ${fontSizes[0]};
       text-transform: uppercase;
       font-family: ${roboto};
       text-align: left;
-      color: ${black};
+      background-color: ${grays[0]};
+      color: ${grays[5]};
     }
     ${(props) =>
       props.tableColumnNames &&
