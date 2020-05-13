@@ -9,11 +9,11 @@ import Input from '../../Input/Input';
 
 const DeleteAccountForm: React.FC = () => {
   const { values, handleInput, clearForm } = useForm({
-    confirmWithPassword: ''
+    confirmWithPassword: '',
   });
 
   const [deleteAccount, { error }] = useDeleteAccountMutation({
-    refetchQueries: [{ query: ME }]
+    refetchQueries: [{ query: ME }],
   });
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -21,29 +21,28 @@ const DeleteAccountForm: React.FC = () => {
     e.preventDefault();
     await deleteAccount({
       variables: {
-        password: values.confirmWithPassword
-      }
-    }).catch(err => err && clearForm(values));
+        password: values.confirmWithPassword,
+      },
+    }).catch((err) => err && clearForm(values));
     clearForm(values);
   };
   return (
     <SiteForm onSubmit={handleSubmit}>
       <SiteSubtitle>Delete Account</SiteSubtitle>
       <ErrorMessage error={error} />
-      <Input
-        label='confirm with password'
-        placeholder='******'
-        name='confirmWithPassword'
-        onChange={handleInput}
-        type='password'
-        icon='/user-icon.svg'
-        value={values.confirmWithPassword}
-        marginTop='50px'
-        width='350px'
-      />
-      <Button width='350px' type='submit'>
-        delete
-      </Button>
+      <div style={{ maxWidth: '350px' }}>
+        <Input
+          label='confirm with password'
+          placeholder='******'
+          name='confirmWithPassword'
+          onChange={handleInput}
+          type='password'
+          icon='/user-icon.svg'
+          value={values.confirmWithPassword}
+          marginTop='50px'
+        />
+        <Button type='submit'>delete</Button>
+      </div>
     </SiteForm>
   );
 };

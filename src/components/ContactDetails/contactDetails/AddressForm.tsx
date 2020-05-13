@@ -13,16 +13,16 @@ const AddressForm: React.FC = () => {
     addressLine2: '',
     zipCode: '',
     city: '',
-    country: ''
+    country: '',
   });
   const { data } = useMeQuery();
 
   const [updateAddress, { error, data: success }] = useUpdateAddressMutation({
     refetchQueries: [
       {
-        query: ME
-      }
-    ]
+        query: ME,
+      },
+    ],
   });
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const AddressForm: React.FC = () => {
     e.preventDefault();
     await updateAddress({
       variables: {
-        ...values
-      }
+        ...values,
+      },
     });
   };
 
@@ -46,58 +46,53 @@ const AddressForm: React.FC = () => {
       <SiteSubtitle>Address</SiteSubtitle>
       {success?.updateAddress.message}
       <ErrorMessage error={error} />
-      <Input
-        marginTop='50px'
-        value={values.addressLine1}
-        onChange={handleInput}
-        type='text'
-        placeholder='address line 1'
-        label='address line 1'
-        name='addressLine1'
-        icon='/home-icon.svg'
-        width='350px'
-      />
-      <Input
-        value={values.addressLine2}
-        onChange={handleInput}
-        type='text'
-        placeholder='address line 2'
-        label='address line 2'
-        name='addressLine2'
-        icon='/home-icon.svg'
-        width='350px'
-      />
-      <Input
-        value={values.zipCode}
-        onChange={handleInput}
-        type='text'
-        placeholder='00-000'
-        label='zip code'
-        name='zipCode'
-        icon='/city-icon.svg'
-        width='350px'
-      />
-      <Input
-        value={values.city}
-        onChange={handleInput}
-        type='text'
-        placeholder='City'
-        label='city'
-        icon='/city-icon.svg'
-        width='350px'
-      />
-      <Input
-        value={values.country}
-        onChange={handleInput}
-        type='text'
-        placeholder='Country'
-        label='country'
-        icon='/globe-icon.svg'
-        width='350px'
-      />
-      <Button width='350px' type='submit'>
-        save
-      </Button>
+      <div style={{ maxWidth: '350px' }}>
+        <Input
+          marginTop='50px'
+          value={values.addressLine1}
+          onChange={handleInput}
+          type='text'
+          placeholder='address line 1'
+          label='address line 1'
+          name='addressLine1'
+          icon='/home-icon.svg'
+        />
+        <Input
+          value={values.addressLine2}
+          onChange={handleInput}
+          type='text'
+          placeholder='address line 2'
+          label='address line 2'
+          name='addressLine2'
+          icon='/home-icon.svg'
+        />
+        <Input
+          value={values.zipCode}
+          onChange={handleInput}
+          type='text'
+          placeholder='00-000'
+          label='zip code'
+          name='zipCode'
+          icon='/city-icon.svg'
+        />
+        <Input
+          value={values.city}
+          onChange={handleInput}
+          type='text'
+          placeholder='City'
+          label='city'
+          icon='/city-icon.svg'
+        />
+        <Input
+          value={values.country}
+          onChange={handleInput}
+          type='text'
+          placeholder='Country'
+          label='country'
+          icon='/globe-icon.svg'
+        />
+        <Button type='submit'>save</Button>
+      </div>
     </SiteForm>
   );
 };

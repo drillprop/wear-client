@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect } from 'react';
 import {
   useMeQuery,
-  useUpdatePersonalInfoMutation
+  useUpdatePersonalInfoMutation,
 } from '../../../generated/types';
 import ME from '../../../graphql/queries/ME';
 import useForm from '../../../hooks/useForm';
@@ -14,7 +14,7 @@ const PersonalInfoForm: React.FC = () => {
   const { values, handleInput, setForm } = useForm({
     firstName: '',
     lastName: '',
-    phoneNumber: ''
+    phoneNumber: '',
   });
 
   const { data, error } = useMeQuery();
@@ -22,9 +22,9 @@ const PersonalInfoForm: React.FC = () => {
     {
       refetchQueries: [
         {
-          query: ME
-        }
-      ]
+          query: ME,
+        },
+      ],
     }
   );
 
@@ -34,7 +34,7 @@ const PersonalInfoForm: React.FC = () => {
       setForm({
         firstName: firstName || '',
         lastName: lastName || '',
-        phoneNumber: phoneNumber || ''
+        phoneNumber: phoneNumber || '',
       });
     }
   }, [data]);
@@ -43,8 +43,8 @@ const PersonalInfoForm: React.FC = () => {
     e.preventDefault();
     await updatePersonalInfo({
       variables: {
-        ...values
-      }
+        ...values,
+      },
     });
   };
   return (
@@ -52,40 +52,37 @@ const PersonalInfoForm: React.FC = () => {
       <SiteSubtitle>Personal Info</SiteSubtitle>
       <ErrorMessage error={error} />
       {success?.updatePersonalInfo.message}
-      <Input
-        label='first name'
-        placeholder='John'
-        name='firstName'
-        onChange={handleInput}
-        type='text'
-        icon='/user-icon.svg'
-        value={values.firstName}
-        marginTop='50px'
-        width='350px'
-      />
-      <Input
-        label='last name'
-        placeholder='Doe'
-        name='lastName'
-        onChange={handleInput}
-        type='text'
-        value={values.lastName}
-        icon='/user-icon.svg'
-        width='350px'
-      />
-      <Input
-        label='phone number'
-        placeholder='XX 000 000 000'
-        type='tel'
-        name='phoneNumber'
-        value={values.phoneNumber}
-        onChange={handleInput}
-        icon='/phone-icon.svg'
-        width='350px'
-      />
-      <Button width='350px' type='submit'>
-        save
-      </Button>
+      <div style={{ maxWidth: '350px' }}>
+        <Input
+          label='first name'
+          placeholder='John'
+          name='firstName'
+          onChange={handleInput}
+          type='text'
+          icon='/user-icon.svg'
+          value={values.firstName}
+          marginTop='50px'
+        />
+        <Input
+          label='last name'
+          placeholder='Doe'
+          name='lastName'
+          onChange={handleInput}
+          type='text'
+          value={values.lastName}
+          icon='/user-icon.svg'
+        />
+        <Input
+          label='phone number'
+          placeholder='XX 000 000 000'
+          type='tel'
+          name='phoneNumber'
+          value={values.phoneNumber}
+          onChange={handleInput}
+          icon='/phone-icon.svg'
+        />
+        <Button type='submit'>save</Button>
+      </div>
     </SiteForm>
   );
 };
