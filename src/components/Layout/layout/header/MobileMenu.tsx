@@ -40,10 +40,6 @@ const MobileMenu = () => {
                 <LinkAnchor href='/account/orders'>orders</LinkAnchor>
               </li>
             </ToggleableList>
-            <li>
-              <LinkAnchor href='/cart'>YOUR CART</LinkAnchor>
-            </li>
-            <li>LOGOUT</li>
             <ToggleableList title='WOMAN'>
               {womanCategories.map((category) => (
                 <li key={category}>
@@ -79,6 +75,10 @@ const MobileMenu = () => {
                 <LinkAnchor href='/admin/orders'>user's orders</LinkAnchor>
               </li>
             </ToggleableList>
+            <li>
+              <LinkAnchor href='/cart'>YOUR CART</LinkAnchor>
+            </li>
+            <li>LOGOUT</li>
           </ul>
         </Menu>
       )}
