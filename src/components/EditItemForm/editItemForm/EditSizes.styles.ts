@@ -12,9 +12,9 @@ export const SizesInputsWrapper = styled.div`
   border: 2px solid ${grays[0]};
   display: grid;
   padding: 30px 25px;
-  grid-gap: 15px;
-  justify-items: center;
-  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(2, 90px);
   ::before {
     position: absolute;
     top: -8px;
