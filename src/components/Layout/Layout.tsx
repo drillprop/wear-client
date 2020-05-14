@@ -21,13 +21,13 @@ const Layout: React.FC = ({ children }) => {
       <Head>
         <title>wear {subpath && `| ${subpath}`}</title>
       </Head>
-      <Header />
-      <PageWrapper>
-        <CartContextProvider>
+      <CartContextProvider>
+        <Header />
+        <PageWrapper>
           <Main>{children}</Main>
-        </CartContextProvider>
-      </PageWrapper>
-      {pathname !== '/sign' && <Footer />}
+        </PageWrapper>
+        {pathname !== '/sign' && <Footer />}
+      </CartContextProvider>
     </>
   );
 };
