@@ -1,6 +1,7 @@
 import React from 'react';
 import AccountOrders from '../../components/AccountOrders/AccountOrders';
 import { NextPage } from 'next';
+import { withPrivateRoute } from '../../hoc/withPrivateRoute';
 
 interface Props {
   query: {
@@ -12,4 +13,4 @@ const OrdersPage: NextPage<Props> = ({ query }) => {
   return <AccountOrders query={query} />;
 };
 
-export default OrdersPage;
+export default withPrivateRoute(OrdersPage);
