@@ -3,8 +3,9 @@ import { NextPage } from 'next';
 import { ApolloAppContext } from 'next-with-apollo';
 import Head from 'next/head';
 import EditItemForm from '../../components/EditItemForm/EditItemForm';
-import { SingleItemQuery } from '../../generated/types';
+import { SingleItemQuery, UserRole } from '../../generated/types';
 import SINGLE_ITEM from '../../graphql/queries/SINGLE_ITEM';
+import { withPrivateRoute } from '../../hoc/withPrivateRoute';
 
 interface Props {
   singleItemQuery: ApolloQueryResult<SingleItemQuery>;
@@ -25,9 +26,9 @@ const AdminItem: NextPage<Props> = ({ singleItemQuery }) => {
 AdminItem.getInitialProps = async (ctx: ApolloAppContext) => {
   const singleItemQuery = await ctx.apolloClient.query<SingleItemQuery>({
     query: SINGLE_ITEM,
-    variables: ctx.query
+    variables: ctx.query,
   });
   return { singleItemQuery };
 };
 
-export default AdminItem;
+export default withPrivateRoute(AdminItem, UserRole.EMPLOYEE);
