@@ -1,11 +1,14 @@
+import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useCart } from '../../../../contexts/CartContext';
 import {
   Gender,
   useMeQuery,
   UserRole,
   useSignoutMutation,
 } from '../../../../generated/types';
+import ME from '../../../../graphql/queries/ME';
 import getGenderCategories from '../../../../utils/getGenderCategories';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import ToggleableList from '../../../ToggleableList/ToggleableList';
@@ -15,8 +18,6 @@ import {
   HamburgerButtonWrapper,
   Menu,
 } from './MobileMenu.styles';
-import { AnimatePresence } from 'framer-motion';
-import ME from '../../../../graphql/queries/ME';
 
 const MobileMenu = () => {
   const manCategories = getGenderCategories(Gender.MAN);
@@ -24,6 +25,9 @@ const MobileMenu = () => {
   const [menuActive, setMenuActive] = useState(true);
   const { asPath } = useRouter();
   const { data } = useMeQuery();
+
+  const { cartItems } = useCart();
+  const cartItemsLength = cartItems.length;
 
   const [signOut] = useSignoutMutation({
     refetchQueries: [{ query: ME }],
@@ -116,7 +120,9 @@ const MobileMenu = () => {
                 </ToggleableList>
               )}
               <li>
-                <LinkAnchor href='/cart'>YOUR CART</LinkAnchor>
+                <LinkAnchor href='/cart'>
+                  YOUR CART {cartItemsLength && `(${cartItemsLength})`}{' '}
+                </LinkAnchor>
               </li>
               {isUser && <li onClick={() => signOut()}>LOGOUT</li>}
             </ul>
