@@ -121,7 +121,7 @@ const MobileMenu = () => {
               )}
               <li>
                 <LinkAnchor href='/cart'>
-                  YOUR CART {cartItemsLength && `(${cartItemsLength})`}{' '}
+                  YOUR CART {cartItemsLength ? `(${cartItemsLength})` : ''}
                 </LinkAnchor>
               </li>
               {isUser && <li onClick={() => signOut()}>LOGOUT</li>}
