@@ -8,7 +8,7 @@ import ItemsFilters from './items/ItemsFilters';
 import ItemsTable from './items/ItemsTable';
 
 interface Props {
-  query: {
+  query?: {
     page: string;
   };
 }
@@ -20,8 +20,8 @@ const Items: React.FC<Props> = ({ query }) => {
       skip: 0,
       sortBy: 'Item.createdAt',
       sortOrder: SortOrder.DESC,
-      available: false
-    }
+      available: false,
+    },
   });
 
   const count = data?.items.count || 0;
@@ -36,7 +36,7 @@ const Items: React.FC<Props> = ({ query }) => {
         {!!items && <ItemsTable items={items} variables={variables} />}
         <Pagination
           path={'/admin/items'}
-          page={parseInt(query.page) || 1}
+          page={parseInt((query && query.page) || '1')}
           total={count}
           take={variables.take || 5}
           refetch={refetch}
