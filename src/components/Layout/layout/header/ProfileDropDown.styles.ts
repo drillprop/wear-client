@@ -13,6 +13,7 @@ export const ProfileDropDownWrapper = styled.div`
   display: none;
   position: absolute;
   background-color: ${white};
+  min-width: 200px;
   width: 100%;
 `;
 
