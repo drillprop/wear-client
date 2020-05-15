@@ -1,13 +1,13 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import Button from '../../../components/Button/Button';
-import Input from '../../../components/Input/Input';
-import { useRegisterMutation } from '../../../generated/types';
-import ME from '../../../graphql/queries/ME';
-import useForm from '../../../hooks/useForm';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
-import SignImage from '../../SignImage/SignImage';
-import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
-import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
+import { useRegisterMutation } from '../../generated/types';
+import ME from '../../graphql/queries/ME';
+import useForm from '../../hooks/useForm';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import SignImage from '../SignImage/SignImage';
+import SwitchSignButton from '../SwitchSignButton/SwitchSignButton';
+import { SignForm, SignTitle, SignWrapper } from '../../styles/sign.styles';
 
 interface Props {
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,14 +15,14 @@ interface Props {
 
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
   const [registerMutation, { error }] = useRegisterMutation({
-    refetchQueries: [{ query: ME }]
+    refetchQueries: [{ query: ME }],
   });
 
   const [passwordError, setPasswordError] = useState('');
   const { values, handleInput, clearForm } = useForm({
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   useEffect(() => {

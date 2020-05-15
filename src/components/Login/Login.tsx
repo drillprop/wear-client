@@ -1,14 +1,18 @@
 import React, { FormEvent, useEffect } from 'react';
-import Button from '../../../components/Button/Button';
-import Input from '../../../components/Input/Input';
-import { useLoginMutation } from '../../../generated/types';
-import ME from '../../../graphql/queries/ME';
-import useForm from '../../../hooks/useForm';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
-import SignImage from '../../SignImage/SignImage';
-import SwitchSignButton from '../../SwitchSignButton/SwitchSignButton';
-import { SignForm, SignTitle, SignWrapper } from '../Sign.styles';
-import { ForgotPassword } from './Login.styles';
+import { useLoginMutation } from '../../generated/types';
+import ME from '../../graphql/queries/ME';
+import useForm from '../../hooks/useForm';
+import Button from '../Button/Button';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Input from '../Input/Input';
+import SignImage from '../SignImage/SignImage';
+import SwitchSignButton from '../SwitchSignButton/SwitchSignButton';
+import {
+  ForgotPassword,
+  SignForm,
+  SignTitle,
+  SignWrapper,
+} from '../../styles/sign.styles';
 
 interface Props {
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,11 +20,11 @@ interface Props {
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
   const [login, { error }] = useLoginMutation({
-    refetchQueries: [{ query: ME }]
+    refetchQueries: [{ query: ME }],
   });
   const { values, handleInput, clearForm } = useForm({
     email: '',
-    password: ''
+    password: '',
   });
 
   useEffect(() => {

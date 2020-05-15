@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { roboto } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import { roboto } from './fonts';
+import fontSizes from './fontSizes';
 
 export const SignWrapper = styled.div`
   max-width: 1300px;
@@ -30,4 +30,12 @@ export const SignTitle = styled.h1`
   font-size: ${fontSizes[6]};
   font-weight: 700;
   text-align: center;
+`;
+
+export const ForgotPassword = styled.p`
+  font-size: ${fontSizes[1]};
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-top: 20px;
 `;
