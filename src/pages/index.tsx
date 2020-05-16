@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import React from 'react';
 import { HomePageWrapper } from '../components/Home/Home.styles';
-import HomepageImage from '../components/Home/HomepageImage';
+import HomepageImage from '../components/HomePageImage/HomepageImage';
 
 const HomePage: NextPage = () => {
   return (
