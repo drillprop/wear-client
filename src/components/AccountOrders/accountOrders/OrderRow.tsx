@@ -7,7 +7,8 @@ import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 import {
   DetailsColumn,
   DetailsHeading,
-  DetailsWrapper
+  DetailsWrapper,
+  DetailsRow,
 } from './OrderRow.styles';
 
 interface Props {
@@ -27,9 +28,9 @@ const OrderRow: React.FC<Props> = ({
   id,
   createdAt,
   status,
-  orderedItems
+  orderedItems,
 }) => {
-  const [detailsHidden, setDetailsHidden] = useState(false);
+  const [isDetailsVisible, setDetailsVisible] = useState(false);
 
   const totalPrice = orderedItems?.reduce(
     (acc, item) => (acc = acc + item.item.price),
@@ -43,19 +44,21 @@ const OrderRow: React.FC<Props> = ({
     <>
       <TableBodyRow
         grey={grey}
-        onClick={() => setDetailsHidden(detailsHidden => !detailsHidden)}
+        onClick={() =>
+          setDetailsVisible((isDetailsVisible) => !isDetailsVisible)
+        }
       >
         <TableData>{id}</TableData>
         <TableData>{date}</TableData>
         <TableData>$ {totalPrice}</TableData>
         <TableData>{status}</TableData>
       </TableBodyRow>
-      {detailsHidden && (
-        <tr>
+      {isDetailsVisible && (
+        <DetailsRow>
           <TableData colSpan={5}>
             <DetailsHeading>Ordered Items</DetailsHeading>
             <DetailsWrapper>
-              {convertedItems.map(item => (
+              {convertedItems.map((item) => (
                 <DetailsColumn key={item.id + item.sizeSymbol}>
                   <div>
                     {item.quantity} x{' '}
@@ -75,7 +78,7 @@ const OrderRow: React.FC<Props> = ({
               ))}
             </DetailsWrapper>
           </TableData>
-        </tr>
+        </DetailsRow>
       )}
     </>
   );
