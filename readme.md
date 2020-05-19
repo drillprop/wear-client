@@ -8,6 +8,12 @@ Besides regular clothing shop, the website has also admin panel, where permitted
 
 You can find backend code [here](https://github.com/drillprop/wear-server)
 
+## Screenshots
+
+![screenshop](https://user-images.githubusercontent.com/51168865/82324039-40a92000-99d9-11ea-824c-90a870a407e9.png)
+
+![screenshop2](https://user-images.githubusercontent.com/51168865/82324035-3edf5c80-99d9-11ea-9786-5abdcc158617.png)
+
 ## Technologies
 
 #### Frontend
