@@ -6,7 +6,7 @@ import {
   Gender,
   ItemsQueryVariables,
   SortOrder,
-  useItemsQuery
+  useItemsQuery,
 } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import Pagination from '../Pagination/Pagination';
@@ -28,18 +28,19 @@ const Shop: React.FC<Props> = ({ query }) => {
   const category = query.category?.toUpperCase() as Category;
   const gender = query.gender?.toUpperCase() as Gender;
   const router = useRouter();
+  const take = 6;
 
-  const skip = parseInt(query.page) * 5 - 5 || 0;
+  const skip = parseInt(query.page) * take - take || 0;
 
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       gender,
       skip,
       sortBy: 'Item.createdAt',
-      take: 5,
+      take,
       sortOrder: SortOrder.DESC,
-      category
-    }
+      category,
+    },
   });
 
   const path = category ? `/shop/[gender]/[category]` : `/shop/[gender]`;
@@ -77,7 +78,7 @@ const Shop: React.FC<Props> = ({ query }) => {
           path={path}
           page={parseInt(query.page) || 1}
           total={data?.items.count}
-          take={(variables && variables.take) || 5}
+          take={(variables && variables.take) || take}
           refetch={refetch}
         />
       </div>
