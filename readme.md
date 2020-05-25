@@ -31,3 +31,24 @@ You can find backend code [here](https://github.com/drillprop/wear-server)
 - [nodemailer](https://nodemailer.com/)
 - [typeorm](https://typeorm.io/)
 - [postgresql](https://www.postgresql.org/)
+
+## Demo
+
+[Wear](https://wear-client.herokuapp.com/)
+
+If you want to play around, you can sign in with this email and password:
+
+#### as admin:
+
+    email: testadmin@example.com
+    password: testadmin
+
+#### as employee:
+
+    email: testemployee@example.com
+    password: testemployee
+
+#### as regular customer:
+
+    email: "testuser@example.com"
+    password: "testuser"
