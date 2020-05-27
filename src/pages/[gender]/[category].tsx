@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
 import React from 'react';
-import Shop from '../../../components/Shop/Shop';
+import Shop from '../../components/Shop/Shop';
 
 interface Props {
   query: {
+    gender?: string;
     category: string;
     page: string;
   };
