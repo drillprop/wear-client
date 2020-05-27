@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import {
   ItemsQuery,
   ItemsQueryVariables,
-  SortOrder
+  SortOrder,
 } from '../../../generated/types';
 import Select from '../../Select/Select';
 
@@ -23,7 +23,7 @@ const SortAndPerPage: React.FC<Props> = ({
   refetch,
   variables,
   path,
-  asPath
+  asPath,
 }) => {
   const [sortValue, setSortValue] = useState<SortType>('newest');
 
@@ -34,19 +34,19 @@ const SortAndPerPage: React.FC<Props> = ({
       refetch({
         ...variables,
         sortBy: 'Item.createdAt',
-        sortOrder: SortOrder.DESC
+        sortOrder: SortOrder.DESC,
       });
     else if (sort === 'lowest price')
       refetch({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.ASC
+        sortOrder: SortOrder.ASC,
       });
     else if (sort === 'highest price')
       refetch({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.DESC
+        sortOrder: SortOrder.DESC,
       });
     setSortValue(sort);
   };
@@ -62,15 +62,15 @@ const SortAndPerPage: React.FC<Props> = ({
       />
       <Select
         label='items per page'
-        onChange={take => {
+        onChange={(take) => {
           if (variables.skip) {
             router.push(path, asPath);
           }
           take && refetch({ ...variables, take: parseInt(take) });
         }}
-        value={(variables && variables.take) || 5}
-        placeHolder='5'
-        options={[5, 10, 15, 20, 25]}
+        value={(variables && variables.take) || 6}
+        placeHolder='6'
+        options={[6, 12, 18, 24, 30]}
         small
       />
     </>
