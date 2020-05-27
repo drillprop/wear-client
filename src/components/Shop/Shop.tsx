@@ -15,6 +15,7 @@ import { ShopFiltersWrapper } from './Shop.styles';
 import NameAndPriceFilters from './shop/NameAndPriceFilters';
 import SortAndPerPage from './shop/SortAndPerPage';
 import Products from './shop/Products';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 interface Props {
   query: {
@@ -32,7 +33,7 @@ const Shop: React.FC<Props> = ({ query }) => {
 
   const skip = parseInt(query.page) * take - take || 0;
 
-  const { data, refetch, variables } = useItemsQuery({
+  const { data, refetch, variables, loading } = useItemsQuery({
     variables: {
       gender,
       skip,
@@ -58,30 +59,34 @@ const Shop: React.FC<Props> = ({ query }) => {
   return (
     <SiteWrapper>
       <ShopSideNav gender={gender} />
-      <div>
-        <SiteSubtitle>shop</SiteSubtitle>
-        <ShopFiltersWrapper>
-          <NameAndPriceFilters
-            maxPrice={data?.items.maxPrice || 0}
-            refetch={debouncedRefetch}
-            variables={variables}
-          />
-          <SortAndPerPage
-            refetch={refetch}
-            variables={variables}
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <div>
+          <SiteSubtitle>shop</SiteSubtitle>
+          <ShopFiltersWrapper>
+            <NameAndPriceFilters
+              maxPrice={data?.items.maxPrice || 0}
+              refetch={debouncedRefetch}
+              variables={variables}
+            />
+            <SortAndPerPage
+              refetch={refetch}
+              variables={variables}
+              path={path}
+              asPath={asPath}
+            />
+          </ShopFiltersWrapper>
+          <Products items={data?.items.select || []} />
+          <Pagination
             path={path}
-            asPath={asPath}
+            page={parseInt(query.page) || 1}
+            total={data?.items.count}
+            take={(variables && variables.take) || take}
+            refetch={refetch}
           />
-        </ShopFiltersWrapper>
-        <Products items={data?.items.select || []} />
-        <Pagination
-          path={path}
-          page={parseInt(query.page) || 1}
-          total={data?.items.count}
-          take={(variables && variables.take) || take}
-          refetch={refetch}
-        />
-      </div>
+        </div>
+      )}
     </SiteWrapper>
   );
 };
