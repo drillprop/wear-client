@@ -64,10 +64,8 @@ const OrderRow: React.FC<Props> = ({
                     {item.quantity} x{' '}
                     <LinkAnchor
                       highlight
-                      href={`/shop/[gender]/item?id=${item.id}`}
-                      as={`/shop/${item.gender.toLowerCase()}/item?id=${
-                        item.id
-                      }`}
+                      href={`/[gender]/item?id=${item.id}`}
+                      as={`/${item.gender.toLowerCase()}/item?id=${item.id}`}
                     >
                       {item.name}
                     </LinkAnchor>

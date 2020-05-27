@@ -1,6 +1,6 @@
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Category,
   Gender,
@@ -13,8 +13,8 @@ import Pagination from '../Pagination/Pagination';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import { ShopFiltersWrapper } from './Shop.styles';
 import NameAndPriceFilters from './shop/NameAndPriceFilters';
-import Products from './shop/Products';
 import SortAndPerPage from './shop/SortAndPerPage';
+import Products from './shop/Products';
 
 interface Props {
   query: {
@@ -43,10 +43,10 @@ const Shop: React.FC<Props> = ({ query }) => {
     },
   });
 
-  const path = category ? `/shop/[gender]/[category]` : `/shop/[gender]`;
+  const path = category ? `/[gender]/[category]` : `/[gender]`;
   const asPath = category
-    ? `/shop/${query?.gender}/${query?.category}`
-    : `/shop/${query?.gender}`;
+    ? `/${query?.gender}/${query?.category}`
+    : `/${query?.gender}`;
 
   const debouncedRefetch = debounce((variables: ItemsQueryVariables) => {
     if (variables.skip) {

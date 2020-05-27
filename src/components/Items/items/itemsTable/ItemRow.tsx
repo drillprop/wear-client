@@ -4,7 +4,7 @@ import {
   Category,
   Gender,
   ItemsQueryVariables,
-  useDeleteItemMutation
+  useDeleteItemMutation,
 } from '../../../../generated/types';
 import ITEMS from '../../../../graphql/queries/ITEMS';
 import { TableBodyRow, TableData } from '../../../../styles/table.styles';
@@ -28,20 +28,20 @@ const ItemRow: React.FC<Props> = ({
   category,
   gender,
   variables,
-  grey
+  grey,
 }) => {
   const [deleteItem] = useDeleteItemMutation({
     variables: { id },
-    refetchQueries: [{ query: ITEMS, variables }]
+    refetchQueries: [{ query: ITEMS, variables }],
   });
 
   return (
     <Link
       href={{
-        pathname: `/shop/[gender]/item`,
-        query: { id }
+        pathname: `/[gender]/item`,
+        query: { id },
       }}
-      as={`/shop/${gender.toLowerCase()}/item?id=${id}`}
+      as={`/${gender.toLowerCase()}/item?id=${id}`}
     >
       <TableBodyRow grey={grey}>
         <TableData>{name}</TableData>
@@ -54,15 +54,15 @@ const ItemRow: React.FC<Props> = ({
               pathname: `/admin/item`,
               query: {
                 category: category.toLowerCase(),
-                id
-              }
+                id,
+              },
             }}
           >
             edit item
           </LinkAnchor>
         </TableData>
         <TableData
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             deleteItem();
           }}

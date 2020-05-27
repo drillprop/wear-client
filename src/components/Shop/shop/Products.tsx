@@ -7,7 +7,7 @@ import {
   ProductName,
   ProductNameAndPrice,
   ProductPrice,
-  ProductsWrapper
+  ProductsWrapper,
 } from './Products.styles';
 
 interface Props {
@@ -18,17 +18,17 @@ const Products: React.FC<Props> = ({ items }) => {
   return (
     <ProductsWrapper>
       {items.map(
-        item =>
+        (item) =>
           item && (
             <ProductCardWrapper key={item.id}>
               <LinkAnchor
                 href={{
-                  pathname: `/shop/[gender]/item`,
+                  pathname: `/[gender]/item`,
                   query: {
-                    id: item.id
-                  }
+                    id: item.id,
+                  },
                 }}
-                as={`/shop/${item.gender.toLowerCase()}/item?id=${item.id}`}
+                as={`/${item.gender.toLowerCase()}/item?id=${item.id}`}
               >
                 <ProductCardImg src={item.imageUrl} alt={item.name} />
                 <ProductNameAndPrice>

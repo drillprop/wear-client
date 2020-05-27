@@ -6,10 +6,10 @@ import HomepageImage from '../components/HomePageImage/HomepageImage';
 const HomePage: NextPage = () => {
   return (
     <HomePageWrapper>
-      <HomepageImage link='shop/woman' imageUrl='/woman-in-summer-fashion.jpg'>
+      <HomepageImage link='/woman' imageUrl='/woman-in-summer-fashion.jpg'>
         for her
       </HomepageImage>
-      <HomepageImage link='shop/man' imageUrl='/man-looks-out-window.jpg'>
+      <HomepageImage link='/man' imageUrl='/man-looks-out-window.jpg'>
         for him
       </HomepageImage>
     </HomePageWrapper>
