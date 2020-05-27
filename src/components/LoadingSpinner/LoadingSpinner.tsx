@@ -1,7 +1,7 @@
 import React from 'react';
 import { SpinnerWrapper } from './LoadingSpinner.styles';
 
-const Spinner = () => {
+const LoadingSpinner = () => {
   return (
     <SpinnerWrapper>
       <div />
@@ -11,4 +11,4 @@ const Spinner = () => {
   );
 };
 
-export default Spinner;
+export default LoadingSpinner;

@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { grays } from '../../styles/colors';
 
 export const SpinnerWrapper = styled.div`
-  display: inline-block;
+  display: grid;
+  place-self: center;
   position: relative;
   width: 80px;
   height: 80px;
