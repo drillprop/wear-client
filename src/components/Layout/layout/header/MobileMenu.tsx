@@ -22,7 +22,7 @@ import {
 const MobileMenu = () => {
   const manCategories = getGenderCategories(Gender.MAN);
   const womanCategories = getGenderCategories(Gender.WOMAN);
-  const [menuActive, setMenuActive] = useState(true);
+  const [menuActive, setMenuActive] = useState(false);
   const { asPath } = useRouter();
   const { data } = useMeQuery();
 
