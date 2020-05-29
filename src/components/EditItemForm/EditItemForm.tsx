@@ -69,73 +69,77 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
   return (
     <SiteWrapper>
       <AdminSideNav />
-      <StyledEditForm onSubmit={handleSubmit}>
-        <SiteSubtitle>EDIT ITEM</SiteSubtitle>
-        <EditFormLinks>
-          <LinkAnchor
-            href={{
-              pathname: `/[gender]/item`,
-              query: { id: item?.id },
-            }}
-            as={`/${gender.toLowerCase()}/item?id=${item?.id}`}
-          >
-            Go to item
-          </LinkAnchor>
-        </EditFormLinks>
-        <ErrorMessage error={error} />
-        {data?.updateItem.id && 'Succesfully updated item'}
-        <EditItemWrapper>
-          <div>
-            <Input
-              type='text'
-              placeholder='name'
-              onChange={handleInput}
-              value={name}
-              label='name'
-              name='name'
-              icon='/info-icon.svg'
-            />
-            <Input
-              type='number'
-              placeholder='price'
-              onChange={handleInput}
-              value={price}
-              label='price'
-              name='price'
-              icon='/wallet-icon.svg'
-            />
-            <UploadImage
-              onChange={(imageUrl) => setForm({ ...values, imageUrl })}
-              imageUrl={imageUrl}
-              placeholder='change image'
-            />
-          </div>
-          <div>
-            <Select
-              options={Object.values(Category)}
-              label='category'
-              placeHolder='select'
-              onChange={(category) => setForm({ ...values, category })}
-              value={category}
-            />
-            <RadioGroup
-              legend='Gender'
-              name='gender'
-              buttons={Object.values(Gender)}
-              onChange={handleInput}
-              value={gender}
-            />
-            <TextArea
-              label='description'
-              placeholder='Lorem ipsum dolor sit amet.'
-              value={description}
-              onChange={handleInput}
-            />
-            <EditSizes setForm={setForm} sizes={values.sizes} />
-            <Button type='submit'>save</Button>
-          </div>
-        </EditItemWrapper>
-      </StyledEditForm>
+      {item && (
+        <StyledEditForm onSubmit={handleSubmit}>
+          <SiteSubtitle>EDIT ITEM</SiteSubtitle>
+          <EditFormLinks>
+            <LinkAnchor
+              href={{
+                pathname: `/[gender]/[category]/[item]`,
+                query: { item: item.id },
+              }}
+              as={`/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
+                item.id
+              }`}
+            >
+              Go to item
+            </LinkAnchor>
+          </EditFormLinks>
+          <ErrorMessage error={error} />
+          {data?.updateItem.id && 'Succesfully updated item'}
+          <EditItemWrapper>
+            <div>
+              <Input
+                type='text'
+                placeholder='name'
+                onChange={handleInput}
+                value={name}
+                label='name'
+                name='name'
+                icon='/info-icon.svg'
+              />
+              <Input
+                type='number'
+                placeholder='price'
+                onChange={handleInput}
+                value={price}
+                label='price'
+                name='price'
+                icon='/wallet-icon.svg'
+              />
+              <UploadImage
+                onChange={(imageUrl) => setForm({ ...values, imageUrl })}
+                imageUrl={imageUrl}
+                placeholder='change image'
+              />
+            </div>
+            <div>
+              <Select
+                options={Object.values(Category)}
+                label='category'
+                placeHolder='select'
+                onChange={(category) => setForm({ ...values, category })}
+                value={category}
+              />
+              <RadioGroup
+                legend='Gender'
+                name='gender'
+                buttons={Object.values(Gender)}
+                onChange={handleInput}
+                value={gender}
+              />
+              <TextArea
+                label='description'
+                placeholder='Lorem ipsum dolor sit amet.'
+                value={description}
+                onChange={handleInput}
+              />
+              <EditSizes setForm={setForm} sizes={values.sizes} />
+              <Button type='submit'>save</Button>
+            </div>
+          </EditItemWrapper>
+        </StyledEditForm>
+      )}
     </SiteWrapper>
   );
 };
