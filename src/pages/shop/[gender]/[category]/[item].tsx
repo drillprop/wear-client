@@ -20,8 +20,7 @@ const Item: NextPage<Props> = ({ query }) => {
     <>
       <Head>
         <title>
-          wear{' '}
-          {data ? data.item?.name && `| ${data.item?.name}` : '| not found'}
+          wear {data ? data.item?.name && `| ${data.item?.name}` : ''}
         </title>
       </Head>
       <SingleProduct item={data?.item} loading={loading} />
