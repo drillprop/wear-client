@@ -9,7 +9,7 @@ interface Props {
 
 const HomepageImage: React.FC<Props> = ({ imageUrl, link, children }) => {
   return (
-    <Link href='/[gender]' as={link}>
+    <Link href='/shop/[gender]' as={link}>
       <ImageWrapper>
         <ImageTitle>{children}</ImageTitle>
         <Image imageUrl={imageUrl}></Image>

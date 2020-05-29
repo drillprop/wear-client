@@ -23,12 +23,12 @@ const Products: React.FC<Props> = ({ items }) => {
             <ProductCardWrapper key={item.id}>
               <LinkAnchor
                 href={{
-                  pathname: `/[gender]/[category]/[item]`,
+                  pathname: `/shop/[gender]/[category]/[item]`,
                   query: {
                     item: item.id,
                   },
                 }}
-                as={`/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
+                as={`/shop/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
                   item.id
                 }`}
               >

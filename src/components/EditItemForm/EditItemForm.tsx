@@ -75,7 +75,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
           <EditFormLinks>
             <LinkAnchor
               href={{
-                pathname: `/[gender]/[category]/[item]`,
+                pathname: `/shop/[gender]/[category]/[item]`,
                 query: { item: item.id },
               }}
               as={`/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${

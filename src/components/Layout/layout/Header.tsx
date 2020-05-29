@@ -14,12 +14,20 @@ const Header: React.FC = () => {
       <Navigation>
         <Ul>
           <Li>
-            <LinkAnchor href='/[gender]' as='/woman' wordToHighlight='woman'>
+            <LinkAnchor
+              href='/shop/[gender]'
+              as='/shop/woman'
+              wordToHighlight='woman'
+            >
               woman
             </LinkAnchor>
           </Li>
           <Li>
-            <LinkAnchor wordToHighlight='man' href='/[gender]' as='/man'>
+            <LinkAnchor
+              wordToHighlight='man'
+              href='/shop/[gender]'
+              as='/shop/man'
+            >
               man
             </LinkAnchor>
           </Li>
