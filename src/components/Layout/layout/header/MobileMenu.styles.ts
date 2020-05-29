@@ -9,12 +9,15 @@ interface HamburgerMenuButtonProps {
 
 export const HamburgerButtonWrapper = styled.div`
   position: absolute;
-  right: 70px;
+  right: 80px;
   display: none;
   align-self: center;
   justify-self: end;
   @media (max-width: 900px) {
     display: block;
+  }
+  @media (max-width: 900px) {
+    right: 60px;
   }
 `;
 

@@ -17,6 +17,9 @@ export const HeaderWrapper = styled.header`
   grid-template-columns: 200px 1fr;
   left: 50%;
   transform: translateX(-50%);
+  @media (max-width: 500px) {
+    padding: 0 25px;
+  }
 `;
 
 export const Logo = styled.h1`
