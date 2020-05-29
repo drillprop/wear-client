@@ -86,8 +86,8 @@ const MobileMenu = () => {
                 {womanCategories.map((category) => (
                   <li key={category}>
                     <LinkAnchor
-                      href='/[gender]/[category]'
-                      as={`/woman/${category.toLowerCase()}`}
+                      href='/shop/[gender]/[category]'
+                      as={`/shop/woman/${category.toLowerCase()}`}
                     >
                       {category}
                     </LinkAnchor>
@@ -98,8 +98,8 @@ const MobileMenu = () => {
                 {manCategories.map((category) => (
                   <li key={category}>
                     <LinkAnchor
-                      href='/[gender]/[category]'
-                      as={`/man/${category.toLowerCase()}`}
+                      href='/shop/[gender]/[category]'
+                      as={`/shop/man/${category.toLowerCase()}`}
                     >
                       {category}
                     </LinkAnchor>
