@@ -16,6 +16,7 @@ import NameAndPriceFilters from './shop/NameAndPriceFilters';
 import SortAndPerPage from './shop/SortAndPerPage';
 import Products from './shop/Products';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import NoItems from '../NoItems/NoItems';
 
 interface Props {
   query: {
@@ -79,6 +80,9 @@ const Shop: React.FC<Props> = ({ query }) => {
             <LoadingSpinner />
           ) : (
             <>
+              {!data?.items.select.length && (
+                <NoItems text={'No items found'} />
+              )}
               <Products items={data?.items.select || []} />
               <Pagination
                 path={path}
