@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { SingleItemQuery, SizeSymbol } from '../../generated/types';
@@ -13,21 +14,25 @@ import {
   SingleProductMain,
   SingleProductName,
   SingleProductPrice,
-  Unavailable
+  Unavailable,
 } from './SingleProduct.styles';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+
 interface Props {
   item?: SingleItemQuery['item'];
+  loading?: boolean;
 }
 
-const SingleProduct: React.FC<Props> = ({ item }) => {
+const SingleProduct: React.FC<Props> = ({ item, loading }) => {
   const [size, setSize] = useState<keyof typeof SizeSymbol | ''>('');
   const [alert, setAlert] = useState('');
+  const { query } = useRouter();
 
   const sizes =
     item?.sizes &&
     item.sizes
-      .filter(size => size.quantity && size)
-      .map(size => size.sizeSymbol);
+      .filter((size) => size.quantity && size)
+      .map((size) => size.sizeSymbol);
 
   const { addItemToCart, toggleCartVisible } = useCart();
 
@@ -55,40 +60,46 @@ const SingleProduct: React.FC<Props> = ({ item }) => {
       setSize('');
     }
   };
-  return item ? (
+  return (
     <SiteWrapper>
-      <ShopSideNav gender={item?.gender} />
+      <ShopSideNav gender={query.gender.toString().toUpperCase()} />
+      {loading && <LoadingSpinner />}
       <SingleProductMain>
-        <SingleProductImg src={item?.imageUrl} alt={item?.name} />
-        <section>
-          <SingleProductName>{item?.name}</SingleProductName>
-          <SingleProductDescription>
-            {item?.description}
-          </SingleProductDescription>
-          <SingleProductPrice>$ {item?.price}</SingleProductPrice>
-          {sizes?.length ? (
-            <form onSubmit={handleSubmit}>
-              <Select
-                marginTop={'100px'}
-                label='Pick size'
-                placeHolder='SIZE'
-                onChange={size => setSize(size)}
-                value={size}
-                options={sizes}
-              />
-              <AddToCart disabled={!!!size} type='submit'>
-                <CartIcon color={white} size={'1em'} />
-                {alert ? alert : 'add to cart'}
-              </AddToCart>
-            </form>
-          ) : (
-            <Unavailable>product is not available at the moment</Unavailable>
-          )}
-        </section>
+        {item && !loading && (
+          <>
+            <SingleProductImg src={item?.imageUrl} alt={item?.name} />
+            <section>
+              <SingleProductName>{item?.name}</SingleProductName>
+              <SingleProductDescription>
+                {item?.description}
+              </SingleProductDescription>
+              <SingleProductPrice>$ {item?.price}</SingleProductPrice>
+              {sizes?.length ? (
+                <form onSubmit={handleSubmit}>
+                  <Select
+                    marginTop={'100px'}
+                    label='Pick size'
+                    placeHolder='SIZE'
+                    onChange={(size) => setSize(size)}
+                    value={size}
+                    options={sizes}
+                  />
+                  <AddToCart disabled={!!!size} type='submit'>
+                    <CartIcon color={white} size={'1em'} />
+                    {alert ? alert : 'add to cart'}
+                  </AddToCart>
+                </form>
+              ) : (
+                <Unavailable>
+                  product is not available at the moment
+                </Unavailable>
+              )}
+            </section>
+          </>
+        )}
+        {!item && !loading && <div>No such item</div>}
       </SingleProductMain>
     </SiteWrapper>
-  ) : (
-    <div>no such item</div>
   );
 };
 
