@@ -1,36 +1,32 @@
-import { ApolloQueryResult } from 'apollo-boost';
 import { NextPage } from 'next';
-import { ApolloAppContext } from 'next-with-apollo';
 import Head from 'next/head';
 import React from 'react';
 import SingleProduct from '../../../components/SingleProduct/SingleProduct';
-import { SingleItemQuery } from '../../../generated/types';
-import SINGLE_ITEM from '../../../graphql/queries/SINGLE_ITEM';
+import { useSingleItemQuery } from '../../../generated/types';
 
 interface Props {
-  singleItemQuery: ApolloQueryResult<SingleItemQuery>;
+  query: {
+    item: string;
+  };
 }
 
-const Item: NextPage<Props> = ({ singleItemQuery }) => {
-  const { data } = singleItemQuery;
+const Item: NextPage<Props> = ({ query }) => {
+  const { data, loading } = useSingleItemQuery({
+    variables: {
+      id: query.item,
+    },
+  });
   return (
     <>
       <Head>
-        <title> wear {data.item?.name && `| ${data.item?.name}`}</title>
+        <title>
+          wear{' '}
+          {data ? data.item?.name && `| ${data.item?.name}` : '| not found'}
+        </title>
       </Head>
-      <SingleProduct item={data.item} />
+      <SingleProduct item={data?.item} loading={loading} />
     </>
   );
-};
-
-Item.getInitialProps = async (ctx: ApolloAppContext) => {
-  const singleItemQuery = await ctx.apolloClient.query<SingleItemQuery>({
-    query: SINGLE_ITEM,
-    variables: {
-      id: ctx.query.item,
-    },
-  });
-  return { singleItemQuery };
 };
 
 export default Item;
