@@ -51,12 +51,12 @@ const ItemRow: React.FC<Props> = ({
         <TableData>
           <LinkAnchor
             href={{
-              pathname: `/admin/item`,
+              pathname: `/admin/items/[item]`,
               query: {
-                category: category.toLowerCase(),
-                id,
+                item: id,
               },
             }}
+            as={`/admin/items/${id}`}
           >
             edit item
           </LinkAnchor>
