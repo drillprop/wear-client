@@ -38,10 +38,10 @@ const ItemRow: React.FC<Props> = ({
   return (
     <Link
       href={{
-        pathname: `/[gender]/item`,
-        query: { id },
+        pathname: `/[gender]/[category]/[item]`,
+        query: { item: id },
       }}
-      as={`/${gender.toLowerCase()}/item?id=${id}`}
+      as={`/${gender.toLowerCase()}/${category.toLowerCase()}/${id}`}
     >
       <TableBodyRow grey={grey}>
         <TableData>{name}</TableData>
