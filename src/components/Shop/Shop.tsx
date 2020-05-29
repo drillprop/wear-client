@@ -11,7 +11,7 @@ import {
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import Pagination from '../Pagination/Pagination';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
-import { ShopFiltersWrapper } from './Shop.styles';
+import { ShopFiltersWrapper, ShopWrapper } from './Shop.styles';
 import NameAndPriceFilters from './shop/NameAndPriceFilters';
 import SortAndPerPage from './shop/SortAndPerPage';
 import Products from './shop/Products';
@@ -59,34 +59,38 @@ const Shop: React.FC<Props> = ({ query }) => {
   return (
     <SiteWrapper>
       <ShopSideNav gender={gender} />
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <div>
-          <SiteSubtitle>shop</SiteSubtitle>
-          <ShopFiltersWrapper>
-            <NameAndPriceFilters
-              maxPrice={data?.items.maxPrice || 0}
-              refetch={debouncedRefetch}
-              variables={variables}
-            />
-            <SortAndPerPage
-              refetch={refetch}
-              variables={variables}
-              path={path}
-              asPath={asPath}
-            />
-          </ShopFiltersWrapper>
-          <Products items={data?.items.select || []} />
-          <Pagination
-            path={path}
-            page={parseInt(query.page) || 1}
-            total={data?.items.count}
-            take={(variables && variables.take) || take}
-            refetch={refetch}
+      <div>
+        <SiteSubtitle>shop</SiteSubtitle>
+        <ShopFiltersWrapper>
+          <NameAndPriceFilters
+            maxPrice={data?.items.maxPrice || 0}
+            refetch={debouncedRefetch}
+            variables={variables}
           />
-        </div>
-      )}
+          <SortAndPerPage
+            refetch={refetch}
+            variables={variables}
+            path={path}
+            asPath={asPath}
+          />
+        </ShopFiltersWrapper>
+        <ShopWrapper>
+          {loading ? (
+            <LoadingSpinner />
+          ) : (
+            <>
+              <Products items={data?.items.select || []} />
+              <Pagination
+                path={path}
+                page={parseInt(query.page) || 1}
+                total={data?.items.count}
+                take={(variables && variables.take) || take}
+                refetch={refetch}
+              />
+            </>
+          )}
+        </ShopWrapper>
+      </div>
     </SiteWrapper>
   );
 };
