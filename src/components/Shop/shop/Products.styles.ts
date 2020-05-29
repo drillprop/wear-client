@@ -6,7 +6,9 @@ import fontSizes from '../../../styles/fontSizes';
 export const ProductsWrapper = styled.div`
   margin-top: 75px;
   display: grid;
-  grid-gap: 25px;
+  grid-gap: 30px;
+  justify-content: center;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
 `;
 
