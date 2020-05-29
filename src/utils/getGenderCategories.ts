@@ -1,9 +1,9 @@
-import { Category, Gender } from '../generated/types';
+import { Category } from '../generated/types';
 
-export default (gender: Gender.MAN | Gender.WOMAN) => {
-  if (gender === Gender.MAN) {
+export default (gender: string) => {
+  if (gender === 'MAN') {
     return Object.values(Category).filter(
-      cat => cat !== Category.DRESS && cat !== Category.BLOUSE
+      (cat) => cat !== Category.DRESS && cat !== Category.BLOUSE
     );
   }
   return Object.values(Category);

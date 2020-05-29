@@ -1,5 +1,4 @@
 import React from 'react';
-import { Gender } from '../../generated/types';
 import {
   SideNavItem,
   SideNavList,
@@ -11,7 +10,7 @@ import getGenderCategories from '../../utils/getGenderCategories';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
 interface Props {
-  gender: Gender;
+  gender: string;
 }
 
 const ShopSideNav: React.FC<Props> = ({ gender }) => {
