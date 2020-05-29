@@ -30,10 +30,16 @@ export const withPrivateRoute = (
         //  1 EMPLOYEE
         //  2 CUSTOMER
         const userLevel = Object.keys(UserRole).indexOf(data.me?.role || '');
-        const isAllowed = userLevel <= requiredLevel;
+        const isAllowed = userLevel >= 0 && userLevel <= requiredLevel;
+
+        let componentProps = {};
+
+        if (Component.getInitialProps) {
+          componentProps = await Component.getInitialProps(ctx);
+        }
 
         if (isAllowed) {
-          return data.me;
+          return { me: data.me, ...componentProps };
         } else {
           redirectToSign(ctx);
         }
