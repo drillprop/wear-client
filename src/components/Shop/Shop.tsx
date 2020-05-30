@@ -45,7 +45,7 @@ const Shop: React.FC<Props> = ({ query }) => {
     },
   });
 
-  const path = category ? `/[gender]/[category]` : `/[gender]`;
+  const path = category ? `/shop/[gender]/[category]` : `/shop/[gender]`;
   const asPath = category
     ? `/${query?.gender}/${query?.category}`
     : `/${query?.gender}`;
