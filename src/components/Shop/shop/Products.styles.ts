@@ -14,6 +14,7 @@ export const ProductsWrapper = styled.div`
 
 export const ProductCardWrapper = styled.div`
   position: relative;
+  width: 100%;
   :hover div {
     opacity: 1;
   }
@@ -21,7 +22,7 @@ export const ProductCardWrapper = styled.div`
     transform: scale(1.01);
   }
   @media (max-width: 500px) {
-    width: 200px;
+    width: 250px;
   }
 `;
 
