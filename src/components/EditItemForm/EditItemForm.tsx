@@ -78,7 +78,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
                 pathname: `/shop/[gender]/[category]/[item]`,
                 query: { item: item.id },
               }}
-              as={`/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
+              as={`/shop/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
                 item.id
               }`}
             >
