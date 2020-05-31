@@ -5,7 +5,7 @@ import {
   CustomSelectedOption,
   PlaceHolder,
   SelectLabel,
-  SelectWrapper
+  SelectWrapper,
 } from './Select.styles';
 
 interface Props {
@@ -29,7 +29,7 @@ const Select: React.FC<Props> = ({
   value = '',
   icon,
   onChange,
-  small
+  small,
 }) => {
   const [visible, setVisible] = useState(false);
   const [optIndex, setOptIndex] = useState(-1);
@@ -47,20 +47,20 @@ const Select: React.FC<Props> = ({
 
   const handleKeyEvents = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
-      setVisible(visible => !visible);
+      setVisible((visible) => !visible);
     }
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       if (options?.length && optIndex < options.length - 1) {
         onChange(options[optIndex + 1]);
-        setOptIndex(index => index + 1);
+        setOptIndex((index) => index + 1);
       }
     }
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (options?.length && optIndex > 0) {
         onChange(options[optIndex - 1]);
-        setOptIndex(index => index - 1);
+        setOptIndex((index) => index - 1);
       }
     }
   };
@@ -68,16 +68,16 @@ const Select: React.FC<Props> = ({
   return (
     <SelectWrapper marginTop={marginTop} width={width}>
       <SelectLabel
-        role='label'
         icon={icon || '/category-icon.svg'}
-        onClick={() => setVisible(visible => !visible)}
+        onClick={() => setVisible((visible) => !visible)}
         small={small}
       >
         {label}
       </SelectLabel>
       <CustomSelect
+        role='listbox'
         tabIndex={0}
-        onClick={() => setVisible(visible => !visible)}
+        onClick={() => setVisible((visible) => !visible)}
         onKeyDown={handleKeyEvents}
         onBlur={handleOnBlur}
         small={small}
@@ -92,7 +92,7 @@ const Select: React.FC<Props> = ({
         </CustomSelectedOption>
         {visible && (
           <>
-            {options?.map(option => (
+            {options?.map((option) => (
               <CustomOption
                 small={small}
                 key={option}
