@@ -41,7 +41,7 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
   font-weight: 700;
   margin-bottom: 5px;
   font-size: ${(props) => (props.small ? fontSizes[0] : fontSizes[1])};
-  color: ${(props) => (props.small ? grays[3] : grays[0])};
+  color: ${(props) => (props.small ? grays[2] : grays[0])};
   display: block;
   cursor: pointer;
   text-transform: uppercase;

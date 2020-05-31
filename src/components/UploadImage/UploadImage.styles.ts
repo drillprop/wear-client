@@ -32,7 +32,7 @@ export const ImageBox = styled.div<{ imageUrl?: string }>`
   background-color: ${grays[6]};
   background-position: center;
   background-size: cover;
-  ${props => props.imageUrl && `background-image: url(${props.imageUrl});`};
+  ${(props) => props.imageUrl && `background-image: url(${props.imageUrl});`};
 `;
 
 export const FileInputLabel = styled.label<FileInputLabelProps>`
@@ -43,12 +43,12 @@ export const FileInputLabel = styled.label<FileInputLabelProps>`
   font-family: ${montserrat};
   font-weight: 500;
   font-size: ${fontSizes[1]};
-  color: ${props => (props.highlight ? grays[0] : '#757575')};
+  color: ${(props) => (props.highlight ? grays[0] : grays[2])};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  ${props => props.outline && 'outline: -webkit-focus-ring-color auto 1px'};
+  ${(props) => props.outline && 'outline: -webkit-focus-ring-color auto 1px'};
 `;
 
 export const StyledFileInput = styled.input`

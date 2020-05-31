@@ -31,8 +31,8 @@ interface RangeInputWrapperInterface {
 }
 
 export const RangeInputWrapper = styled.div<RangeInputWrapperInterface>`
-  margin-top: ${props => props.marginTop};
-  width: ${props => props.width};
+  margin-top: ${(props) => props.marginTop};
+  width: ${(props) => props.width};
 `;
 export const RangeValueAndInput = styled.div`
   display: flex;
@@ -76,7 +76,7 @@ export const RangeInputLabel = styled.label`
   font-family: ${roboto};
   font-weight: 700;
   font-size: ${fontSizes[0]};
-  color: ${grays[3]};
+  color: ${grays[2]};
   display: block;
   cursor: pointer;
   text-transform: uppercase;
