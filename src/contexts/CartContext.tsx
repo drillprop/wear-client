@@ -18,7 +18,7 @@ export interface ICartItem {
   quantity: number;
 }
 
-interface ICartContext {
+interface Cart {
   cartItems: ICartItem[];
   addItemToCart: (item: ICartItem) => void;
   removeItemFromCart: (item: ICartItem) => void;
@@ -32,7 +32,7 @@ interface ICartContext {
   };
 }
 
-export const CartContext = createContext<ICartContext>({
+export const CartContext = createContext<Cart>({
   cartItems: [],
   addItemToCart: (_: ICartItem) => [],
   removeItemFromCart: (_: ICartItem) => [],
