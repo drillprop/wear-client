@@ -496,6 +496,19 @@ export type RegisterMutation = (
   ) }
 );
 
+export type ResetPasswordMutationVariables = {
+  email: Scalars['String'];
+};
+
+
+export type ResetPasswordMutation = (
+  { __typename?: 'Mutation' }
+  & { requestResetPassword: (
+    { __typename?: 'SuccessMessage' }
+    & Pick<SuccessMessage, 'message'>
+  ) }
+);
+
 export type SignoutMutationVariables = {};
 
 
@@ -931,6 +944,38 @@ export function useRegisterMutation(baseOptions?: ApolloReactHooks.MutationHookO
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = ApolloReactCommon.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = ApolloReactCommon.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const ResetPasswordDocument = gql`
+    mutation ResetPassword($email: String!) {
+  requestResetPassword(email: $email) {
+    message
+  }
+}
+    `;
+export type ResetPasswordMutationFn = ApolloReactCommon.MutationFunction<ResetPasswordMutation, ResetPasswordMutationVariables>;
+
+/**
+ * __useResetPasswordMutation__
+ *
+ * To run a mutation, you first call `useResetPasswordMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useResetPasswordMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [resetPasswordMutation, { data, loading, error }] = useResetPasswordMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *   },
+ * });
+ */
+export function useResetPasswordMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<ResetPasswordMutation, ResetPasswordMutationVariables>) {
+        return ApolloReactHooks.useMutation<ResetPasswordMutation, ResetPasswordMutationVariables>(ResetPasswordDocument, baseOptions);
+      }
+export type ResetPasswordMutationHookResult = ReturnType<typeof useResetPasswordMutation>;
+export type ResetPasswordMutationResult = ApolloReactCommon.MutationResult<ResetPasswordMutation>;
+export type ResetPasswordMutationOptions = ApolloReactCommon.BaseMutationOptions<ResetPasswordMutation, ResetPasswordMutationVariables>;
 export const SignoutDocument = gql`
     mutation Signout {
   signout {
