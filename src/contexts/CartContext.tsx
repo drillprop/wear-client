@@ -32,19 +32,7 @@ interface Cart {
   };
 }
 
-export const CartContext = createContext<Cart>({
-  cartItems: [],
-  addItemToCart: (_: ICartItem) => [],
-  removeItemFromCart: (_: ICartItem) => [],
-  incItemInCart: (_: ICartItem) => [],
-  decrItemInCart: (_: ICartItem) => [],
-  cartVisible: true,
-  toggleCartVisible: () => {},
-  totals: {
-    total: 0,
-    totalPrice: 0,
-  },
-});
+export const CartContext = createContext<Cart | undefined>(undefined);
 
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
@@ -100,7 +88,10 @@ const CartContextProvider: React.FC = ({ children }) => {
 
 export const useCart = () => {
   const ctx = useContext(CartContext);
-  return { ...ctx };
+  if (ctx === undefined) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return ctx;
 };
 
 export default CartContextProvider;
