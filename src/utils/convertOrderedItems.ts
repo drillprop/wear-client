@@ -15,7 +15,7 @@ type ConvertedItems = {
   gender: Gender;
 }[];
 
-export default (orderedItems: OrderedItems) =>
+const convertOrderedItems = (orderedItems: OrderedItems) =>
   orderedItems?.reduce((acc: ConvertedItems, orderItem) => {
     const existingItem = acc.find(
       (accItem: any) =>
@@ -29,9 +29,11 @@ export default (orderedItems: OrderedItems) =>
         name: orderItem.item.name,
         price: orderItem.item.price,
         quantity: 1,
-        gender: orderItem.item.gender
+        gender: orderItem.item.gender,
       });
     else existingItem.quantity = existingItem.quantity + 1;
 
     return acc;
   }, []);
+
+export default convertOrderedItems;

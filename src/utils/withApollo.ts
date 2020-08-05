@@ -6,17 +6,17 @@ export default withApollo(
     new ApolloClient({
       uri: process.env.BACKEND_URL,
       credentials: 'include',
-      request: operation => {
+      request: (operation) => {
         operation.setContext({
           fetchOptions: {
-            credentials: 'include'
+            credentials: 'include',
           },
-          headers
+          headers,
         });
       },
-      cache: new InMemoryCache().restore(initialState || {})
+      cache: new InMemoryCache().restore(initialState || {}),
     }),
   {
-    getDataFromTree: 'ssr'
+    getDataFromTree: 'ssr',
   }
 );

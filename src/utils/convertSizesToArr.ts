@@ -1,13 +1,15 @@
 import { SizeSymbol } from '../generated/types';
 
-export default (sizeObj: any) => {
+const convertSizesToArr = (sizeObj: any) => {
   return Object.values(SizeSymbol)
     .map(
-      sizeSymbol =>
+      (sizeSymbol) =>
         sizeObj[sizeSymbol] >= 0 && {
           sizeSymbol,
-          quantity: parseInt(sizeObj[sizeSymbol])
+          quantity: parseInt(sizeObj[sizeSymbol]),
         }
     )
     .filter(Boolean);
 };
+
+export default convertSizesToArr;

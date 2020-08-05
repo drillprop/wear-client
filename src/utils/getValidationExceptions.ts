@@ -1,6 +1,6 @@
 import { ApolloError } from 'apollo-boost';
 
-export default (error: ApolloError | string) => {
+const getValidationExceptions = (error: ApolloError | string) => {
   if (typeof error === 'string') {
     return error;
   }
@@ -18,3 +18,5 @@ export default (error: ApolloError | string) => {
 
   return error.message;
 };
+
+export default getValidationExceptions;

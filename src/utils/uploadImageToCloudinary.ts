@@ -1,4 +1,4 @@
-export default async (base64: string) => {
+const uploadImageToCloudinary = async (base64: string) => {
   try {
     const file = new File([base64], 'name');
     const form = new FormData();
@@ -7,7 +7,7 @@ export default async (base64: string) => {
     form.append('upload_preset', process.env.CLOUDINARY_PRESET as string);
     const response = await fetch(process.env.CLOUDINARY_UPLOAD_URL as string, {
       method: 'POST',
-      body: form
+      body: form,
     });
     const json = await response.json();
     return json;
@@ -15,3 +15,5 @@ export default async (base64: string) => {
     console.error(error);
   }
 };
+
+export default uploadImageToCloudinary;

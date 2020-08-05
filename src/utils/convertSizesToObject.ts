@@ -5,7 +5,7 @@ interface Size {
   sizeSymbol?: SizeSymbol | null;
 }
 
-export default (sizesArr?: Size[] | null) => {
+const convertSizesToObject = (sizesArr?: Size[] | null) => {
   const sizesObject = Object.values(SizeSymbol).reduce((acc: any, size) => {
     acc[size] = 0;
     return acc;
@@ -17,3 +17,5 @@ export default (sizesArr?: Size[] | null) => {
   }
   return sizesObject;
 };
+
+export default convertSizesToObject;

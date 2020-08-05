@@ -1,6 +1,6 @@
 import { Category } from '../generated/types';
 
-export default (gender: string) => {
+const getGenderCategories =  (gender: string) => {
   if (gender === 'MAN') {
     return Object.values(Category).filter(
       (cat) => cat !== Category.DRESS && cat !== Category.BLOUSE
@@ -8,3 +8,5 @@ export default (gender: string) => {
   }
   return Object.values(Category);
 };
+
+export default getGenderCategories
