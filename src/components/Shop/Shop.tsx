@@ -20,9 +20,7 @@ import NoItems from '../NoItems/NoItems';
 
 interface Props {
   query: {
-    category: string;
-    page: string;
-    gender?: string;
+    [key: string]: string;
   };
 }
 

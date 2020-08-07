@@ -1,15 +1,9 @@
-import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 import React from 'react';
 import Shop from '../../../components/Shop/Shop';
 
-interface Props {
-  query: {
-    category: string;
-    page: string;
-  };
-}
-
-const ShopPage: NextPage<Props> = ({ query }) => {
+const ShopPage = () => {
+  const { query } = useRouter();
   return <Shop query={query} />;
 };
 
