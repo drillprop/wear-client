@@ -6,14 +6,14 @@ import SingleProduct from '../../../components/SingleProduct/SingleProduct';
 
 interface Props {
   query: {
-    item: string;
+    id: string;
   };
 }
 
 const Item: NextPage<Props> = ({ query }) => {
   const { data, loading } = useSingleItemQuery({
     variables: {
-      id: query.item,
+      id: query.id,
     },
   });
   return (
