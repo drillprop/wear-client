@@ -26,7 +26,6 @@ interface Props {
 const SingleProduct: React.FC<Props> = ({ item, loading }) => {
   const [size, setSize] = useState<keyof typeof SizeSymbol | ''>('');
   const [alert, setAlert] = useState('');
-  const { query } = useRouter();
 
   const sizes =
     item?.sizes &&
@@ -62,10 +61,9 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
   };
   return (
     <SiteWrapper>
-      {item && <ShopSideNav gender={item.gender.toUpperCase()} />}
-      {loading && <LoadingSpinner />}
+      {item ? <ShopSideNav gender={item.gender.toUpperCase()} /> : <div />}
       <SingleProductMain>
-        {item && !loading && (
+        {item && !loading ? (
           <>
             <SingleProductImg src={item?.imageUrl} alt={item?.name} />
             <section>
@@ -96,6 +94,10 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
               )}
             </section>
           </>
+        ) : (
+          <div style={{ display: 'grid', gridColumn: '1/3' }}>
+            <LoadingSpinner />
+          </div>
         )}
         {!item && !loading && <div>No such item</div>}
       </SingleProductMain>
