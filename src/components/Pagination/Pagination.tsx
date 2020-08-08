@@ -26,10 +26,12 @@ const Pagination: React.FC<Props> = ({
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    refetch({
-      skip: take * page - take,
-    });
-  }, [take, page]);
+    if (refetch) {
+      refetch({
+        skip: take * page - take,
+      });
+    }
+  }, [take, page, refetch]);
 
   useEffect(() => {
     setTotalPages(Math.ceil(total / take));
@@ -46,7 +48,7 @@ const Pagination: React.FC<Props> = ({
             page: page - 1 || 1,
           },
         }}
-        as={`${asPath}?page=${page - 1 || 1}`}
+        as={`${asPath ? asPath : path}?page=${page - 1 || 1}`}
       >
         <NextPrevPage>&lt;</NextPrevPage>
       </Link>
@@ -62,7 +64,9 @@ const Pagination: React.FC<Props> = ({
             page: totalPages > page ? page + 1 : totalPages,
           },
         }}
-        as={`${asPath}?page=${totalPages > page ? page + 1 : totalPages}`}
+        as={`${asPath ? asPath : path}?page=${
+          totalPages > page ? page + 1 : totalPages
+        }`}
       >
         <NextPrevPage>&gt;</NextPrevPage>
       </Link>
