@@ -17,7 +17,10 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
   return (
     <SideNavWrapper>
       <SideNavSticky>
-        <LinkAnchor href='/shop/[gender]' as={`/${gender.toLowerCase()}`}>
+        <LinkAnchor
+          href='/shop/[...params]'
+          as={`/shop/${gender.toLowerCase()}`}
+        >
           <SideNavMainTitle>{gender}</SideNavMainTitle>
         </LinkAnchor>
         <SideNavList>
@@ -25,7 +28,7 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
             <SideNavItem key={category}>
               <LinkAnchor
                 wordToHighlight={category.toLowerCase()}
-                href='/shop/[gender]/[category]'
+                href='/shop/[...params]'
                 as={`/shop/${gender.toLowerCase()}/${category.toLowerCase()}`}
               >
                 {category}

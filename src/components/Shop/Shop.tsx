@@ -17,20 +17,20 @@ import SortAndPerPage from './shop/SortAndPerPage';
 import Products from './shop/Products';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import NoItems from '../NoItems/NoItems';
+import { ParsedUrlQuery } from 'querystring';
 
 interface Props {
-  query: {
-    [key: string]: string;
-  };
+  query: ParsedUrlQuery;
 }
 
 const Shop: React.FC<Props> = ({ query }) => {
-  const category = query.category?.toUpperCase() as Category;
-  const gender = query.gender?.toUpperCase() as Gender;
+  const gender = query.params[0]?.toUpperCase() as Gender;
+  const category = query.params[1]?.toUpperCase() as Category;
+  const pageNumber = parseInt(String(query.page));
   const router = useRouter();
   const take = 6;
 
-  const skip = parseInt(query.page) * take - take || 0;
+  const skip = pageNumber * take - take || 0;
 
   const { data, refetch, variables, loading } = useItemsQuery({
     variables: {
@@ -43,10 +43,10 @@ const Shop: React.FC<Props> = ({ query }) => {
     },
   });
 
-  const path = category ? `/shop/[gender]/[category]` : `/shop/[gender]`;
+  const path = '/shop/[...params]';
   const asPath = category
-    ? `/${query?.gender}/${query?.category}`
-    : `/${query?.gender}`;
+    ? `/shop/${gender.toLowerCase()}/${category.toLowerCase()}`
+    : `/shop/${gender.toLowerCase()}`;
 
   const debouncedRefetch = debounce((variables: ItemsQueryVariables) => {
     if (variables.skip) {
@@ -84,7 +84,8 @@ const Shop: React.FC<Props> = ({ query }) => {
               <Products items={data?.items.select || []} />
               <Pagination
                 path={path}
-                page={parseInt(query.page) || 1}
+                asPath={asPath}
+                page={pageNumber || 1}
                 total={data?.items.count}
                 take={(variables && variables.take) || take}
                 refetch={refetch}

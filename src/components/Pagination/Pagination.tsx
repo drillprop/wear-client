@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {
   NextPrevPage,
   PageNumber,
-  PageNumbersWrapper
+  PageNumbersWrapper,
 } from './Pagination.styles';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
   refetch: any;
   take: number;
   page: number;
+  asPath?: string;
 }
 
 const Pagination: React.FC<Props> = ({
@@ -19,13 +20,14 @@ const Pagination: React.FC<Props> = ({
   refetch,
   take,
   page,
-  path
+  path,
+  asPath,
 }) => {
   const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     refetch({
-      skip: take * page - take
+      skip: take * page - take,
     });
   }, [take, page]);
 
@@ -41,10 +43,10 @@ const Pagination: React.FC<Props> = ({
         href={{
           pathname: path,
           query: {
-            page: page - 1 || 1
-          }
+            page: page - 1 || 1,
+          },
         }}
-        as={`?page=${page - 1 || 1}`}
+        as={`${asPath}?page=${page - 1 || 1}`}
       >
         <NextPrevPage>&lt;</NextPrevPage>
       </Link>
@@ -57,10 +59,10 @@ const Pagination: React.FC<Props> = ({
         href={{
           pathname: path,
           query: {
-            page: totalPages > page ? page + 1 : totalPages
-          }
+            page: totalPages > page ? page + 1 : totalPages,
+          },
         }}
-        as={`?page=${totalPages > page ? page + 1 : totalPages}`}
+        as={`${asPath}?page=${totalPages > page ? page + 1 : totalPages}`}
       >
         <NextPrevPage>&gt;</NextPrevPage>
       </Link>

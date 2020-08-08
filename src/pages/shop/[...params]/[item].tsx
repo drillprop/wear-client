@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
-import { useSingleItemQuery } from '../../../../generated/types';
-import SingleProduct from '../../../../components/SingleProduct/SingleProduct';
+import { useSingleItemQuery } from '../../../generated/types';
+import SingleProduct from '../../../components/SingleProduct/SingleProduct';
 
 interface Props {
   query: {

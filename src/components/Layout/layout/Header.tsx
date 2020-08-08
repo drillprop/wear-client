@@ -15,7 +15,7 @@ const Header: React.FC = () => {
         <Ul>
           <Li>
             <LinkAnchor
-              href='/shop/[gender]'
+              href='/shop/[...params]'
               as='/shop/woman'
               wordToHighlight='woman'
             >
@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           <Li>
             <LinkAnchor
               wordToHighlight='man'
-              href='/shop/[gender]'
+              href='/shop/[...params]'
               as='/shop/man'
             >
               man
