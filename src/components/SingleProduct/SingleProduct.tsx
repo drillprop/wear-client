@@ -62,7 +62,7 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
   };
   return (
     <SiteWrapper>
-      <ShopSideNav gender={query.params[0].toString().toUpperCase()} />
+      {item && <ShopSideNav gender={item.gender.toUpperCase()} />}
       {loading && <LoadingSpinner />}
       <SingleProductMain>
         {item && !loading && (

@@ -86,7 +86,7 @@ const MobileMenu = () => {
                 {womanCategories.map((category) => (
                   <li key={category}>
                     <LinkAnchor
-                      href='/shop/[gender]/[category]'
+                      href='/shop/[...params]'
                       as={`/shop/woman/${category.toLowerCase()}`}
                     >
                       {category}
@@ -98,7 +98,7 @@ const MobileMenu = () => {
                 {manCategories.map((category) => (
                   <li key={category}>
                     <LinkAnchor
-                      href='/shop/[gender]/[category]'
+                      href='/shop/[...params]'
                       as={`/shop/man/${category.toLowerCase()}`}
                     >
                       {category}
