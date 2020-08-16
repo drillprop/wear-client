@@ -32,16 +32,20 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p $PORT",
-    "generate": "graphql-codegen --config codegen.yml -r dotenv/config"
+    "generate": "graphql-codegen --config codegen.yml -r dotenv/config",
+    "test": "jest"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.7",
     "@graphql-codegen/typescript": "^1.17.7",
     "@graphql-codegen/typescript-operations": "^1.17.7",
     "@graphql-codegen/typescript-react-apollo": "^1.17.7",
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.8",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash.debounce": "^4.0.6",
     "@types/nprogress": "^0.2.0",
-    "babel-plugin-styled-components": "^1.11.1"
+    "babel-plugin-styled-components": "^1.11.1",
+    "jest": "^26.4.0"
   }
 }
