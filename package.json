@@ -33,7 +33,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "generate": "graphql-codegen --config codegen.yml -r dotenv/config",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.7",
@@ -46,6 +46,7 @@
     "@types/lodash.debounce": "^4.0.6",
     "@types/nprogress": "^0.2.0",
     "babel-plugin-styled-components": "^1.11.1",
-    "jest": "^26.4.0"
+    "jest": "^26.4.0",
+    "ts-jest": "^26.2.0"
   }
 }
