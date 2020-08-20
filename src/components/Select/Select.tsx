@@ -66,11 +66,16 @@ const Select: React.FC<Props> = ({
   };
 
   return (
-    <SelectWrapper marginTop={marginTop} width={width}>
+    <SelectWrapper
+      marginTop={marginTop}
+      width={width}
+      data-testid='select-wrapper'
+    >
       <SelectLabel
         icon={icon || '/category-icon.svg'}
         onClick={() => setVisible((visible) => !visible)}
         small={small}
+        data-testid='select-label'
       >
         {label}
       </SelectLabel>
@@ -80,6 +85,7 @@ const Select: React.FC<Props> = ({
         onClick={() => setVisible((visible) => !visible)}
         onKeyDown={handleKeyEvents}
         onBlur={handleOnBlur}
+        data-testid='custom-select'
         small={small}
       >
         <CustomSelectedOption
@@ -87,6 +93,7 @@ const Select: React.FC<Props> = ({
           aria-selected
           active={visible}
           small={small}
+          data-testid='selected-option'
         >
           {value || <PlaceHolder>{placeHolder}</PlaceHolder>}
         </CustomSelectedOption>
