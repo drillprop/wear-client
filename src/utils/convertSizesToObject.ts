@@ -1,22 +1,26 @@
 import { SizeSymbol } from '../generated/types';
 import { SizesArr } from './constants';
 
-interface Size {
+export interface SizeElem {
   quantity?: number | null;
   sizeSymbol?: SizeSymbol | null;
 }
 
-const convertSizesToObject = (sizesArr?: Size[] | null) => {
-  const sizesObject = SizesArr.reduce((acc: any, size) => {
-    acc[size] = 0;
+export type SizesObject = {
+  XS: number;
+  S: number;
+  M: number;
+  L: number;
+  XL: number;
+  XXL: number;
+};
+
+const convertSizesToObject = (sizesArr: SizeElem[]) => {
+  return SizesArr.reduce((acc: Partial<SizesObject>, size) => {
+    const givenSize = sizesArr.find((s) => s.sizeSymbol === size);
+    acc[givenSize?.sizeSymbol || size] = givenSize?.quantity || 0;
     return acc;
   }, {});
-  if (sizesArr?.length) {
-    sizesArr.map((size: any) => {
-      sizesObject[size.sizeSymbol] = size.quantity;
-    });
-  }
-  return sizesObject;
 };
 
 export default convertSizesToObject;

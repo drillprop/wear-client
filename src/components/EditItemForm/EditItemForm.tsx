@@ -41,7 +41,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
   });
 
   useEffect(() => {
-    setForm({ ...item, sizes: convertSizesToObject(item?.sizes) });
+    setForm({ ...item, sizes: convertSizesToObject(item?.sizes || []) });
   }, [item]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
