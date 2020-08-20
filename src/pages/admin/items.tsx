@@ -14,4 +14,4 @@ const ItemsPage: NextPage<Props> = ({ query }) => {
   return <Items query={query} />;
 };
 
-export default withPrivateRoute(ItemsPage, UserRole.EMPLOYEE);
+export default withPrivateRoute(ItemsPage, 'EMPLOYEE');

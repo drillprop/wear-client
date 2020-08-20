@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import EditItemForm from '../../../components/EditItemForm/EditItemForm';
-import { UserRole, useSingleItemQuery } from '../../../generated/types';
+import { useSingleItemQuery } from '../../../generated/types';
 import { withPrivateRoute } from '../../../hoc/withPrivateRoute';
 
 interface Props {
@@ -26,4 +26,4 @@ const AdminItem: NextPage<Props> = ({ query }) => {
   );
 };
 
-export default withPrivateRoute(AdminItem, UserRole.EMPLOYEE);
+export default withPrivateRoute(AdminItem, 'EMPLOYEE');
