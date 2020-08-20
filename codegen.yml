@@ -9,6 +9,7 @@ generates:
       - 'typescript-operations'
       - 'typescript-react-apollo'
 config:
+  enumsAsTypes: true
   namingConvention:
     enumValues: upper-case#upperCase
   withComponent: false

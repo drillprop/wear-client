@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -9,11 +10,12 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  /** The javascript `Date` as string. Type represents date and time as the ISO Date string. */
   DateTime: any;
 };
 
 export type Address = {
-   __typename?: 'Address';
+  __typename?: 'Address';
   id: Scalars['ID'];
   addressLine1?: Maybe<Scalars['String']>;
   addressLine2?: Maybe<Scalars['String']>;
@@ -22,16 +24,15 @@ export type Address = {
   country?: Maybe<Scalars['String']>;
 };
 
-export enum Category {
-  TROUSERS = 'TROUSERS',
-  DRESS = 'DRESS',
-  BLOUSE = 'BLOUSE',
-  TSHIRT = 'TSHIRT',
-  SHIRT = 'SHIRT',
-  JACKET = 'JACKET',
-  BLAZER = 'BLAZER',
-  SWEATSHIRT = 'SWEATSHIRT'
-}
+export type Category = 
+  | 'TROUSERS'
+  | 'DRESS'
+  | 'BLOUSE'
+  | 'TSHIRT'
+  | 'SHIRT'
+  | 'JACKET'
+  | 'BLAZER'
+  | 'SWEATSHIRT';
 
 export type CreateItemInput = {
   name: Scalars['String'];
@@ -58,13 +59,12 @@ export type EditItemInput = {
   sizes?: Maybe<Array<ItemSizesInput>>;
 };
 
-export enum Gender {
-  MAN = 'MAN',
-  WOMAN = 'WOMAN'
-}
+export type Gender = 
+  | 'MAN'
+  | 'WOMAN';
 
 export type Item = {
-   __typename?: 'Item';
+  __typename?: 'Item';
   id: Scalars['ID'];
   name: Scalars['String'];
   price: Scalars['Float'];
@@ -79,7 +79,7 @@ export type Item = {
 };
 
 export type ItemsAndCount = {
-   __typename?: 'ItemsAndCount';
+  __typename?: 'ItemsAndCount';
   select: Array<Maybe<Item>>;
   count: Scalars['Int'];
   maxPrice?: Maybe<Scalars['Float']>;
@@ -97,7 +97,7 @@ export type LoginInput = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   updateAddress: SuccessMessage;
   createItem: Item;
   deleteItem: SuccessMessage;
@@ -203,7 +203,7 @@ export type MutationUpdatePersonalInfoArgs = {
 };
 
 export type Order = {
-   __typename?: 'Order';
+  __typename?: 'Order';
   id: Scalars['ID'];
   createdAt: Scalars['DateTime'];
   updatedAt?: Maybe<Scalars['DateTime']>;
@@ -213,18 +213,17 @@ export type Order = {
 };
 
 export type Ordered_Item = {
-   __typename?: 'Ordered_Item';
+  __typename?: 'Ordered_Item';
   id: Scalars['ID'];
   item: Item;
   sizeSymbol: SizeSymbol;
 };
 
-export enum OrderStatus {
-  PENDING = 'PENDING',
-  PAID = 'PAID',
-  SENT = 'SENT',
-  COMPLETED = 'COMPLETED'
-}
+export type OrderStatus = 
+  | 'PENDING'
+  | 'PAID'
+  | 'SENT'
+  | 'COMPLETED';
 
 export type PersonalInfoInput = {
   firstName?: Maybe<Scalars['String']>;
@@ -233,7 +232,7 @@ export type PersonalInfoInput = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   item?: Maybe<Item>;
   items: ItemsAndCount;
   order?: Maybe<Order>;
@@ -335,27 +334,25 @@ export type SearchUserInput = {
 };
 
 export type Size = {
-   __typename?: 'Size';
+  __typename?: 'Size';
   sizeSymbol?: Maybe<SizeSymbol>;
   quantity?: Maybe<Scalars['Int']>;
 };
 
-export enum SizeSymbol {
-  XS = 'XS',
-  S = 'S',
-  M = 'M',
-  L = 'L',
-  XL = 'XL',
-  XXL = 'XXL'
-}
+export type SizeSymbol = 
+  | 'XS'
+  | 'S'
+  | 'M'
+  | 'L'
+  | 'XL'
+  | 'XXL';
 
-export enum SortOrder {
-  ASC = 'ASC',
-  DESC = 'DESC'
-}
+export type SortOrder = 
+  | 'ASC'
+  | 'DESC';
 
 export type SuccessMessage = {
-   __typename?: 'SuccessMessage';
+  __typename?: 'SuccessMessage';
   message: Scalars['String'];
 };
 
@@ -368,7 +365,7 @@ export type UpdateAddressInput = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   email: Scalars['String'];
   password: Scalars['String'];
@@ -387,28 +384,27 @@ export type User = {
 };
 
 export type UserOrdersAndCount = {
-   __typename?: 'UserOrdersAndCount';
+  __typename?: 'UserOrdersAndCount';
   select: Array<Maybe<Order>>;
   count: Scalars['Int'];
 };
 
-export enum UserRole {
-  ADMIN = 'ADMIN',
-  EMPLOYEE = 'EMPLOYEE',
-  CUSTOMER = 'CUSTOMER'
-}
+export type UserRole = 
+  | 'ADMIN'
+  | 'EMPLOYEE'
+  | 'CUSTOMER';
 
 export type UsersAndCount = {
-   __typename?: 'UsersAndCount';
+  __typename?: 'UsersAndCount';
   select: Array<Maybe<User>>;
   count: Scalars['Int'];
 };
 
-export type ChangePasswordMutationVariables = {
+export type ChangePasswordMutationVariables = Exact<{
   password: Scalars['String'];
   newPassword: Scalars['String'];
   confirmPassword: Scalars['String'];
-};
+}>;
 
 
 export type ChangePasswordMutation = (
@@ -419,7 +415,7 @@ export type ChangePasswordMutation = (
   ) }
 );
 
-export type CreateItemMutationVariables = {
+export type CreateItemMutationVariables = Exact<{
   name: Scalars['String'];
   price: Scalars['Float'];
   imageUrl: Scalars['String'];
@@ -427,7 +423,7 @@ export type CreateItemMutationVariables = {
   gender: Gender;
   description?: Maybe<Scalars['String']>;
   sizes?: Maybe<Array<ItemSizesInput>>;
-};
+}>;
 
 
 export type CreateItemMutation = (
@@ -442,9 +438,9 @@ export type CreateItemMutation = (
   ) }
 );
 
-export type DeleteAccountMutationVariables = {
+export type DeleteAccountMutationVariables = Exact<{
   password: Scalars['String'];
-};
+}>;
 
 
 export type DeleteAccountMutation = (
@@ -455,9 +451,9 @@ export type DeleteAccountMutation = (
   ) }
 );
 
-export type DeleteItemMutationVariables = {
+export type DeleteItemMutationVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type DeleteItemMutation = (
@@ -468,10 +464,10 @@ export type DeleteItemMutation = (
   ) }
 );
 
-export type LoginMutationVariables = {
+export type LoginMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
-};
+}>;
 
 
 export type LoginMutation = (
@@ -482,10 +478,10 @@ export type LoginMutation = (
   ) }
 );
 
-export type RegisterMutationVariables = {
+export type RegisterMutationVariables = Exact<{
   email: Scalars['String'];
   password: Scalars['String'];
-};
+}>;
 
 
 export type RegisterMutation = (
@@ -496,9 +492,9 @@ export type RegisterMutation = (
   ) }
 );
 
-export type ResetPasswordMutationVariables = {
+export type ResetPasswordMutationVariables = Exact<{
   email: Scalars['String'];
-};
+}>;
 
 
 export type ResetPasswordMutation = (
@@ -509,7 +505,7 @@ export type ResetPasswordMutation = (
   ) }
 );
 
-export type SignoutMutationVariables = {};
+export type SignoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type SignoutMutation = (
@@ -520,9 +516,9 @@ export type SignoutMutation = (
   ) }
 );
 
-export type SubscribeToNewsletterMutationVariables = {
+export type SubscribeToNewsletterMutationVariables = Exact<{
   newsletter: Scalars['Boolean'];
-};
+}>;
 
 
 export type SubscribeToNewsletterMutation = (
@@ -533,13 +529,13 @@ export type SubscribeToNewsletterMutation = (
   ) }
 );
 
-export type UpdateAddressMutationVariables = {
+export type UpdateAddressMutationVariables = Exact<{
   addressLine1?: Maybe<Scalars['String']>;
   addressLine2?: Maybe<Scalars['String']>;
   zipCode?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
   country?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type UpdateAddressMutation = (
@@ -550,14 +546,14 @@ export type UpdateAddressMutation = (
   ) }
 );
 
-export type UpdateItemMutationVariables = {
+export type UpdateItemMutationVariables = Exact<{
   id: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
   imageUrl?: Maybe<Scalars['String']>;
   category?: Maybe<Category>;
   sizes?: Maybe<Array<ItemSizesInput>>;
-};
+}>;
 
 
 export type UpdateItemMutation = (
@@ -572,11 +568,11 @@ export type UpdateItemMutation = (
   ) }
 );
 
-export type UpdatePersonalInfoMutationVariables = {
+export type UpdatePersonalInfoMutationVariables = Exact<{
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
   phoneNumber?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type UpdatePersonalInfoMutation = (
@@ -587,7 +583,7 @@ export type UpdatePersonalInfoMutation = (
   ) }
 );
 
-export type ItemsQueryVariables = {
+export type ItemsQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
   take?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
@@ -599,7 +595,7 @@ export type ItemsQueryVariables = {
   category?: Maybe<Category>;
   gender?: Maybe<Gender>;
   available?: Maybe<Scalars['Boolean']>;
-};
+}>;
 
 
 export type ItemsQuery = (
@@ -618,7 +614,7 @@ export type ItemsQuery = (
   ) }
 );
 
-export type MeQueryVariables = {};
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = (
@@ -633,9 +629,9 @@ export type MeQuery = (
   )> }
 );
 
-export type SingleItemQueryVariables = {
+export type SingleItemQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type SingleItemQuery = (
@@ -650,9 +646,9 @@ export type SingleItemQuery = (
   )> }
 );
 
-export type SingleUserQueryVariables = {
+export type SingleUserQueryVariables = Exact<{
   id: Scalars['ID'];
-};
+}>;
 
 
 export type SingleUserQuery = (
@@ -670,7 +666,7 @@ export type SingleUserQuery = (
   )> }
 );
 
-export type UsersQueryVariables = {
+export type UsersQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
   take?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
@@ -680,7 +676,7 @@ export type UsersQueryVariables = {
   email?: Maybe<Scalars['String']>;
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type UsersQuery = (
@@ -699,10 +695,10 @@ export type UsersQuery = (
   ) }
 );
 
-export type UserOrdersQueryVariables = {
+export type UserOrdersQueryVariables = Exact<{
   take?: Maybe<Scalars['Int']>;
   skip?: Maybe<Scalars['Int']>;
-};
+}>;
 
 
 export type UserOrdersQuery = (
@@ -1183,7 +1179,7 @@ export const ItemsDocument = gql`
  * __useItemsQuery__
  *
  * To run a query within a React component, call `useItemsQuery` and pass it any options that fit your needs.
- * When your component renders, `useItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1243,7 +1239,7 @@ export const MeDocument = gql`
  * __useMeQuery__
  *
  * To run a query within a React component, call `useMeQuery` and pass it any options that fit your needs.
- * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1287,7 +1283,7 @@ export const SingleItemDocument = gql`
  * __useSingleItemQuery__
  *
  * To run a query within a React component, call `useSingleItemQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleItemQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useSingleItemQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1338,7 +1334,7 @@ export const SingleUserDocument = gql`
  * __useSingleUserQuery__
  *
  * To run a query within a React component, call `useSingleUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useSingleUserQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useSingleUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1382,7 +1378,7 @@ export const UsersDocument = gql`
  * __useUsersQuery__
  *
  * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -1438,7 +1434,7 @@ export const UserOrdersDocument = gql`
  * __useUserOrdersQuery__
  *
  * To run a query within a React component, call `useUserOrdersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useUserOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
