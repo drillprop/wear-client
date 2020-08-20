@@ -21,7 +21,7 @@ import {
   StyledEditForm,
 } from './EditItemForm.styles';
 import EditSizes from './editItemForm/EditSizes';
-import { GenderArr, CategoryArr } from '../../utils/constants';
+import { CategoryArr, GenderArr } from '../../utils/constants';
 
 interface Props {
   item: SingleItemQuery['item'];
@@ -71,12 +71,12 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
           <EditFormLinks>
             <LinkAnchor
               href={{
-                pathname: `/shop/[gender]/[category]/[item]`,
-                query: { item: item.id },
+                pathname: `/shop/item`,
+                query: {
+                  id: item.id,
+                },
               }}
-              as={`/shop/${item.gender.toLowerCase()}/${item.category.toLowerCase()}/${
-                item.id
-              }`}
+              as={`/shop/item?id=${item.id}`}
             >
               Go to item
             </LinkAnchor>
