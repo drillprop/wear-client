@@ -22,7 +22,7 @@ const LinkAnchor: FC<LinkProps & Props> = ({
     : false;
 
   return (
-    <Link {...props}>
+    <Link {...props} passHref>
       <StyledAnchor active={highlight || isPathIncludes}>
         {children}
       </StyledAnchor>

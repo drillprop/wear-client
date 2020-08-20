@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, ImageTitle, ImageWrapper } from './HomepageImage.styles';
-import Link from 'next/link';
+import LinkAnchor from '../LinkAnchor/LinkAnchor';
 
 interface Props {
   link: string;
@@ -9,12 +9,12 @@ interface Props {
 
 const HomepageImage: React.FC<Props> = ({ imageUrl, link, children }) => {
   return (
-    <Link href='/shop/[...params]' as={link}>
+    <LinkAnchor href='/shop/[...params]' as={link}>
       <ImageWrapper>
         <ImageTitle>{children}</ImageTitle>
         <Image imageUrl={imageUrl}></Image>
       </ImageWrapper>
-    </Link>
+    </LinkAnchor>
   );
 };
 
