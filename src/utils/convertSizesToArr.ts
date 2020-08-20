@@ -1,4 +1,4 @@
-import { SizeSymbol } from '../generated/types';
+import { SizesArr } from './constants';
 
 type SizesObject = {
   XS: number;
@@ -10,15 +10,13 @@ type SizesObject = {
 };
 
 const convertSizesToArr = (sizeObj: SizesObject) => {
-  return Object.values(SizeSymbol)
-    .map(
-      (sizeSymbol) =>
-        sizeObj[sizeSymbol] >= 0 && {
-          sizeSymbol,
-          quantity: sizeObj[sizeSymbol],
-        }
-    )
-    .filter(Boolean);
+  return SizesArr.map(
+    (sizeSymbol) =>
+      sizeObj[sizeSymbol] >= 0 && {
+        sizeSymbol,
+        quantity: sizeObj[sizeSymbol],
+      }
+  ).filter(Boolean);
 };
 
 export default convertSizesToArr;

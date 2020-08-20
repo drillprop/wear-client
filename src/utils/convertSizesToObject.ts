@@ -1,4 +1,5 @@
 import { SizeSymbol } from '../generated/types';
+import { SizesArr } from './constants';
 
 interface Size {
   quantity?: number | null;
@@ -6,7 +7,7 @@ interface Size {
 }
 
 const convertSizesToObject = (sizesArr?: Size[] | null) => {
-  const sizesObject = Object.values(SizeSymbol).reduce((acc: any, size) => {
+  const sizesObject = SizesArr.reduce((acc: any, size) => {
     acc[size] = 0;
     return acc;
   }, {});
