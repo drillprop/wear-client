@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  useMeQuery,
-  UserRole,
-  useSignoutMutation,
-} from '../../../../generated/types';
+import { useMeQuery, useSignoutMutation } from '../../../../generated/types';
 import ME from '../../../../graphql/queries/ME';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
 import {
@@ -18,7 +14,7 @@ const ProfileDropDown: React.FC = () => {
     refetchQueries: [{ query: ME }],
   });
   const { data } = useMeQuery();
-  const admin = data?.me?.role === UserRole.ADMIN;
+  const isAdmin = data?.me?.role === 'ADMIN';
   return (
     <LiWithDropdown>
       <LinkAnchor href='/sign'>
@@ -37,7 +33,7 @@ const ProfileDropDown: React.FC = () => {
             <ProfileDropDownItem>
               <LinkAnchor href='/cart'>my cart </LinkAnchor>
             </ProfileDropDownItem>
-            {admin && (
+            {isAdmin && (
               <ProfileDropDownItem admin>
                 <LinkAnchor href='/admin/users'>admin panel</LinkAnchor>
               </ProfileDropDownItem>

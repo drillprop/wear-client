@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
-import { SingleItemQuery, SizeSymbol } from '../../generated/types';
+import { SingleItemQuery } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteWrapper } from '../../styles/site.styles';
 import CartIcon from '../CartIcon/CartIcon';
@@ -17,6 +17,7 @@ import {
   Unavailable,
 } from './SingleProduct.styles';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { SizesArr } from '../../utils/constants';
 
 interface Props {
   item?: SingleItemQuery['item'];
@@ -24,7 +25,7 @@ interface Props {
 }
 
 const SingleProduct: React.FC<Props> = ({ item, loading }) => {
-  const [size, setSize] = useState<keyof typeof SizeSymbol | ''>('');
+  const [size, setSize] = useState<keyof typeof SizesArr | ''>('');
   const [alert, setAlert] = useState('');
 
   const sizes =

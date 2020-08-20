@@ -1,8 +1,9 @@
 import React from 'react';
-import { UsersFiltersWrapper } from './UsersFilters.styles';
-import { UsersQueryVariables, UserRole } from '../../../generated/types';
+import { UsersQueryVariables } from '../../../generated/types';
+import { UserRoleArr } from '../../../utils/constants';
 import Input from '../../Input/Input';
 import Select from '../../Select/Select';
+import { UsersFiltersWrapper } from './UsersFilters.styles';
 
 interface Props {
   variables: UsersQueryVariables;
@@ -20,24 +21,24 @@ const UsersFilters: React.FC<Props> = ({ variables, refetch }) => {
         icon='/search-icon.svg'
         small
         value={variables.email as string}
-        onChange={e =>
+        onChange={(e) =>
           refetch({
             ...variables,
-            email: e.target.value
+            email: e.target.value,
           })
         }
       />
       <Select
         label='role'
         value={variables.role}
-        onChange={role => refetch({ ...variables, role })}
+        onChange={(role) => refetch({ ...variables, role })}
         placeHolder='role'
-        options={Object.values(UserRole)}
+        options={UserRoleArr}
         small
       />
       <Select
         label='users per page'
-        onChange={take =>
+        onChange={(take) =>
           take && refetch({ ...variables, take: parseInt(take) })
         }
         placeHolder='5'

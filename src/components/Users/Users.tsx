@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortOrder, useUsersQuery } from '../../generated/types';
+import { useUsersQuery } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
@@ -18,8 +18,8 @@ const Users: React.FC<Props> = ({ query }) => {
       take: 5,
       skip: 0,
       sortBy: 'User.createdAt',
-      sortOrder: SortOrder.ASC
-    }
+      sortOrder: 'ASC',
+    },
   });
 
   const count = data?.users.count || 0;

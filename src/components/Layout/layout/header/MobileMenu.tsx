@@ -2,12 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../../../../contexts/CartContext';
-import {
-  Gender,
-  useMeQuery,
-  UserRole,
-  useSignoutMutation,
-} from '../../../../generated/types';
+import { useMeQuery, useSignoutMutation } from '../../../../generated/types';
 import ME from '../../../../graphql/queries/ME';
 import getGenderCategories from '../../../../utils/getGenderCategories';
 import LinkAnchor from '../../../LinkAnchor/LinkAnchor';
@@ -20,8 +15,8 @@ import {
 } from './MobileMenu.styles';
 
 const MobileMenu = () => {
-  const manCategories = getGenderCategories(Gender.MAN);
-  const womanCategories = getGenderCategories(Gender.WOMAN);
+  const manCategories = getGenderCategories('MAN');
+  const womanCategories = getGenderCategories('WOMAN');
   const [menuActive, setMenuActive] = useState(false);
   const { asPath } = useRouter();
   const { data } = useMeQuery();
@@ -41,7 +36,7 @@ const MobileMenu = () => {
 
   const isUser = data?.me;
   const isEmployee =
-    data?.me?.role === UserRole.EMPLOYEE || data?.me?.role === UserRole.ADMIN;
+    data?.me?.role === 'EMPLOYEE' || data?.me?.role === 'ADMIN';
   return (
     <>
       <HamburgerButtonWrapper>

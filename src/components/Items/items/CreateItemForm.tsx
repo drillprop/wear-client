@@ -1,14 +1,12 @@
 import { FormEvent } from 'react';
 import {
-  Category,
-  Gender,
   ItemsQueryVariables,
-  SizeSymbol,
   useCreateItemMutation,
 } from '../../../generated/types';
 import ITEMS from '../../../graphql/queries/ITEMS';
 import useForm from '../../../hooks/useForm';
 import { SiteSubtitle } from '../../../styles/site.styles';
+import { CategoryArr, GenderArr, SizesArr } from '../../../utils/constants';
 import uploadImageToCloudinary from '../../../utils/uploadImageToCloudinary';
 import Button from '../../Button/Button';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage';
@@ -16,20 +14,18 @@ import Input from '../../Input/Input';
 import RadioGroup from '../../RadioGroup/RadioGroup';
 import Select from '../../Select/Select';
 import TextArea from '../../TextArea/TextArea';
+import UploadImage from '../../UploadImage/UploadImage';
 import {
   CreateItemWrapper,
   SizesInputsWrapper,
   StyledCreateForm,
 } from './CreateItemForm.styles';
-import UploadImage from '../../UploadImage/UploadImage';
 
 interface Props {
   variables: ItemsQueryVariables;
 }
 
 const CreateItemForm: React.FC<Props> = ({ variables }) => {
-  const availableSizes = Object.values(SizeSymbol);
-
   const { values, handleInput, setForm, clearForm } = useForm({
     name: '',
     price: 0,
@@ -37,7 +33,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     gender: '',
     description: '',
     imageUrl: '',
-    ...availableSizes.reduce((acc: any, size) => {
+    ...SizesArr.reduce((acc: any, size) => {
       acc[size] = 0;
       return acc;
     }, {}),
@@ -54,15 +50,13 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
     const file = await uploadImageToCloudinary(values.imageUrl);
     const imageUrl = file.secure_url;
 
-    const sizes = availableSizes
-      .map(
-        (size) =>
-          values[size] && {
-            sizeSymbol: size,
-            quantity: parseInt(values[size]),
-          }
-      )
-      .filter((size) => size && size);
+    const sizes = SizesArr.map(
+      (size) =>
+        values[size] && {
+          sizeSymbol: size,
+          quantity: parseInt(values[size]),
+        }
+    ).filter((size) => size && size);
 
     createItem({
       variables: {
@@ -105,7 +99,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
         </div>
         <div>
           <Select
-            options={Object.values(Category)}
+            options={CategoryArr}
             label='category'
             placeHolder='select'
             onChange={(category) => setForm({ ...values, category })}
@@ -114,7 +108,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
           <RadioGroup
             legend='Gender'
             name='gender'
-            buttons={Object.values(Gender)}
+            buttons={GenderArr}
             onChange={handleInput}
             value={values.gender}
           />
@@ -125,7 +119,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
             onChange={handleInput}
           />
           <SizesInputsWrapper>
-            {availableSizes.map((size) => (
+            {SizesArr.map((size) => (
               <Input
                 key={size}
                 name={size}

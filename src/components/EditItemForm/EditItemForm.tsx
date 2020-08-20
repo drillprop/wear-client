@@ -1,10 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Category,
-  Gender,
-  SingleItemQuery,
-  useUpdateItemMutation,
-} from '../../generated/types';
+import { SingleItemQuery, useUpdateItemMutation } from '../../generated/types';
 import useForm from '../../hooks/useForm';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import convertSizesToArr from '../../utils/convertSizesToArr';
@@ -26,6 +21,7 @@ import {
   StyledEditForm,
 } from './EditItemForm.styles';
 import EditSizes from './editItemForm/EditSizes';
+import { GenderArr, CategoryArr } from '../../utils/constants';
 
 interface Props {
   item: SingleItemQuery['item'];
@@ -115,7 +111,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
             </div>
             <div>
               <Select
-                options={Object.values(Category)}
+                options={CategoryArr}
                 label='category'
                 placeHolder='select'
                 onChange={(category) => setForm({ ...values, category })}
@@ -124,7 +120,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
               <RadioGroup
                 legend='Gender'
                 name='gender'
-                buttons={Object.values(Gender)}
+                buttons={GenderArr}
                 onChange={handleInput}
                 value={gender}
               />

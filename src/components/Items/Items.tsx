@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortOrder, useItemsQuery } from '../../generated/types';
+import { useItemsQuery } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
 import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
@@ -19,7 +19,7 @@ const Items: React.FC<Props> = ({ query }) => {
       take: 5,
       skip: 0,
       sortBy: 'Item.createdAt',
-      sortOrder: SortOrder.DESC,
+      sortOrder: 'DESC',
       available: false,
     },
   });

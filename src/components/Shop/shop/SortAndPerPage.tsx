@@ -1,11 +1,7 @@
 import { ApolloQueryResult } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import {
-  ItemsQuery,
-  ItemsQueryVariables,
-  SortOrder,
-} from '../../../generated/types';
+import { ItemsQuery, ItemsQueryVariables } from '../../../generated/types';
 import Select from '../../Select/Select';
 
 type SortType = 'newest' | 'lowest price' | 'highest price';
@@ -34,19 +30,19 @@ const SortAndPerPage: React.FC<Props> = ({
       refetch({
         ...variables,
         sortBy: 'Item.createdAt',
-        sortOrder: SortOrder.DESC,
+        sortOrder: 'DESC',
       });
     else if (sort === 'lowest price')
       refetch({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.ASC,
+        sortOrder: 'ASC',
       });
     else if (sort === 'highest price')
       refetch({
         ...variables,
         sortBy: 'Item.price',
-        sortOrder: SortOrder.DESC,
+        sortOrder: 'DESC',
       });
     setSortValue(sort);
   };

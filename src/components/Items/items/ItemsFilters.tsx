@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  Category,
-  Gender,
-  ItemsQueryVariables
-} from '../../../generated/types';
+import { ItemsQueryVariables } from '../../../generated/types';
 import Input from '../../Input/Input';
 import Select from '../../Select/Select';
 import { ItemsFiltersWrapper } from './ItemsFilters.styles';
+import { GenderArr, CategoryArr } from '../../../utils/constants';
 
 interface Props {
   variables: ItemsQueryVariables;
@@ -24,32 +21,32 @@ const ItemsFilters: React.FC<Props> = ({ variables, refetch }) => {
         icon='/search-icon.svg'
         small
         value={variables.name as string}
-        onChange={e =>
+        onChange={(e) =>
           refetch({
             ...variables,
-            name: e.target.value
+            name: e.target.value,
           })
         }
       />
       <Select
         label='gender'
         value={variables.gender}
-        onChange={gender => refetch({ ...variables, gender })}
+        onChange={(gender) => refetch({ ...variables, gender })}
         placeHolder='gender'
-        options={Object.values(Gender)}
+        options={GenderArr}
         small
       />
       <Select
         label='category'
         value={variables.category}
-        onChange={category => refetch({ ...variables, category })}
+        onChange={(category) => refetch({ ...variables, category })}
         placeHolder='category'
-        options={Object.values(Category)}
+        options={CategoryArr}
         small
       />
       <Select
         label='items per page'
-        onChange={take =>
+        onChange={(take) =>
           take && refetch({ ...variables, take: parseInt(take) })
         }
         placeHolder='5'

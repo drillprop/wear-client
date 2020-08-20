@@ -1,7 +1,7 @@
 import React from 'react';
-import { SizeSymbol } from '../../../generated/types';
 import Input from '../../Input/Input';
 import { SizesInputsWrapper } from './EditSizes.styles';
+import { SizesArr } from '../../../utils/constants';
 
 interface Props {
   setForm: React.Dispatch<any>;
@@ -21,7 +21,7 @@ const EditSizes: React.FC<Props> = ({ sizes, setForm }) => {
   };
   return (
     <SizesInputsWrapper>
-      {Object.values(SizeSymbol).map((size) => (
+      {SizesArr.map((size) => (
         <Input
           key={size}
           name={size}

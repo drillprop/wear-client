@@ -5,7 +5,6 @@ import {
   Category,
   Gender,
   ItemsQueryVariables,
-  SortOrder,
   useItemsQuery,
 } from '../../generated/types';
 import { SiteSubtitle, SiteWrapper } from '../../styles/site.styles';
@@ -38,7 +37,7 @@ const Shop: React.FC<Props> = ({ query }) => {
       skip,
       sortBy: 'Item.createdAt',
       take,
-      sortOrder: SortOrder.DESC,
+      sortOrder: 'DESC',
       category,
     },
   });
