@@ -8,11 +8,10 @@ import {
   decrItem,
   removeItem,
 } from './CartContext.utils';
-import { SizesArr } from '../utils/constants';
 
 export interface ICartItem {
   id: string;
-  size?: keyof typeof SizesArr | '';
+  size?: SizeSymbol | '';
   name: string;
   price: number;
   imageUrl: string;
