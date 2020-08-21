@@ -16,7 +16,7 @@ const convertSizesToArr = (sizeObj: SizesObject) => {
         sizeSymbol,
         quantity: sizeObj[sizeSymbol],
       }
-  ).filter(Boolean);
+  );
 };
 
 export default convertSizesToArr;
