@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Item, Ordered_Item, OrderStatus } from '../../../generated/types';
 import { TableBodyRow, TableData } from '../../../styles/table.styles';
-import convertOrderedItems from '../../../utils/convertOrderedItems';
+import simplifyOrderedItems from '../../../utils/simplifyOrderedItems';
 import formatDBDate from '../../../utils/formatDBDate';
 import LinkAnchor from '../../LinkAnchor/LinkAnchor';
 import {
@@ -38,7 +38,7 @@ const OrderRow: React.FC<Props> = ({
   );
 
   const date = createdAt && formatDBDate(createdAt);
-  const convertedItems = convertOrderedItems(orderedItems || []);
+  const convertedItems = simplifyOrderedItems(orderedItems || []);
 
   return (
     <>
