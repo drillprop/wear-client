@@ -10,7 +10,7 @@ import {
   CartItemPrice,
   CartItemSize,
   StyledCartItem,
-  CartItemRow
+  CartItemRow,
 } from './CartItem.styles';
 
 interface Props {
@@ -34,9 +34,14 @@ const CartItem: React.FC<Props> = ({ item }) => {
         </CartItemRow>
         <CartItemRow>
           <CartItemAmount>
-            amount: <Arrow onClick={() => decrItemInCart(item)}>&#10094;</Arrow>{' '}
+            amount:{' '}
+            <Arrow data-testid='decrease' onClick={() => decrItemInCart(item)}>
+              &#10094;
+            </Arrow>{' '}
             {item.quantity}{' '}
-            <Arrow onClick={() => incItemInCart(item)}>&#10095;</Arrow>
+            <Arrow data-testid='increase' onClick={() => incItemInCart(item)}>
+              &#10095;
+            </Arrow>
           </CartItemAmount>
           <CartItemPrice> $ {item.price * item.quantity}</CartItemPrice>
         </CartItemRow>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import fontSizes from '../../../styles/fontSizes';
 import { grays } from '../../../styles/colors';
+import { montserrat } from '../../../styles/fonts';
 
 export const StyledCartItem = styled.li`
   padding: 20px 0;
@@ -45,8 +46,15 @@ export const CartItemSize = styled.div`
   color: ${grays[3]};
 `;
 
-export const CartItemDelete = styled.div`
+export const CartItemDelete = styled.button`
   cursor: pointer;
+  font-family: ${montserrat};
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  height: 0;
   font-size: ${fontSizes[3]};
   color: ${grays[3]};
 `;
@@ -56,8 +64,11 @@ export const CartItemAmount = styled.div`
   font-size: ${fontSizes[1]};
 `;
 
-export const Arrow = styled.span`
+export const Arrow = styled.button`
   cursor: pointer;
+  background: none;
+  font-family: inherit;
+  border: none;
   padding: 0 10px;
 `;
 
