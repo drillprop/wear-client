@@ -190,3 +190,69 @@ describe('decrItem', () => {
     ]);
   });
 });
+
+describe('removeItem', () => {
+  it('removes item from cart', () => {
+    const mockPrevCart: ICartItem[] = [
+      {
+        id: '12322',
+        imageUrl: 'http://example.com/image.jpg',
+        name: 'gray t-shirt',
+        price: 22,
+        quantity: 4,
+        size: 'M',
+      },
+      {
+        id: '123',
+        imageUrl: 'http://example.com/image.jpg',
+        name: 'some nice trousers',
+        price: 432,
+        quantity: 3,
+        size: 'XS',
+      },
+    ];
+    expect(removeItem(mockPrevCart, mockNewItem)).toStrictEqual([
+      {
+        id: '12322',
+        imageUrl: 'http://example.com/image.jpg',
+        name: 'gray t-shirt',
+        price: 22,
+        quantity: 4,
+        size: 'M',
+      },
+    ]);
+  });
+});
+
+describe('getCartsTotal', () => {
+  it('returns correctly total price and total amount of items', () => {
+    const mockPrevCart: ICartItem[] = [
+      {
+        id: '12322',
+        imageUrl: 'http://example.com/image.jpg',
+        name: 'gray t-shirt',
+        price: 22,
+        quantity: 4,
+        size: 'M',
+      },
+      {
+        id: '123',
+        imageUrl: 'http://example.com/image.jpg',
+        name: 'some nice trousers',
+        price: 432,
+        quantity: 3,
+        size: 'XS',
+      },
+    ];
+    expect(getCartTotals(mockPrevCart)).toStrictEqual({
+      total: 7,
+      totalPrice: 22 * 4 + 3 * 432,
+    });
+  });
+  it('correctly returns object when array of items is empty', () => {
+    expect(getCartTotals([])).toStrictEqual({
+      total: 0,
+      totalPrice: 0,
+    });
+  });
+});
