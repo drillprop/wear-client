@@ -14,8 +14,8 @@ const LinkAnchor: FC<LinkProps & Props> = ({
   children,
   ...props
 }) => {
-  const { asPath } = useRouter();
-  const path = asPath.split(/\/|\?/gi);
+  const router = useRouter();
+  const path = router ? router.asPath.split(/\/|\?/gi) : '';
 
   const isPathIncludes = wordToHighlight
     ? path.includes(wordToHighlight)
