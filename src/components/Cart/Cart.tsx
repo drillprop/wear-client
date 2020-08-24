@@ -6,7 +6,7 @@ import {
   CartWrapper,
   OrderSummary,
   Totals,
-  OrderTitle
+  OrderTitle,
 } from './Cart.styles';
 import EmptyCart from './cart/EmptyCart';
 import CartItem from './cart/CartItem';
@@ -19,7 +19,7 @@ const Cart = () => {
       <SiteSubtitle>Your cart</SiteSubtitle>
       <CartWrapper>
         <CartList>
-          {cartItems.map(item => (
+          {cartItems.map((item) => (
             <CartItem item={item} key={item.id + 'size:' + item.size} />
           ))}
         </CartList>
