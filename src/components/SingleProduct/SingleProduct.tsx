@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../../contexts/CartContext';
-import { SingleItemQuery } from '../../generated/types';
+import { SingleItemQuery, SizeSymbol } from '../../generated/types';
 import { white } from '../../styles/colors';
 import { SiteWrapper } from '../../styles/site.styles';
 import CartIcon from '../CartIcon/CartIcon';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import Select from '../Select/Select';
 import ShopSideNav from '../ShopSideNav/ShopSideNav';
 import {
@@ -16,8 +16,6 @@ import {
   SingleProductPrice,
   Unavailable,
 } from './SingleProduct.styles';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { SizesArr } from '../../utils/constants';
 
 interface Props {
   item?: SingleItemQuery['item'];
@@ -25,7 +23,7 @@ interface Props {
 }
 
 const SingleProduct: React.FC<Props> = ({ item, loading }) => {
-  const [size, setSize] = useState<keyof typeof SizesArr | ''>('');
+  const [size, setSize] = useState<SizeSymbol | ''>('');
   const [alert, setAlert] = useState('');
 
   const sizes =
