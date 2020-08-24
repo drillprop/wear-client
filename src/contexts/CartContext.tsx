@@ -18,7 +18,7 @@ export interface ICartItem {
   quantity: number;
 }
 
-interface Cart {
+export interface CartContextValue {
   cartItems: ICartItem[];
   addItemToCart: (item: ICartItem) => void;
   removeItemFromCart: (item: ICartItem) => void;
@@ -32,7 +32,9 @@ interface Cart {
   };
 }
 
-export const CartContext = createContext<Cart | undefined>(undefined);
+export const CartContext = createContext<CartContextValue | undefined>(
+  undefined
+);
 
 const CartContextProvider: React.FC = ({ children }) => {
   const [cartItems, setCartItems] = useState<ICartItem[]>([]);
