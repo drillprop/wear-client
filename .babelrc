@@ -4,7 +4,8 @@
       "presets": ["next/babel"]
     },
     "production": {
-      "presets": ["next/babel"]
+      "presets": ["next/babel"],
+      "plugins": ["babel-plugin-jsx-remove-data-test-id"]
     }
   },
   "plugins": [
