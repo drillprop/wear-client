@@ -28,7 +28,10 @@ const CartItem: React.FC<Props> = ({ item }) => {
             <CartItemName>{item.name}</CartItemName>
             <CartItemSize>size: {item.size}</CartItemSize>
           </div>
-          <CartItemDelete onClick={() => removeItemFromCart(item)}>
+          <CartItemDelete
+            data-testid='remove'
+            onClick={() => removeItemFromCart(item)}
+          >
             &#10005;
           </CartItemDelete>
         </CartItemRow>
@@ -43,7 +46,10 @@ const CartItem: React.FC<Props> = ({ item }) => {
               &#10095;
             </Arrow>
           </CartItemAmount>
-          <CartItemPrice> $ {item.price * item.quantity}</CartItemPrice>
+          <CartItemPrice data-testid='item-price'>
+            {' '}
+            $ {item.price * item.quantity}
+          </CartItemPrice>
         </CartItemRow>
       </CartItemInfo>
     </StyledCartItem>
