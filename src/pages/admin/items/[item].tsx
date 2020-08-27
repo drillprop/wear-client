@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import React from 'react';
 import EditItemForm from '../../../components/EditItemForm/EditItemForm';
 import { useSingleItemQuery } from '../../../generated/types';
 import { withPrivateRoute } from '../../../hoc/withPrivateRoute';

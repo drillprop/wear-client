@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import {
   ItemsQueryVariables,
   useCreateItemMutation,
