@@ -33,7 +33,8 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "generate": "graphql-codegen --config codegen.yml -r dotenv/config",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.7",
