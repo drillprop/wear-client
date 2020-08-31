@@ -5,14 +5,10 @@ import AdminSideNav from '../AdminSideNav/AdminSideNav';
 import Pagination from '../Pagination/Pagination';
 import UsersFilters from './users/UsersFilters';
 import UsersTable from './users/UsersTable';
+import { useRouter } from 'next/router';
 
-interface Props {
-  query: {
-    page: string;
-  };
-}
-
-const Users: React.FC<Props> = ({ query }) => {
+const Users: React.FC = () => {
+  const { query } = useRouter();
   const { data, refetch, variables } = useUsersQuery({
     variables: {
       take: 5,
@@ -24,6 +20,7 @@ const Users: React.FC<Props> = ({ query }) => {
 
   const count = data?.users.count || 0;
   const users = data?.users.select || [];
+  const page = parseInt(typeof query.page === 'string' ? query.page : '') || 1;
 
   return (
     <SiteWrapper>
@@ -34,7 +31,7 @@ const Users: React.FC<Props> = ({ query }) => {
         {!!users.length && <UsersTable users={users} />}
         <Pagination
           path={'/admin/users'}
-          page={parseInt(query.page) || 1}
+          page={page}
           total={count}
           take={variables.take || 5}
           refetch={refetch}

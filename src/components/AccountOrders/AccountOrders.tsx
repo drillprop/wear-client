@@ -13,14 +13,11 @@ import Pagination from '../Pagination/Pagination';
 import NoItems from '../NoItems/NoItems';
 import Button from '../Button/Button';
 import LinkAnchor from '../LinkAnchor/LinkAnchor';
+import { useRouter } from 'next/router';
 
-interface Props {
-  query: {
-    page: string;
-  };
-}
-
-const AccountOrders: React.FC<Props> = ({ query }) => {
+const AccountOrders: React.FC = () => {
+  const { query } = useRouter();
+  const page = parseInt(typeof query.page === 'string' ? query.page : '') || 1;
   const tableColumnNames = ['order', 'date', 'total price', 'status'];
   const { data, variables, refetch } = useUserOrdersQuery({
     variables: {
@@ -71,7 +68,7 @@ const AccountOrders: React.FC<Props> = ({ query }) => {
         )}
         <Pagination
           path={'/account/orders'}
-          page={parseInt(query.page) || 1}
+          page={page}
           total={count}
           take={(variables && variables.take) || 5}
           refetch={refetch}

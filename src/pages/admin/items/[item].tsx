@@ -4,17 +4,13 @@ import React from 'react';
 import EditItemForm from '../../../components/EditItemForm/EditItemForm';
 import { useSingleItemQuery } from '../../../generated/types';
 import { withPrivateRoute } from '../../../hoc/withPrivateRoute';
+import { useRouter } from 'next/router';
 
-interface Props {
-  query: {
-    item: string;
-  };
-}
-
-const AdminItem: NextPage<Props> = ({ query }) => {
+const AdminItem: NextPage = () => {
+  const { query } = useRouter();
   const { data } = useSingleItemQuery({
     variables: {
-      id: query.item,
+      id: typeof query.item === 'string' ? query.item : '',
     },
   });
   return (

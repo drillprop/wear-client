@@ -6,14 +6,10 @@ import Pagination from '../Pagination/Pagination';
 import CreateItemForm from './items/CreateItemForm';
 import ItemsFilters from './items/ItemsFilters';
 import ItemsTable from './items/ItemsTable';
+import { useRouter } from 'next/router';
 
-interface Props {
-  query?: {
-    page: string;
-  };
-}
-
-const Items: React.FC<Props> = ({ query }) => {
+const Items = () => {
+  const { query } = useRouter();
   const { data, refetch, variables } = useItemsQuery({
     variables: {
       take: 5,
@@ -23,6 +19,8 @@ const Items: React.FC<Props> = ({ query }) => {
       available: false,
     },
   });
+
+  const page = parseInt(typeof query.page === 'string' ? query.page : '') || 1;
 
   const count = data?.items.count || 0;
   const items = data?.items.select || [];
@@ -36,7 +34,7 @@ const Items: React.FC<Props> = ({ query }) => {
         {!!items && <ItemsTable items={items} variables={variables} />}
         <Pagination
           path={'/admin/items'}
-          page={parseInt((query && query.page) || '1')}
+          page={page}
           total={count}
           take={variables.take || 5}
           refetch={refetch}
