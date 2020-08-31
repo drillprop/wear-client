@@ -2,7 +2,7 @@
 
 _**This project is still work in progress!**_
 
-Full stack e-commerce application based on React, Typescript and Node.js. The application has every features which modern e-commerce websites offer - authentication system, products list with filters, search bar, cart and others.
+Full-stack e-commerce application based on React, Typescript and Node.js. The application has every feature which modern e-commerce websites offer - authentication system, products list with filters, search bar, cart and others.
 
 Besides regular clothing shop, the website has also admin panel, where permitted users can manage products, users and orders.
 
@@ -15,6 +15,8 @@ You can find backend code [here](https://github.com/drillprop/wear-server)
 ![screenshop2](https://user-images.githubusercontent.com/51168865/82324035-3edf5c80-99d9-11ea-9786-5abdcc158617.png)
 
 ## Technologies
+
+I structured my files with [the fractal pattern](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af)
 
 #### Frontend
 
@@ -34,7 +36,7 @@ You can find backend code [here](https://github.com/drillprop/wear-server)
 
 ## Demo
 
-[Wear](https://wear-client.herokuapp.com/)
+[Wear](http://wear.drillprops.usermd.net/)
 
 If you want to play around, you can sign in with this email and password:
 
@@ -50,5 +52,5 @@ If you want to play around, you can sign in with this email and password:
 
 #### as regular customer:
 
-    email: "testuser@example.com"
-    password: "testuser"
+    email: testuser@example.com
+    password: testuser
