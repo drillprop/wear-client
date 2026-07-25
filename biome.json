@@ -31,10 +31,19 @@
 			"a11y": {
 				"recommended": true
 			},
-			"correctness": {
-				"useExhaustiveDependencies": "warn"
-			},
 			"nursery": "off"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["src/**"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"useExhaustiveDependencies": "warn"
+					}
+				}
+			}
+		}
+	]
 }
