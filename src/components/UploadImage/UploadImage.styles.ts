@@ -1,11 +1,11 @@
-import styled from 'styled-components';
-import { grays, white } from '../../styles/colors';
-import { montserrat, roboto } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import styled from "styled-components";
+import { grays, white } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { montserrat, roboto } from "../../styles/fonts";
 
 interface FileInputLabelProps {
-  highlight?: boolean;
-  outline: boolean;
+	highlight?: boolean;
+	outline: boolean;
 }
 
 export const TopLabel = styled.label`
@@ -48,7 +48,7 @@ export const FileInputLabel = styled.label<FileInputLabelProps>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  ${(props) => props.outline && 'outline: -webkit-focus-ring-color auto 1px'};
+  ${(props) => props.outline && "outline: -webkit-focus-ring-color auto 1px"};
 `;
 
 export const StyledFileInput = styled.input`

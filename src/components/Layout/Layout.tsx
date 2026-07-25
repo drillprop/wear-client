@@ -1,35 +1,35 @@
-import React from 'react';
-import Header from './layout/Header';
-import { Main, PageWrapper } from './Layout.styles';
-import { useRouter } from 'next/router';
-import Footer from './layout/Footer';
-import Head from 'next/head';
-import CartContextProvider from '../../contexts/CartContext';
+import Head from "next/head";
+import { useRouter } from "next/router";
+import type React from "react";
+import CartContextProvider from "../../contexts/CartContext";
+import { Main, PageWrapper } from "./Layout.styles";
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
 
 const Layout: React.FC = ({ children }) => {
-  const { asPath, pathname } = useRouter();
-  const subpath = asPath
-    .split(/\/|\?/gi)
-    .filter((el) => el !== 'shop')
-    .slice(1)
-    .join(' | ')
-    .split('=')
-    .join(' ');
+	const { asPath, pathname } = useRouter();
+	const subpath = asPath
+		.split(/\/|\?/gi)
+		.filter((el) => el !== "shop")
+		.slice(1)
+		.join(" | ")
+		.split("=")
+		.join(" ");
 
-  return (
-    <>
-      <Head>
-        <title>wear {subpath && `| ${subpath}`}</title>
-      </Head>
-      <CartContextProvider>
-        <Header />
-        <PageWrapper>
-          <Main>{children}</Main>
-        </PageWrapper>
-        {pathname !== '/sign' && <Footer />}
-      </CartContextProvider>
-    </>
-  );
+	return (
+		<>
+			<Head>
+				<title>wear {subpath && `| ${subpath}`}</title>
+			</Head>
+			<CartContextProvider>
+				<Header />
+				<PageWrapper>
+					<Main>{children}</Main>
+				</PageWrapper>
+				{pathname !== "/sign" && <Footer />}
+			</CartContextProvider>
+		</>
+	);
 };
 
 export default Layout;

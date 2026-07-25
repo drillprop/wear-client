@@ -1,19 +1,19 @@
-import styled from 'styled-components';
-import { roboto } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
-import { grays } from '../../styles/colors';
+import styled from "styled-components";
+import { grays } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { roboto } from "../../styles/fonts";
 
 interface FieldSetProps {
-  marginTop: string;
-  width: string;
+	marginTop: string;
+	width: string;
 }
 
 export const RadioGroupFieldSet = styled.fieldset<FieldSetProps>`
   margin: 0;
   padding: 0;
   padding-left: 5px;
-  margin-top: ${props => props.marginTop};
-  width: ${props => props.width};
+  margin-top: ${(props) => props.marginTop};
+  width: ${(props) => props.width};
   border: 2px solid ${grays[0]};
 `;
 

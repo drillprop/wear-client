@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { grays } from '../../styles/colors';
+import styled from "styled-components";
+import { grays } from "../../styles/colors";
 
 export const SpinnerWrapper = styled.div`
   display: grid;

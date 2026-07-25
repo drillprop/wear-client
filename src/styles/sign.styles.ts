@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { roboto } from './fonts';
-import fontSizes from './fontSizes';
+import styled from "styled-components";
+import fontSizes from "./fontSizes";
+import { roboto } from "./fonts";
 
 export const SignWrapper = styled.div`
   max-width: 1300px;

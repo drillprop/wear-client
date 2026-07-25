@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { black, white, grays } from '../../../../styles/colors';
-import { roboto } from '../../../../styles/fonts';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { black, grays, white } from "../../../../styles/colors";
+import { roboto } from "../../../../styles/fonts";
 
 interface HamburgerMenuButtonProps {
-  menuActive: boolean;
+	menuActive: boolean;
 }
 
 export const HamburgerButtonWrapper = styled.div`

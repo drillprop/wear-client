@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { black, grays } from './colors';
-import { roboto } from './fonts';
-import fontSizes from './fontSizes';
+import styled from "styled-components";
+import { black, grays } from "./colors";
+import fontSizes from "./fontSizes";
+import { roboto } from "./fonts";
 
 export const SideNavWrapper = styled.div`
   position: relative;

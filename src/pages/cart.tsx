@@ -1,9 +1,8 @@
-import { NextPage } from 'next';
-import React from 'react';
-import Cart from '../components/Cart/Cart';
+import type { NextPage } from "next";
+import Cart from "../components/Cart/Cart";
 
 const CartPage: NextPage = () => {
-  return <Cart />;
+	return <Cart />;
 };
 
 export default CartPage;

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import fontSizes from '../../styles/fontSizes';
-import { roboto } from '../../styles/fonts';
-import { grays } from '../../styles/colors';
+import styled from "styled-components";
+import { grays } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { roboto } from "../../styles/fonts";
 
 export const NoItemsWrapper = styled.div`
   margin-top: 200px;

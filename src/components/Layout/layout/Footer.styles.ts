@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { roboto } from '../../../styles/fonts';
-import fontSizes from '../../../styles/fontSizes';
-import { grays } from '../../../styles/colors';
+import styled from "styled-components";
+import { grays } from "../../../styles/colors";
+import fontSizes from "../../../styles/fontSizes";
+import { roboto } from "../../../styles/fonts";
 
 export const FooterBackground = styled.div`
   margin-top: 90px;

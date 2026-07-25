@@ -1,22 +1,23 @@
-import { ApolloError } from 'apollo-boost';
-import React, { useEffect, useState } from 'react';
-import getValidationExceptions from '../../utils/getValidationExceptions';
+import type { ApolloError } from "apollo-boost";
+import type React from "react";
+import { useEffect, useState } from "react";
+import getValidationExceptions from "../../utils/getValidationExceptions";
 
 const ErrorMessage: React.FC<{ error?: string | ApolloError }> = ({
-  error
+	error,
 }) => {
-  const [errorMessage, setError] = useState(error);
+	const [errorMessage, setError] = useState(error);
 
-  useEffect(() => {
-    if (error) {
-      const formatedError = getValidationExceptions(error);
-      setError(`Error: ${formatedError}`);
-    } else {
-      setError('');
-    }
-  }, [error]);
+	useEffect(() => {
+		if (error) {
+			const formatedError = getValidationExceptions(error);
+			setError(`Error: ${formatedError}`);
+		} else {
+			setError("");
+		}
+	}, [error]);
 
-  return <>{errorMessage ? errorMessage : null}</>;
+	return <>{errorMessage ? errorMessage : null}</>;
 };
 
 export default ErrorMessage;

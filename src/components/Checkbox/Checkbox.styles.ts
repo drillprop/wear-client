@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { black, grays, white } from '../../styles/colors';
-import { roboto } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import styled, { css } from "styled-components";
+import { black, grays, white } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { roboto } from "../../styles/fonts";
 
 export const CheckboxWrapper = styled.div<{ marginTop?: string }>`
   display: flex;

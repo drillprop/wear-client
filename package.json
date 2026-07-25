@@ -1,17 +1,20 @@
 {
-  "name": "wear",
-  "version": "0.0.0",
-  "private": true,
-  "packageManager": "pnpm@10.4.1",
-  "engines": {
-    "node": ">=24"
-  },
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "typecheck": "turbo typecheck"
-  },
-  "devDependencies": {
-    "turbo": "^2.10.7"
-  }
+	"name": "wear",
+	"version": "0.0.0",
+	"private": true,
+	"packageManager": "pnpm@10.4.1",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"typecheck": "turbo typecheck",
+		"check": "biome check .",
+		"format": "biome format --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.5",
+		"turbo": "^2.10.7"
+	}
 }

@@ -1,9 +1,8 @@
-import { NextPage } from 'next';
-import React from 'react';
-import { withPrivateRoute } from '../../hoc/withPrivateRoute';
+import type { NextPage } from "next";
+import { withPrivateRoute } from "../../hoc/withPrivateRoute";
 
 const OrdersPage: NextPage = () => {
-  return <div>OrdersPage page</div>;
+	return <div>OrdersPage page</div>;
 };
 
-export default withPrivateRoute(OrdersPage, 'EMPLOYEE');
+export default withPrivateRoute(OrdersPage, "EMPLOYEE");

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node",
-  "extends": "./base.json",
-  "compilerOptions": {
-    "lib": ["ES2022"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ES2022",
-    "outDir": "build"
-  }
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Node",
+	"extends": "./base.json",
+	"compilerOptions": {
+		"lib": ["ES2022"],
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"target": "ES2022",
+		"outDir": "build"
+	}
 }
