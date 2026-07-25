@@ -1,9 +1,8 @@
-import { NextPage } from 'next';
-import React from 'react';
-import Reset from '../components/Reset/Reset';
+import type { NextPage } from "next";
+import Reset from "../components/Reset/Reset";
 
 const ResetPage: NextPage = () => {
-  return <Reset />;
+	return <Reset />;
 };
 
 export default ResetPage;

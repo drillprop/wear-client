@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import fontSizes from '../../../styles/fontSizes';
-import { grays } from '../../../styles/colors';
-import { montserrat } from '../../../styles/fonts';
+import styled from "styled-components";
+import { grays } from "../../../styles/colors";
+import fontSizes from "../../../styles/fontSizes";
+import { montserrat } from "../../../styles/fonts";
 
 export const StyledCartItem = styled.li`
   padding: 20px 0;

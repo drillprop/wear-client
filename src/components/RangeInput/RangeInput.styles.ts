@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { black, grays } from '../../styles/colors';
-import { roboto, montserrat } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import styled, { css } from "styled-components";
+import { black, grays } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { montserrat, roboto } from "../../styles/fonts";
 
 export const rangeTrack = css`
   height: 5px;
@@ -26,8 +26,8 @@ export const rangeThumb = css`
 `;
 
 interface RangeInputWrapperInterface {
-  marginTop: string;
-  width: string;
+	marginTop: string;
+	width: string;
 }
 
 export const RangeInputWrapper = styled.div<RangeInputWrapperInterface>`

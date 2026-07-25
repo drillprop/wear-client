@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { black, white } from './colors';
+import { createGlobalStyle } from "styled-components";
+import { black, white } from "./colors";
 
 export default createGlobalStyle`
   

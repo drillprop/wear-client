@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import fontSizes from '../../styles/fontSizes';
-import { grays, black } from '../../styles/colors';
-import { roboto } from '../../styles/fonts';
+import styled from "styled-components";
+import { black, grays } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { roboto } from "../../styles/fonts";
 
 export const CartWrapper = styled.div`
   margin: 0 auto;

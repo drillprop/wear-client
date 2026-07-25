@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { black, grays } from '../../../styles/colors';
-import { montserrat } from '../../../styles/fonts';
-import fontSizes from '../../../styles/fontSizes';
+import styled, { css } from "styled-components";
+import { black, grays } from "../../../styles/colors";
+import fontSizes from "../../../styles/fontSizes";
+import { montserrat } from "../../../styles/fonts";
 
 const sharedCSS = css`
   position: absolute;

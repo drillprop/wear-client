@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { grays, black } from './colors';
-import { montserrat, roboto } from './fonts';
-import fontSizes from './fontSizes';
+import styled, { css } from "styled-components";
+import { grays } from "./colors";
+import fontSizes from "./fontSizes";
+import { montserrat, roboto } from "./fonts";
 
 export const Table = styled.table<{ tableColumnNames: string[] }>`
   width: 100%;
@@ -55,13 +55,12 @@ export const Table = styled.table<{ tableColumnNames: string[] }>`
       color: ${grays[5]};
     }
     ${(props) =>
-      props.tableColumnNames &&
-      props.tableColumnNames.map(
-        (title, idx) => css`
+			props.tableColumnNames?.map(
+				(title, idx) => css`
             td:nth-of-type(${idx + 1}):before {
               content: '${title}';
-            }`
-      )};
+            }`,
+			)};
   }
 `;
 

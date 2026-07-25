@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface Props {
-  color: string;
+	color: string;
 }
 
 export const CartIconSvg = styled.svg<Props>`
   circle {
-    stroke: ${props => props.color};
+    stroke: ${(props) => props.color};
   }
   path {
-    stroke: ${props => props.color};
+    stroke: ${(props) => props.color};
   }
 `;

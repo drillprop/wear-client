@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { grays, black } from '../../../styles/colors';
-import { roboto } from '../../../styles/fonts';
-import fontSizes from '../../../styles/fontSizes';
+import styled from "styled-components";
+import { black, grays } from "../../../styles/colors";
+import fontSizes from "../../../styles/fontSizes";
+import { roboto } from "../../../styles/fonts";
 
 export const ProductsWrapper = styled.div`
   margin-top: 75px;

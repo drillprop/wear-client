@@ -1,16 +1,16 @@
-import styled from 'styled-components';
-import { roboto, montserrat } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
-import { grays, white } from '../../styles/colors';
+import styled from "styled-components";
+import { grays, white } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { montserrat, roboto } from "../../styles/fonts";
 
 interface TextAreaWrapperProps {
-  marginTop: string;
-  width: string;
+	marginTop: string;
+	width: string;
 }
 
 export const TextAreaWrapper = styled.div<TextAreaWrapperProps>`
-  margin-top: ${props => props.marginTop};
-  width: ${props => props.width};
+  margin-top: ${(props) => props.marginTop};
+  width: ${(props) => props.width};
 `;
 
 export const TextAreaLabel = styled.label`

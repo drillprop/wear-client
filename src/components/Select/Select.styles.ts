@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { grays, white } from '../../styles/colors';
-import { montserrat, roboto } from '../../styles/fonts';
-import fontSizes from '../../styles/fontSizes';
+import styled, { css } from "styled-components";
+import { grays, white } from "../../styles/colors";
+import fontSizes from "../../styles/fontSizes";
+import { montserrat, roboto } from "../../styles/fonts";
 
 const arrowUp = (small?: boolean) => css`
   ::after {
@@ -49,10 +49,10 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
     content: '';
     position: absolute;
     display: block;
-    margin-top: ${(props) => (props.small ? '20px' : '22px')};
+    margin-top: ${(props) => (props.small ? "20px" : "22px")};
     z-index: 1;
-    width: ${(props) => (props.small ? '32px' : '44px')};
-    height: ${(props) => (props.small ? '32px' : '44px')};
+    width: ${(props) => (props.small ? "32px" : "44px")};
+    height: ${(props) => (props.small ? "32px" : "44px")};
     opacity: ${(props) => (props.small ? 0.6 : 0.9)};
     background-image: ${({ icon }) => `url(${icon})`};
     background-size: ${(props) => (props.small ? fontSizes[0] : fontSizes[1])};
@@ -62,22 +62,22 @@ export const SelectLabel = styled.label<{ icon?: string; small?: boolean }>`
 `;
 
 export const CustomSelect = styled.div<{ small?: boolean }>`
-  height: ${(props) => (props.small ? '36px' : '44px')};
+  height: ${(props) => (props.small ? "36px" : "44px")};
   text-transform: uppercase;
   position: relative;
   cursor: pointer;
   width: 100%;
   margin: 0;
   box-shadow: ${(props) =>
-    props.small
-      ? `inset 0 0 0 1px ${grays[5]};`
-      : `inset 0 0 0 2px ${grays[0]}`};
+		props.small
+			? `inset 0 0 0 1px ${grays[5]};`
+			: `inset 0 0 0 2px ${grays[0]}`};
   font-size: ${(props) => (props.small ? fontSizes[0] : fontSizes[1])};
 `;
 
 export const CustomSelectedOption = styled.div<{
-  active: boolean;
-  small?: boolean;
+	active: boolean;
+	small?: boolean;
 }>`
   position: relative;
   height: 100%;
@@ -85,7 +85,7 @@ export const CustomSelectedOption = styled.div<{
   align-items: center;
   font-family: ${montserrat};
   font-size: ${(props) => (props.small ? fontSizes[0] : fontSizes[1])};
-  padding-left: ${(props) => (props.small ? '30px' : '40px')};
+  padding-left: ${(props) => (props.small ? "30px" : "40px")};
   width: 100%;
   ${(props) => (props.active ? arrowUp(props.small) : arrowDown(props.small))};
 `;
@@ -102,7 +102,7 @@ export const CustomOption = styled.div<{ highlight: boolean; small?: boolean }>`
   background-color: ${white};
   position: relative;
   padding-left: 20px;
-  height: ${(props) => (props.small ? '34px' : '44px')};
+  height: ${(props) => (props.small ? "34px" : "44px")};
   z-index: 5;
   display: flex;
   align-items: center;

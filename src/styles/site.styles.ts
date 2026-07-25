@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { grays } from './colors';
-import { roboto } from './fonts';
-import fontSizes from './fontSizes';
+import styled from "styled-components";
+import { grays } from "./colors";
+import fontSizes from "./fontSizes";
+import { roboto } from "./fonts";
 
 export const SiteWrapper = styled.div`
   display: grid;

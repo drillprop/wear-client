@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { grays, white } from '../../../styles/colors';
-import { roboto } from '../../../styles/fonts';
-import fontSizes from '../../../styles/fontSizes';
+import styled from "styled-components";
+import { grays, white } from "../../../styles/colors";
+import fontSizes from "../../../styles/fontSizes";
+import { roboto } from "../../../styles/fonts";
 
 export const StyledCreateForm = styled.form`
   display: grid;

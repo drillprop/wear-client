@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { black } from '../../styles/colors';
+import styled from "styled-components";
+import { black } from "../../styles/colors";
 
 export const HeroImage = styled.div<{ image: string }>`
   position: relative;
