@@ -1,0 +1,15 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Single source of truth for shared dependency versions across the workspace.
+# Pre-seeded here; the apps landing in later slices (apps/web #40, apps/api #41)
+# will reference these with `catalog:` instead of hardcoding versions.
+catalog:
+  typescript: ^5.9.0
+  "@types/node": ^24.0.0
+  graphql: ^17.0.0
+  react: ^19.0.0
+  react-dom: ^19.0.0
+  "@types/react": ^19.0.0
+  "@types/react-dom": ^19.0.0
