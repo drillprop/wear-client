@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import CartContextProvider from "../../contexts/CartContext";
 import { cartContextRender } from "../../test-utils/cartContextRender";
+import { MockRouterProvider } from "../../test-utils/mockRouter";
 import Cart from "./Cart";
 
 it("throw error if there is no CartProvider", () => {
@@ -14,16 +15,18 @@ it("throw error if there is no CartProvider", () => {
 
 it(`doesn't throw error if Cart is within CartContextProvider`, () => {
 	const wrapper = (
-		<CartContextProvider>
-			<Cart />
-		</CartContextProvider>
+		<MockRouterProvider>
+			<CartContextProvider>
+				<Cart />
+			</CartContextProvider>
+		</MockRouterProvider>
 	);
 
 	expect(() => render(wrapper)).not.toThrow();
 });
 
 it("renders info about empty cart if cartItems is empty", () => {
-	const { getByText, debug } = cartContextRender(<Cart />, {
+	const { getByText } = cartContextRender(<Cart />, {
 		store: {
 			cartItems: [],
 			totals: {},
