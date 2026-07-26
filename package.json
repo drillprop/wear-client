@@ -10,6 +10,8 @@
 		"build": "turbo build",
 		"dev": "turbo dev",
 		"typecheck": "turbo typecheck",
+		"schema": "turbo schema",
+		"test": "turbo test",
 		"check": "biome check .",
 		"format": "biome format --write ."
 	},

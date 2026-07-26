@@ -11,6 +11,12 @@
 		},
 		"typecheck": {
 			"dependsOn": ["^build"]
+		},
+		"schema": {
+			"outputs": ["schema.graphql"]
+		},
+		"test": {
+			"outputs": ["coverage/**"]
 		}
 	}
 }

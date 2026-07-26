@@ -33,4 +33,8 @@ jobs:
 
       - run: pnpm biome ci .
 
-      - run: pnpm turbo typecheck build
+      - run: pnpm turbo typecheck build test
+
+      # The GraphQL contract is generated; fail if it drifts from what's committed.
+      - run: pnpm turbo schema
+      - run: git diff --exit-code
