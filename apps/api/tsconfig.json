@@ -1,7 +1,11 @@
 {
 	"extends": "@wear/tsconfig/node.json",
 	"compilerOptions": {
-		"rootDir": "src"
+		"rootDir": "src",
+		// Override the shared config's `outDir`: TS resolves the inherited value
+		// relative to packages/tsconfig, so it must be re-anchored here to emit
+		// into apps/api/build instead of the shared package.
+		"outDir": "build"
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules", "build"]

@@ -12,7 +12,8 @@
 			"!**/.claude",
 			"!**/*.svg",
 			"!src/generated",
-			"!**/next-env.d.ts"
+			"!**/next-env.d.ts",
+			"!**/schema.graphql"
 		]
 	},
 	"formatter": {

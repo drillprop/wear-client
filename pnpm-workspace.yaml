@@ -13,3 +13,16 @@ catalog:
   react-dom: ^19.0.0
   "@types/react": ^19.0.0
   "@types/react-dom": ^19.0.0
+  # apps/api server stack (#45 walking skeleton). Drizzle pinned to the v1 rc —
+  # forced by @pothos/plugin-drizzle; GA bump budgeted per #34.
+  drizzle-orm: 1.0.0-rc.4
+  drizzle-kit: 1.0.0-rc.4
+  pg: ^8.22.0
+  "@types/pg": ^8.15.0
+  "@pothos/core": ^4.13.1
+  "@pothos/plugin-drizzle": ^0.17.5
+  graphql-yoga: ^5.21.2
+  "@electric-sql/pglite": ^0.5.4
+  vitest: ^4.1.10
+  "@vitest/coverage-v8": ^4.1.10
+  tsx: ^4.23.1

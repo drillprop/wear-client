@@ -4,12 +4,31 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "tsc",
-		"typecheck": "tsc --noEmit"
+		"dev": "tsx watch --env-file=.env src/index.ts",
+		"start": "node build/index.js",
+		"build": "tsc -p tsconfig.build.json",
+		"typecheck": "tsc --noEmit",
+		"schema": "tsx src/schema/emit.ts",
+		"db:push": "drizzle-kit push",
+		"test": "vitest run --coverage"
+	},
+	"dependencies": {
+		"@pothos/core": "catalog:",
+		"@pothos/plugin-drizzle": "catalog:",
+		"drizzle-orm": "catalog:",
+		"graphql": "catalog:",
+		"graphql-yoga": "catalog:",
+		"pg": "catalog:"
 	},
 	"devDependencies": {
+		"@electric-sql/pglite": "catalog:",
 		"@types/node": "catalog:",
+		"@types/pg": "catalog:",
+		"@vitest/coverage-v8": "catalog:",
 		"@wear/tsconfig": "workspace:*",
-		"typescript": "catalog:"
+		"drizzle-kit": "catalog:",
+		"tsx": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
 	}
 }
