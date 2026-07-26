@@ -1,0 +1,29 @@
+# Local development Postgres for @wear/api.
+#
+#   docker compose up -d      # start a fresh Postgres in the background
+#   pnpm db:push              # materialize the Drizzle schema into it
+#   pnpm dev                  # run the Yoga server against it
+#   docker compose down       # stop it (add -v to also wipe the data volume)
+#
+# Published on 55432 to avoid clashing with a default 5432/5433 Postgres from
+# another project. The DATABASE_URL in .env.example already points here.
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: wear-api-postgres
+    environment:
+      POSTGRES_USER: wear
+      POSTGRES_PASSWORD: wear
+      POSTGRES_DB: wear
+    ports:
+      - "55432:5432"
+    volumes:
+      - wear-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wear -d wear"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  wear-pgdata:
