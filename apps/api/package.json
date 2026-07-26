@@ -15,13 +15,20 @@
 	"dependencies": {
 		"@pothos/core": "catalog:",
 		"@pothos/plugin-drizzle": "catalog:",
+		"@pothos/plugin-scope-auth": "catalog:",
+		"@pothos/plugin-zod": "catalog:",
+		"bcrypt": "catalog:",
 		"drizzle-orm": "catalog:",
 		"graphql": "catalog:",
 		"graphql-yoga": "catalog:",
-		"pg": "catalog:"
+		"jsonwebtoken": "catalog:",
+		"pg": "catalog:",
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@electric-sql/pglite": "catalog:",
+		"@types/bcrypt": "catalog:",
+		"@types/jsonwebtoken": "catalog:",
 		"@types/node": "catalog:",
 		"@types/pg": "catalog:",
 		"@vitest/coverage-v8": "catalog:",

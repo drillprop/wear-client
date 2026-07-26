@@ -1,12 +1,34 @@
-import { pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { pgEnum, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 /**
- * Walking-skeleton table (#45). One trivial entity that proves the Drizzle →
- * Pothos → Yoga → pglite stack end-to-end before the real 6-entity domain
- * (#46+) lands. Follows the domain conventions the later slices reuse:
- * explicit snake_case column names and uuid primary keys.
+ * `UserRole` — the three roles the authorization scopes derive from (#46).
+ * ADMIN and EMPLOYEE together form "staff"; CUSTOMER is the default on register.
  */
-export const greeting = pgTable("greeting", {
+export const userRole = pgEnum("user_role", ["ADMIN", "EMPLOYEE", "CUSTOMER"]);
+
+/**
+ * The `user` entity — the authentication spine (#46). Columns keep the legacy
+ * server's snake_case names and uuid PK so the contract stays faithful, but the
+ * table is provisioned fresh via `drizzle-kit push` (#34). `password` holds a
+ * bcrypt hash and is never exposed through the GraphQL `User` type.
+ *
+ * Feature-specific columns (newsletter, reset-token, address relation) land with
+ * their own slices (#48/#49); this table carries only the identity core the auth
+ * spine and every gated operation need.
+ */
+export const user = pgTable("user", {
 	id: uuid("id").primaryKey().defaultRandom(),
-	message: text("message").notNull(),
+	// Unique at the DB level so the resolver's uniqueness check can't be raced by
+	// two concurrent registrations — the constraint is the authoritative backstop.
+	email: text("email").notNull().unique(),
+	password: text("password").notNull(),
+	firstName: text("first_name"),
+	lastName: text("last_name"),
+	phoneNumber: text("phone_number"),
+	role: userRole("role").notNull().default("CUSTOMER"),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at")
+		.notNull()
+		.defaultNow()
+		.$onUpdate(() => new Date()),
 });

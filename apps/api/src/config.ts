@@ -6,6 +6,7 @@
 export interface Config {
 	port: number;
 	databaseUrl: string;
+	jwtSecret: string;
 }
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
@@ -14,10 +15,15 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
 		throw new Error("DATABASE_URL is required");
 	}
 
+	const jwtSecret = env.JWT_SECRET;
+	if (!jwtSecret) {
+		throw new Error("JWT_SECRET is required");
+	}
+
 	const port = Number(env.PORT ?? 4000);
 	if (!Number.isInteger(port) || port <= 0) {
 		throw new Error(`Invalid PORT: ${env.PORT}`);
 	}
 
-	return { port, databaseUrl };
+	return { port, databaseUrl, jwtSecret };
 }

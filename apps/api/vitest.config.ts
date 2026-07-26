@@ -13,7 +13,12 @@ export default defineConfig({
 		include: ["src/**/*.test.ts"],
 		server: {
 			deps: {
-				inline: ["@pothos/core", "@pothos/plugin-drizzle"],
+				inline: [
+					"@pothos/core",
+					"@pothos/plugin-drizzle",
+					"@pothos/plugin-scope-auth",
+					"@pothos/plugin-zod",
+				],
 			},
 		},
 		coverage: {
