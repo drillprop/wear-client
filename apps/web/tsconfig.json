@@ -1,0 +1,19 @@
+{
+	"extends": "@wear/tsconfig/nextjs.json",
+	"compilerOptions": {
+		// Legacy Pages Router code relocated as-is (#40). These three flags are
+		// inherited strict-mode additions that are orthogonal to the relocate and
+		// get re-enabled during the App Router / Tailwind modernization phases.
+		"noUncheckedIndexedAccess": false,
+		"verbatimModuleSyntax": false,
+		"noImplicitOverride": false,
+		"target": "ES2017"
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"exclude": [
+		"node_modules",
+		"**/*.test.ts",
+		"**/*.test.tsx",
+		"src/test-utils/**"
+	]
+}

@@ -1,0 +1,24 @@
+import { gql } from "@apollo/client";
+
+export default gql`
+  query UserOrders($take: Int, $skip: Int) {
+    userOrders(take: $take, skip: $skip) {
+      count
+      select {
+        id
+        createdAt
+        status
+        orderedItems {
+          id
+          sizeSymbol
+          item {
+            gender
+            id
+            name
+            price
+          }
+        }
+      }
+    }
+  }
+`;
