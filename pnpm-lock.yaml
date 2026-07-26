@@ -36,6 +36,18 @@ importers:
         specifier: ^2.10.7
         version: 2.10.7
 
+  apps/api:
+    devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
+      '@wear/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
   apps/web:
     dependencies:
       '@apollo/client':
