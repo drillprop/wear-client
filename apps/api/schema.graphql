@@ -1,4 +1,40 @@
+enum Category {
+  BLAZER
+  BLOUSE
+  DRESS
+  JACKET
+  SHIRT
+  SWEATSHIRT
+  TROUSERS
+  TSHIRT
+}
+
 scalar DateTime
+
+enum Gender {
+  MAN
+  WOMAN
+}
+
+type Item {
+  category: Category!
+  createdAt: DateTime!
+  createdBy: User
+  description: String
+  gender: Gender!
+  id: ID!
+  imageUrl: String!
+  name: String!
+  price: Float!
+  sizes: [Size!]
+  updatedAt: DateTime!
+}
+
+type ItemsAndCount {
+  count: Int!
+  maxPrice: Float
+  select: [Item!]
+}
 
 input LoginInput {
   email: String!
@@ -12,12 +48,47 @@ type Mutation {
 }
 
 type Query {
+  item(id: ID!): Item
+  items(where: SearchItemInput): ItemsAndCount!
   me: User
 }
 
 input RegisterInput {
   email: String!
   password: String!
+}
+
+input SearchItemInput {
+  available: Boolean
+  category: Category
+  gender: Gender
+  id: ID
+  name: String
+  priceFrom: Float
+  priceTo: Float
+  skip: Int
+  sortBy: String
+  sortOrder: SortOrder
+  take: Int
+}
+
+type Size {
+  quantity: Int!
+  sizeSymbol: SizeSymbol!
+}
+
+enum SizeSymbol {
+  L
+  M
+  S
+  XL
+  XS
+  XXL
+}
+
+enum SortOrder {
+  ASC
+  DESC
 }
 
 type SuccessMessage {
