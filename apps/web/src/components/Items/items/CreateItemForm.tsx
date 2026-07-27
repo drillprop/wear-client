@@ -1,10 +1,10 @@
+"use client";
+import { useMutation } from "@apollo/client/react";
 import type React from "react";
 import type { FormEvent } from "react";
-import {
-	type ItemsQueryVariables,
-	useCreateItemMutation,
-} from "../../../generated/types";
-import ITEMS from "../../../graphql/queries/ITEMS";
+import type { ItemsQueryVariables } from "@/gql/graphql";
+import { createItem } from "../../../graphql/mutations/CREATE_ITEM";
+import { items } from "../../../graphql/queries/ITEMS";
 import useForm from "../../../hooks/useForm";
 import { SiteSubtitle } from "../../../styles/site.styles";
 import { CategoryArr, GenderArr, SizesArr } from "../../../utils/constants";
@@ -40,8 +40,8 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 		}, {}),
 	});
 
-	const [createItem, { data, error }] = useCreateItemMutation({
-		refetchQueries: [{ query: ITEMS, variables }],
+	const [create, { data, error }] = useMutation(createItem, {
+		refetchQueries: [{ query: items, variables }],
 		onCompleted: () => clearForm(values),
 	});
 
@@ -59,7 +59,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 				},
 		).filter((size) => size && size);
 
-		createItem({
+		create({
 			variables: {
 				...values,
 				imageUrl,
@@ -71,7 +71,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 	return (
 		<StyledCreateForm onSubmit={handleSubmit}>
 			<SiteSubtitle>Create an item</SiteSubtitle>
-			<ErrorMessage error={error} />
+			<ErrorMessage error={error?.message} />
 			{data?.createItem.id && "Succesfully create item"}
 			<CreateItemWrapper>
 				<div>

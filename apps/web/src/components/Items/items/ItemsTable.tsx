@@ -1,5 +1,5 @@
 import type React from "react";
-import type { ItemsQuery, ItemsQueryVariables } from "../../../generated/types";
+import type { ItemsQuery, ItemsQueryVariables } from "@/gql/graphql";
 import {
 	Table,
 	TableBody,
@@ -32,7 +32,7 @@ const ItemsTable: React.FC<Props> = ({ items, variables }) => {
 				</tr>
 			</TableHead>
 			<TableBody>
-				{items.map(
+				{items?.map(
 					(item, idx) =>
 						item && (
 							<ItemRow

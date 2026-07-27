@@ -1,9 +1,9 @@
+"use client";
+import { useMutation } from "@apollo/client/react";
 import type React from "react";
 import { useEffect } from "react";
-import {
-	type SingleItemQuery,
-	useUpdateItemMutation,
-} from "../../generated/types";
+import type { SingleItemQuery } from "@/gql/graphql";
+import { updateItem } from "../../graphql/mutations/UPDATE_ITEM";
 import useForm from "../../hooks/useForm";
 import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
 import { CategoryArr, GenderArr } from "../../utils/constants";
@@ -32,7 +32,7 @@ interface Props {
 }
 
 const EditItemForm: React.FC<Props> = ({ item }) => {
-	const [updateItem, { data, error }] = useUpdateItemMutation();
+	const [update, { data, error }] = useMutation(updateItem);
 
 	const { values, handleInput, setForm } = useForm({
 		name: "",
@@ -54,10 +54,10 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
 			values.imageUrl !== item?.imageUrl &&
 			(await uploadImageToCloudinary(values.imageUrl));
 
-		updateItem({
+		update({
 			variables: {
 				...getNewValFromSecObj(item, values),
-				id: item?.id,
+				id: item?.id ?? "",
 				imageUrl: file.secure_url,
 				price: parseFloat(values.price),
 				sizes: convertSizesToArr(values.sizes),
@@ -73,19 +73,11 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
 				<StyledEditForm onSubmit={handleSubmit}>
 					<SiteSubtitle>EDIT ITEM</SiteSubtitle>
 					<EditFormLinks>
-						<LinkAnchor
-							href={{
-								pathname: `/shop/item`,
-								query: {
-									id: item.id,
-								},
-							}}
-							as={`/shop/item?id=${item.id}`}
-						>
+						<LinkAnchor href={`/shop/item?id=${item.id}`}>
 							Go to item
 						</LinkAnchor>
 					</EditFormLinks>
-					<ErrorMessage error={error} />
+					<ErrorMessage error={error?.message} />
 					{data?.updateItem.id && "Succesfully updated item"}
 					<EditItemWrapper>
 						<div>
