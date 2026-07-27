@@ -1,6 +1,7 @@
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import type { NextRouter } from "next/router";
 import type { ReactNode } from "react";
+import { vi } from "vitest";
 
 // Minimal Pages-Router mock so components calling useRouter() (e.g. next/link,
 // LinkAnchor) can render under test. Next 15's useRouter throws when no router
@@ -11,14 +12,14 @@ export const mockRouter = {
 	route: "/",
 	asPath: "/",
 	query: {},
-	push: jest.fn(() => Promise.resolve(true)),
-	replace: jest.fn(() => Promise.resolve(true)),
-	reload: jest.fn(),
-	back: jest.fn(),
-	forward: jest.fn(),
-	prefetch: jest.fn(() => Promise.resolve()),
-	beforePopState: jest.fn(),
-	events: { on: jest.fn(), off: jest.fn(), emit: jest.fn() },
+	push: vi.fn(() => Promise.resolve(true)),
+	replace: vi.fn(() => Promise.resolve(true)),
+	reload: vi.fn(),
+	back: vi.fn(),
+	forward: vi.fn(),
+	prefetch: vi.fn(() => Promise.resolve()),
+	beforePopState: vi.fn(),
+	events: { on: vi.fn(), off: vi.fn(), emit: vi.fn() },
 	isFallback: false,
 	isLocaleDomain: false,
 	isReady: true,

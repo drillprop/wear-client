@@ -24,6 +24,7 @@
 			"outputs": ["src/gql/**"]
 		},
 		"test": {
+			"dependsOn": ["codegen"],
 			"outputs": ["coverage/**"]
 		}
 	}
