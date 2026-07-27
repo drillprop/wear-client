@@ -12,6 +12,7 @@
 			"!**/.claude",
 			"!**/*.svg",
 			"!src/generated",
+			"!**/src/gql",
 			"!**/next-env.d.ts",
 			"!**/schema.graphql"
 		]
