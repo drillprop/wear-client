@@ -1,3 +1,12 @@
+type Address {
+  addressLine1: String
+  addressLine2: String
+  city: String
+  country: String
+  id: ID!
+  zipCode: String
+}
+
 scalar DateTime
 
 input LoginInput {
@@ -6,13 +15,25 @@ input LoginInput {
 }
 
 type Mutation {
+  changeUserRole(email: String!, role: UserRole!): SuccessMessage!
+  deleteAccount(password: String!): SuccessMessage!
   login(input: LoginInput!): User!
   register(input: RegisterInput!): User!
   signout: SuccessMessage!
+  subscribeToNewsletter(newsletter: Boolean!): SuccessMessage!
+  updateAddress(input: UpdateAddressInput!): SuccessMessage!
+  updatePersonalInfo(input: PersonalInfoInput!): SuccessMessage!
+}
+
+input PersonalInfoInput {
+  firstName: String
+  lastName: String
+  phoneNumber: String
 }
 
 type Query {
   me: User
+  users(where: SearchUserInput): UsersAndCount!
 }
 
 input RegisterInput {
@@ -20,16 +41,35 @@ input RegisterInput {
   password: String!
 }
 
+input SearchUserInput {
+  email: String
+  firstName: String
+  lastName: String
+  role: UserRole
+  skip: Int
+  take: Int
+}
+
 type SuccessMessage {
   message: String!
 }
 
+input UpdateAddressInput {
+  addressLine1: String
+  addressLine2: String
+  city: String
+  country: String
+  zipCode: String
+}
+
 type User {
+  address: Address
   createdAt: DateTime!
   email: String!
   firstName: String
   id: ID!
   lastName: String
+  newsletter: Boolean!
   phoneNumber: String
   role: UserRole!
   updatedAt: DateTime!
@@ -39,4 +79,9 @@ enum UserRole {
   ADMIN
   CUSTOMER
   EMPLOYEE
+}
+
+type UsersAndCount {
+  count: Int!
+  select: [User!]!
 }

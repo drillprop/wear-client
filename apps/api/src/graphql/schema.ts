@@ -5,12 +5,19 @@ import { builder } from "./builder.js";
 import "./scalars.js";
 import "./roots.js";
 import "./shared/success-message.js";
+import "./address/address.type.js";
 import "./user/user.type.js";
 import "./user/inputs.js";
 import "./user/me.js";
 import "./user/register.js";
 import "./user/login.js";
 import "./user/signout.js";
+import "./user/personal-info.js";
+import "./user/newsletter.js";
+import "./user/delete-account.js";
+import "./user/change-role.js";
+import "./user/users.js";
+import "./address/update-address.js";
 
 /** The assembled, executable GraphQL schema — the test seam and Yoga host. */
 export const schema = builder.toSchema();

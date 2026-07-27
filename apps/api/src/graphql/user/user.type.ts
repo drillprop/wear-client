@@ -20,6 +20,10 @@ export const UserRef = builder.drizzleObject("user", {
 		firstName: t.exposeString("firstName", { nullable: true }),
 		lastName: t.exposeString("lastName", { nullable: true }),
 		phoneNumber: t.exposeString("phoneNumber", { nullable: true }),
+		newsletter: t.exposeBoolean("newsletter", { nullable: false }),
+		// 1:1 relation, resolved by @pothos/plugin-drizzle from the `user.address`
+		// relation config. Null until the customer saves an address.
+		address: t.relation("address", { nullable: true }),
 		role: t.field({
 			type: UserRoleEnum,
 			nullable: false,
