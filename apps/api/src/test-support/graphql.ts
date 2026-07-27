@@ -4,10 +4,10 @@ import type { DbClient } from "../db/client.js";
 import { schema } from "../graphql/schema.js";
 
 /**
- * Build an execution context for the seam. `db` is required; `userId` and the
- * session sinks default to an anonymous request with no-op cookies, and any of
- * them can be overridden (e.g. inject a `userId`, or pass a spy `issueSession`
- * to assert a session was started).
+ * Build an execution context for the seam. `db` is required; `userId`, the
+ * session sinks, and the mailer default to an anonymous request with no-op
+ * cookies and a no-op sender, and any of them can be overridden (e.g. inject a
+ * `userId`, or pass a spy `issueSession`/`mailer` to assert it was invoked).
  */
 export function testContext(
 	db: DbClient,
@@ -18,6 +18,7 @@ export function testContext(
 		userId: null,
 		issueSession: () => {},
 		clearSession: () => {},
+		mailer: { sendPasswordResetEmail: async () => {} },
 		...overrides,
 	};
 }

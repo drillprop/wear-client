@@ -36,6 +36,9 @@ catalog:
   bcrypt: ^6.0.0
   "@types/bcrypt": ^6.0.0
   zod: ^4.4.3
+  # password reset (#49): transactional email behind a stubbable Mailer seam
+  nodemailer: ^9.0.3
+  "@types/nodemailer": ^8.0.1
   vitest: ^4.1.10
   "@vitest/coverage-v8": ^4.1.10
   tsx: ^4.23.1

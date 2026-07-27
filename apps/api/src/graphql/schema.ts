@@ -12,6 +12,8 @@ import "./user/me.js";
 import "./user/register.js";
 import "./user/login.js";
 import "./user/signout.js";
+import "./user/reset-password.js";
+import "./user/change-password.js";
 import "./item/enums.js";
 import "./item/size.type.js";
 import "./item/item.type.js";
