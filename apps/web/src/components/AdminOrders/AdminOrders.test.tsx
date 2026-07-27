@@ -48,3 +48,39 @@ it("lists orders and manages an order's status", async () => {
 
 	await waitFor(() => expect(managed).toBe(true));
 });
+
+it("deletes an order via the DeleteOrder mutation", async () => {
+	const user = userEvent.setup();
+	let deleted = false;
+	server.use(
+		graphql.query("Orders", () =>
+			HttpResponse.json({
+				data: {
+					orders: [
+						{
+							id: "order-1",
+							createdAt: "2024-01-01T00:00:00.000Z",
+							status: "PENDING",
+							orderedBy: { id: "u1", email: "buyer@b.co" },
+							orderedItems: [],
+						},
+					],
+				},
+			}),
+		),
+		graphql.mutation("DeleteOrder", () => {
+			deleted = true;
+			return HttpResponse.json({ data: { deleteOrder: { message: "ok" } } });
+		}),
+	);
+
+	renderWithApollo(
+		<AppRouterProvider>
+			<AdminOrders />
+		</AppRouterProvider>,
+	);
+
+	await user.click(await screen.findByText("delete order"));
+
+	await waitFor(() => expect(deleted).toBe(true));
+});

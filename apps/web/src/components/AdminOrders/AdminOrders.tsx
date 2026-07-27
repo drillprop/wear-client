@@ -68,7 +68,7 @@ const AdminOrders: React.FC = () => {
 											<TableData
 												onClick={() => remove({ variables: { id: order.id } })}
 											>
-												delete
+												delete order
 											</TableData>
 										</TableBodyRow>
 									),
