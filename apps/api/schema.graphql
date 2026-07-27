@@ -137,6 +137,7 @@ type Query {
   me: User
   order(id: ID!): Order
   orders(where: SearchOrdersInput): [Order!]
+  user(id: ID!): User
   userOrders(skip: Int, take: Int): UserOrdersAndCount!
   users(where: SearchUserInput): UsersAndCount!
 }

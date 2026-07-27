@@ -18,6 +18,7 @@ import "./user/newsletter.js";
 import "./user/delete-account.js";
 import "./user/change-role.js";
 import "./user/users.js";
+import "./user/user.query.js";
 import "./user/reset-password.js";
 import "./user/change-password.js";
 import "./address/update-address.js";
