@@ -9,6 +9,20 @@
 			"cache": false,
 			"persistent": true
 		},
+		"@wear/web#dev": {
+			"dependsOn": ["codegen"],
+			"cache": false,
+			"persistent": true
+		},
+		"@wear/api#dev:schema": {
+			"cache": false,
+			"persistent": true
+		},
+		"@wear/web#dev:codegen": {
+			"dependsOn": ["@wear/api#schema"],
+			"cache": false,
+			"persistent": true
+		},
 		"typecheck": {
 			"dependsOn": ["^build", "codegen"]
 		},

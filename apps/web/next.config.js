@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
 	env: {
-		// Inlined for the frozen Pages Router client (legacy `withApollo`, Cloudinary
-		// upload). The App Router stack reads INTERNAL_API_URL / API_SHARED_SECRET
-		// server-side only (never inlined), so the API stays off the browser.
-		BACKEND_URL: process.env.BACKEND_URL,
+		// Inlined for the Cloudinary unsigned upload (staff item images). The App
+		// Router stack reads INTERNAL_API_URL / API_SHARED_SECRET server-side only
+		// (never inlined), so the API origin stays off the browser.
 		CLOUDINARY_PRESET: process.env.CLOUDINARY_PRESET,
 		CLOUDINARY_UPLOAD_URL: process.env.CLOUDINARY_UPLOAD_URL,
 	},

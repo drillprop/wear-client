@@ -1,4 +1,4 @@
-import type { SizeSymbol } from "../generated/types";
+import type { SizeSymbol } from "@/gql/graphql";
 import { SizesArr } from "./constants";
 
 export interface SizeElem {
