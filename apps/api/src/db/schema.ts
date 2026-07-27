@@ -107,9 +107,11 @@ export const size = pgTable(
 		id: uuid("id").primaryKey().defaultRandom(),
 		sizeSymbol: sizeSymbol("size_symbol").notNull(),
 		quantity: integer("quantity").notNull().default(0),
+		// Cascade so deleting an item removes its sizes in one step (#50 delete
+		// path); a size has no meaning without its item.
 		itemId: uuid("item")
 			.notNull()
-			.references(() => item.id),
+			.references(() => item.id, { onDelete: "cascade" }),
 	},
 	(t) => [unique("size_symbol_item_unique").on(t.sizeSymbol, t.itemId)],
 );

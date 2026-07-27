@@ -9,7 +9,26 @@ enum Category {
   TSHIRT
 }
 
+input CreateItemInput {
+  category: Category!
+  description: String
+  gender: Gender!
+  imageUrl: String!
+  name: String!
+  price: Float!
+  sizes: [ItemSizesInput!]
+}
+
 scalar DateTime
+
+input EditItemInput {
+  category: Category
+  id: String!
+  imageUrl: String
+  name: String
+  price: Float
+  sizes: [ItemSizesInput!]
+}
 
 enum Gender {
   MAN
@@ -30,6 +49,11 @@ type Item {
   updatedAt: DateTime!
 }
 
+input ItemSizesInput {
+  quantity: Int!
+  sizeSymbol: SizeSymbol!
+}
+
 type ItemsAndCount {
   count: Int!
   maxPrice: Float
@@ -42,9 +66,12 @@ input LoginInput {
 }
 
 type Mutation {
+  createItem(input: CreateItemInput!): Item!
+  deleteItem(id: ID!): SuccessMessage!
   login(input: LoginInput!): User!
   register(input: RegisterInput!): User!
   signout: SuccessMessage!
+  updateItem(input: EditItemInput!): Item!
 }
 
 type Query {
