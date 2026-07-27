@@ -1,4 +1,4 @@
-import { type ApolloClient, ApolloProvider } from "@apollo/client";
+import { type ApolloClient, ApolloProvider } from "@apollo/client-v3";
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";

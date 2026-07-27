@@ -1,6 +1,6 @@
-import type * as ApolloReactCommon from "@apollo/client";
-import * as ApolloReactHooks from "@apollo/client";
-import { gql } from "@apollo/client";
+import type * as ApolloReactCommon from "@apollo/client-v3";
+import * as ApolloReactHooks from "@apollo/client-v3";
+import { gql } from "@apollo/client-v3";
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
 	[K in keyof T]: T[K];

@@ -1,4 +1,4 @@
-import type { ApolloError } from "@apollo/client";
+import type { ApolloError } from "@apollo/client-v3";
 import type React from "react";
 import { useEffect, useState } from "react";
 import getValidationExceptions from "../../utils/getValidationExceptions";

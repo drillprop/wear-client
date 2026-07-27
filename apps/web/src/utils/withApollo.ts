@@ -1,6 +1,6 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { getDataFromTree } from "@apollo/client/react/ssr";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client-v3";
+import { setContext } from "@apollo/client-v3/link/context";
+import { getDataFromTree } from "@apollo/client-v3/react/ssr";
 import withApollo from "next-with-apollo";
 
 export default withApollo(
