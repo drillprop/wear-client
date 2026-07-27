@@ -186,6 +186,9 @@ importers:
       '@apollo/client-v3':
         specifier: npm:@apollo/client@^3.14.1
         version: '@apollo/client@3.14.1(@types/react@19.2.17)(graphql-ws@6.2.0(graphql@16.14.2)(ws@8.21.1))(graphql@16.14.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)'
+      '@emotion/is-prop-valid':
+        specifier: ^1.4.0
+        version: 1.4.0
       '@graphql-typed-document-node/core':
         specifier: ^3.2.0
         version: 3.2.0(graphql@16.14.2)
