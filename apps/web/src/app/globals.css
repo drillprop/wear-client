@@ -1,0 +1,12 @@
+/*
+ * Tailwind v4 entry stylesheet (#81). Imported once from the root layout.
+ *
+ * Toolchain-setup slice: this pulls in Tailwind's theme, Preflight base, and
+ * utilities so utility classes work. The design-token layer (`@theme` — shadcn
+ * neutral palette, the text-0..10 ramp, fonts, spacing) and the `globalstyle.ts`
+ * → `@layer base` port land in #82. During coexistence, styled-components
+ * injects *unlayered* rules, which outrank Tailwind's `@layer base`, so
+ * Preflight only reaches genuinely-unstyled elements and current rendering is
+ * preserved. styled-components + its registry are removed at teardown (#90).
+ */
+@import "tailwindcss";

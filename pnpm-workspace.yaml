@@ -42,3 +42,12 @@ catalog:
   vitest: ^4.1.10
   "@vitest/coverage-v8": ^4.1.10
   tsx: ^4.23.1
+  # apps/web styling stack (#66/#81): Tailwind v4 (CSS-first, no JS config) via
+  # its PostCSS plugin, plus the class-authoring helpers cn() is built from
+  # (clsx + tailwind-merge) and cva for variant sets in later slices.
+  tailwindcss: ^4.1.16
+  "@tailwindcss/postcss": ^4.1.16
+  postcss: ^8.5.6
+  clsx: ^2.1.1
+  tailwind-merge: ^3.3.1
+  class-variance-authority: ^0.7.1
