@@ -40,6 +40,16 @@ export const PersonalInfoInput = builder.inputType("PersonalInfoInput", {
 });
 
 /**
+ * `resetPassword` takes just the account email under the same well-formed-email
+ * rule; the resolver looks the user up and issues a token (#49).
+ */
+export const ResetPasswordInput = builder.inputType("ResetPasswordInput", {
+	fields: (t) => ({
+		email: t.string({ required: true, validate: emailValidation }),
+	}),
+});
+
+/**
  * `users` search filters (#48). `role` is an exact match; `email`/`firstName`/
  * `lastName` are partial, case-insensitive (`ILIKE %term%`); `take`/`skip`
  * paginate. Every value is bound as a Drizzle parameter in the resolver —
@@ -53,5 +63,17 @@ export const SearchUserInput = builder.inputType("SearchUserInput", {
 		lastName: t.string({ required: false }),
 		take: t.int({ required: false }),
 		skip: t.int({ required: false }),
+	}),
+});
+
+/**
+ * `changePassword` consumes a reset token and sets a new password. The token is
+ * an opaque server-issued string (no format rule to assert here); the password
+ * reuses the same 6–255 char rule registration and login enforce.
+ */
+export const ChangePasswordInput = builder.inputType("ChangePasswordInput", {
+	fields: (t) => ({
+		token: t.string({ required: true }),
+		password: t.string({ required: true, validate: passwordValidation }),
 	}),
 });

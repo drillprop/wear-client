@@ -21,8 +21,9 @@ export const userRole = pgEnum("user_role", ["ADMIN", "EMPLOYEE", "CUSTOMER"]);
  * table is provisioned fresh via `drizzle-kit push` (#34). `password` holds a
  * bcrypt hash and is never exposed through the GraphQL `User` type.
  *
- * The reset-token columns land with password recovery (#49); this slice (#48)
- * adds `newsletter` and the 1:1 `address` relation for account management.
+ * Beyond the identity core the auth spine needs, this table carries the columns
+ * its dependent slices add: `newsletter` and the 1:1 `address` relation for
+ * account management (#48), and the reset-token pair for password recovery (#49).
  */
 export const user = pgTable("user", {
 	id: uuid("id").primaryKey().defaultRandom(),
@@ -37,6 +38,11 @@ export const user = pgTable("user", {
 	// default rather than the legacy nullable Boolean, so the resolver never has
 	// to reason about a third "unknown" state.
 	newsletter: boolean("newsletter").notNull().default(false),
+	// Password-reset flow (#49): a single-use token and its expiry. Null when no
+	// reset is outstanding; both are cleared once a reset is consumed. Neither is
+	// ever exposed through the GraphQL `User` type.
+	resetToken: text("reset_token"),
+	resetTokenExpiry: timestamp("reset_token_expiry"),
 	role: userRole("role").notNull().default("CUSTOMER"),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	updatedAt: timestamp("updated_at")

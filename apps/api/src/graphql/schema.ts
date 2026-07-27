@@ -18,6 +18,8 @@ import "./user/newsletter.js";
 import "./user/delete-account.js";
 import "./user/change-role.js";
 import "./user/users.js";
+import "./user/reset-password.js";
+import "./user/change-password.js";
 import "./address/update-address.js";
 import "./item/enums.js";
 import "./item/size.type.js";
