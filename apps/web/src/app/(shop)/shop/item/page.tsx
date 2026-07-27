@@ -4,6 +4,12 @@ import { PreloadQuery, query } from "@/app/lib/apollo/rsc";
 import { singleItem } from "@/graphql/queries/SINGLE_ITEM";
 import ItemContent from "./item-content";
 
+// Hybrid-prefetch page (#29): both `generateMetadata` and the RSC `PreloadQuery`
+// fetch the item server-side through the internal API, so it is rendered per
+// request, never statically prerendered — a `next build` with no
+// INTERNAL_API_URL must not hit the API.
+export const dynamic = "force-dynamic";
+
 interface ItemPageProps {
 	searchParams: Promise<{ id?: string }>;
 }

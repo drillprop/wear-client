@@ -3,6 +3,12 @@ import { PreloadQuery } from "@/app/lib/apollo/rsc";
 import { requireCustomer } from "@/app/lib/auth";
 import { me } from "@/graphql/queries/ME";
 
+// Request/session-dependent: the gate fetches `me` server-side through the
+// cookie-forwarding RSC client, so this segment (and its pages) is never
+// statically prerendered — a `next build` with no INTERNAL_API_URL must not hit
+// the API. See app/lib/apollo/rsc.ts.
+export const dynamic = "force-dynamic";
+
 /**
  * `(account)` server-layout auth gate (#71/#29) — the pattern that replaces the
  * getInitialProps `withPrivateRoute` HOC. `requireCustomer` runs `me` server-side

@@ -6,6 +6,11 @@ import { parsePage } from "@/utils/pagination";
 import { itemsVariables } from "../itemsVariables";
 import ShopContent from "./shop-content";
 
+// Hybrid-prefetch page (#29): the RSC `PreloadQuery` fetches items server-side
+// through the internal API, so it is rendered per request, never statically
+// prerendered — a `next build` with no INTERNAL_API_URL must not hit the API.
+export const dynamic = "force-dynamic";
+
 interface ShopPageProps {
 	params: Promise<{ params: string[] }>;
 	searchParams: Promise<{ page?: string }>;
