@@ -27,6 +27,9 @@ import "./item/item.type.js";
 import "./item/inputs.js";
 import "./item/item.query.js";
 import "./item/items.query.js";
+import "./item/create-item.js";
+import "./item/update-item.js";
+import "./item/delete-item.js";
 
 /** The assembled, executable GraphQL schema — the test seam and Yoga host. */
 export const schema = builder.toSchema();
