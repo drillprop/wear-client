@@ -10,8 +10,7 @@ import { vi } from "vitest";
 
 // Minimal App Router mock so client components that call useRouter()/next/link
 // can render under test. App Router's hooks throw when no router is mounted, so
-// tests rendering the App Router tree must provide this context — the App Router
-// counterpart to the Pages-Router `mockRouter`.
+// tests rendering the App Router tree must provide this context.
 export const mockAppRouter: AppRouterInstance = {
 	push: vi.fn(),
 	replace: vi.fn(),

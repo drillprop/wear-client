@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
 import CartContextProvider from "../../contexts/CartContext";
+import { AppRouterProvider } from "../../test-utils/appRouter";
 import { cartContextRender } from "../../test-utils/cartContextRender";
-import { MockRouterProvider } from "../../test-utils/mockRouter";
 import Cart from "./Cart";
 
 it("throw error if there is no CartProvider", () => {
@@ -16,11 +16,11 @@ it("throw error if there is no CartProvider", () => {
 
 it(`doesn't throw error if Cart is within CartContextProvider`, () => {
 	const wrapper = (
-		<MockRouterProvider>
+		<AppRouterProvider>
 			<CartContextProvider>
 				<Cart />
 			</CartContextProvider>
-		</MockRouterProvider>
+		</AppRouterProvider>
 	);
 
 	expect(() => render(wrapper)).not.toThrow();

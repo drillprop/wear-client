@@ -1,12 +1,12 @@
 import { render } from "@testing-library/react";
 import { CartContext } from "../contexts/CartContext";
-import { MockRouterProvider } from "./mockRouter";
+import { AppRouterProvider } from "./appRouter";
 
 export const cartContextRender = (ui: any, { store, ...options }: any) => {
 	const Wrapper = (props: any) => (
-		<MockRouterProvider>
+		<AppRouterProvider>
 			<CartContext.Provider value={store} {...props} />
-		</MockRouterProvider>
+		</AppRouterProvider>
 	);
 	return render(ui, { wrapper: Wrapper, ...options });
 };

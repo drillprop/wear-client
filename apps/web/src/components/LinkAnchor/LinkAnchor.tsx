@@ -15,9 +15,9 @@ const LinkAnchor: FC<PropsWithChildren<LinkProps & Props>> = ({
 	children,
 	...props
 }) => {
-	// `usePathname` reads the App Router pathname; under the unmigrated Pages
-	// Router (frozen header/admin) the context is absent and it returns `null`
-	// without throwing — the active-link highlight simply no-ops there.
+	// `usePathname` returns the App Router pathname, or `null` when no router
+	// context is mounted (e.g. rendered in isolation under test) — the guard
+	// keeps the active-link highlight a no-op rather than throwing.
 	const pathname = usePathname();
 	const path = pathname ? pathname.split(/\/|\?/gi) : [];
 

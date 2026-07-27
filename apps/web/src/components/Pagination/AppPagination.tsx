@@ -18,8 +18,7 @@ interface Props {
  * App Router pagination. Prev/next are plain `next/link`s that rewrite the `page`
  * search param (preserving any others) — the data page derives its query
  * variables from `useSearchParams`, so navigating is what drives the client-side
- * refetch. The Pages Router `Pagination` (object-href + `refetch` side effect)
- * stays put for the frozen admin tables.
+ * refetch.
  */
 const AppPagination: React.FC<Props> = ({ page, total = 0, take }) => {
 	const pathname = usePathname();
