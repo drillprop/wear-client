@@ -27,6 +27,15 @@
  * current rendering is preserved.
  */
 @import "tailwindcss";
+/* Animation utilities (animate-in/out, fade/zoom/slide) the overlay primitives
+ * — Dialog, Select — rely on. shadcn's #83 dependency, imported here since the
+ * app owns the stylesheet. */
+@import "tw-animate-css";
+
+/* Tailwind auto-scans this app's own source, but not sibling workspace
+ * packages. Point it at @wear/ui's primitives so the utility classes they use
+ * (bg-primary, border-input, animate-in, …) are generated (#83). */
+@source "../../../../packages/ui/src";
 
 :root {
 	--radius: 0.625rem;

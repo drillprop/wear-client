@@ -1,0 +1,30 @@
+{
+	"name": "@wear/ui",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./lib/*": "./src/lib/*.ts",
+		"./components/*": "./src/components/*.tsx"
+	},
+	"scripts": {
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"class-variance-authority": "catalog:",
+		"clsx": "catalog:",
+		"lucide-react": "catalog:",
+		"radix-ui": "catalog:",
+		"tailwind-merge": "catalog:"
+	},
+	"peerDependencies": {
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"devDependencies": {
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@wear/tsconfig": "workspace:*",
+		"typescript": "catalog:"
+	}
+}
