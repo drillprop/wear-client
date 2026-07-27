@@ -23,12 +23,31 @@ input ChangePasswordInput {
   token: String!
 }
 
+input CreateItemInput {
+  category: Category!
+  description: String
+  gender: Gender!
+  imageUrl: String!
+  name: String!
+  price: Float!
+  sizes: [ItemSizesInput!]
+}
+
 input CreateOrderInput {
   itemId: ID!
   size: SizeSymbol!
 }
 
 scalar DateTime
+
+input EditItemInput {
+  category: Category
+  id: String!
+  imageUrl: String
+  name: String
+  price: Float
+  sizes: [ItemSizesInput!]
+}
 
 enum Gender {
   MAN
@@ -49,6 +68,11 @@ type Item {
   updatedAt: DateTime!
 }
 
+input ItemSizesInput {
+  quantity: Int!
+  sizeSymbol: SizeSymbol!
+}
+
 type ItemsAndCount {
   count: Int!
   maxPrice: Float
@@ -63,8 +87,10 @@ input LoginInput {
 type Mutation {
   changePassword(input: ChangePasswordInput!): SuccessMessage!
   changeUserRole(email: String!, role: UserRole!): SuccessMessage!
+  createItem(input: CreateItemInput!): Item!
   createOrder(input: [CreateOrderInput!]!): Order!
   deleteAccount(password: String!): SuccessMessage!
+  deleteItem(id: ID!): SuccessMessage!
   deleteOrder(id: ID!): SuccessMessage!
   login(input: LoginInput!): User!
   manageOrder(id: ID!, status: OrderStatus!): SuccessMessage!
@@ -73,6 +99,7 @@ type Mutation {
   signout: SuccessMessage!
   subscribeToNewsletter(newsletter: Boolean!): SuccessMessage!
   updateAddress(input: UpdateAddressInput!): SuccessMessage!
+  updateItem(input: EditItemInput!): Item!
   updatePersonalInfo(input: PersonalInfoInput!): SuccessMessage!
 }
 
