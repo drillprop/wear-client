@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import "./globals.css";
 import StyledComponentsRegistry from "./lib/styled-components-registry";
 import { Providers } from "./providers";
 
@@ -21,7 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					rel="stylesheet"
 				/>
 			</head>
-			<body>
+			<body className="antialiased">
 				<StyledComponentsRegistry>
 					<Providers>{children}</Providers>
 				</StyledComponentsRegistry>
