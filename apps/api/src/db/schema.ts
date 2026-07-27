@@ -1,9 +1,11 @@
 import {
 	boolean,
+	integer,
 	pgEnum,
 	pgTable,
 	text,
 	timestamp,
+	unique,
 	uuid,
 } from "drizzle-orm/pg-core";
 
@@ -67,3 +69,76 @@ export const address = pgTable("address", {
 		.defaultNow()
 		.$onUpdate(() => new Date()),
 });
+
+/**
+ * `Gender` and `Category` — the shop taxonomy an item is filed under. Both keep
+ * the legacy server's enum values verbatim so the web contract's `Gender` /
+ * `Category` GraphQL enums map straight through (#47).
+ */
+export const gender = pgEnum("gender", ["MAN", "WOMAN"]);
+export const category = pgEnum("category", [
+	"TROUSERS",
+	"DRESS",
+	"BLOUSE",
+	"TSHIRT",
+	"SHIRT",
+	"JACKET",
+	"BLAZER",
+	"SWEATSHIRT",
+]);
+
+/** `SizeSymbol` — the per-item stock-keeping sizes, smallest to largest. */
+export const sizeSymbol = pgEnum("size_symbol", [
+	"XS",
+	"S",
+	"M",
+	"L",
+	"XL",
+	"XXL",
+]);
+
+/**
+ * The `item` entity — the catalogue read model (#47). `price` is an `integer`
+ * (whole currency units; the GraphQL `Item.price` widens it to `Float` to keep
+ * the legacy contract). `createdBy` records the staff member who added the item
+ * and is exposed only to staff via the GraphQL type's scope gate.
+ *
+ * The write path (createItem/updateItem/deleteItem) lands in #50; this slice
+ * provisions the table and its read queries only.
+ */
+export const item = pgTable("item", {
+	id: uuid("id").primaryKey().defaultRandom(),
+	name: text("name").notNull(),
+	description: text("description"),
+	price: integer("price").notNull(),
+	imageUrl: text("image_url").notNull(),
+	category: category("category").notNull(),
+	gender: gender("gender").notNull(),
+	createdById: uuid("created_by")
+		.notNull()
+		.references(() => user.id),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at")
+		.notNull()
+		.defaultNow()
+		.$onUpdate(() => new Date()),
+});
+
+/**
+ * The `size` entity — an item's stock for one `SizeSymbol`. Unique on
+ * `(size_symbol, item)` so an item can't carry the same size twice; `quantity`
+ * is the on-hand count and drives the `available` catalogue filter (a size with
+ * `quantity > 0`).
+ */
+export const size = pgTable(
+	"size",
+	{
+		id: uuid("id").primaryKey().defaultRandom(),
+		sizeSymbol: sizeSymbol("size_symbol").notNull(),
+		quantity: integer("quantity").notNull().default(0),
+		itemId: uuid("item")
+			.notNull()
+			.references(() => item.id),
+	},
+	(t) => [unique("size_symbol_item_unique").on(t.sizeSymbol, t.itemId)],
+);
