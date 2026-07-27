@@ -23,6 +23,11 @@ input ChangePasswordInput {
   token: String!
 }
 
+input CreateOrderInput {
+  itemId: ID!
+  size: SizeSymbol!
+}
+
 scalar DateTime
 
 enum Gender {
@@ -58,14 +63,39 @@ input LoginInput {
 type Mutation {
   changePassword(input: ChangePasswordInput!): SuccessMessage!
   changeUserRole(email: String!, role: UserRole!): SuccessMessage!
+  createOrder(input: [CreateOrderInput!]!): Order!
   deleteAccount(password: String!): SuccessMessage!
+  deleteOrder(id: ID!): SuccessMessage!
   login(input: LoginInput!): User!
+  manageOrder(id: ID!, status: OrderStatus!): SuccessMessage!
   register(input: RegisterInput!): User!
   resetPassword(input: ResetPasswordInput!): SuccessMessage!
   signout: SuccessMessage!
   subscribeToNewsletter(newsletter: Boolean!): SuccessMessage!
   updateAddress(input: UpdateAddressInput!): SuccessMessage!
   updatePersonalInfo(input: PersonalInfoInput!): SuccessMessage!
+}
+
+type Order {
+  createdAt: DateTime!
+  id: ID!
+  orderedBy: User
+  orderedItems: [Ordered_Item!]
+  status: OrderStatus!
+  updatedAt: DateTime!
+}
+
+enum OrderStatus {
+  COMPLETED
+  PAID
+  PENDING
+  SENT
+}
+
+type Ordered_Item {
+  id: ID!
+  item: Item
+  sizeSymbol: SizeSymbol!
 }
 
 input PersonalInfoInput {
@@ -78,6 +108,9 @@ type Query {
   item(id: ID!): Item
   items(where: SearchItemInput): ItemsAndCount!
   me: User
+  order(id: ID!): Order
+  orders(where: SearchOrdersInput): [Order!]
+  userOrders(skip: Int, take: Int): UserOrdersAndCount!
   users(where: SearchUserInput): UsersAndCount!
 }
 
@@ -101,6 +134,15 @@ input SearchItemInput {
   skip: Int
   sortBy: String
   sortOrder: SortOrder
+  take: Int
+}
+
+input SearchOrdersInput {
+  id: ID
+  skip: Int
+  sortBy: String
+  sortOrder: SortOrder
+  status: OrderStatus
   take: Int
 }
 
@@ -155,6 +197,11 @@ type User {
   phoneNumber: String
   role: UserRole!
   updatedAt: DateTime!
+}
+
+type UserOrdersAndCount {
+  count: Int!
+  select: [Order!]
 }
 
 enum UserRole {
