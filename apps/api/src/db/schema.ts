@@ -1,4 +1,5 @@
 import {
+	boolean,
 	integer,
 	pgEnum,
 	pgTable,
@@ -20,9 +21,9 @@ export const userRole = pgEnum("user_role", ["ADMIN", "EMPLOYEE", "CUSTOMER"]);
  * table is provisioned fresh via `drizzle-kit push` (#34). `password` holds a
  * bcrypt hash and is never exposed through the GraphQL `User` type.
  *
- * Feature-specific columns (newsletter, reset-token, address relation) land with
- * their own slices (#48/#49); this table carries only the identity core the auth
- * spine and every gated operation need.
+ * Beyond the identity core the auth spine needs, this table carries the columns
+ * its dependent slices add: `newsletter` and the 1:1 `address` relation for
+ * account management (#48), and the reset-token pair for password recovery (#49).
  */
 export const user = pgTable("user", {
 	id: uuid("id").primaryKey().defaultRandom(),
@@ -33,7 +34,41 @@ export const user = pgTable("user", {
 	firstName: text("first_name"),
 	lastName: text("last_name"),
 	phoneNumber: text("phone_number"),
+	// A subscription flag is inherently on/off — modelled non-null with a `false`
+	// default rather than the legacy nullable Boolean, so the resolver never has
+	// to reason about a third "unknown" state.
+	newsletter: boolean("newsletter").notNull().default(false),
+	// Password-reset flow (#49): a single-use token and its expiry. Null when no
+	// reset is outstanding; both are cleared once a reset is consumed. Neither is
+	// ever exposed through the GraphQL `User` type.
+	resetToken: text("reset_token"),
+	resetTokenExpiry: timestamp("reset_token_expiry"),
 	role: userRole("role").notNull().default("CUSTOMER"),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at")
+		.notNull()
+		.defaultNow()
+		.$onUpdate(() => new Date()),
+});
+
+/**
+ * The `address` entity — a customer's single shipping/billing address (#48),
+ * 1:1 with `user`. The 1:1 is enforced by the unique FK on `user_id`; deleting a
+ * user cascades to their address so `deleteAccount` leaves no orphan row. Every
+ * field is nullable so `updateAddress` can persist a partially-filled form, which
+ * mirrors the legacy contract (all Address fields optional).
+ */
+export const address = pgTable("address", {
+	id: uuid("id").primaryKey().defaultRandom(),
+	userId: uuid("user_id")
+		.notNull()
+		.unique()
+		.references(() => user.id, { onDelete: "cascade" }),
+	addressLine1: text("address_line1"),
+	addressLine2: text("address_line2"),
+	zipCode: text("zip_code"),
+	city: text("city"),
+	country: text("country"),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	updatedAt: timestamp("updated_at")
 		.notNull()
