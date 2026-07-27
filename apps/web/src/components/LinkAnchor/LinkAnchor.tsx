@@ -1,5 +1,6 @@
+"use client";
 import Link, { type LinkProps } from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import type { FC, PropsWithChildren } from "react";
 import { StyledAnchor } from "./LinkAnchor.styles";
 
@@ -14,8 +15,11 @@ const LinkAnchor: FC<PropsWithChildren<LinkProps & Props>> = ({
 	children,
 	...props
 }) => {
-	const router = useRouter();
-	const path = router ? router.asPath.split(/\/|\?/gi) : "";
+	// `usePathname` reads the App Router pathname; under the unmigrated Pages
+	// Router (frozen header/admin) the context is absent and it returns `null`
+	// without throwing — the active-link highlight simply no-ops there.
+	const pathname = usePathname();
+	const path = pathname ? pathname.split(/\/|\?/gi) : [];
 
 	const isPathIncludes = wordToHighlight
 		? path.includes(wordToHighlight)

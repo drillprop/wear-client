@@ -1,6 +1,6 @@
 import type React from "react";
 import { useEffect, useState } from "react";
-import type { ItemsQueryVariables } from "../../../generated/types";
+import type { ItemsQueryVariables } from "@/gql/graphql";
 import Input from "../../Input/Input";
 import RangeInput from "../../RangeInput/RangeInput";
 

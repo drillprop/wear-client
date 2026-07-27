@@ -1,7 +1,9 @@
+"use client";
+import { useMutation } from "@apollo/client/react";
+import { useRouter } from "next/navigation";
 import type React from "react";
 import { type FormEvent, useEffect } from "react";
-import { useLoginMutation } from "../../generated/types";
-import ME from "../../graphql/queries/ME";
+import { login } from "../../graphql/mutations/LOGIN";
 import useForm from "../../hooks/useForm";
 import {
 	ForgotPassword,
@@ -12,6 +14,7 @@ import {
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
+import LinkAnchor from "../LinkAnchor/LinkAnchor";
 import SignImage from "../SignImage/SignImage";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
@@ -20,9 +23,8 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
-	const [login, { error }] = useLoginMutation({
-		refetchQueries: [{ query: ME }],
-	});
+	const router = useRouter();
+	const [loginMutation, { error }] = useMutation(login);
 	const { values, handleInput, clearForm } = useForm({
 		email: "",
 		password: "",
@@ -36,15 +38,20 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 
 	const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await login({ variables: values });
+		const { data } = await loginMutation({ variables: values });
 		clearForm(values);
+		// The session cookie came back through the proxy; navigate home so the
+		// server (reverse gate + protected layouts) sees the authenticated session.
+		if (data?.login) {
+			router.push("/");
+		}
 	};
 
 	return (
 		<SignWrapper>
 			<SignForm onSubmit={handleLogin}>
 				<SignTitle>WELCOME BACK</SignTitle>
-				<ErrorMessage error={error}></ErrorMessage>
+				<ErrorMessage error={error?.message}></ErrorMessage>
 				<Input
 					marginTop="50px"
 					placeholder="user@example.com"
@@ -65,7 +72,9 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 					required
 				/>
 				<Button type="submit">login</Button>
-				<ForgotPassword>Forgot your password?</ForgotPassword>
+				<LinkAnchor href="/reset">
+					<ForgotPassword>Forgot your password?</ForgotPassword>
+				</LinkAnchor>
 			</SignForm>
 			<SwitchSignButton onClick={() => setIsNewUser(true)} hoverText="REGISTER">
 				DON'T HAVE ACCOUNT?

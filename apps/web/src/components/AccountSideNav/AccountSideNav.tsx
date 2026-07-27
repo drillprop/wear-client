@@ -7,6 +7,7 @@ import {
 	SideNavWrapper,
 } from "../../styles/sideNav.styles";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
+import SignoutButton from "../SignoutButton/SignoutButton";
 
 const AccountSideNav: React.FC = () => {
 	return (
@@ -28,6 +29,9 @@ const AccountSideNav: React.FC = () => {
 						<LinkAnchor wordToHighlight="orders" href="/account/orders">
 							orders
 						</LinkAnchor>
+					</SideNavItem>
+					<SideNavItem>
+						<SignoutButton />
 					</SideNavItem>
 				</SideNavList>
 			</SideNavSticky>

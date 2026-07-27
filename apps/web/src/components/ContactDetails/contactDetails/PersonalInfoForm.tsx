@@ -1,10 +1,9 @@
+"use client";
+import { useMutation, useQuery } from "@apollo/client/react";
 import type React from "react";
 import { type FormEvent, useEffect } from "react";
-import {
-	useMeQuery,
-	useUpdatePersonalInfoMutation,
-} from "../../../generated/types";
-import ME from "../../../graphql/queries/ME";
+import { updatePersonalInfo } from "../../../graphql/mutations/UPDATE_PERSONAL_INFO";
+import { me } from "../../../graphql/queries/ME";
 import useForm from "../../../hooks/useForm";
 import { SiteForm, SiteSubtitle } from "../../../styles/site.styles";
 import Button from "../../Button/Button";
@@ -18,16 +17,10 @@ const PersonalInfoForm: React.FC = () => {
 		phoneNumber: "",
 	});
 
-	const { data, error } = useMeQuery();
-	const [updatePersonalInfo, { data: success }] = useUpdatePersonalInfoMutation(
-		{
-			refetchQueries: [
-				{
-					query: ME,
-				},
-			],
-		},
-	);
+	const { data, error } = useQuery(me);
+	const [update, { data: success }] = useMutation(updatePersonalInfo, {
+		refetchQueries: [{ query: me }],
+	});
 
 	useEffect(() => {
 		if (data?.me) {
@@ -42,16 +35,12 @@ const PersonalInfoForm: React.FC = () => {
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await updatePersonalInfo({
-			variables: {
-				...values,
-			},
-		});
+		await update({ variables: { ...values } });
 	};
 	return (
 		<SiteForm onSubmit={handleSubmit}>
 			<SiteSubtitle>Personal Info</SiteSubtitle>
-			<ErrorMessage error={error} />
+			<ErrorMessage error={error?.message} />
 			{success?.updatePersonalInfo.message}
 			<div style={{ maxWidth: "350px" }}>
 				<Input

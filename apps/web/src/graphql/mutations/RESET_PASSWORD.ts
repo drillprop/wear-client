@@ -1,9 +1,14 @@
-import { gql } from "@apollo/client-v3";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation ResetPassword($email: String!) {
-    requestResetPassword(email: $email) {
-      message
-    }
-  }
-`;
+/**
+ * `ResetPassword` — requests a password-reset email for the address. Rewritten
+ * to the rebuilt API (#44): the old client called `requestResetPassword(email:)`,
+ * the schema now exposes `resetPassword(input: { email })`.
+ */
+export const resetPassword = graphql(`
+	mutation ResetPassword($email: String!) {
+		resetPassword(input: { email: $email }) {
+			message
+		}
+	}
+`);

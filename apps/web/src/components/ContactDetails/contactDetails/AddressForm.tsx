@@ -1,7 +1,9 @@
+"use client";
+import { useMutation, useQuery } from "@apollo/client/react";
 import type React from "react";
 import { type FormEvent, useEffect } from "react";
-import { useMeQuery, useUpdateAddressMutation } from "../../../generated/types";
-import ME from "../../../graphql/queries/ME";
+import { updateAddress } from "../../../graphql/mutations/UPDATE_ADDRESS";
+import { me } from "../../../graphql/queries/ME";
 import useForm from "../../../hooks/useForm";
 import { SiteForm, SiteSubtitle } from "../../../styles/site.styles";
 import Button from "../../Button/Button";
@@ -16,37 +18,35 @@ const AddressForm: React.FC = () => {
 		city: "",
 		country: "",
 	});
-	const { data } = useMeQuery();
+	const { data } = useQuery(me);
 
-	const [updateAddress, { error, data: success }] = useUpdateAddressMutation({
-		refetchQueries: [
-			{
-				query: ME,
-			},
-		],
+	const [update, { error, data: success }] = useMutation(updateAddress, {
+		refetchQueries: [{ query: me }],
 	});
 
 	useEffect(() => {
 		if (data?.me?.address) {
 			const { __typename, ...rest } = data.me.address;
-			setForm({ ...rest });
+			setForm({
+				addressLine1: rest.addressLine1 || "",
+				addressLine2: rest.addressLine2 || "",
+				zipCode: rest.zipCode || "",
+				city: rest.city || "",
+				country: rest.country || "",
+			});
 		}
 	}, [data]);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await updateAddress({
-			variables: {
-				...values,
-			},
-		});
+		await update({ variables: { ...values } });
 	};
 
 	return (
 		<SiteForm onSubmit={handleSubmit}>
 			<SiteSubtitle>Address</SiteSubtitle>
 			{success?.updateAddress.message}
-			<ErrorMessage error={error} />
+			<ErrorMessage error={error?.message} />
 			<div style={{ maxWidth: "350px" }}>
 				<Input
 					marginTop="50px"
