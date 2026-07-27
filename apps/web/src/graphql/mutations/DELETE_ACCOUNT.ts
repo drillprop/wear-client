@@ -1,9 +1,10 @@
-import { gql } from "@apollo/client-v3";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation DeleteAccount($password: String!) {
-    deleteAccount(password: $password) {
-      message
-    }
-  }
-`;
+/** `DeleteAccount` — deletes the signed-in customer's account (password-confirmed). */
+export const deleteAccount = graphql(`
+	mutation DeleteAccount($password: String!) {
+		deleteAccount(password: $password) {
+			message
+		}
+	}
+`);

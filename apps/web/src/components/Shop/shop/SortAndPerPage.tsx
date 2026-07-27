@@ -1,27 +1,19 @@
-import type { ApolloQueryResult } from "@apollo/client-v3";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import type React from "react";
 import { useState } from "react";
-import type { ItemsQuery, ItemsQueryVariables } from "../../../generated/types";
+import type { ItemsQueryVariables } from "@/gql/graphql";
 import Select from "../../Select/Select";
 
 type SortType = "newest" | "lowest price" | "highest price";
 
 interface Props {
-	refetch: (
-		variables?: ItemsQueryVariables | undefined,
-	) => Promise<ApolloQueryResult<ItemsQuery>>;
+	refetch: (variables?: Partial<ItemsQueryVariables>) => void;
 	variables: ItemsQueryVariables;
-	path: string;
-	asPath: string;
+	/** Concrete catalogue path (e.g. `/shop/man`) to reset to on a per-page change. */
+	basePath: string;
 }
 
-const SortAndPerPage: React.FC<Props> = ({
-	refetch,
-	variables,
-	path,
-	asPath,
-}) => {
+const SortAndPerPage: React.FC<Props> = ({ refetch, variables, basePath }) => {
 	const [sortValue, setSortValue] = useState<SortType>("newest");
 
 	const router = useRouter();
@@ -60,10 +52,11 @@ const SortAndPerPage: React.FC<Props> = ({
 			<Select
 				label="items per page"
 				onChange={(take) => {
+					// Changing page size resets pagination to the first page.
 					if (variables.skip) {
-						router.push(path, asPath);
+						router.push(basePath);
 					}
-					take && refetch({ ...variables, take: parseInt(take, 10) });
+					take && refetch({ ...variables, skip: 0, take: parseInt(take, 10) });
 				}}
 				value={variables?.take || 6}
 				placeHolder="6"

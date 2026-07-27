@@ -20,14 +20,7 @@ const UserRow: React.FC<Props> = ({
 	orders,
 }) => {
 	return (
-		<Link
-			href={{
-				pathname: "/admin/user",
-				query: {
-					id,
-				},
-			}}
-		>
+		<Link href={`/admin/user?id=${id}`}>
 			<TableBodyRow grey={grey}>
 				<TableData>{email}</TableData>
 				<TableData>{fullName} </TableData>

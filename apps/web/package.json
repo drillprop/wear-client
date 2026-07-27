@@ -9,8 +9,8 @@
 		"typecheck": "tsc --noEmit",
 		"codegen": "graphql-codegen --config codegen.ts",
 		"generate": "graphql-codegen --config codegen.yml -r dotenv/config",
-		"test": "jest",
-		"test:coverage": "jest --coverage"
+		"test": "vitest run --coverage",
+		"test:watch": "vitest"
 	},
 	"dependencies": {
 		"@apollo/client": "^4.2.8",
@@ -41,17 +41,19 @@
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.2.0",
-		"@types/jest": "^29.5.14",
+		"@testing-library/user-event": "^14.6.1",
 		"@types/js-cookie": "^3.0.6",
 		"@types/lodash.debounce": "^4.0.9",
 		"@types/node": "catalog:",
 		"@types/nprogress": "^0.2.3",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "^6.0.4",
+		"@vitest/coverage-v8": "catalog:",
 		"@wear/tsconfig": "workspace:*",
-		"jest": "^29.7.0",
-		"jest-environment-jsdom": "^29.7.0",
-		"ts-jest": "^29.2.5",
-		"typescript": "catalog:"
+		"jsdom": "^30.0.0",
+		"msw": "^2.15.0",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
 	}
 }

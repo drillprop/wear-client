@@ -20,10 +20,16 @@
 		},
 		"@wear/web#codegen": {
 			"dependsOn": ["@wear/api#schema"],
-			"inputs": ["../api/schema.graphql", "src/app/**", "codegen.ts"],
+			"inputs": [
+				"../api/schema.graphql",
+				"src/app/**",
+				"src/graphql/**",
+				"codegen.ts"
+			],
 			"outputs": ["src/gql/**"]
 		},
 		"test": {
+			"dependsOn": ["codegen"],
 			"outputs": ["coverage/**"]
 		}
 	}

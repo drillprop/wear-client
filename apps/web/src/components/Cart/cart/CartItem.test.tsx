@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
+import { vi } from "vitest";
 import CartContextProvider, {
 	CartContext,
 	type ICartItem,
@@ -15,7 +16,7 @@ const mockItem: ICartItem = {
 };
 
 it("throw error if CartItem is not inside CartProvider", () => {
-	jest.spyOn(console, "error").mockImplementation(() => {});
+	vi.spyOn(console, "error").mockImplementation(() => {});
 
 	expect(() => render(<CartItem item={mockItem} />)).toThrowError(
 		"useCart must be used within a CartProvider",
@@ -33,20 +34,20 @@ it(`doesn't throw error if CartItem is within CartContextProvider`, () => {
 });
 
 it("calls context methods", () => {
-	const incItemInCart = jest.fn();
-	const decrItemInCart = jest.fn();
-	const removeItemFromCart = jest.fn();
+	const incItemInCart = vi.fn();
+	const decrItemInCart = vi.fn();
+	const removeItemFromCart = vi.fn();
 
 	const { getByTestId } = render(
 		<CartContext.Provider
 			value={{
-				addItemToCart: jest.fn(),
+				addItemToCart: vi.fn(),
 				cartItems: [],
 				cartVisible: false,
 				decrItemInCart,
 				removeItemFromCart,
 				incItemInCart,
-				toggleCartVisible: jest.fn(),
+				toggleCartVisible: vi.fn(),
 				totals: {
 					total: 0,
 					totalPrice: 0,

@@ -1,5 +1,5 @@
 import type React from "react";
-import type { ItemsQueryVariables } from "../../../generated/types";
+import type { ItemsQueryVariables } from "@/gql/graphql";
 import { CategoryArr, GenderArr } from "../../../utils/constants";
 import Input from "../../Input/Input";
 import Select from "../../Select/Select";

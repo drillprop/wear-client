@@ -1,12 +1,10 @@
+"use client";
+import { useMutation } from "@apollo/client/react";
 import Link from "next/link";
 import type React from "react";
-import {
-	type Category,
-	type Gender,
-	type ItemsQueryVariables,
-	useDeleteItemMutation,
-} from "../../../../generated/types";
-import ITEMS from "../../../../graphql/queries/ITEMS";
+import type { Category, Gender, ItemsQueryVariables } from "@/gql/graphql";
+import { deleteItem } from "../../../../graphql/mutations/DELETE_ITEM";
+import { items } from "../../../../graphql/queries/ITEMS";
 import { TableBodyRow, TableData } from "../../../../styles/table.styles";
 import LinkAnchor from "../../../LinkAnchor/LinkAnchor";
 
@@ -30,43 +28,25 @@ const ItemRow: React.FC<Props> = ({
 	variables,
 	grey,
 }) => {
-	const [deleteItem] = useDeleteItemMutation({
+	const [remove] = useMutation(deleteItem, {
 		variables: { id },
-		refetchQueries: [{ query: ITEMS, variables }],
+		refetchQueries: [{ query: items, variables }],
 	});
 
 	return (
-		<Link
-			href={{
-				pathname: `/shop/item`,
-				query: {
-					id,
-				},
-			}}
-			as={`/shop/item?id=${id}`}
-		>
+		<Link href={`/shop/item?id=${id}`}>
 			<TableBodyRow grey={grey}>
 				<TableData>{name}</TableData>
 				<TableData>{price}</TableData>
 				<TableData>{category}</TableData>
 				<TableData>{gender}</TableData>
 				<TableData>
-					<LinkAnchor
-						href={{
-							pathname: `/admin/items/[item]`,
-							query: {
-								item: id,
-							},
-						}}
-						as={`/admin/items/${id}`}
-					>
-						edit item
-					</LinkAnchor>
+					<LinkAnchor href={`/admin/items/${id}`}>edit item</LinkAnchor>
 				</TableData>
 				<TableData
 					onClick={(e) => {
 						e.stopPropagation();
-						deleteItem();
+						remove();
 					}}
 				>
 					delete item

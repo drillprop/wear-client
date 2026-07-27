@@ -1,34 +1,29 @@
-import { useRouter } from "next/router";
+"use client";
+import { useQuery } from "@apollo/client/react";
+import { useSearchParams } from "next/navigation";
 import type React from "react";
-import { type UsersQueryVariables, useUsersQuery } from "../../generated/types";
+import type { UsersQueryVariables } from "@/gql/graphql";
+import { users as usersDoc } from "../../graphql/queries/USERS";
 import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
+import { pageToSkip, parsePage } from "../../utils/pagination";
 import AdminSideNav from "../AdminSideNav/AdminSideNav";
-import Pagination from "../Pagination/Pagination";
+import AppPagination from "../Pagination/AppPagination";
 import UsersFilters from "./users/UsersFilters";
 import UsersTable from "./users/UsersTable";
 
+const USERS_TAKE = 5;
+
 const Users: React.FC = () => {
-	const { query } = useRouter();
-	const {
-		data,
-		refetch,
-		variables: rawVariables,
-	} = useUsersQuery({
-		variables: {
-			take: 5,
-			skip: 0,
-			sortBy: "User.createdAt",
-			sortOrder: "ASC",
-		},
-	});
-	// The hook always runs with the variables above, so they are defined at
-	// runtime; Apollo Client 3 types them as optional, hence the fallback.
-	const variables: UsersQueryVariables = rawVariables ?? {};
+	const page = parsePage(useSearchParams()?.get("page"));
+	const variables: UsersQueryVariables = {
+		take: USERS_TAKE,
+		skip: pageToSkip(page, USERS_TAKE),
+	};
+
+	const { data, refetch } = useQuery(usersDoc, { variables });
 
 	const count = data?.users.count || 0;
 	const users = data?.users.select || [];
-	const page =
-		parseInt(typeof query.page === "string" ? query.page : "", 10) || 1;
 
 	return (
 		<SiteWrapper>
@@ -37,13 +32,7 @@ const Users: React.FC = () => {
 				<SiteSubtitle>List of Users</SiteSubtitle>
 				<UsersFilters variables={variables} refetch={refetch} />
 				{!!users.length && <UsersTable users={users} />}
-				<Pagination
-					path={"/admin/users"}
-					page={page}
-					total={count}
-					take={variables.take || 5}
-					refetch={refetch}
-				/>
+				<AppPagination page={page} total={count} take={USERS_TAKE} />
 			</div>
 		</SiteWrapper>
 	);
