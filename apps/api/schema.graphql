@@ -1,8 +1,42 @@
-type Greeting {
-  id: ID!
-  message: String!
+scalar DateTime
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  login(input: LoginInput!): User!
+  register(input: RegisterInput!): User!
+  signout: SuccessMessage!
 }
 
 type Query {
-  greetings: [Greeting!]!
+  me: User
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+}
+
+type SuccessMessage {
+  message: String!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  firstName: String
+  id: ID!
+  lastName: String
+  phoneNumber: String
+  role: UserRole!
+  updatedAt: DateTime!
+}
+
+enum UserRole {
+  ADMIN
+  CUSTOMER
+  EMPLOYEE
 }
