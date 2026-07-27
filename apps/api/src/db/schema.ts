@@ -20,9 +20,9 @@ export const userRole = pgEnum("user_role", ["ADMIN", "EMPLOYEE", "CUSTOMER"]);
  * table is provisioned fresh via `drizzle-kit push` (#34). `password` holds a
  * bcrypt hash and is never exposed through the GraphQL `User` type.
  *
- * Feature-specific columns (newsletter, reset-token, address relation) land with
- * their own slices (#48/#49); this table carries only the identity core the auth
- * spine and every gated operation need.
+ * Feature-specific columns (newsletter, address relation) land with their own
+ * slices (#48); the reset-token pair below arrives with #49. This table carries
+ * the identity core the auth spine and every gated operation need.
  */
 export const user = pgTable("user", {
 	id: uuid("id").primaryKey().defaultRandom(),
@@ -33,6 +33,11 @@ export const user = pgTable("user", {
 	firstName: text("first_name"),
 	lastName: text("last_name"),
 	phoneNumber: text("phone_number"),
+	// Password-reset flow (#49): a single-use token and its expiry. Null when no
+	// reset is outstanding; both are cleared once a reset is consumed. Neither is
+	// ever exposed through the GraphQL `User` type.
+	resetToken: text("reset_token"),
+	resetTokenExpiry: timestamp("reset_token_expiry"),
 	role: userRole("role").notNull().default("CUSTOMER"),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	updatedAt: timestamp("updated_at")

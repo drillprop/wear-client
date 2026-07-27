@@ -10,6 +10,7 @@ import { loadConfig } from "./config.js";
 import type { Context } from "./context.js";
 import { createDb } from "./db/client.js";
 import { schema } from "./graphql/schema.js";
+import { createNodemailerMailer } from "./mail/mailer.js";
 
 /**
  * GraphQL Yoga host on `node:http` — no Express/cors/cookie-parser (#39). CORS
@@ -18,6 +19,7 @@ import { schema } from "./graphql/schema.js";
  */
 const config = loadConfig();
 const db = createDb(config.databaseUrl);
+const mailer = createNodemailerMailer(config.mail);
 
 // Cross-site cookies need SameSite=None; Secure, which only works over https, so
 // they're enabled only in production (the proxy is a different origin there).
@@ -61,6 +63,7 @@ const yoga = createYoga<{ request: Request }, Context>({
 			clearSession: () => {
 				cookies.push(serializeClearAuthCookie(secureCookies));
 			},
+			mailer,
 		};
 	},
 });

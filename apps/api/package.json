@@ -22,6 +22,7 @@
 		"graphql": "catalog:",
 		"graphql-yoga": "catalog:",
 		"jsonwebtoken": "catalog:",
+		"nodemailer": "catalog:",
 		"pg": "catalog:",
 		"zod": "catalog:"
 	},
@@ -30,6 +31,7 @@
 		"@types/bcrypt": "catalog:",
 		"@types/jsonwebtoken": "catalog:",
 		"@types/node": "catalog:",
+		"@types/nodemailer": "catalog:",
 		"@types/pg": "catalog:",
 		"@vitest/coverage-v8": "catalog:",
 		"@wear/tsconfig": "workspace:*",

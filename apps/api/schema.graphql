@@ -9,6 +9,11 @@ enum Category {
   TSHIRT
 }
 
+input ChangePasswordInput {
+  password: String!
+  token: String!
+}
+
 scalar DateTime
 
 enum Gender {
@@ -42,8 +47,10 @@ input LoginInput {
 }
 
 type Mutation {
+  changePassword(input: ChangePasswordInput!): SuccessMessage!
   login(input: LoginInput!): User!
   register(input: RegisterInput!): User!
+  resetPassword(input: ResetPasswordInput!): SuccessMessage!
   signout: SuccessMessage!
 }
 
@@ -56,6 +63,10 @@ type Query {
 input RegisterInput {
   email: String!
   password: String!
+}
+
+input ResetPasswordInput {
+  email: String!
 }
 
 input SearchItemInput {
