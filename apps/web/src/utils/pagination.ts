@@ -6,7 +6,7 @@
 
 /** Skip offset for a 1-based page. Page ≤ 1 (or NaN) maps to 0. */
 export function pageToSkip(page: number, take: number): number {
-	return page * take - take || 0;
+	return page > 1 ? (page - 1) * take : 0;
 }
 
 /** Parse a `?page=` param to a 1-based page number, defaulting to 1. */

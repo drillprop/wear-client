@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import { query } from "@/app/lib/apollo/rsc";
-import { me } from "@/graphql/queries/ME";
+import { redirectIfAuthenticated } from "@/app/lib/auth";
 import SignContent from "./sign-content";
 
 export const metadata: Metadata = { title: "wear | sign in" };
@@ -12,9 +10,6 @@ export const metadata: Metadata = { title: "wear | sign in" };
  * before the forms render — no client round-trip, no flash of the sign form.
  */
 export default async function SignPage() {
-	const { data } = await query({ query: me });
-	if (data?.me) {
-		redirect("/");
-	}
+	await redirectIfAuthenticated("/");
 	return <SignContent />;
 }

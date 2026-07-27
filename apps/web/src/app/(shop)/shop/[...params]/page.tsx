@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PreloadQuery } from "@/app/lib/apollo/rsc";
 import { items } from "@/graphql/queries/ITEMS";
 import { parsePage } from "@/utils/pagination";
@@ -44,7 +45,9 @@ export default async function ShopPage({
 			query={items}
 			variables={itemsVariables({ gender, category, page })}
 		>
-			<ShopContent gender={gender} category={category} page={page} />
+			<Suspense>
+				<ShopContent gender={gender} category={category} page={page} />
+			</Suspense>
 		</PreloadQuery>
 	);
 }

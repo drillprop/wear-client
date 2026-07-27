@@ -1,15 +1,16 @@
-import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
-import { PreloadQuery, query } from "@/app/lib/apollo/rsc";
+import { PreloadQuery } from "@/app/lib/apollo/rsc";
+import { requireCustomer } from "@/app/lib/auth";
 import { me } from "@/graphql/queries/ME";
 
 /**
  * `(account)` server-layout auth gate (#71/#29) — the pattern that replaces the
- * getInitialProps `withPrivateRoute` HOC. `me` runs on the server (forwarding the
- * session cookie); a signed-out visitor is `redirect()`ed to sign-in *before any
- * child renders* — no content flash, no client round-trip. Ownership is enforced
- * server-side: `me`/`userOrders`/the account mutations all resolve against the
- * session user, so a signed-in customer can only ever see their own data.
+ * getInitialProps `withPrivateRoute` HOC. `requireCustomer` runs `me` server-side
+ * and `redirect()`s a signed-out visitor to sign-in *before any child renders* —
+ * no content flash, no client round-trip. CUSTOMER-level admits any authenticated
+ * user (matching the old HOC default); the staff-only restriction lives on
+ * `(admin)`. Ownership is enforced server-side: `me`/`userOrders`/the account
+ * mutations all resolve against the session user.
  *
  * `PreloadQuery` re-primes `me` into the browser cache so the account forms'
  * `useQuery(me)` hydrate from the server fetch instead of waterfalling.
@@ -19,14 +20,7 @@ export default async function AccountLayout({
 }: {
 	children: ReactNode;
 }) {
-	// CUSTOMER-level gate: any authenticated user may view their *own* account —
-	// matching the old `withPrivateRoute(Component, "CUSTOMER")` HOC, whose role
-	// hierarchy admitted ADMIN/EMPLOYEE/CUSTOMER alike. The staff-only restriction
-	// lives on the `(admin)` group. A signed-out visitor is bounced to sign-in.
-	const { data } = await query({ query: me });
-	if (!data?.me) {
-		redirect("/sign?redirected=true");
-	}
+	await requireCustomer();
 
 	return <PreloadQuery query={me}>{children}</PreloadQuery>;
 }
