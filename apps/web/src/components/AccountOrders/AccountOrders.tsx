@@ -10,6 +10,7 @@ import {
 	TableHead,
 	TableHeadCell,
 } from "../../styles/table.styles";
+import { pageToSkip, parsePage } from "../../utils/pagination";
 import AccountSideNav from "../AccountSideNav/AccountSideNav";
 import Button from "../Button/Button";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
@@ -20,8 +21,8 @@ import OrderRow from "./accountOrders/OrderRow";
 const ORDERS_TAKE = 5;
 
 const AccountOrders: React.FC = () => {
-	const page = parseInt(useSearchParams()?.get("page") ?? "", 10) || 1;
-	const skip = page * ORDERS_TAKE - ORDERS_TAKE || 0;
+	const page = parsePage(useSearchParams()?.get("page"));
+	const skip = pageToSkip(page, ORDERS_TAKE);
 	const tableColumnNames = ["order", "date", "total price", "status"];
 	const { data } = useQuery(userOrders, {
 		variables: { take: ORDERS_TAKE, skip },

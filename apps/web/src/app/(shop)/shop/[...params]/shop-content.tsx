@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@apollo/client/react";
 import debounce from "lodash.debounce";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import NoItems from "@/components/NoItems/NoItems";
@@ -34,17 +35,24 @@ export default function ShopContent({ gender, category, page }: Props) {
 	);
 
 	const { data, refetch, loading } = useQuery(items, { variables });
+	const router = useRouter();
 
 	const basePath = category
 		? `/shop/${gender.toLowerCase()}/${category.toLowerCase()}`
 		: `/shop/${gender.toLowerCase()}`;
 
+	// Changing a price/name filter resets pagination to the first page (as the old
+	// Pages Router shop did): drop `?page=` from the URL and refetch from skip 0,
+	// so a filter can't leave you stranded on a now-empty page N.
 	const debouncedRefetch = useMemo(
 		() =>
 			debounce((next: Partial<ItemsQueryVariables>) => {
-				refetch(next);
+				if (page > 1) {
+					router.push(basePath);
+				}
+				refetch({ ...next, skip: 0 });
 			}, 400),
-		[refetch],
+		[refetch, router, basePath, page],
 	);
 
 	return (

@@ -19,6 +19,10 @@ export default async function AccountLayout({
 }: {
 	children: ReactNode;
 }) {
+	// CUSTOMER-level gate: any authenticated user may view their *own* account —
+	// matching the old `withPrivateRoute(Component, "CUSTOMER")` HOC, whose role
+	// hierarchy admitted ADMIN/EMPLOYEE/CUSTOMER alike. The staff-only restriction
+	// lives on the `(admin)` group. A signed-out visitor is bounced to sign-in.
 	const { data } = await query({ query: me });
 	if (!data?.me) {
 		redirect("/sign?redirected=true");

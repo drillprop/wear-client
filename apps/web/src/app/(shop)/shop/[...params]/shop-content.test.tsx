@@ -1,10 +1,15 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { type GraphQLResponseResolver, graphql, HttpResponse } from "msw";
+import { beforeEach, vi } from "vitest";
 import { renderWithApollo } from "@/test-utils/apollo";
-import { AppRouterProvider } from "@/test-utils/appRouter";
+import { AppRouterProvider, mockAppRouter } from "@/test-utils/appRouter";
 import { server } from "@/test-utils/msw/server";
 import ShopContent from "./shop-content";
+
+beforeEach(() => {
+	vi.clearAllMocks();
+});
 
 /**
  * Exercises the shop hybrid-prefetch client path (#69): the real `ShopContent`
@@ -89,4 +94,42 @@ it("refetches Items client-side when the sort changes", async () => {
 
 	expect(await screen.findByText("Cheapest tee")).toBeInTheDocument();
 	expect(screen.queryByText("Linen shirt")).not.toBeInTheDocument();
+});
+
+it("resets pagination to page 1 when a filter changes on a later page", async () => {
+	const user = userEvent.setup();
+	stubItems(({ variables }) =>
+		HttpResponse.json({
+			data: {
+				items: {
+					maxPrice: 200,
+					count: 1,
+					// echo the skip so we can assert the filter refetch went back to 0
+					select: [
+						item({
+							id: "1",
+							name: `skip:${variables.skip ?? 0}`,
+							price: 50,
+						}),
+					],
+				},
+			},
+		}),
+	);
+
+	// Start on page 3 (skip 12).
+	renderWithApollo(
+		<AppRouterProvider>
+			<ShopContent gender="man" page={3} />
+		</AppRouterProvider>,
+	);
+
+	expect(await screen.findByText("skip:12")).toBeInTheDocument();
+
+	// Type in the name filter → debounced refetch must reset skip to 0 and drop
+	// the page from the URL.
+	await user.type(screen.getByLabelText("search item by name"), "shirt");
+
+	expect(await screen.findByText("skip:0")).toBeInTheDocument();
+	expect(mockAppRouter.push).toHaveBeenCalledWith("/shop/man");
 });

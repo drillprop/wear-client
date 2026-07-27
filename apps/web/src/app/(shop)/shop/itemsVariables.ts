@@ -1,4 +1,5 @@
 import type { Category, Gender, ItemsQueryVariables } from "@/gql/graphql";
+import { pageToSkip } from "@/utils/pagination";
 
 /** Catalogue page size — one source of truth for the RSC prefetch and the client leaf. */
 export const SHOP_TAKE = 6;
@@ -19,7 +20,7 @@ export function itemsVariables({
 	page: number;
 }): ItemsQueryVariables {
 	const take = SHOP_TAKE;
-	const skip = page * take - take || 0;
+	const skip = pageToSkip(page, take);
 	return {
 		gender: gender ? (gender.toUpperCase() as Gender) : undefined,
 		category: category ? (category.toUpperCase() as Category) : undefined,

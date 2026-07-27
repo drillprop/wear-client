@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PreloadQuery } from "@/app/lib/apollo/rsc";
 import { items } from "@/graphql/queries/ITEMS";
+import { parsePage } from "@/utils/pagination";
 import { itemsVariables } from "../itemsVariables";
 import ShopContent from "./shop-content";
 
@@ -36,7 +37,7 @@ export default async function ShopPage({
 	const { params: segments } = await params;
 	const { page: pageParam } = await searchParams;
 	const { gender, category } = readSegments(segments);
-	const page = parseInt(pageParam ?? "", 10) || 1;
+	const page = parsePage(pageParam);
 
 	return (
 		<PreloadQuery
