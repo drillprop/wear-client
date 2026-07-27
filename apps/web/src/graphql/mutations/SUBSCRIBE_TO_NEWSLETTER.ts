@@ -1,9 +1,10 @@
-import { gql } from "@apollo/client";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation SubscribeToNewsletter($newsletter: Boolean!) {
-    subscribeToNewsletter(newsletter: $newsletter) {
-      message
-    }
-  }
-`;
+/** `SubscribeToNewsletter` — toggles the signed-in customer's newsletter flag. */
+export const subscribeToNewsletter = graphql(`
+	mutation SubscribeToNewsletter($newsletter: Boolean!) {
+		subscribeToNewsletter(newsletter: $newsletter) {
+			message
+		}
+	}
+`);

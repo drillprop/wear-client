@@ -1,7 +1,8 @@
+"use client";
 import type React from "react";
 import { useEffect, useState } from "react";
+import type { SingleItemQuery, SizeSymbol } from "@/gql/graphql";
 import { useCart } from "../../contexts/CartContext";
-import type { SingleItemQuery, SizeSymbol } from "../../generated/types";
 import { white } from "../../styles/colors";
 import { SiteWrapper } from "../../styles/site.styles";
 import CartIcon from "../CartIcon/CartIcon";

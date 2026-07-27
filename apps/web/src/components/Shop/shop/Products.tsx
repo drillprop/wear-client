@@ -1,5 +1,5 @@
 import type React from "react";
-import type { ItemsQuery } from "../../../generated/types";
+import type { ItemsQuery } from "@/gql/graphql";
 import LinkAnchor from "../../LinkAnchor/LinkAnchor";
 import {
 	ProductCardImg,
@@ -17,19 +17,11 @@ interface Props {
 const Products: React.FC<Props> = ({ items }) => {
 	return (
 		<ProductsWrapper>
-			{items.map(
+			{items?.map(
 				(item) =>
 					item && (
 						<ProductCardWrapper key={item.id}>
-							<LinkAnchor
-								href={{
-									pathname: `/shop/item`,
-									query: {
-										id: item.id,
-									},
-								}}
-								as={`/shop/item?id=${item.id}`}
-							>
+							<LinkAnchor href={`/shop/item?id=${item.id}`}>
 								<ProductCardImg src={item.imageUrl} alt={item.name} />
 								<ProductNameAndPrice>
 									<ProductName>{item.name}</ProductName>

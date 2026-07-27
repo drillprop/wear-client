@@ -1,3 +1,4 @@
+"use client";
 import { useCart } from "../../contexts/CartContext";
 import { SiteSubtitle } from "../../styles/site.styles";
 import Button from "../Button/Button";

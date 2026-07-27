@@ -1,9 +1,12 @@
+"use client";
 import type React from "react";
 import { useState } from "react";
-import type { Item, Ordered_Item, OrderStatus } from "../../../generated/types";
+import type { OrderStatus } from "@/gql/graphql";
 import { TableBodyRow, TableData } from "../../../styles/table.styles";
 import formatDBDate from "../../../utils/formatDBDate";
-import simplifyOrderedItems from "../../../utils/simplifyOrderedItems";
+import simplifyOrderedItems, {
+	type OrderedItems,
+} from "../../../utils/simplifyOrderedItems";
 import LinkAnchor from "../../LinkAnchor/LinkAnchor";
 import {
 	DetailsColumn,
@@ -17,11 +20,7 @@ interface Props {
 	id?: string;
 	createdAt?: string;
 	status?: OrderStatus;
-	orderedItems?: Array<
-		Pick<Ordered_Item, "id" | "sizeSymbol"> & {
-			item: Pick<Item, "name" | "price" | "id" | "gender">;
-		}
-	>;
+	orderedItems?: OrderedItems | null;
 }
 
 const OrderRow: React.FC<Props> = ({
@@ -34,7 +33,7 @@ const OrderRow: React.FC<Props> = ({
 	const [isDetailsVisible, setDetailsVisible] = useState(false);
 
 	const totalPrice = orderedItems?.reduce(
-		(acc, item) => (acc = acc + item.item.price),
+		(acc, orderItem) => acc + (orderItem?.item?.price ?? 0),
 		0,
 	);
 
@@ -63,11 +62,7 @@ const OrderRow: React.FC<Props> = ({
 								<DetailsColumn key={item.id + item.sizeSymbol}>
 									<div>
 										{item.quantity} x{" "}
-										<LinkAnchor
-											highlight
-											href={`/[gender]/item?id=${item.id}`}
-											as={`/${item.gender.toLowerCase()}/item?id=${item.id}`}
-										>
+										<LinkAnchor highlight href={`/shop/item?id=${item.id}`}>
 											{item.name}
 										</LinkAnchor>
 									</div>

@@ -1,4 +1,5 @@
 import { cleanup, fireEvent, render } from "@testing-library/react";
+import { vi } from "vitest";
 import Select from "./Select";
 
 afterEach(cleanup);
@@ -23,7 +24,7 @@ test("toggle option list", () => {
 
 test("select option correctly", () => {
 	let value: string | undefined;
-	const onChangeFn = jest.fn((val: string) => {
+	const onChangeFn = vi.fn((val: string) => {
 		value = val;
 	});
 	const mockProps = {
@@ -48,7 +49,7 @@ test("select option correctly", () => {
 
 test("blur select correctly", () => {
 	let value = "test option a";
-	const onChangeFn = jest.fn((val) => {
+	const onChangeFn = vi.fn((val) => {
 		value = val;
 	});
 

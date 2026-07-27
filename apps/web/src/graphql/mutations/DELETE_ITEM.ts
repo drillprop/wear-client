@@ -1,9 +1,10 @@
-import { gql } from "@apollo/client";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation DeleteItem($id: ID!) {
-    deleteItem(id: $id) {
-      message
-    }
-  }
-`;
+/** `DeleteItem` — staff catalogue delete. */
+export const deleteItem = graphql(`
+	mutation DeleteItem($id: ID!) {
+		deleteItem(id: $id) {
+			message
+		}
+	}
+`);

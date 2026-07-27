@@ -11,6 +11,13 @@ export default defineConfig({
 	test: {
 		environment: "node",
 		include: ["src/**/*.test.ts"],
+		// Each test builds a fresh in-process pglite and materializes the schema via
+		// drizzle-kit `pushSchema` in a `beforeEach` (see test-support/pglite.ts).
+		// That cold-start costs a few seconds and can spike past Vitest's default
+		// 10s hook timeout under CI load (many test files in parallel alongside the
+		// web build), so give the setup/teardown hooks headroom to keep CI green.
+		hookTimeout: 30_000,
+		testTimeout: 30_000,
 		server: {
 			deps: {
 				inline: [

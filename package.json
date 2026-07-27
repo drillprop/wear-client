@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"build": "turbo build",
-		"dev": "turbo dev",
+		"dev": "turbo run dev dev:schema dev:codegen",
 		"typecheck": "turbo typecheck",
 		"schema": "turbo schema",
 		"test": "turbo test",

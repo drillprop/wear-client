@@ -1,7 +1,9 @@
+"use client";
+import { useMutation } from "@apollo/client/react";
+import { useRouter } from "next/navigation";
 import type React from "react";
 import { type FormEvent, useEffect, useState } from "react";
-import { useRegisterMutation } from "../../generated/types";
-import ME from "../../graphql/queries/ME";
+import { register } from "../../graphql/mutations/REGISTER";
 import useForm from "../../hooks/useForm";
 import { SignForm, SignTitle, SignWrapper } from "../../styles/sign.styles";
 import Button from "../Button/Button";
@@ -15,9 +17,8 @@ interface Props {
 }
 
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
-	const [registerMutation, { error }] = useRegisterMutation({
-		refetchQueries: [{ query: ME }],
-	});
+	const router = useRouter();
+	const [registerMutation, { error }] = useMutation(register);
 
 	const [passwordError, setPasswordError] = useState("");
 	const { values, handleInput, clearForm } = useForm({
@@ -34,12 +35,17 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 
 	const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const { password, confirmPassword } = values;
+		const { password, confirmPassword, email } = values;
 		if (password !== confirmPassword) {
 			setPasswordError(`Password don't match`);
 		} else {
-			await registerMutation({ variables: values });
+			const { data } = await registerMutation({
+				variables: { email, password },
+			});
 			clearForm(values);
+			if (data?.register) {
+				router.push("/");
+			}
 		}
 	};
 
@@ -47,7 +53,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 		<SignWrapper>
 			<SignForm onSubmit={handleRegister}>
 				<SignTitle>CREATE NEW ACCOUNT</SignTitle>
-				<ErrorMessage error={error || passwordError} />
+				<ErrorMessage error={error?.message || passwordError} />
 				<Input
 					marginTop="50px"
 					onChange={handleInput}

@@ -1,12 +1,13 @@
-import { gql } from "@apollo/client";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation Login($email: String!, $password: String!) {
-    login(input: { email: $email, password: $password }) {
-      id
-      email
-      firstName
-      lastName
-    }
-  }
-`;
+/** `Login` — sets the httpOnly session cookie (via the same-origin proxy). */
+export const login = graphql(`
+	mutation Login($email: String!, $password: String!) {
+		login(input: { email: $email, password: $password }) {
+			id
+			email
+			firstName
+			lastName
+		}
+	}
+`);

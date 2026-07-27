@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import type React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import type { SizeSymbol } from "../generated/types";
+import type { SizeSymbol } from "@/gql/graphql";
 import {
 	addItem,
 	decrItem,

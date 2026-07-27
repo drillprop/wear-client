@@ -1,5 +1,6 @@
+"use client";
 import Link, { type LinkProps } from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import type { FC, PropsWithChildren } from "react";
 import { StyledAnchor } from "./LinkAnchor.styles";
 
@@ -14,8 +15,11 @@ const LinkAnchor: FC<PropsWithChildren<LinkProps & Props>> = ({
 	children,
 	...props
 }) => {
-	const router = useRouter();
-	const path = router ? router.asPath.split(/\/|\?/gi) : "";
+	// `usePathname` returns the App Router pathname, or `null` when no router
+	// context is mounted (e.g. rendered in isolation under test) — the guard
+	// keeps the active-link highlight a no-op rather than throwing.
+	const pathname = usePathname();
+	const path = pathname ? pathname.split(/\/|\?/gi) : [];
 
 	const isPathIncludes = wordToHighlight
 		? path.includes(wordToHighlight)

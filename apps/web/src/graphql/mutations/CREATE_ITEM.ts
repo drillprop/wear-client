@@ -1,37 +1,38 @@
-import { gql } from "@apollo/client";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation CreateItem(
-    $name: String!
-    $price: Float!
-    $imageUrl: String!
-    $category: Category!
-    $gender: Gender!
-    $description: String
-    $sizes: [ItemSizesInput!]
-  ) {
-    createItem(
-      input: {
-        name: $name
-        price: $price
-        imageUrl: $imageUrl
-        category: $category
-        gender: $gender
-        description: $description
-        sizes: $sizes
-      }
-    ) {
-      id
-      name
-      price
-      imageUrl
-      category
-      gender
-      createdAt
-      sizes {
-        sizeSymbol
-        quantity
-      }
-    }
-  }
-`;
+/** `CreateItem` — staff catalogue write. */
+export const createItem = graphql(`
+	mutation CreateItem(
+		$name: String!
+		$price: Float!
+		$imageUrl: String!
+		$category: Category!
+		$gender: Gender!
+		$description: String
+		$sizes: [ItemSizesInput!]
+	) {
+		createItem(
+			input: {
+				name: $name
+				price: $price
+				imageUrl: $imageUrl
+				category: $category
+				gender: $gender
+				description: $description
+				sizes: $sizes
+			}
+		) {
+			id
+			name
+			price
+			imageUrl
+			category
+			gender
+			createdAt
+			sizes {
+				sizeSymbol
+				quantity
+			}
+		}
+	}
+`);

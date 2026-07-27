@@ -1,5 +1,5 @@
 import type React from "react";
-import type { UsersQuery } from "../../../generated/types";
+import type { UsersQuery } from "@/gql/graphql";
 import {
 	Table,
 	TableBody,

@@ -1,14 +1,8 @@
-import type {
-	Gender,
-	Item,
-	Ordered_Item,
-	SizeSymbol,
-} from "../generated/types";
+import type { Gender, SizeSymbol, UserOrdersQuery } from "@/gql/graphql";
 
-export type OrderedItems = Array<
-	Pick<Ordered_Item, "id" | "sizeSymbol"> & {
-		item: Pick<Item, "name" | "price" | "id" | "gender">;
-	}
+/** The `orderedItems` shape as the generated `UserOrders` document returns it. */
+export type OrderedItems = NonNullable<
+	NonNullable<UserOrdersQuery["userOrders"]["select"]>[number]["orderedItems"]
 >;
 
 type ConvertedItem = {
@@ -22,9 +16,14 @@ type ConvertedItem = {
 
 const simplifyOrderedItems = (orderedItems: OrderedItems) =>
 	orderedItems?.reduce((acc: ConvertedItem[], orderItem) => {
+		// The schema allows a null line-item / a null nested item; skip those.
+		if (!orderItem?.item) {
+			return acc;
+		}
+		const item = orderItem.item;
 		const existingItem = acc.find(
 			({ sizeSymbol, id }) =>
-				sizeSymbol === orderItem.sizeSymbol && id === orderItem.item.id,
+				sizeSymbol === orderItem.sizeSymbol && id === item.id,
 		);
 		if (!existingItem) {
 			return [
@@ -32,13 +31,12 @@ const simplifyOrderedItems = (orderedItems: OrderedItems) =>
 				{
 					sizeSymbol: orderItem.sizeSymbol,
 					quantity: 1,
-					...orderItem.item,
+					...item,
 				},
 			];
-		} else {
-			existingItem.quantity += 1;
-			return acc;
 		}
+		existingItem.quantity += 1;
+		return acc;
 	}, []);
 
 export default simplifyOrderedItems;

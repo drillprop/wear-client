@@ -1,9 +1,10 @@
-import { gql } from "@apollo/client";
+import { graphql } from "@/gql";
 
-export default gql`
-  mutation Signout {
-    signout {
-      message
-    }
-  }
-`;
+/** `Signout` — clears the session cookie (Set-Cookie flows back through the proxy). */
+export const signout = graphql(`
+	mutation Signout {
+		signout {
+			message
+		}
+	}
+`);

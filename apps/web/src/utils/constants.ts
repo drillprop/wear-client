@@ -1,9 +1,4 @@
-import type {
-	Category,
-	Gender,
-	SizeSymbol,
-	UserRole,
-} from "../generated/types";
+import type { Category, Gender, SizeSymbol, UserRole } from "@/gql/graphql";
 
 export const GenderArr: Gender[] = ["MAN", "WOMAN"];
 

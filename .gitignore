@@ -16,6 +16,10 @@ dist/
 # turborepo
 .turbo
 
+# generated GraphQL client-preset output (#67) — derived from apps/api/schema.graphql
+# by the `codegen` task; regenerated on every build, never reviewed.
+apps/web/src/gql/
+
 # claude code local state
 .claude/
 

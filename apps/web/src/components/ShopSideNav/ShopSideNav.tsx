@@ -14,13 +14,11 @@ interface Props {
 }
 
 const ShopSideNav: React.FC<Props> = ({ gender }) => {
+	const genderPath = gender.toLowerCase();
 	return (
 		<SideNavWrapper>
 			<SideNavSticky>
-				<LinkAnchor
-					href="/shop/[...params]"
-					as={`/shop/${gender.toLowerCase()}`}
-				>
+				<LinkAnchor href={`/shop/${genderPath}`}>
 					<SideNavMainTitle>{gender}</SideNavMainTitle>
 				</LinkAnchor>
 				<SideNavList>
@@ -28,8 +26,7 @@ const ShopSideNav: React.FC<Props> = ({ gender }) => {
 						<SideNavItem key={category}>
 							<LinkAnchor
 								wordToHighlight={category.toLowerCase()}
-								href="/shop/[...params]"
-								as={`/shop/${gender.toLowerCase()}/${category.toLowerCase()}`}
+								href={`/shop/${genderPath}/${category.toLowerCase()}`}
 							>
 								{category}
 							</LinkAnchor>

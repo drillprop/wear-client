@@ -1,4 +1,4 @@
-import type { ApolloError } from "@apollo/client";
+import type { ApolloError } from "@apollo/client-v3";
 
 const getValidationExceptions = (error: ApolloError | string) => {
 	if (typeof error === "string") {

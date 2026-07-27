@@ -1,5 +1,5 @@
 import type React from "react";
-import type { UsersQueryVariables } from "../../../generated/types";
+import type { UsersQueryVariables } from "@/gql/graphql";
 import { UserRoleArr } from "../../../utils/constants";
 import Input from "../../Input/Input";
 import Select from "../../Select/Select";

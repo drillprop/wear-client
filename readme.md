@@ -14,6 +14,28 @@ You can find backend code [here](https://github.com/drillprop/wear-server)
 
 ![screenshop2](https://user-images.githubusercontent.com/51168865/82324035-3edf5c80-99d9-11ea-9786-5abdcc158617.png)
 
+## Development
+
+This is a pnpm + Turborepo monorepo (`apps/web` — Next.js App Router client;
+`apps/api` — GraphQL Yoga server). From the repo root:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+`pnpm dev` runs the full watch loop in parallel: the API server, the
+`schema.graphql` emitter (watch), the web codegen (watch), and `next dev`.
+Editing an API resolver re-emits the schema, which regenerates the web GraphQL
+types, which Next picks up. Copy [`apps/web/.env.example`](apps/web/.env.example)
+to `apps/web/.env` first.
+
+## Deployment
+
+`apps/web` deploys to Vercel; the API is hosted separately behind a same-origin
+proxy. See [docs/deployment.md](docs/deployment.md) for the Vercel
+Root-Directory, build, env-var, and preview wiring.
+
 ## Technologies
 
 I structured my files with [the fractal pattern](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af)
