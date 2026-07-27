@@ -20,6 +20,11 @@
 	"formatter": {
 		"enabled": true
 	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	},
 	"assist": {
 		"enabled": true
 	},

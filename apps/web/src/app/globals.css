@@ -1,12 +1,123 @@
 /*
- * Tailwind v4 entry stylesheet (#81). Imported once from the root layout.
+ * Tailwind v4 entry + design-token layer (#82). Imported once from the root
+ * layout.
  *
- * Toolchain-setup slice: this pulls in Tailwind's theme, Preflight base, and
- * utilities so utility classes work. The design-token layer (`@theme` — shadcn
- * neutral palette, the text-0..10 ramp, fonts, spacing) and the `globalstyle.ts`
- * → `@layer base` port land in #82. During coexistence, styled-components
- * injects *unlayered* rules, which outrank Tailwind's `@layer base`, so
- * Preflight only reaches genuinely-unstyled elements and current rendering is
- * preserved. styled-components + its registry are removed at teardown (#90).
+ * Structure:
+ *   - `:root`            — shadcn default *neutral* palette (oklch) + radius.
+ *                          This is the canonical colour system; it supersedes
+ *                          the old brand grays + off-black/white (#66/#37).
+ *                          Light-only: authored so a later `.dark { … }` block
+ *                          flips every token with no utility churn — but no dark
+ *                          palette or toggle is shipped here.
+ *   - `@theme inline`    — bridges the raw `:root` vars to Tailwind's `--color-*`
+ *                          namespace (so `bg-background`, `text-foreground`,
+ *                          `border-border`, … resolve) and the `next/font` vars
+ *                          to `font-montserrat` / `font-roboto`. `inline` keeps
+ *                          utilities pointing at the runtime var, which is what
+ *                          makes the future dark override clean.
+ *   - `@theme`           — surviving #30 tokens: the numeric `text-0..text-10`
+ *                          font-size ramp and the spinner animation. Spacing
+ *                          (4px) and breakpoints stay on Tailwind's defaults.
+ *   - `@layer base`      — the old `globalstyle.ts` `createGlobalStyle`, minus
+ *                          everything Preflight already covers.
+ *
+ * Coexistence with styled-components (until teardown, #90): styled-components
+ * injects *unlayered* rules, which outrank everything in `@layer base`, so the
+ * base styles here reach only elements styled-components doesn't touch and
+ * current rendering is preserved.
  */
 @import "tailwindcss";
+
+:root {
+	--radius: 0.625rem;
+
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+
+	--font-montserrat: var(--font-montserrat-src);
+	--font-roboto: var(--font-roboto-src);
+
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+}
+
+@theme {
+	--text-0: 12px;
+	--text-1: 14px;
+	--text-2: 16px;
+	--text-3: 18px;
+	--text-4: 20px;
+	--text-5: 24px;
+	--text-6: 30px;
+	--text-7: 36px;
+	--text-8: 48px;
+	--text-9: 60px;
+	--text-10: 72px;
+
+	--animate-spinner: spinner-animation 1.2s cubic-bezier(0.5, 0, 0.5, 1)
+		infinite;
+
+	@keyframes spinner-animation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--font-montserrat), sans-serif;
+		font-weight: 500;
+	}
+
+	input {
+		background-color: var(--background);
+	}
+}

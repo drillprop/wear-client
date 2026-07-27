@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { montserrat, robotoCondensed } from "./fonts";
 import StyledComponentsRegistry from "./lib/styled-components-registry";
 import { Providers } from "./providers";
 
@@ -15,13 +16,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
-		<html lang="en">
-			<head>
-				<link
-					href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Condensed:400,700,700i&display=swap"
-					rel="stylesheet"
-				/>
-			</head>
+		<html
+			lang="en"
+			className={`${montserrat.variable} ${robotoCondensed.variable}`}
+		>
 			<body className="antialiased">
 				<StyledComponentsRegistry>
 					<Providers>{children}</Providers>
