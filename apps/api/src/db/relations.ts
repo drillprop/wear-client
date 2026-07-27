@@ -12,6 +12,11 @@ import * as schema from "./schema.js";
  * `createdBy` exactly one staff user (non-null — every item has an author), and
  * the inverse `user.createdItems`. Only the `one` sides carry `from`/`to`; the
  * `many` sides are inferred from them.
+ *
+ * Orders (#51) add the ordering graph: an order was `orderedBy` exactly one user
+ * and owns many `orderedItems`; each `ordered_item` points at its parent `order`
+ * and the `item` it orders. The inverse `many` sides (`user.orders`,
+ * `item.orderedItems`) let the ownership queries and cascades resolve either way.
  */
 export const relations = defineRelations(schema, (r) => ({
 	user: {
@@ -20,6 +25,7 @@ export const relations = defineRelations(schema, (r) => ({
 			to: r.address.userId,
 		}),
 		createdItems: r.many.item(),
+		orders: r.many.order(),
 	},
 	address: {
 		user: r.one.user({
@@ -34,10 +40,31 @@ export const relations = defineRelations(schema, (r) => ({
 			to: r.user.id,
 			optional: false,
 		}),
+		orderedItems: r.many.orderedItem(),
 	},
 	size: {
 		item: r.one.item({
 			from: r.size.itemId,
+			to: r.item.id,
+			optional: false,
+		}),
+	},
+	order: {
+		orderedBy: r.one.user({
+			from: r.order.orderedById,
+			to: r.user.id,
+			optional: false,
+		}),
+		orderedItems: r.many.orderedItem(),
+	},
+	orderedItem: {
+		order: r.one.order({
+			from: r.orderedItem.orderId,
+			to: r.order.id,
+			optional: false,
+		}),
+		item: r.one.item({
+			from: r.orderedItem.itemId,
 			to: r.item.id,
 			optional: false,
 		}),

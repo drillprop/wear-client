@@ -30,6 +30,15 @@ import "./item/items.query.js";
 import "./item/create-item.js";
 import "./item/update-item.js";
 import "./item/delete-item.js";
+import "./order/enums.js";
+import "./order/ordered-item.type.js";
+import "./order/order.type.js";
+import "./order/inputs.js";
+import "./order/create-order.js";
+import "./order/delete-order.js";
+import "./order/manage-order.js";
+import "./order/customer-orders.query.js";
+import "./order/admin-orders.query.js";
 
 /** The assembled, executable GraphQL schema — the test seam and Yoga host. */
 export const schema = builder.toSchema();

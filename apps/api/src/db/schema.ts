@@ -150,3 +150,56 @@ export const size = pgTable(
 	},
 	(t) => [unique("size_symbol_item_unique").on(t.sizeSymbol, t.itemId)],
 );
+
+/**
+ * `OrderStatus` — an order's lifecycle, in fulfilment order (#51). PENDING is the
+ * state a freshly-placed order lands in (and the only one a customer may still
+ * cancel); an admin advances it through PAID → SENT → COMPLETED. Values mirror
+ * the legacy contract's `OrderStatus` enum verbatim.
+ */
+export const orderStatus = pgEnum("order_status", [
+	"PENDING",
+	"PAID",
+	"SENT",
+	"COMPLETED",
+]);
+
+/**
+ * The `order` entity — a customer's placed order (#51). `orderedBy` is the
+ * customer who placed it; deleting that account cascades their orders away
+ * (mirroring the address FK), so `deleteAccount` never leaves an orphan. A new
+ * order starts PENDING — the only status a customer may still cancel — and an
+ * admin advances it via `manageOrder`.
+ */
+export const order = pgTable("order", {
+	id: uuid("id").primaryKey().defaultRandom(),
+	status: orderStatus("status").notNull().default("PENDING"),
+	orderedById: uuid("ordered_by")
+		.notNull()
+		.references(() => user.id, { onDelete: "cascade" }),
+	createdAt: timestamp("created_at").notNull().defaultNow(),
+	updatedAt: timestamp("updated_at")
+		.notNull()
+		.defaultNow()
+		.$onUpdate(() => new Date()),
+});
+
+/**
+ * The `ordered_item` entity — one unit of one item at a chosen `SizeSymbol`
+ * within an order (#51). An order's line items are the rows sharing its `order`
+ * FK; ordering two of the same item/size records two rows. Both FKs cascade on
+ * delete, so removing an order takes its line items with it and deleting a
+ * catalogue item clears it from every order (the legacy "cascade on order/item
+ * delete" contract). `size_symbol` is the size the customer chose, copied onto
+ * the line so it stands independent of the item's live stock.
+ */
+export const orderedItem = pgTable("ordered_item", {
+	id: uuid("id").primaryKey().defaultRandom(),
+	sizeSymbol: sizeSymbol("size_symbol").notNull(),
+	orderId: uuid("order")
+		.notNull()
+		.references(() => order.id, { onDelete: "cascade" }),
+	itemId: uuid("item")
+		.notNull()
+		.references(() => item.id, { onDelete: "cascade" }),
+});
