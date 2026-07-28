@@ -1,0 +1,13 @@
+{
+	"extends": "@wear/tsconfig/base.json",
+	"compilerOptions": {
+		"lib": ["DOM", "DOM.Iterable", "ES2022"],
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"noEmit": true,
+		"baseUrl": "."
+	},
+	"include": ["src"],
+	"exclude": ["node_modules"]
+}

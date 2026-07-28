@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+	// @wear/ui ships its shadcn primitives as source .tsx (no build step); Next
+	// transpiles them as part of the app bundle (#83).
+	transpilePackages: ["@wear/ui"],
 	env: {
 		// Inlined for the Cloudinary unsigned upload (staff item images). The App
 		// Router stack reads INTERNAL_API_URL / API_SHARED_SECRET server-side only

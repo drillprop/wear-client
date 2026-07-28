@@ -18,6 +18,7 @@
 		"@apollo/client-v3": "npm:@apollo/client@^3.14.1",
 		"@emotion/is-prop-valid": "^1.4.0",
 		"@graphql-typed-document-node/core": "^3.2.0",
+		"@wear/ui": "workspace:*",
 		"class-variance-authority": "catalog:",
 		"clsx": "catalog:",
 		"graphql": "^16.10.0",
@@ -28,7 +29,8 @@
 		"react-dom": "catalog:",
 		"server-only": "^0.0.1",
 		"styled-components": "^6.1.14",
-		"tailwind-merge": "catalog:"
+		"tailwind-merge": "catalog:",
+		"tw-animate-css": "catalog:"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "^5.0.3",
