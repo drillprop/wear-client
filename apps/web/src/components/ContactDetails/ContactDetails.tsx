@@ -1,6 +1,6 @@
 import type React from "react";
-import { SiteWrapper } from "../SiteLayout/SiteLayout";
 import AccountSideNav from "../AccountSideNav/AccountSideNav";
+import { SiteWrapper } from "../SiteLayout/SiteLayout";
 import AddressForm from "./contactDetails/AddressForm";
 import PersonalInfoForm from "./contactDetails/PersonalInfoForm";
 

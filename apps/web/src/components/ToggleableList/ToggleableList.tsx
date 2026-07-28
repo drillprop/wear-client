@@ -3,16 +3,18 @@ import { useState } from "react";
 
 interface Props {
 	title: string;
+	className?: string;
 }
 
 const ToggleableList: React.FC<React.PropsWithChildren<Props>> = ({
 	children,
 	title,
+	className,
 }) => {
 	const [visibleList, toggleList] = useState(false);
 	const toggle = () => toggleList(!visibleList);
 	return (
-		<li>
+		<li className={className}>
 			<button
 				type="button"
 				onClick={toggle}

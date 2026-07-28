@@ -40,7 +40,10 @@ export const SiteForm: FC<
 > = ({ onSubmit, className, children }) => (
 	<form
 		onSubmit={onSubmit}
-		className={cn("mt-[75px] w-[260px] first-of-type:mt-0 sm:w-auto", className)}
+		className={cn(
+			"mt-[75px] w-[260px] first-of-type:mt-0 sm:w-auto",
+			className,
+		)}
 	>
 		{children}
 	</form>
