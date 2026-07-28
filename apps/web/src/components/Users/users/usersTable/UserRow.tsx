@@ -1,6 +1,8 @@
-import Link from "next/link";
+"use client";
+import { TableCell, TableRow } from "@wear/ui/components/ui/table";
+import { cn } from "@wear/ui/lib/utils";
+import { useRouter } from "next/navigation";
 import type React from "react";
-import { TableBodyRow, TableData } from "../../../../styles/table.styles";
 
 interface Props {
 	grey?: boolean;
@@ -11,6 +13,12 @@ interface Props {
 	orders?: string[];
 }
 
+/**
+ * Admin user row (#89). `table.styles.ts` `TableBodyRow`/`TableData` become the
+ * shadcn `TableRow`/`TableCell`; the alternating `grey` row maps onto
+ * `bg-muted/50`. The old `<Link>`-wrapping-`<tr>` (invalid markup) becomes a
+ * `router.push` on row click that navigates to the single-user page.
+ */
 const UserRow: React.FC<Props> = ({
 	grey,
 	id,
@@ -19,15 +27,17 @@ const UserRow: React.FC<Props> = ({
 	role,
 	orders,
 }) => {
+	const router = useRouter();
 	return (
-		<Link href={`/admin/user?id=${id}`}>
-			<TableBodyRow grey={grey}>
-				<TableData>{email}</TableData>
-				<TableData>{fullName} </TableData>
-				<TableData>{role}</TableData>
-				<TableData>{orders}</TableData>
-			</TableBodyRow>
-		</Link>
+		<TableRow
+			className={cn("cursor-pointer", grey && "bg-muted/50")}
+			onClick={() => router.push(`/admin/user?id=${id}`)}
+		>
+			<TableCell>{email}</TableCell>
+			<TableCell>{fullName} </TableCell>
+			<TableCell>{role}</TableCell>
+			<TableCell>{orders}</TableCell>
+		</TableRow>
 	);
 };
 

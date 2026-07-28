@@ -6,6 +6,12 @@ interface Props {
 	className?: string;
 }
 
+/**
+ * Collapsible nav group (#89). The old inline reset styles become Tailwind
+ * utilities; the caret `fill` is `currentColor` so it follows the surrounding
+ * text colour (the mobile menu renders it on `bg-primary` in
+ * `primary-foreground`), keeping it token-aware instead of hard-coded white.
+ */
 const ToggleableList: React.FC<React.PropsWithChildren<Props>> = ({
 	children,
 	title,
@@ -18,27 +24,18 @@ const ToggleableList: React.FC<React.PropsWithChildren<Props>> = ({
 			<button
 				type="button"
 				onClick={toggle}
-				style={{
-					display: "flex",
-					alignItems: "center",
-					background: "none",
-					border: "none",
-					padding: 0,
-					cursor: "pointer",
-					color: "inherit",
-					font: "inherit",
-				}}
+				className="flex cursor-pointer items-center border-none bg-transparent p-0 font-[inherit] text-inherit"
 			>
 				<svg
 					width="20px"
 					height="20px"
 					viewBox="0 -15 30 30"
-					style={{ marginRight: "15px" }}
+					className="mr-[15px]"
 				>
 					<title>{title}</title>
 					<path
 						d={visibleList ? `M0,10 20,10 10,0` : `M0,0 20,0 10,10`}
-						fill="white"
+						fill="currentColor"
 					/>
 				</svg>
 				{title}

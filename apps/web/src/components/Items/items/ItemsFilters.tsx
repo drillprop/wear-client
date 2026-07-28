@@ -3,16 +3,19 @@ import type { ItemsQueryVariables } from "@/gql/graphql";
 import { CategoryArr, GenderArr } from "../../../utils/constants";
 import Input from "../../Input/Input";
 import Select from "../../Select/Select";
-import { ItemsFiltersWrapper } from "./ItemsFilters.styles";
 
 interface Props {
 	variables: ItemsQueryVariables;
 	refetch: any;
 }
 
+/**
+ * Admin item filters (#89). The `ItemsFilters.styles.ts` auto-fit grid becomes
+ * the equivalent Tailwind grid; the shared `Input`/`Select` controls compose in.
+ */
 const ItemsFilters: React.FC<Props> = ({ variables, refetch }) => {
 	return (
-		<ItemsFiltersWrapper>
+		<div className="grid w-full grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-end gap-x-5">
 			<Input
 				label="search item by name"
 				name="name"
@@ -54,7 +57,7 @@ const ItemsFilters: React.FC<Props> = ({ variables, refetch }) => {
 				options={[5, 10, 15, 20, 25]}
 				small
 			/>
-		</ItemsFiltersWrapper>
+		</div>
 	);
 };
 

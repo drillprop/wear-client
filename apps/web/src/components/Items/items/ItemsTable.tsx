@@ -1,11 +1,12 @@
-import type React from "react";
-import type { ItemsQuery, ItemsQueryVariables } from "@/gql/graphql";
 import {
 	Table,
 	TableBody,
 	TableHead,
-	TableHeadCell,
-} from "../../../styles/table.styles";
+	TableHeader,
+	TableRow,
+} from "@wear/ui/components/ui/table";
+import type React from "react";
+import type { ItemsQuery, ItemsQueryVariables } from "@/gql/graphql";
 import ItemRow from "./itemsTable/ItemRow";
 
 interface Props {
@@ -13,6 +14,11 @@ interface Props {
 	variables: ItemsQueryVariables;
 }
 
+/**
+ * Admin items table (#89). The responsive `table.styles.ts` table becomes the
+ * shadcn `Table` primitive (horizontal scroll on small screens); each row is an
+ * `ItemRow`.
+ */
 const ItemsTable: React.FC<Props> = ({ items, variables }) => {
 	const tableColumnNames = [
 		"name",
@@ -23,14 +29,16 @@ const ItemsTable: React.FC<Props> = ({ items, variables }) => {
 		"delete item",
 	];
 	return (
-		<Table tableColumnNames={tableColumnNames}>
-			<TableHead>
-				<tr>
+		<Table className="mt-[50px]">
+			<TableHeader>
+				<TableRow>
 					{tableColumnNames.map((name) => (
-						<TableHeadCell key={name}>{name}</TableHeadCell>
+						<TableHead key={name} className="uppercase">
+							{name}
+						</TableHead>
 					))}
-				</tr>
-			</TableHead>
+				</TableRow>
+			</TableHeader>
 			<TableBody>
 				{items?.map(
 					(item, idx) =>

@@ -1,26 +1,35 @@
 "use client";
 import { useMutation, useQuery } from "@apollo/client/react";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@wear/ui/components/ui/table";
+import { cn } from "@wear/ui/lib/utils";
 import type React from "react";
 import type { OrderStatus } from "@/gql/graphql";
 import { deleteOrder } from "../../graphql/mutations/DELETE_ORDER";
 import { manageOrder } from "../../graphql/mutations/MANAGE_ORDER";
 import { orders } from "../../graphql/queries/ORDERS";
-import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
-import {
-	Table,
-	TableBody,
-	TableBodyRow,
-	TableData,
-	TableHead,
-	TableHeadCell,
-} from "../../styles/table.styles";
 import AdminSideNav from "../AdminSideNav/AdminSideNav";
 import NoItems from "../NoItems/NoItems";
 import Select from "../Select/Select";
+import { SiteSubtitle, SiteWrapper } from "../SiteLayout/SiteLayout";
 
 const ORDER_STATUSES: OrderStatus[] = ["PENDING", "PAID", "SENT", "COMPLETED"];
 const ordersVariables = { take: 20, skip: 0 };
 
+/**
+ * Admin orders table (#89). The bespoke responsive `table.styles.ts` table
+ * (which stacked into labelled cards below `900px`) is replaced by the shadcn
+ * `Table` primitive — its container scrolls horizontally on small screens
+ * rather than card-stacking, matching the #66 default-look restyle. The
+ * alternating `grey` row maps onto `bg-muted/50`; `SiteWrapper`/`SiteSubtitle`
+ * come from the shared `SiteLayout`.
+ */
 const AdminOrders: React.FC = () => {
 	const { data } = useQuery(orders, { variables: ordersVariables });
 	const refetchOrders = [{ query: orders, variables: ordersVariables }];
@@ -37,22 +46,27 @@ const AdminOrders: React.FC = () => {
 			<div>
 				<SiteSubtitle>Orders</SiteSubtitle>
 				{list.length ? (
-					<Table tableColumnNames={tableColumnNames}>
-						<TableHead>
-							<tr>
+					<Table className="mt-[50px]">
+						<TableHeader>
+							<TableRow>
 								{tableColumnNames.map((name) => (
-									<TableHeadCell key={name}>{name}</TableHeadCell>
+									<TableHead key={name} className="uppercase">
+										{name}
+									</TableHead>
 								))}
-							</tr>
-						</TableHead>
+							</TableRow>
+						</TableHeader>
 						<TableBody>
 							{list.map(
 								(order, idx) =>
 									order && (
-										<TableBodyRow key={order.id} grey={idx % 2 !== 0}>
-											<TableData>{order.id}</TableData>
-											<TableData>{order.orderedBy?.email}</TableData>
-											<TableData>
+										<TableRow
+											key={order.id}
+											className={cn(idx % 2 !== 0 && "bg-muted/50")}
+										>
+											<TableCell>{order.id}</TableCell>
+											<TableCell>{order.orderedBy?.email}</TableCell>
+											<TableCell>
 												<Select
 													label="order status"
 													small
@@ -64,13 +78,14 @@ const AdminOrders: React.FC = () => {
 														manage({ variables: { id: order.id, status } })
 													}
 												/>
-											</TableData>
-											<TableData
+											</TableCell>
+											<TableCell
+												className="cursor-pointer"
 												onClick={() => remove({ variables: { id: order.id } })}
 											>
 												delete order
-											</TableData>
-										</TableBodyRow>
+											</TableCell>
+										</TableRow>
 									),
 							)}
 						</TableBody>
