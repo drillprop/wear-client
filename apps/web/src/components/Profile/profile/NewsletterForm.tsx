@@ -17,8 +17,8 @@ const NewsletterForm: React.FC = () => {
 		refetchQueries: [{ query: me }],
 	});
 
-	const handleChecked = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		await subscribe({ variables: { newsletter: e.target.checked } });
+	const handleChecked = async (checked: boolean) => {
+		await subscribe({ variables: { newsletter: checked } });
 	};
 	return (
 		<SiteForm>
@@ -29,10 +29,10 @@ const NewsletterForm: React.FC = () => {
 			<ErrorMessage error={error?.message} />
 			<Checkbox
 				checked={data?.me?.newsletter || false}
-				onChange={handleChecked}
+				onCheckedChange={handleChecked}
 				text="subscribe to newsletter"
 				id="subscribe"
-				marginTop="50px"
+				className="mt-[50px]"
 			/>
 		</SiteForm>
 	);

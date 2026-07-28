@@ -55,7 +55,7 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 				<SignTitle>CREATE NEW ACCOUNT</SignTitle>
 				<ErrorMessage error={error?.message || passwordError} />
 				<Input
-					marginTop="50px"
+					className="mt-[50px]"
 					onChange={handleInput}
 					type="email"
 					icon="/mail-icon.svg"

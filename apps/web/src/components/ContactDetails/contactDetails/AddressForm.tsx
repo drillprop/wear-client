@@ -49,7 +49,7 @@ const AddressForm: React.FC = () => {
 			<ErrorMessage error={error?.message} />
 			<div style={{ maxWidth: "350px" }}>
 				<Input
-					marginTop="50px"
+					className="mt-[50px]"
 					value={values.addressLine1}
 					onChange={handleInput}
 					type="text"

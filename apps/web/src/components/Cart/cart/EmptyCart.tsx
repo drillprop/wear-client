@@ -8,7 +8,7 @@ const EmptyCart = () => {
 			<h1>Your Cart is empty</h1>
 			<h3>Go back to homepage and pick something for yourself</h3>
 			<LinkAnchor href="/">
-				<Button width="250px">go to homepage</Button>
+				<Button className="w-[250px]">go to homepage</Button>
 			</LinkAnchor>
 		</StyledEmptyCart>
 	);

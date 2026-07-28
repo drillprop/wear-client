@@ -11,7 +11,8 @@ import AdminOrders from "./AdminOrders";
  * and a status change issues `ManageOrder` (#72).
  */
 it("lists orders and manages an order's status", async () => {
-	const user = userEvent.setup();
+	// radix Select holds `pointer-events: none` on the body while open.
+	const user = userEvent.setup({ pointerEventsCheck: 0 });
 	let managed = false;
 	server.use(
 		graphql.query("Orders", () =>
@@ -43,8 +44,8 @@ it("lists orders and manages an order's status", async () => {
 
 	expect(await screen.findByText("buyer@b.co")).toBeInTheDocument();
 
-	await user.click(screen.getByText("order status"));
-	await user.click(screen.getByText("SENT"));
+	await user.click(screen.getByRole("combobox"));
+	await user.click(await screen.findByRole("option", { name: "SENT" }));
 
 	await waitFor(() => expect(managed).toBe(true));
 });

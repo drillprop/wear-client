@@ -62,9 +62,7 @@ const AccountOrders: React.FC = () => {
 				) : (
 					<NoItems text="No orders">
 						<LinkAnchor href="/">
-							<Button marginTop="20px" width="200px">
-								back to shop
-							</Button>
+							<Button className="mt-5 w-[200px]">back to shop</Button>
 						</LinkAnchor>
 					</NoItems>
 				)}

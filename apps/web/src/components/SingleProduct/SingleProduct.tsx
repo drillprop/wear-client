@@ -74,7 +74,7 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
 							{sizes?.length ? (
 								<form onSubmit={handleSubmit}>
 									<Select
-										marginTop={"100px"}
+										className="mt-[100px]"
 										label="Pick size"
 										placeHolder="SIZE"
 										onChange={(size) => setSize(size)}
