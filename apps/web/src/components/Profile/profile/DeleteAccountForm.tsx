@@ -6,7 +6,7 @@ import type { FormEvent } from "react";
 import { deleteAccount } from "../../../graphql/mutations/DELETE_ACCOUNT";
 import { me } from "../../../graphql/queries/ME";
 import useForm from "../../../hooks/useForm";
-import { SiteForm, SiteSubtitle } from "../../../styles/site.styles";
+import { SiteForm, SiteSubtitle } from "../../SiteLayout/SiteLayout";
 import Button from "../../Button/Button";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage";
 import Input from "../../Input/Input";

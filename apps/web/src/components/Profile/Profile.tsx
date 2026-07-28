@@ -1,5 +1,5 @@
 import type React from "react";
-import { SiteWrapper } from "../../styles/site.styles";
+import { SiteWrapper } from "../SiteLayout/SiteLayout";
 import AccountSideNav from "../AccountSideNav/AccountSideNav";
 import DeleteAccountForm from "./profile/DeleteAccountForm";
 import NewsletterForm from "./profile/NewsletterForm";
