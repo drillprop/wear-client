@@ -58,7 +58,10 @@ const Select: React.FC<Props> = ({
 				<SelectTrigger
 					id={label}
 					size={small ? "sm" : "default"}
-					className="w-full uppercase"
+					// Match the shared `Input` height (h-11 default / h-9 small) so
+					// selects and text inputs line up in the same form row; `!` beats the
+					// primitive's baked `data-[size]` height.
+					className={cn("w-full uppercase", small ? "h-9!" : "h-11!")}
 				>
 					<SelectValue placeholder={placeHolder} />
 				</SelectTrigger>
