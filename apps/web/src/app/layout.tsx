@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					<Providers>
 						<Header />
 						<div className="mx-auto flex min-h-[50%] max-w-[1300px] flex-col">
-							<main className="mt-[100px] mr-[25px] mb-0 ml-[25px] flex-1 sm:mx-[50px]">
+							<main className="mt-[100px] mx-[25px] flex-1 sm:mx-[50px]">
 								{children}
 							</main>
 						</div>

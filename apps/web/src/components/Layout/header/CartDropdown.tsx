@@ -3,6 +3,7 @@ import Link from "next/link";
 import CartIcon from "@/components/CartIcon/CartIcon";
 import LinkAnchor from "@/components/LinkAnchor/LinkAnchor";
 import { useCart } from "@/contexts/CartContext";
+import { navItem } from "./navItem";
 
 /**
  * Header cart area (#79). Rebuilt on Tailwind: the cart glyph + product count
@@ -20,7 +21,7 @@ const CartDropdown = () => {
 		: "";
 	return (
 		<li
-			className="relative ml-0 uppercase"
+			className={navItem}
 			onMouseEnter={() => toggleCartVisible(true)}
 			onMouseLeave={() => toggleCartVisible(false)}
 		>

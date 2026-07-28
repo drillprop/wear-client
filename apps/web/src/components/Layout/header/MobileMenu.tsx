@@ -9,6 +9,7 @@ import ToggleableList from "@/components/ToggleableList/ToggleableList";
 import { useCart } from "@/contexts/CartContext";
 import { me } from "@/graphql/queries/ME";
 import getGenderCategories from "@/utils/getGenderCategories";
+import { isStaff } from "@/utils/roles";
 
 /**
  * Mobile menu (#79). Shown below `lg` (the old desktop-first `max-width:900`
@@ -35,8 +36,7 @@ const MobileMenu = () => {
 	}, [pathname]);
 
 	const isUser = data?.me;
-	const isEmployee =
-		data?.me?.role === "EMPLOYEE" || data?.me?.role === "ADMIN";
+	const isEmployee = isStaff(data?.me?.role);
 
 	const bar = "block h-[3px] w-[28px] transition-transform";
 	const topItem =
@@ -139,9 +139,7 @@ const MobileMenu = () => {
 					</li>
 					{isUser && (
 						<li className={topItem}>
-							<SignoutButton className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-inherit uppercase">
-								LOGOUT
-							</SignoutButton>
+							<SignoutButton>LOGOUT</SignoutButton>
 						</li>
 					)}
 				</ul>

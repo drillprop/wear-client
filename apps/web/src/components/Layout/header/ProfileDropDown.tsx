@@ -5,6 +5,8 @@ import type React from "react";
 import LinkAnchor from "@/components/LinkAnchor/LinkAnchor";
 import SignoutButton from "@/components/SignoutButton/SignoutButton";
 import { me } from "@/graphql/queries/ME";
+import { isAdmin } from "@/utils/roles";
+import { navItem } from "./navItem";
 
 /**
  * Header profile area (#79). Rebuilt on Tailwind + Apollo v4: the old
@@ -19,9 +21,8 @@ const itemClass = "py-5 pl-[25px] first:pt-[40px]";
 
 const ProfileDropDown: React.FC = () => {
 	const { data } = useQuery(me);
-	const isAdmin = data?.me?.role === "ADMIN";
 	return (
-		<li className="group relative ml-0 uppercase">
+		<li className={cn("group", navItem)}>
 			<LinkAnchor href="/sign" className="flex items-center gap-[10px]">
 				<img className="size-[14px]" src="/user-icon.svg" alt="profile icon" />
 				{data?.me ? data.me.email : "login"}
@@ -38,15 +39,13 @@ const ProfileDropDown: React.FC = () => {
 						<li className={itemClass}>
 							<LinkAnchor href="/cart">my cart</LinkAnchor>
 						</li>
-						{isAdmin && (
+						{isAdmin(data?.me?.role) && (
 							<li className={cn(itemClass, "bg-secondary")}>
 								<LinkAnchor href="/admin/users">admin panel</LinkAnchor>
 							</li>
 						)}
 						<li className={cn(itemClass, "cursor-pointer")}>
-							<SignoutButton className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-inherit uppercase">
-								logout
-							</SignoutButton>
+							<SignoutButton>logout</SignoutButton>
 						</li>
 					</ul>
 				</div>

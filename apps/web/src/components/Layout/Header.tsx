@@ -2,6 +2,7 @@ import type React from "react";
 import LinkAnchor from "@/components/LinkAnchor/LinkAnchor";
 import CartDropdown from "./header/CartDropdown";
 import MobileMenu from "./header/MobileMenu";
+import { navItem } from "./header/navItem";
 import ProfileDropDown from "./header/ProfileDropDown";
 
 /**
@@ -14,7 +15,6 @@ import ProfileDropDown from "./header/ProfileDropDown";
  */
 const navList =
 	"m-0 hidden flex-grow list-none gap-[40px] p-0 font-roboto text-1 tracking-[1px] lg:flex";
-const navItem = "relative ml-0 uppercase";
 
 const Header: React.FC = () => {
 	return (
