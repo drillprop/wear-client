@@ -5,12 +5,6 @@ import type React from "react";
 import { changePassword } from "../../graphql/mutations/CHANGE_PASSWORD";
 import { resetPassword } from "../../graphql/mutations/RESET_PASSWORD";
 import useForm from "../../hooks/useForm";
-import {
-	FullPageSubTitle,
-	FullPageTitle,
-	FullPageWrapper,
-	SiteForm,
-} from "../../styles/site.styles";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
@@ -29,12 +23,14 @@ const RequestResetForm = () => {
 	};
 
 	return (
-		<FullPageWrapper>
-			<FullPageTitle>reset password</FullPageTitle>
-			<FullPageSubTitle>
+		<div className="flex h-[400px] flex-col items-center justify-center">
+			<h1 className="text-center font-roboto text-7 uppercase">
+				reset password
+			</h1>
+			<h3 className="mt-[30px] max-w-[400px] text-center text-3 leading-[2] text-muted-foreground">
 				Write your email below to reset password
-			</FullPageSubTitle>
-			<SiteForm onSubmit={handleSubmit}>
+			</h3>
+			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.resetPassword.message}
 				<Input
@@ -46,8 +42,8 @@ const RequestResetForm = () => {
 					onChange={handleInput}
 				/>
 				<Button type="submit">send email</Button>
-			</SiteForm>
-		</FullPageWrapper>
+			</form>
+		</div>
 	);
 };
 
@@ -65,12 +61,14 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 	};
 
 	return (
-		<FullPageWrapper>
-			<FullPageTitle>set a new password</FullPageTitle>
-			<FullPageSubTitle>
+		<div className="flex h-[400px] flex-col items-center justify-center">
+			<h1 className="text-center font-roboto text-7 uppercase">
+				set a new password
+			</h1>
+			<h3 className="mt-[30px] max-w-[400px] text-center text-3 leading-[2] text-muted-foreground">
 				Choose a new password for your account
-			</FullPageSubTitle>
-			<SiteForm onSubmit={handleSubmit}>
+			</h3>
+			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.changePassword.message}
 				<Input
@@ -83,8 +81,8 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 					onChange={handleInput}
 				/>
 				<Button type="submit">change password</Button>
-			</SiteForm>
-		</FullPageWrapper>
+			</form>
+		</div>
 	);
 };
 

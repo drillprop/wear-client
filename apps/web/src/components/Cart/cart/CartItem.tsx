@@ -1,58 +1,71 @@
 import type React from "react";
 import { type ICartItem, useCart } from "../../../contexts/CartContext";
-import {
-	Arrow,
-	CartItemAmount,
-	CartItemDelete,
-	CartItemImg,
-	CartItemInfo,
-	CartItemName,
-	CartItemPrice,
-	CartItemRow,
-	CartItemSize,
-	StyledCartItem,
-} from "./CartItem.styles";
 
 interface Props {
 	item: ICartItem;
 }
 
+/**
+ * Cart line item (#86). `CartItem.styles.ts` ports to Tailwind: the two-column
+ * image/info grid, the `:last-of-type` border reset (`last-of-type:border-b-0`),
+ * and the quantity `Arrow`/delete buttons that were free-form styled buttons.
+ * The grays map onto the shadcn `border`/`muted-foreground` tokens. The
+ * `data-testid` hooks the tests assert on are preserved.
+ */
 const CartItem: React.FC<Props> = ({ item }) => {
 	const { incItemInCart, decrItemInCart, removeItemFromCart } = useCart();
 	return (
-		<StyledCartItem>
-			<CartItemImg src={item.imageUrl} alt={item.name} />
-			<CartItemInfo>
-				<CartItemRow>
+		<li className="relative grid grid-cols-[110px_1fr] gap-5 border-b border-border py-5 last-of-type:border-b-0">
+			<img
+				src={item.imageUrl}
+				alt={item.name}
+				className="m-0 h-[140px] w-[110px] border border-border object-cover"
+			/>
+			<section className="flex flex-col justify-between">
+				<div className="flex justify-between">
 					<div>
-						<CartItemName>{item.name}</CartItemName>
-						<CartItemSize>size: {item.size}</CartItemSize>
+						<h4 className="pr-[10px] text-2 uppercase">{item.name}</h4>
+						<div className="mt-[10px] text-1 text-muted-foreground">
+							size: {item.size}
+						</div>
 					</div>
-					<CartItemDelete
+					<button
+						type="button"
 						data-testid="remove"
 						onClick={() => removeItemFromCart(item)}
+						className="flex h-0 cursor-pointer border-none bg-transparent p-0 font-montserrat text-3 text-muted-foreground"
 					>
 						&#10005;
-					</CartItemDelete>
-				</CartItemRow>
-				<CartItemRow>
-					<CartItemAmount>
+					</button>
+				</div>
+				<div className="flex justify-between">
+					<div className="mt-5 text-1">
 						amount:{" "}
-						<Arrow data-testid="decrease" onClick={() => decrItemInCart(item)}>
+						<button
+							type="button"
+							data-testid="decrease"
+							onClick={() => decrItemInCart(item)}
+							className="cursor-pointer border-none bg-transparent px-[10px] font-[inherit]"
+						>
 							&#10094;
-						</Arrow>{" "}
+						</button>{" "}
 						{item.quantity}{" "}
-						<Arrow data-testid="increase" onClick={() => incItemInCart(item)}>
+						<button
+							type="button"
+							data-testid="increase"
+							onClick={() => incItemInCart(item)}
+							className="cursor-pointer border-none bg-transparent px-[10px] font-[inherit]"
+						>
 							&#10095;
-						</Arrow>
-					</CartItemAmount>
-					<CartItemPrice data-testid="item-price">
+						</button>
+					</div>
+					<div data-testid="item-price" className="self-end text-3">
 						{" "}
 						$ {item.price * item.quantity}
-					</CartItemPrice>
-				</CartItemRow>
-			</CartItemInfo>
-		</StyledCartItem>
+					</div>
+				</div>
+			</section>
+		</li>
 	);
 };
 

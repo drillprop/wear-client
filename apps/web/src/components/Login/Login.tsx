@@ -5,12 +5,6 @@ import type React from "react";
 import { type FormEvent, useEffect } from "react";
 import { login } from "../../graphql/mutations/LOGIN";
 import useForm from "../../hooks/useForm";
-import {
-	ForgotPassword,
-	SignForm,
-	SignTitle,
-	SignWrapper,
-} from "../../styles/sign.styles";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
@@ -48,9 +42,14 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 	};
 
 	return (
-		<SignWrapper>
-			<SignForm onSubmit={handleLogin}>
-				<SignTitle>WELCOME BACK</SignTitle>
+		<div className="grid h-[calc(100vh-100px)] max-w-[1300px] grid-cols-1 lg:grid-cols-2">
+			<form
+				onSubmit={handleLogin}
+				className="mx-auto flex w-[230px] flex-col items-center lg:w-[290px]"
+			>
+				<h1 className="mt-[60px] text-center font-roboto text-6 font-bold">
+					WELCOME BACK
+				</h1>
 				<ErrorMessage error={error?.message}></ErrorMessage>
 				<Input
 					className="mt-[50px]"
@@ -73,14 +72,16 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 				/>
 				<Button type="submit">login</Button>
 				<LinkAnchor href="/reset">
-					<ForgotPassword>Forgot your password?</ForgotPassword>
+					<p className="mt-5 w-full text-center text-1">
+						Forgot your password?
+					</p>
 				</LinkAnchor>
-			</SignForm>
+			</form>
 			<SwitchSignButton onClick={() => setIsNewUser(true)} hoverText="REGISTER">
 				DON'T HAVE ACCOUNT?
 			</SwitchSignButton>
 			<SignImage image="/young-woman-on-ferris-wheel.jpg" />
-		</SignWrapper>
+		</div>
 	);
 };
 
