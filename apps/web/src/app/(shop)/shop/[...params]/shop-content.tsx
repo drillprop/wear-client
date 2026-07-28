@@ -6,14 +6,13 @@ import { useMemo } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner/LoadingSpinner";
 import NoItems from "@/components/NoItems/NoItems";
 import AppPagination from "@/components/Pagination/AppPagination";
-import { ShopFiltersWrapper, ShopWrapper } from "@/components/Shop/Shop.styles";
 import NameAndPriceFilters from "@/components/Shop/shop/NameAndPriceFilters";
 import Products from "@/components/Shop/shop/Products";
 import SortAndPerPage from "@/components/Shop/shop/SortAndPerPage";
 import ShopSideNav from "@/components/ShopSideNav/ShopSideNav";
+import { SiteSubtitle, SiteWrapper } from "@/components/SiteLayout/SiteLayout";
 import type { ItemsQueryVariables } from "@/gql/graphql";
 import { items } from "@/graphql/queries/ITEMS";
-import { SiteSubtitle, SiteWrapper } from "@/styles/site.styles";
 import { itemsVariables, SHOP_TAKE } from "../itemsVariables";
 
 interface Props {
@@ -23,10 +22,16 @@ interface Props {
 }
 
 /**
- * Shop client leaf (#69). Reads the cache primed by the RSC `PreloadQuery` for
- * the first paint (same `Items` variables), then owns filter / sort / price-range
- * refetches. Pagination is URL-driven: `AppPagination` rewrites `?page=`, `page`
- * flows back in as a prop, and Apollo refetches on the changed variables.
+ * Shop client leaf (#69, restyled #85). Reads the cache primed by the RSC
+ * `PreloadQuery` for the first paint (same `Items` variables), then owns filter
+ * / sort / price-range refetches. Pagination is URL-driven: `AppPagination`
+ * rewrites `?page=`, `page` flows back in as a prop, and Apollo refetches on the
+ * changed variables.
+ *
+ * `Shop.styles.ts` ports to Tailwind inline: the filter bar is the auto-fit grid
+ * with the old `::after` underline (`grays[5]` → `border`), and the loading
+ * state centres the spinner well down the page (the old `.loading-spinner`
+ * rule). `SiteWrapper`/`SiteSubtitle` now come from the shared `SiteLayout`.
  */
 export default function ShopContent({ gender, category, page }: Props) {
 	const variables = useMemo(
@@ -60,7 +65,7 @@ export default function ShopContent({ gender, category, page }: Props) {
 			<ShopSideNav gender={gender.toUpperCase()} />
 			<div>
 				<SiteSubtitle>shop</SiteSubtitle>
-				<ShopFiltersWrapper>
+				<div className="relative mb-[40px] grid w-full grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-x-[25px] after:absolute after:bottom-[-40px] after:h-px after:w-full after:bg-border after:content-['']">
 					<NameAndPriceFilters
 						maxPrice={data?.items.maxPrice || 0}
 						refetch={debouncedRefetch}
@@ -71,10 +76,12 @@ export default function ShopContent({ gender, category, page }: Props) {
 						variables={variables}
 						basePath={basePath}
 					/>
-				</ShopFiltersWrapper>
-				<ShopWrapper>
+				</div>
+				<div className="h-full">
 					{loading ? (
-						<LoadingSpinner />
+						<div className="mt-[150px] flex justify-center">
+							<LoadingSpinner />
+						</div>
 					) : (
 						<>
 							{!data?.items.select?.length && (
@@ -88,7 +95,7 @@ export default function ShopContent({ gender, category, page }: Props) {
 							/>
 						</>
 					)}
-				</ShopWrapper>
+				</div>
 			</div>
 		</SiteWrapper>
 	);
