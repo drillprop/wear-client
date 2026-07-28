@@ -16,7 +16,6 @@
 		"@apollo/client": "^4.2.8",
 		"@apollo/client-integration-nextjs": "^0.14.5",
 		"@apollo/client-v3": "npm:@apollo/client@^3.14.1",
-		"@emotion/is-prop-valid": "^1.4.0",
 		"@graphql-typed-document-node/core": "^3.2.0",
 		"@wear/ui": "workspace:*",
 		"class-variance-authority": "catalog:",
@@ -28,7 +27,6 @@
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"server-only": "^0.0.1",
-		"styled-components": "^6.1.14",
 		"tailwind-merge": "catalog:",
 		"tw-animate-css": "catalog:"
 	},

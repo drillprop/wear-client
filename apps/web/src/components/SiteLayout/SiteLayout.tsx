@@ -14,9 +14,8 @@ import type { FC, FormEventHandler, PropsWithChildren } from "react";
  * from `lg` up (the old `max-width:900` single-column mobile is the base) and
  * the narrow `SiteForm` width is the mobile base that widens from `sm` up.
  *
- * The still-styled-components admin surface keeps importing the originals from
- * `styles/site.styles.ts` until #89; both live side by side through that
- * coexistence window and `styles/site.styles.ts` is removed at the #90 teardown.
+ * Every surface (shop, account and — since #89 — admin) composes these leaves;
+ * the styled-components `styles/site.styles.ts` original is gone (#90).
  */
 export const SiteWrapper: FC<PropsWithChildren<{ className?: string }>> = ({
 	children,

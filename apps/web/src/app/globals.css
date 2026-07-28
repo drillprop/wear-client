@@ -21,10 +21,8 @@
  *   - `@layer base`      — the old `globalstyle.ts` `createGlobalStyle`, minus
  *                          everything Preflight already covers.
  *
- * Coexistence with styled-components (until teardown, #90): styled-components
- * injects *unlayered* rules, which outrank everything in `@layer base`, so the
- * base styles here reach only elements styled-components doesn't touch and
- * current rendering is preserved.
+ * styled-components is fully removed (#90): Tailwind is the only styling
+ * mechanism in the app, so nothing outranks `@layer base` anymore.
  */
 @import "tailwindcss";
 /* Animation utilities (animate-in/out, fade/zoom/slide) the overlay primitives

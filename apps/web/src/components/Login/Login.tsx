@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import type React from "react";
 import { type FormEvent, useEffect } from "react";
 import { login } from "../../graphql/mutations/LOGIN";
+import { me } from "../../graphql/queries/ME";
 import useForm from "../../hooks/useForm";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -19,7 +20,13 @@ interface Props {
 
 const Login: React.FC<Props> = ({ setIsNewUser }) => {
 	const router = useRouter();
-	const [loginMutation, { error }] = useMutation(login);
+	// Refetch `me` once the session cookie is set so the header (and protected
+	// layouts) pick up the authenticated user before we navigate — otherwise the
+	// cached logged-out `me` sticks and the header still shows "login".
+	const [loginMutation, { error }] = useMutation(login, {
+		refetchQueries: [{ query: me }],
+		awaitRefetchQueries: true,
+	});
 	const { values, handleInput, clearForm } = useForm({
 		email: "",
 		password: "",

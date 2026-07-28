@@ -1,7 +1,6 @@
 import type React from "react";
 import { SizesArr } from "../../../utils/constants";
 import Input from "../../Input/Input";
-import { SizesInputsWrapper } from "./EditSizes.styles";
 
 interface Props {
 	setForm: React.Dispatch<any>;
@@ -20,7 +19,10 @@ const EditSizes: React.FC<Props> = ({ sizes, setForm }) => {
 		}));
 	};
 	return (
-		<SizesInputsWrapper>
+		<div className="relative mt-[34px] grid w-full grid-cols-[repeat(2,90px)] justify-center gap-5 border-2 border-foreground px-[25px] py-[30px]">
+			<span className="absolute -top-2 left-[5px] bg-background px-[5px] font-roboto text-1 font-bold text-foreground uppercase">
+				available sizes
+			</span>
 			{SizesArr.map((size) => (
 				<Input
 					key={size}
@@ -34,7 +36,7 @@ const EditSizes: React.FC<Props> = ({ sizes, setForm }) => {
 					onChange={handleOnChange}
 				/>
 			))}
-		</SizesInputsWrapper>
+		</div>
 	);
 };
 

@@ -1,28 +1,36 @@
-import type React from "react";
-import type { UsersQuery } from "@/gql/graphql";
 import {
 	Table,
 	TableBody,
 	TableHead,
-	TableHeadCell,
-} from "../../../styles/table.styles";
+	TableHeader,
+	TableRow,
+} from "@wear/ui/components/ui/table";
+import type React from "react";
+import type { UsersQuery } from "@/gql/graphql";
 import UserRow from "./usersTable/UserRow";
 
 interface Props {
 	users: UsersQuery["users"]["select"];
 }
 
+/**
+ * Admin users table (#89). The responsive `table.styles.ts` table becomes the
+ * shadcn `Table` primitive (horizontal scroll on small screens); each row is a
+ * `UserRow`.
+ */
 const UsersTable: React.FC<Props> = ({ users }) => {
 	const tableColumnNames = ["email", "full name", "role", "orders"];
 	return (
-		<Table tableColumnNames={tableColumnNames}>
-			<TableHead>
-				<tr>
+		<Table className="mt-[50px]">
+			<TableHeader>
+				<TableRow>
 					{tableColumnNames.map((name) => (
-						<TableHeadCell key={name}>{name}</TableHeadCell>
+						<TableHead key={name} className="uppercase">
+							{name}
+						</TableHead>
 					))}
-				</tr>
-			</TableHead>
+				</TableRow>
+			</TableHeader>
 			<TableBody>
 				{users.map(
 					(user, idx) =>

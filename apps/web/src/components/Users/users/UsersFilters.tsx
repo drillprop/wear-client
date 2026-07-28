@@ -3,16 +3,19 @@ import type { UsersQueryVariables } from "@/gql/graphql";
 import { UserRoleArr } from "../../../utils/constants";
 import Input from "../../Input/Input";
 import Select from "../../Select/Select";
-import { UsersFiltersWrapper } from "./UsersFilters.styles";
 
 interface Props {
 	variables: UsersQueryVariables;
 	refetch: any;
 }
 
+/**
+ * Admin user filters (#89). The `UsersFilters.styles.ts` auto-fit grid becomes
+ * the equivalent Tailwind grid; the shared `Input`/`Select` controls compose in.
+ */
 const UsersFilters: React.FC<Props> = ({ variables, refetch }) => {
 	return (
-		<UsersFiltersWrapper>
+		<div className="grid w-full grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-end gap-x-5">
 			<Input
 				label="search user by email"
 				name="email"
@@ -46,7 +49,7 @@ const UsersFilters: React.FC<Props> = ({ variables, refetch }) => {
 				options={[5, 10, 15, 20, 25]}
 				small
 			/>
-		</UsersFiltersWrapper>
+		</div>
 	);
 };
 

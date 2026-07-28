@@ -40,6 +40,25 @@ it("logs in and navigates home on success", async () => {
 				},
 			}),
 		),
+		// Login refetches `me` so the header reflects the authenticated user.
+		graphql.query("Me", () =>
+			HttpResponse.json({
+				data: {
+					me: {
+						id: "1",
+						email: "a@b.co",
+						firstName: null,
+						lastName: null,
+						phoneNumber: null,
+						role: "CUSTOMER",
+						createdAt: "2024-01-01T00:00:00.000Z",
+						updatedAt: "2024-01-01T00:00:00.000Z",
+						newsletter: false,
+						address: null,
+					},
+				},
+			}),
+		),
 	);
 
 	renderSign();

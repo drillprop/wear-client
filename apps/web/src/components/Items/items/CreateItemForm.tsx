@@ -6,21 +6,16 @@ import type { ItemsQueryVariables } from "@/gql/graphql";
 import { createItem } from "../../../graphql/mutations/CREATE_ITEM";
 import { items } from "../../../graphql/queries/ITEMS";
 import useForm from "../../../hooks/useForm";
-import { SiteSubtitle } from "../../../styles/site.styles";
 import { CategoryArr, GenderArr, SizesArr } from "../../../utils/constants";
-import uploadImageToCloudinary from "../../../utils/uploadImageToCloudinary";
+import uploadImage from "../../../utils/uploadImage";
 import Button from "../../Button/Button";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage";
 import Input from "../../Input/Input";
 import RadioGroup from "../../RadioGroup/RadioGroup";
 import Select from "../../Select/Select";
+import { SiteSubtitle } from "../../SiteLayout/SiteLayout";
 import TextArea from "../../TextArea/TextArea";
 import UploadImage from "../../UploadImage/UploadImage";
-import {
-	CreateItemWrapper,
-	SizesInputsWrapper,
-	StyledCreateForm,
-} from "./CreateItemForm.styles";
 
 interface Props {
 	variables: ItemsQueryVariables;
@@ -48,7 +43,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const file = await uploadImageToCloudinary(values.imageUrl);
+		const file = await uploadImage(values.imageUrl);
 		const imageUrl = file.secure_url;
 
 		const sizes = SizesArr.map(
@@ -69,11 +64,11 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 		});
 	};
 	return (
-		<StyledCreateForm onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="grid grid-rows-[repeat(1,1fr)]">
 			<SiteSubtitle>Create an item</SiteSubtitle>
 			<ErrorMessage error={error?.message} />
 			{data?.createItem.id && "Succesfully create item"}
-			<CreateItemWrapper>
+			<div className="grid grid-cols-[repeat(auto-fill,minmax(auto,300px))] grid-rows-[repeat(2,auto)] gap-x-[100px] gap-y-0">
 				<div>
 					<Input
 						type="text"
@@ -119,7 +114,10 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 						value={values.description}
 						onChange={handleInput}
 					/>
-					<SizesInputsWrapper>
+					<div className="relative mt-[34px] grid w-full grid-cols-2 justify-items-center gap-[30px] border-2 border-foreground px-[25px] py-[30px]">
+						<span className="absolute -top-2 left-[5px] bg-background px-[5px] font-roboto text-1 font-bold text-foreground uppercase">
+							available sizes
+						</span>
 						{SizesArr.map((size) => (
 							<Input
 								key={size}
@@ -133,11 +131,11 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 								onChange={handleInput}
 							/>
 						))}
-					</SizesInputsWrapper>
+					</div>
 					<Button type="submit">save</Button>
 				</div>
-			</CreateItemWrapper>
-		</StyledCreateForm>
+			</div>
+		</form>
 	);
 };
 

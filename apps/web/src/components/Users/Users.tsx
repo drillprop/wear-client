@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import type { UsersQueryVariables } from "@/gql/graphql";
 import { users as usersDoc } from "../../graphql/queries/USERS";
-import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
 import { pageToSkip, parsePage } from "../../utils/pagination";
 import AdminSideNav from "../AdminSideNav/AdminSideNav";
 import AppPagination from "../Pagination/AppPagination";
+import { SiteSubtitle, SiteWrapper } from "../SiteLayout/SiteLayout";
 import UsersFilters from "./users/UsersFilters";
 import UsersTable from "./users/UsersTable";
 

@@ -6,9 +6,10 @@ import { renderWithApollo } from "@/test-utils/apollo";
 import { server } from "@/test-utils/msw/server";
 import CreateItemForm from "./CreateItemForm";
 
-// The image upload hits Cloudinary over the network; stub it so the test stays on
-// the GraphQL seam (the real `CreateItem` document through Apollo v4 + MSW).
-vi.mock("../../../utils/uploadImageToCloudinary", () => ({
+// The image upload hits the /api/upload route over the network; stub it so the
+// test stays on the GraphQL seam (the real `CreateItem` document through Apollo
+// v4 + MSW).
+vi.mock("../../../utils/uploadImage", () => ({
 	default: vi.fn(() => Promise.resolve({ secure_url: "http://img/x.jpg" })),
 }));
 

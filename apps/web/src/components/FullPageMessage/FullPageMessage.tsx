@@ -9,9 +9,8 @@ interface Props {
  * Centred full-page message block (#86/#87). The old `site.styles.ts`
  * `FullPageWrapper`/`FullPageTitle`/`FullPageSubTitle` (and the identical
  * `EmptyCart` block) collapse into one leaf: a title, a muted subtitle, and
- * `children` for the form or CTA below. `site.styles.ts` itself stays until its
- * remaining styled-components consumers are ported; this is its Tailwind
- * successor for the surfaces rebuilt here.
+ * `children` for the form or CTA below. This is the Tailwind successor to that
+ * block; the styled-components `site.styles.ts` original is gone (#90).
  */
 const FullPageMessage: FC<PropsWithChildren<Props>> = ({
 	title,

@@ -4,11 +4,11 @@ import { useSearchParams } from "next/navigation";
 import type React from "react";
 import { changeUserRole } from "../../graphql/mutations/CHANGE_USER_ROLE";
 import { singleUser } from "../../graphql/queries/SINGLE_USER";
-import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
 import { UserRoleArr } from "../../utils/constants";
 import AdminSideNav from "../AdminSideNav/AdminSideNav";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Select from "../Select/Select";
+import { SiteSubtitle, SiteWrapper } from "../SiteLayout/SiteLayout";
 
 const SingleUser: React.FC = () => {
 	const id = useSearchParams()?.get("id") ?? "";

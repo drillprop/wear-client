@@ -33,6 +33,11 @@ apps/web/src/gql/
 
 .next
 
+# Locally-uploaded item images (see apps/web/src/app/api/upload/route.ts).
+# Keep the directory, ignore its contents.
+apps/web/public/uploads/*
+!apps/web/public/uploads/.gitkeep
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
