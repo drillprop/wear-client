@@ -1,25 +1,34 @@
 "use client";
 import { useQuery } from "@apollo/client/react";
-import { useSearchParams } from "next/navigation";
-import type React from "react";
-import { userOrders } from "../../graphql/queries/USER_ORDERS";
-import { SiteSubtitle, SiteWrapper } from "../../styles/site.styles";
 import {
 	Table,
 	TableBody,
 	TableHead,
-	TableHeadCell,
-} from "../../styles/table.styles";
+	TableHeader,
+	TableRow,
+} from "@wear/ui/components/ui/table";
+import { useSearchParams } from "next/navigation";
+import type React from "react";
+import { userOrders } from "../../graphql/queries/USER_ORDERS";
 import { pageToSkip, parsePage } from "../../utils/pagination";
 import AccountSideNav from "../AccountSideNav/AccountSideNav";
 import Button from "../Button/Button";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
 import NoItems from "../NoItems/NoItems";
 import AppPagination from "../Pagination/AppPagination";
+import { SiteSubtitle, SiteWrapper } from "../SiteLayout/SiteLayout";
 import OrderRow from "./accountOrders/OrderRow";
 
 const ORDERS_TAKE = 5;
 
+/**
+ * Account order history (#88). The bespoke responsive `table.styles.ts` table
+ * (which stacked into labelled cards below `900px`) is replaced by the shadcn
+ * `Table` primitive — its container scrolls horizontally on small screens
+ * rather than card-stacking, matching the #66 default-look restyle.
+ * `SiteWrapper`/`SiteSubtitle` come from the shared `SiteLayout`; `table.styles`
+ * stays for the admin tables until #89.
+ */
 const AccountOrders: React.FC = () => {
 	const page = parsePage(useSearchParams()?.get("page"));
 	const skip = pageToSkip(page, ORDERS_TAKE);
@@ -35,14 +44,16 @@ const AccountOrders: React.FC = () => {
 			<div>
 				<SiteSubtitle>Your orders</SiteSubtitle>
 				{data?.userOrders?.select?.length ? (
-					<Table tableColumnNames={tableColumnNames}>
-						<TableHead>
-							<tr>
+					<Table className="mt-[50px]">
+						<TableHeader>
+							<TableRow>
 								{tableColumnNames.map((name) => (
-									<TableHeadCell key={name}>{name}</TableHeadCell>
+									<TableHead key={name} className="uppercase">
+										{name}
+									</TableHead>
 								))}
-							</tr>
-						</TableHead>
+							</TableRow>
+						</TableHeader>
 						<TableBody>
 							{data?.userOrders?.select?.map(
 								(userOrder, idx) =>

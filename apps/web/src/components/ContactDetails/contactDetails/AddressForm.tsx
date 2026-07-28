@@ -5,10 +5,10 @@ import { type FormEvent, useEffect } from "react";
 import { updateAddress } from "../../../graphql/mutations/UPDATE_ADDRESS";
 import { me } from "../../../graphql/queries/ME";
 import useForm from "../../../hooks/useForm";
-import { SiteForm, SiteSubtitle } from "../../../styles/site.styles";
 import Button from "../../Button/Button";
 import ErrorMessage from "../../ErrorMessage/ErrorMessage";
 import Input from "../../Input/Input";
+import { SiteForm, SiteSubtitle } from "../../SiteLayout/SiteLayout";
 
 const AddressForm: React.FC = () => {
 	const { values, handleInput, setForm } = useForm({

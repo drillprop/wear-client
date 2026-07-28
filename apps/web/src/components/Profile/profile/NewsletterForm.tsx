@@ -3,13 +3,13 @@ import { useMutation, useQuery } from "@apollo/client/react";
 import type React from "react";
 import { subscribeToNewsletter } from "../../../graphql/mutations/SUBSCRIBE_TO_NEWSLETTER";
 import { me } from "../../../graphql/queries/ME";
+import Checkbox from "../../Checkbox/Checkbox";
+import ErrorMessage from "../../ErrorMessage/ErrorMessage";
 import {
 	SiteForm,
 	SiteParagraph,
 	SiteSubtitle,
-} from "../../../styles/site.styles";
-import Checkbox from "../../Checkbox/Checkbox";
-import ErrorMessage from "../../ErrorMessage/ErrorMessage";
+} from "../../SiteLayout/SiteLayout";
 
 const NewsletterForm: React.FC = () => {
 	const { data, error } = useQuery(me);

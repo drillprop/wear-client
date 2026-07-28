@@ -3,27 +3,27 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import type { SingleItemQuery, SizeSymbol } from "@/gql/graphql";
 import { useCart } from "../../contexts/CartContext";
-import { white } from "../../styles/colors";
-import { SiteWrapper } from "../../styles/site.styles";
+import Button from "../Button/Button";
 import CartIcon from "../CartIcon/CartIcon";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Select from "../Select/Select";
 import ShopSideNav from "../ShopSideNav/ShopSideNav";
-import {
-	AddToCart,
-	SingleProductDescription,
-	SingleProductImg,
-	SingleProductMain,
-	SingleProductName,
-	SingleProductPrice,
-	Unavailable,
-} from "./SingleProduct.styles";
+import { SiteWrapper } from "../SiteLayout/SiteLayout";
 
 interface Props {
 	item?: SingleItemQuery["item"];
 	loading?: boolean;
 }
 
+/**
+ * Single product detail (#85). `SingleProduct.styles.ts` ports to Tailwind: the
+ * two-column image/detail grid, the mobile-first image height (`max-width:400`
+ * → base `h-[350px]`, `sm:h-[500px]`), and the grays onto the neutral tokens.
+ * The bespoke "add to cart" button — full-width, black, hover-inverting — is
+ * replaced by the shadcn `Button` primitive (full-width by default; `CartIcon`
+ * inherits `currentColor`), per the #66 default-look restyle. `SiteWrapper` now
+ * comes from the shared Tailwind `SiteLayout` module.
+ */
 const SingleProduct: React.FC<Props> = ({ item, loading }) => {
 	const [size, setSize] = useState<SizeSymbol | "">("");
 	const [alert, setAlert] = useState("");
@@ -61,16 +61,20 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
 	return (
 		<SiteWrapper>
 			{item ? <ShopSideNav gender={item.gender.toUpperCase()} /> : <div />}
-			<SingleProductMain>
+			<div className="mt-[50px] grid grid-cols-[repeat(auto-fit,minmax(200px,350px))] gap-[40px]">
 				{item && !loading ? (
 					<>
-						<SingleProductImg src={item?.imageUrl} alt={item?.name} />
+						<img
+							src={item?.imageUrl}
+							alt={item?.name}
+							className="h-[350px] w-full border border-border object-cover sm:h-[500px]"
+						/>
 						<section>
-							<SingleProductName>{item?.name}</SingleProductName>
-							<SingleProductDescription>
+							<h1 className="m-0 text-5 uppercase">{item?.name}</h1>
+							<p className="m-0 mt-[40px] text-2 leading-[1.8] text-muted-foreground">
 								{item?.description}
-							</SingleProductDescription>
-							<SingleProductPrice>$ {item?.price}</SingleProductPrice>
+							</p>
+							<div className="mt-[50px] text-6">$ {item?.price}</div>
 							{sizes?.length ? (
 								<form onSubmit={handleSubmit}>
 									<Select
@@ -81,25 +85,25 @@ const SingleProduct: React.FC<Props> = ({ item, loading }) => {
 										value={size}
 										options={sizes}
 									/>
-									<AddToCart disabled={!size} type="submit">
-										<CartIcon color={white} size={"1em"} />
+									<Button type="submit" disabled={!size} className="mt-[40px]">
+										<CartIcon size="1em" />
 										{alert ? alert : "add to cart"}
-									</AddToCart>
+									</Button>
 								</form>
 							) : (
-								<Unavailable>
+								<span className="text-2 text-muted-foreground">
 									product is not available at the moment
-								</Unavailable>
+								</span>
 							)}
 						</section>
 					</>
 				) : (
-					<div style={{ display: "grid", gridColumn: "1/3" }}>
+					<div className="grid [grid-column:1/3]">
 						<LoadingSpinner />
 					</div>
 				)}
 				{!item && !loading && <div>No such item</div>}
-			</SingleProductMain>
+			</div>
 		</SiteWrapper>
 	);
 };
