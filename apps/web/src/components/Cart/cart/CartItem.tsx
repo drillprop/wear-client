@@ -5,6 +5,10 @@ interface Props {
 	item: ICartItem;
 }
 
+// The two quantity arrows share styling (the old `Arrow` styled-button).
+const arrowClass =
+	"cursor-pointer border-none bg-transparent px-[10px] font-[inherit]";
+
 /**
  * Cart line item (#86). `CartItem.styles.ts` ports to Tailwind: the two-column
  * image/info grid, the `:last-of-type` border reset (`last-of-type:border-b-0`),
@@ -45,7 +49,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
 							type="button"
 							data-testid="decrease"
 							onClick={() => decrItemInCart(item)}
-							className="cursor-pointer border-none bg-transparent px-[10px] font-[inherit]"
+							className={arrowClass}
 						>
 							&#10094;
 						</button>{" "}
@@ -54,7 +58,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
 							type="button"
 							data-testid="increase"
 							onClick={() => incItemInCart(item)}
-							className="cursor-pointer border-none bg-transparent px-[10px] font-[inherit]"
+							className={arrowClass}
 						>
 							&#10095;
 						</button>

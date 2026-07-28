@@ -8,6 +8,7 @@ import useForm from "../../hooks/useForm";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
+import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SignImage from "../SignImage/SignImage";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
@@ -49,14 +50,9 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 	};
 
 	return (
-		<div className="grid h-[calc(100vh-100px)] max-w-[1300px] grid-cols-1 lg:grid-cols-2">
-			<form
-				onSubmit={handleRegister}
-				className="mx-auto flex w-[230px] flex-col items-center lg:w-[290px]"
-			>
-				<h1 className="mt-[60px] text-center font-roboto text-6 font-bold">
-					CREATE NEW ACCOUNT
-				</h1>
+		<SignWrapper>
+			<SignForm onSubmit={handleRegister}>
+				<SignTitle>CREATE NEW ACCOUNT</SignTitle>
 				<ErrorMessage error={error?.message || passwordError} />
 				<Input
 					className="mt-[50px]"
@@ -88,12 +84,12 @@ const Register: React.FC<Props> = ({ setIsNewUser }) => {
 					required
 				/>
 				<Button type="submit">register</Button>
-			</form>
+			</SignForm>
 			<SwitchSignButton onClick={() => setIsNewUser(false)} hoverText="LOGIN">
 				ALREADY HAVE ACCOUNT?
 			</SwitchSignButton>
 			<SignImage image="/woman-playing-with-blonde-hair.jpg" />
-		</div>
+		</SignWrapper>
 	);
 };
 

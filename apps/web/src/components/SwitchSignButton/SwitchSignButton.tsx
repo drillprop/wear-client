@@ -36,7 +36,9 @@ const SwitchSignButton: FC<PropsWithChildren<Props>> = ({
 				// mobile-first base (the old `max-width:900` block)
 				"static mx-auto mt-[10px] h-auto w-full cursor-pointer rounded-none border-none bg-secondary p-[10px] font-roboto text-3 outline-none",
 				// lg: restores the desktop fixed circle + hover grow
-				"lg:fixed lg:top-[calc(50%+45px)] lg:left-1/2 lg:mx-0 lg:mt-0 lg:h-[130px] lg:w-[130px] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-full lg:p-0 lg:transition-transform lg:duration-200",
+				// `lg:transition` (not just `-transform`) so the hover colour swap eases
+				// like the old `transition: transform …, background-color …`.
+				"lg:fixed lg:top-[calc(50%+45px)] lg:left-1/2 lg:mx-0 lg:mt-0 lg:h-[130px] lg:w-[130px] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-full lg:p-0 lg:transition lg:duration-200",
 				"lg:hover:scale-110 lg:hover:bg-primary lg:hover:text-primary-foreground",
 			)}
 		>

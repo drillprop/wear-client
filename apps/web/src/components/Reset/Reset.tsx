@@ -7,6 +7,7 @@ import { resetPassword } from "../../graphql/mutations/RESET_PASSWORD";
 import useForm from "../../hooks/useForm";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import FullPageMessage from "../FullPageMessage/FullPageMessage";
 import Input from "../Input/Input";
 
 /**
@@ -23,13 +24,10 @@ const RequestResetForm = () => {
 	};
 
 	return (
-		<div className="flex h-[400px] flex-col items-center justify-center">
-			<h1 className="text-center font-roboto text-7 uppercase">
-				reset password
-			</h1>
-			<h3 className="mt-[30px] max-w-[400px] text-center text-3 leading-[2] text-muted-foreground">
-				Write your email below to reset password
-			</h3>
+		<FullPageMessage
+			title="reset password"
+			subtitle="Write your email below to reset password"
+		>
 			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.resetPassword.message}
@@ -43,7 +41,7 @@ const RequestResetForm = () => {
 				/>
 				<Button type="submit">send email</Button>
 			</form>
-		</div>
+		</FullPageMessage>
 	);
 };
 
@@ -61,13 +59,10 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 	};
 
 	return (
-		<div className="flex h-[400px] flex-col items-center justify-center">
-			<h1 className="text-center font-roboto text-7 uppercase">
-				set a new password
-			</h1>
-			<h3 className="mt-[30px] max-w-[400px] text-center text-3 leading-[2] text-muted-foreground">
-				Choose a new password for your account
-			</h3>
+		<FullPageMessage
+			title="set a new password"
+			subtitle="Choose a new password for your account"
+		>
 			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.changePassword.message}
@@ -82,7 +77,7 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 				/>
 				<Button type="submit">change password</Button>
 			</form>
-		</div>
+		</FullPageMessage>
 	);
 };
 

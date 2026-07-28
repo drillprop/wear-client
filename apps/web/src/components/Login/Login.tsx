@@ -9,6 +9,7 @@ import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
+import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SignImage from "../SignImage/SignImage";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
@@ -42,14 +43,9 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 	};
 
 	return (
-		<div className="grid h-[calc(100vh-100px)] max-w-[1300px] grid-cols-1 lg:grid-cols-2">
-			<form
-				onSubmit={handleLogin}
-				className="mx-auto flex w-[230px] flex-col items-center lg:w-[290px]"
-			>
-				<h1 className="mt-[60px] text-center font-roboto text-6 font-bold">
-					WELCOME BACK
-				</h1>
+		<SignWrapper>
+			<SignForm onSubmit={handleLogin}>
+				<SignTitle>WELCOME BACK</SignTitle>
 				<ErrorMessage error={error?.message}></ErrorMessage>
 				<Input
 					className="mt-[50px]"
@@ -76,12 +72,12 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 						Forgot your password?
 					</p>
 				</LinkAnchor>
-			</form>
+			</SignForm>
 			<SwitchSignButton onClick={() => setIsNewUser(true)} hoverText="REGISTER">
 				DON'T HAVE ACCOUNT?
 			</SwitchSignButton>
 			<SignImage image="/young-woman-on-ferris-wheel.jpg" />
-		</div>
+		</SignWrapper>
 	);
 };
 

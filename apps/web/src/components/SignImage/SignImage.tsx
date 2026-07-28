@@ -17,7 +17,7 @@ const SignImage: React.FC<Props> = ({ image }) => {
 	return (
 		<div
 			style={{ backgroundImage: `url(${image})` }}
-			className="relative -z-10 hidden h-full w-full bg-cover bg-center after:absolute after:inset-0 after:bg-black after:opacity-50 after:content-[''] lg:block"
+			className="relative -z-[1] hidden h-full w-full bg-cover bg-center after:absolute after:inset-0 after:bg-foreground after:opacity-50 after:content-[''] lg:block"
 		/>
 	);
 };
