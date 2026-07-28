@@ -9,8 +9,8 @@ import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
-import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SignImage from "../SignImage/SignImage";
+import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
 interface Props {
