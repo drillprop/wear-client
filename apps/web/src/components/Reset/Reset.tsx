@@ -5,14 +5,9 @@ import type React from "react";
 import { changePassword } from "../../graphql/mutations/CHANGE_PASSWORD";
 import { resetPassword } from "../../graphql/mutations/RESET_PASSWORD";
 import useForm from "../../hooks/useForm";
-import {
-	FullPageSubTitle,
-	FullPageTitle,
-	FullPageWrapper,
-	SiteForm,
-} from "../../styles/site.styles";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import FullPageMessage from "../FullPageMessage/FullPageMessage";
 import Input from "../Input/Input";
 
 /**
@@ -29,12 +24,11 @@ const RequestResetForm = () => {
 	};
 
 	return (
-		<FullPageWrapper>
-			<FullPageTitle>reset password</FullPageTitle>
-			<FullPageSubTitle>
-				Write your email below to reset password
-			</FullPageSubTitle>
-			<SiteForm onSubmit={handleSubmit}>
+		<FullPageMessage
+			title="reset password"
+			subtitle="Write your email below to reset password"
+		>
+			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.resetPassword.message}
 				<Input
@@ -46,8 +40,8 @@ const RequestResetForm = () => {
 					onChange={handleInput}
 				/>
 				<Button type="submit">send email</Button>
-			</SiteForm>
-		</FullPageWrapper>
+			</form>
+		</FullPageMessage>
 	);
 };
 
@@ -65,12 +59,11 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 	};
 
 	return (
-		<FullPageWrapper>
-			<FullPageTitle>set a new password</FullPageTitle>
-			<FullPageSubTitle>
-				Choose a new password for your account
-			</FullPageSubTitle>
-			<SiteForm onSubmit={handleSubmit}>
+		<FullPageMessage
+			title="set a new password"
+			subtitle="Choose a new password for your account"
+		>
+			<form onSubmit={handleSubmit} className="w-[260px] sm:w-auto">
 				<ErrorMessage error={error?.message} />
 				{data?.changePassword.message}
 				<Input
@@ -83,8 +76,8 @@ const SetNewPasswordForm = ({ token }: { token: string }) => {
 					onChange={handleInput}
 				/>
 				<Button type="submit">change password</Button>
-			</SiteForm>
-		</FullPageWrapper>
+			</form>
+		</FullPageMessage>
 	);
 };
 

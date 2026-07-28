@@ -56,7 +56,10 @@ it("switches to register and blocks a mismatched password", async () => {
 
 	renderSign();
 
-	await user.click(screen.getByText("DON'T HAVE ACCOUNT?"));
+	// SwitchSignButton renders the label twice (a `lg:hidden` mobile span and a
+	// `hidden lg:inline` desktop span for the CSS breakpoint toggle), so target
+	// the switch by its button role rather than the now-duplicated text.
+	await user.click(screen.getByRole("button", { name: /DON'T HAVE ACCOUNT/ }));
 	expect(screen.getByText("CREATE NEW ACCOUNT")).toBeInTheDocument();
 
 	await user.type(screen.getByLabelText("email"), "a@b.co");

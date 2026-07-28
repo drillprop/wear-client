@@ -5,17 +5,12 @@ import type React from "react";
 import { type FormEvent, useEffect } from "react";
 import { login } from "../../graphql/mutations/LOGIN";
 import useForm from "../../hooks/useForm";
-import {
-	ForgotPassword,
-	SignForm,
-	SignTitle,
-	SignWrapper,
-} from "../../styles/sign.styles";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
 import LinkAnchor from "../LinkAnchor/LinkAnchor";
 import SignImage from "../SignImage/SignImage";
+import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
 interface Props {
@@ -73,7 +68,9 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 				/>
 				<Button type="submit">login</Button>
 				<LinkAnchor href="/reset">
-					<ForgotPassword>Forgot your password?</ForgotPassword>
+					<p className="mt-5 w-full text-center text-1">
+						Forgot your password?
+					</p>
 				</LinkAnchor>
 			</SignForm>
 			<SwitchSignButton onClick={() => setIsNewUser(true)} hoverText="REGISTER">

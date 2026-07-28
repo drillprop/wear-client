@@ -5,11 +5,11 @@ import type React from "react";
 import { type FormEvent, useEffect, useState } from "react";
 import { register } from "../../graphql/mutations/REGISTER";
 import useForm from "../../hooks/useForm";
-import { SignForm, SignTitle, SignWrapper } from "../../styles/sign.styles";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Input from "../Input/Input";
 import SignImage from "../SignImage/SignImage";
+import { SignForm, SignTitle, SignWrapper } from "../SignLayout/SignLayout";
 import SwitchSignButton from "../SwitchSignButton/SwitchSignButton";
 
 interface Props {
