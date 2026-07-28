@@ -48,7 +48,7 @@ const DeleteAccountForm: React.FC = () => {
 					type="password"
 					icon="/user-icon.svg"
 					value={values.confirmWithPassword}
-					marginTop="50px"
+					className="mt-[50px]"
 				/>
 				<Button type="submit">delete</Button>
 			</div>

@@ -66,7 +66,8 @@ it("renders the catalogue from the primed Items document", async () => {
 });
 
 it("refetches Items client-side when the sort changes", async () => {
-	const user = userEvent.setup();
+	// radix Select holds `pointer-events: none` on the body while open.
+	const user = userEvent.setup({ pointerEventsCheck: 0 });
 	// Answer by sort direction so a client refetch is observable in the output.
 	stubItems(({ variables }) => {
 		const ascending = variables.sortOrder === "ASC";
@@ -88,9 +89,8 @@ it("refetches Items client-side when the sort changes", async () => {
 	expect(await screen.findByText("Linen shirt")).toBeInTheDocument();
 
 	// Open the "sort by" select and pick lowest price → sortOrder ASC refetch.
-	const sortSelect = screen.getByText("sort by");
-	await user.click(sortSelect);
-	await user.click(screen.getByText("lowest price"));
+	await user.click(screen.getByRole("combobox", { name: "sort by" }));
+	await user.click(await screen.findByRole("option", { name: "lowest price" }));
 
 	expect(await screen.findByText("Cheapest tee")).toBeInTheDocument();
 	expect(screen.queryByText("Linen shirt")).not.toBeInTheDocument();

@@ -51,7 +51,7 @@ const PersonalInfoForm: React.FC = () => {
 					type="text"
 					icon="/user-icon.svg"
 					value={values.firstName}
-					marginTop="50px"
+					className="mt-[50px]"
 				/>
 				<Input
 					label="last name"

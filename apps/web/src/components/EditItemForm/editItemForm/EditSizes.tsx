@@ -27,7 +27,7 @@ const EditSizes: React.FC<Props> = ({ sizes, setForm }) => {
 					name={size}
 					icon="/category-icon.svg"
 					type="number"
-					marginTop="0"
+					className="mt-0"
 					placeholder="0"
 					value={sizes[size]}
 					label={size}

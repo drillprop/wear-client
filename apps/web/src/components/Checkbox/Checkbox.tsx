@@ -1,40 +1,44 @@
+import { Checkbox as UiCheckbox } from "@wear/ui/components/ui/checkbox";
+import { Label } from "@wear/ui/components/ui/label";
+import { cn } from "@wear/ui/lib/utils";
 import type React from "react";
-import {
-	CheckboxLabel,
-	CheckboxWrapper,
-	CustomCheckbox,
-	CustomCheckboxWrapper,
-	StyledCheckbox,
-} from "./Checkbox.styles";
 
 interface Props {
-	onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
+	onCheckedChange?: (checked: boolean) => void;
 	checked?: boolean;
 	text?: string;
 	id?: string;
-	marginTop?: string;
+	className?: string;
 }
 
+/**
+ * Labelled checkbox: the shadcn (radix) `Checkbox` + `Label` primitives (#84).
+ * The old hand-rolled hidden-input/`::after` tick is gone. Radix reports state
+ * through `onCheckedChange(boolean)` rather than a native change event, so the
+ * former `onChange(event)` prop becomes `onCheckedChange(checked)` — call sites
+ * read the boolean directly. Wrapper spacing is overridable through `className`.
+ */
 const Checkbox: React.FC<Props> = ({
-	onChange,
+	onCheckedChange,
 	checked = false,
 	text,
 	id,
-	marginTop,
+	className,
 }) => {
 	return (
-		<CheckboxWrapper marginTop={marginTop}>
-			<CheckboxLabel htmlFor={id}>{text}</CheckboxLabel>
-			<CustomCheckboxWrapper>
-				<StyledCheckbox
-					id={id}
-					checked={checked}
-					onChange={onChange}
-					type="checkbox"
-				/>
-				<CustomCheckbox />
-			</CustomCheckboxWrapper>
-		</CheckboxWrapper>
+		<div className={cn("flex items-center gap-3", className)}>
+			<UiCheckbox
+				id={id}
+				checked={checked}
+				onCheckedChange={(state) => onCheckedChange?.(state === true)}
+			/>
+			<Label
+				htmlFor={id}
+				className="cursor-pointer text-sm font-bold text-foreground uppercase"
+			>
+				{text}
+			</Label>
+		</div>
 	);
 };
 

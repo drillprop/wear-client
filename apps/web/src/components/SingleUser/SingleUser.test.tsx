@@ -12,7 +12,8 @@ import SingleUser from "./SingleUser";
  * change surfaces the mutation's message.
  */
 it("shows a user and changes their role", async () => {
-	const user = userEvent.setup();
+	// radix Select holds `pointer-events: none` on the body while open.
+	const user = userEvent.setup({ pointerEventsCheck: 0 });
 	server.use(
 		graphql.query("SingleUser", () =>
 			HttpResponse.json({
@@ -48,8 +49,8 @@ it("shows a user and changes their role", async () => {
 	expect(await screen.findByText("customer@b.co")).toBeInTheDocument();
 
 	// Open the role select and pick EMPLOYEE → ChangeUserRole mutation.
-	await user.click(screen.getByText("change role"));
-	await user.click(screen.getByText("EMPLOYEE"));
+	await user.click(screen.getByRole("combobox"));
+	await user.click(await screen.findByRole("option", { name: "EMPLOYEE" }));
 
 	expect(await screen.findByText("Role updated")).toBeInTheDocument();
 });

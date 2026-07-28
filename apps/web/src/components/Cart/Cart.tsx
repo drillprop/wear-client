@@ -31,7 +31,7 @@ const Cart = () => {
 					<Totals>
 						total price: <span>$ {totals.totalPrice} </span>
 					</Totals>
-					<Button marginTop="20px">go to checkout</Button>
+					<Button className="mt-5">go to checkout</Button>
 				</OrderSummary>
 			</CartWrapper>
 		</>

@@ -1,11 +1,16 @@
-import { cleanup, fireEvent, render } from "@testing-library/react";
-import { vi } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { afterEach, expect, test, vi } from "vitest";
 import Select from "./Select";
 
 afterEach(cleanup);
 
-test("toggle option list", () => {
-	const { getByTestId } = render(
+// radix keeps `pointer-events: none` on the body while the listbox is open;
+// userEvent would otherwise refuse to click the portalled options.
+const user = userEvent.setup({ pointerEventsCheck: 0 });
+
+test("opens the listbox and lists the options", async () => {
+	render(
 		<Select
 			label="label name"
 			onChange={() => {}}
@@ -13,56 +18,46 @@ test("toggle option list", () => {
 		/>,
 	);
 
-	fireEvent.click(getByTestId("select-label"));
-	expect(getByTestId("select-wrapper")).toHaveTextContent("test option a");
-	expect(getByTestId("select-wrapper")).toHaveTextContent("test option b");
+	await user.click(screen.getByRole("combobox"));
 
-	fireEvent.click(getByTestId("select-label"));
-
-	expect(getByTestId("select-wrapper")).not.toHaveTextContent("test option a");
+	expect(
+		await screen.findByRole("option", { name: "test option a" }),
+	).toBeInTheDocument();
+	expect(
+		screen.getByRole("option", { name: "test option b" }),
+	).toBeInTheDocument();
 });
 
-test("select option correctly", () => {
-	let value: string | undefined;
-	const onChangeFn = vi.fn((val: string) => {
-		value = val;
-	});
-	const mockProps = {
+test("selects an option and reflects it on the trigger", async () => {
+	const onChange = vi.fn();
+	const props = {
 		label: "label name",
-		onChange: onChangeFn,
+		onChange,
 		options: ["test option a", "test option b"],
 	};
 
-	const { getByTestId, getByText, debug, rerender } = render(
-		<Select {...mockProps} value={value} />,
+	const { rerender } = render(<Select {...props} />);
+
+	await user.click(screen.getByRole("combobox"));
+	await user.click(
+		await screen.findByRole("option", { name: "test option a" }),
 	);
 
-	expect(value).toBeUndefined();
+	expect(onChange).toHaveBeenCalledWith("test option a");
 
-	fireEvent.click(getByTestId("select-label"));
-	fireEvent.click(getByText("test option a"));
-	expect(onChangeFn).toBeCalledWith("test option a");
-	rerender(<Select {...mockProps} value={value} />);
-	expect(value).toBe("test option a");
-	expect(getByTestId("selected-option")).toHaveTextContent("test option a");
+	rerender(<Select {...props} value="test option a" />);
+	expect(screen.getByRole("combobox")).toHaveTextContent("test option a");
 });
 
-test("blur select correctly", () => {
-	let value = "test option a";
-	const onChangeFn = vi.fn((val) => {
-		value = val;
-	});
-
-	const mockProps = {
-		label: "label name",
-		onChange: onChangeFn,
-		options: ["test option a", "test option b"],
-	};
-	const { getByTestId, debug, rerender } = render(
-		<Select {...mockProps} value={value} />,
+test("shows the placeholder until a value is picked", () => {
+	render(
+		<Select
+			label="label name"
+			placeHolder="pick one"
+			onChange={() => {}}
+			options={["test option a"]}
+		/>,
 	);
-	fireEvent.click(getByTestId("custom-select"));
-	fireEvent.blur(getByTestId("custom-select"));
-	rerender(<Select {...mockProps} value={value} />);
-	expect(getByTestId("selected-option")).toHaveTextContent("");
+
+	expect(screen.getByRole("combobox")).toHaveTextContent("pick one");
 });

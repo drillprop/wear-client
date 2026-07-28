@@ -1,117 +1,80 @@
-import type React from "react";
-import { useState } from "react";
+import { Label } from "@wear/ui/components/ui/label";
 import {
-	CustomOption,
-	CustomSelect,
-	CustomSelectedOption,
-	PlaceHolder,
-	SelectLabel,
-	SelectWrapper,
-} from "./Select.styles";
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	Select as UiSelect,
+} from "@wear/ui/components/ui/select";
+import { cn } from "@wear/ui/lib/utils";
+import type React from "react";
 
 interface Props {
+	// biome-ignore lint/suspicious/noExplicitAny: options carry enum unions (roles, genders, statuses) and plain numbers across call sites
 	options?: any[];
-	marginTop?: string;
-	width?: string;
+	className?: string;
 	label: string;
-	icon?: string;
 	placeHolder?: string;
-	onChange: (val: any) => void;
+	// biome-ignore lint/suspicious/noExplicitAny: the picked value flows straight back into enum-typed mutation vars
+	onChange: (value: any) => void;
 	value?: string | number | null;
 	small?: boolean;
 }
 
+/**
+ * Labelled dropdown: the shadcn (radix) `Select` primitive set + `Label`
+ * composed with `cn()` (#84), replacing the hand-built keyboard-driven
+ * combobox. Radix owns the value as a string, so numeric options are coerced to
+ * strings for rendering/selection while `onChange` still hands the raw picked
+ * value back to the caller. The bounded `small` prop drives the trigger size;
+ * full width by default, wrapper spacing overridable through `className`.
+ */
 const Select: React.FC<Props> = ({
-	options,
-	marginTop = "25px",
-	width = "100%",
+	options = [],
+	className,
 	label,
 	placeHolder,
-	value = "",
-	icon,
+	value,
 	onChange,
 	small,
 }) => {
-	const [visible, setVisible] = useState(false);
-	const [optIndex, setOptIndex] = useState(-1);
-
-	const handleSelect = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		const { textContent } = e.currentTarget;
-		onChange(textContent || "");
-	};
-
-	const handleOnBlur = () => {
-		setVisible(false);
-		visible && onChange(null);
-		setOptIndex(-1);
-	};
-
-	const handleKeyEvents = (e: React.KeyboardEvent<HTMLDivElement>) => {
-		if (e.key === "Enter") {
-			setVisible((visible) => !visible);
-		}
-		if (e.key === "ArrowDown") {
-			e.preventDefault();
-			if (options?.length && optIndex < options.length - 1) {
-				onChange(options[optIndex + 1]);
-				setOptIndex((index) => index + 1);
-			}
-		}
-		if (e.key === "ArrowUp") {
-			e.preventDefault();
-			if (options?.length && optIndex > 0) {
-				onChange(options[optIndex - 1]);
-				setOptIndex((index) => index - 1);
-			}
-		}
-	};
+	const selected =
+		value !== undefined && value !== null && value !== ""
+			? String(value)
+			: undefined;
 
 	return (
-		<SelectWrapper
-			marginTop={marginTop}
-			width={width}
-			data-testid="select-wrapper"
-		>
-			<SelectLabel
-				icon={icon || "/category-icon.svg"}
-				onClick={() => setVisible((visible) => !visible)}
-				small={small}
-				data-testid="select-label"
+		<div className={cn("mt-[25px] w-full", className)}>
+			<Label
+				htmlFor={label}
+				className={cn(
+					"mb-1 block cursor-pointer font-bold uppercase",
+					small ? "text-xs text-muted-foreground" : "text-sm text-foreground",
+				)}
 			>
 				{label}
-			</SelectLabel>
-			<CustomSelect
-				role="listbox"
-				tabIndex={0}
-				onClick={() => setVisible((visible) => !visible)}
-				onKeyDown={handleKeyEvents}
-				onBlur={handleOnBlur}
-				data-testid="custom-select"
-				small={small}
-			>
-				<CustomSelectedOption
-					role="option"
-					aria-selected
-					active={visible}
-					small={small}
-					data-testid="selected-option"
+			</Label>
+			<UiSelect value={selected} onValueChange={onChange}>
+				<SelectTrigger
+					id={label}
+					size={small ? "sm" : "default"}
+					className="w-full uppercase"
 				>
-					{value || <PlaceHolder>{placeHolder}</PlaceHolder>}
-				</CustomSelectedOption>
-				{visible &&
-					options?.map((option) => (
-						<CustomOption
-							small={small}
-							key={option}
-							role="option"
-							onClick={handleSelect}
-							highlight={option === value}
+					<SelectValue placeholder={placeHolder} />
+				</SelectTrigger>
+				<SelectContent>
+					{options.map((option) => (
+						<SelectItem
+							key={String(option)}
+							value={String(option)}
+							className="uppercase"
 						>
 							{option}
-						</CustomOption>
+						</SelectItem>
 					))}
-			</CustomSelect>
-		</SelectWrapper>
+				</SelectContent>
+			</UiSelect>
+		</div>
 	);
 };
 

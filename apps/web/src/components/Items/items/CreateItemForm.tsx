@@ -110,7 +110,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 						legend="Gender"
 						name="gender"
 						buttons={GenderArr}
-						onChange={handleInput}
+						onChange={(gender) => setForm({ ...values, gender })}
 						value={values.gender}
 					/>
 					<TextArea
@@ -126,7 +126,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 								name={size}
 								icon="/category-icon.svg"
 								type="number"
-								marginTop="0"
+								className="mt-0"
 								placeholder="0"
 								value={values[size]}
 								label={size}
@@ -134,9 +134,7 @@ const CreateItemForm: React.FC<Props> = ({ variables }) => {
 							/>
 						))}
 					</SizesInputsWrapper>
-					<Button width="100%" type="submit">
-						save
-					</Button>
+					<Button type="submit">save</Button>
 				</div>
 			</CreateItemWrapper>
 		</StyledCreateForm>

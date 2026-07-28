@@ -53,7 +53,7 @@ const Login: React.FC<Props> = ({ setIsNewUser }) => {
 				<SignTitle>WELCOME BACK</SignTitle>
 				<ErrorMessage error={error?.message}></ErrorMessage>
 				<Input
-					marginTop="50px"
+					className="mt-[50px]"
 					placeholder="user@example.com"
 					label="email"
 					icon="/mail-icon.svg"

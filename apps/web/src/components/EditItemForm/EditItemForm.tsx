@@ -117,7 +117,7 @@ const EditItemForm: React.FC<Props> = ({ item }) => {
 								legend="Gender"
 								name="gender"
 								buttons={GenderArr}
-								onChange={handleInput}
+								onChange={(gender) => setForm({ ...values, gender })}
 								value={gender}
 							/>
 							<TextArea
