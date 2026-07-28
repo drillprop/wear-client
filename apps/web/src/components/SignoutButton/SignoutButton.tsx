@@ -4,6 +4,7 @@ import { cn } from "@wear/ui/lib/utils";
 import { useRouter } from "next/navigation";
 import type React from "react";
 import { signout } from "../../graphql/mutations/SIGNOUT";
+import { me } from "../../graphql/queries/ME";
 
 interface Props {
 	className?: string;
@@ -22,7 +23,15 @@ const RESET =
 
 const SignoutButton: React.FC<Props> = ({ className, children }) => {
 	const router = useRouter();
-	const [signoutMutation] = useMutation(signout);
+	// Clear the cached `me` the moment signout succeeds so the header (and every
+	// other `useQuery(me)` consumer) flips to the logged-out state immediately —
+	// a client cache write, no extra round-trip, since we already know the user
+	// is gone.
+	const [signoutMutation] = useMutation(signout, {
+		update(cache) {
+			cache.writeQuery({ query: me, data: { me: null } });
+		},
+	});
 
 	const handleSignout = async () => {
 		await signoutMutation();

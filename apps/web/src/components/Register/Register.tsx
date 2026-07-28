@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import type React from "react";
 import { type FormEvent, useEffect, useState } from "react";
 import { register } from "../../graphql/mutations/REGISTER";
+import { me } from "../../graphql/queries/ME";
 import useForm from "../../hooks/useForm";
 import Button from "../Button/Button";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -18,7 +19,12 @@ interface Props {
 
 const Register: React.FC<Props> = ({ setIsNewUser }) => {
 	const router = useRouter();
-	const [registerMutation, { error }] = useMutation(register);
+	// Refetch `me` once the session cookie is set so the header reflects the new
+	// account before we navigate home (see Login for the same reasoning).
+	const [registerMutation, { error }] = useMutation(register, {
+		refetchQueries: [{ query: me }],
+		awaitRefetchQueries: true,
+	});
 
 	const [passwordError, setPasswordError] = useState("");
 	const { values, handleInput, clearForm } = useForm({
